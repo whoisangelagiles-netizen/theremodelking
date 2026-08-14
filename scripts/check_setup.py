@@ -73,15 +73,19 @@ def check_tools() -> None:
                ("weasyprint", "guide PDF", True),
                ("youtube_transcript_api", "transcript fetch", True),
                ("yt_dlp", "source download", True),
-               ("faster_whisper", "transcript fallback when a video has no captions", False)]
+               ("faster_whisper", "last resort transcription, installed on demand", False)]
     for name, why, required in modules:
         try:
             __import__(name)
             line(OK, name)
         except ImportError:
-            hint = ("pip install -r requirements-whisper.txt" if name == "faster_whisper"
-                    else "pip install -r requirements.txt")
-            line(FAIL if required else WARN, name, f"not installed, needed for {why}. {hint}")
+            if name == "faster_whisper":
+                line(WARN, name, "not installed, and usually never needed. yt-dlp subtitles "
+                                 "cover videos the caption API cannot reach. It installs "
+                                 "itself if a video truly has no captions.")
+            else:
+                line(FAIL if required else WARN, name,
+                     f"not installed, needed for {why}. pip install -r requirements.txt")
 
 
 def image_content_width(path: Path) -> int:
@@ -114,10 +118,10 @@ def check_assets() -> None:
                 line(WARN, "logo watermark", detail + ", no transparency, it will show a "
                                                      "solid rectangle. Export a PNG with alpha.")
             elif image_content_width(logo) < 260:
-                line(WARN, "logo watermark",
-                     detail + f", the mark is only {image_content_width(logo)}px wide inside "
-                              "the file. It renders around 173px, so a larger export would "
-                              "be crisper.")
+                line(OK, "logo watermark",
+                     detail + f", the mark is {image_content_width(logo)}px wide inside the "
+                              "file so it renders at native size rather than the full 16 "
+                              "percent. A 600px export would let it sit larger.")
             else:
                 line(OK, "logo watermark", detail)
         except Exception as exc:  # noqa: BLE001

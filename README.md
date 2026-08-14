@@ -51,8 +51,9 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 
 ## Setup, once
 
-1. Put your logo in `assets/logo.png`, transparent PNG. It becomes the
-   watermark in the top right of every Short. See `assets/README.md`.
+1. Put your logo in `assets/`, transparent PNG. Any filename with "logo" in it
+   works, `logo.png` or `KCS Logo.png` alike. It becomes the watermark in the
+   top right of every Short. See `assets/README.md`.
 2. Provide two credentials. NEVER commit them, this repository is public.
    Any of these three work, the scripts read them in this order:
 
@@ -126,7 +127,6 @@ pip install -r requirements.txt   # plus ffmpeg and yt-dlp on the system
 # pull the timestamped transcript
 python scripts/fetch_transcript.py "https://www.youtube.com/watch?v=VIDEO_ID"
 #    writes transcripts/[video_id].json
-#    no captions on the video? it falls back to yt-dlp plus faster-whisper
 
 # the skill writes the guide content to guides/[slug].json
 
@@ -134,6 +134,18 @@ python scripts/fetch_transcript.py "https://www.youtube.com/watch?v=VIDEO_ID"
 python scripts/render_guide.py guides/[slug].json
 #    writes output/[slug]-production-guide.pdf
 ```
+
+## How transcripts are fetched
+
+Three tiers, cheapest first, all producing the same timestamped JSON:
+
+| Tier | How | When it runs |
+| --- | --- | --- |
+| 1 | `youtube-transcript-api` | First. Fast, no download. Commonly blocked by IP from cloud containers, and it fails fast when it is |
+| 2 | `yt-dlp` subtitles, json3 or vtt, published track preferred over auto | When tier 1 fails. This is the tier that works from a cloud session |
+| 3 | `yt-dlp` audio plus `faster-whisper` | Only when a video genuinely has no captions. Installs itself on demand, so it stays out of `requirements.txt` and out of session startup |
+
+Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 
 ## What the assembly actually does
 
@@ -144,7 +156,7 @@ python scripts/render_guide.py guides/[slug].json
 | Punch in | zoompan glued to the analyzed focus point |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
 | Captions | Bold white, black outline, hook upper third, supporting lower third, burned in |
-| Watermark | `assets/logo.png` top right of every scene and the CTA frame, soft shadow, fixed while the picture punches in |
+| Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
@@ -174,8 +186,9 @@ footer.
 ## Requirements
 
 `ffmpeg` and `yt-dlp` on the system, plus `pip install -r requirements.txt`.
-`faster-whisper` lives in `requirements-whisper.txt` and is only needed when a
-video has no captions at all, so it stays out of the default install.
+`faster-whisper` lives in `requirements-whisper.txt` and installs itself on
+demand, only when a video has no captions at all, so it stays out of the
+default install and out of session startup.
 
 `ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` come from the environment or a
 gitignored `.env`, never from a committed file.

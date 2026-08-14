@@ -43,9 +43,10 @@ python scripts/fetch_transcript.py "<YouTube URL>"
 ```
 
 It saves `transcripts/[video_id].json` with per line timestamps and prints the
-path. If the video has no captions it automatically falls back to downloading
-audio with yt-dlp and transcribing with faster-whisper, producing the same JSON
-shape. Read that JSON and work only from it.
+path. It tries three tiers by itself, the caption API, then yt-dlp subtitles,
+then faster-whisper on the downloaded audio, and every tier produces the same
+JSON shape. The `source` field records which one was used. Read that JSON and
+work only from it.
 
 The transcript timestamps become the Source Footage timestamp ranges in the
 scene tables. Never invent a timestamp. If a beat has no matching transcript

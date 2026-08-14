@@ -9,7 +9,7 @@ Commit these files so they survive into a fresh session.
 
 | File | What it is | Format |
 | --- | --- | --- |
-| `logo.png` | Channel logo, composited as a watermark in the TOP RIGHT of every scene and the CTA frame | PNG with a transparent background |
+| `logo.png` | Channel logo, composited as a watermark in the TOP RIGHT of every scene and the CTA frame | PNG with a transparent background. Any filename containing "logo" is found, so `KCS Logo.png` works as is |
 
 Specs that work best:
 
@@ -22,9 +22,10 @@ Specs that work best:
   it holds up over bright reveal footage.
 
 It sits 40px in from the right and 52px down from the top, which clears both
-the YouTube UI and the hook caption. Tune it per build with `--logo-width`
-(default `0.16`, meaning 16 percent of frame width) and `--logo-opacity`
-(default `0.92`), or drop it entirely with `--no-logo`.
+the YouTube UI and the hook caption. Width is automatic: up to 16 percent of
+the frame, but never enlarged past the mark's native pixels, so a small file
+renders crisp rather than soft. Override with `--logo-width`, adjust
+`--logo-opacity` (default `0.92`), or drop it with `--no-logo`.
 
 ## Optional extras
 
