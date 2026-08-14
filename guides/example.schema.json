@@ -14,6 +14,23 @@
     "notes": ["Optional extra context bullets."]
   },
 
+  "opportunities": [
+    {
+      "rank": 1,
+      "lens": "homeowner problem | solution | problem hit during the job | product or material",
+      "timestamps": "MM:SS - MM:SS",
+      "clip_length": "e.g. 19 seconds",
+      "why_it_works": "One or two sentences.",
+      "seo_titles": ["option 1", "option 2"],
+      "hook_text": "First 2 seconds on screen.",
+      "caption_ideas": ["caption 1", "caption 2"],
+      "cta_strategy": "End frame and CTA approach.",
+      "selected": true
+    }
+  ],
+  "assessment": "Optional. Say plainly if the episode is weak for problem/solution or product review Shorts and works better as a project showcase.",
+  "hashtags": ["#homeremodel", "#remodeling"],
+
   "shorts": [
     {
       "angle": "Homeowner problem hook",

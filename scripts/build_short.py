@@ -819,7 +819,8 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         wm_index = index
         index += 1
 
-    chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H},setsar=1,fps={FPS}[base]"]
+    chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},"
+             f"scale={W}:{H}:flags=lanczos,setsar=1,fps={FPS}[base]"]
     label = "base"
 
     if ann_index is not None:
@@ -1025,7 +1026,7 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
              "-frames:v", "1", "-q:v", "3", str(target)])
         grabs.append(target)
 
-    columns = min(5, len(grabs))
+    columns = min(4, len(grabs))
     rows = (len(grabs) + columns - 1) // columns
     cell_w, cell_h = 320, 569
     pad, caption_h, header = 16, 54, 92
@@ -1034,8 +1035,8 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
                               header + rows * (cell_h + caption_h + pad) + pad),
                       (24, 26, 28))
     draw = ImageDraw.Draw(sheet)
-    title_font = ImageFont.truetype(font_path, 34) if font_path else ImageFont.load_default(34)
-    label_font = ImageFont.truetype(font_path, 20) if font_path else ImageFont.load_default(20)
+    title_font = ImageFont.truetype(font_path, 30) if font_path else ImageFont.load_default(30)
+    label_font = ImageFont.truetype(font_path, 17) if font_path else ImageFont.load_default(17)
 
     draw.rectangle([0, 0, sheet.width, 8], fill=BRAND_GREEN)
     draw.text((pad, 34), f"{slug} short {index}, {total:.1f}s, {len(scenes)} scenes",
@@ -1049,14 +1050,93 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
             sheet.paste(image.resize((cell_w, cell_h)), (x, y))
         draw.rectangle([x, y, x + cell_w, y + cell_h], outline=BRAND_GREEN, width=3)
         text = labels[position]
-        for line_no, line in enumerate(textwrap.wrap(text, 34)[:2]):
-            draw.text((x, y + cell_h + 8 + line_no * 22), line, font=label_font,
+        for line_no, line in enumerate(textwrap.wrap(text, 32)[:2]):
+            draw.text((x, y + cell_h + 8 + line_no * 20), line, font=label_font,
                       fill=(214, 219, 223))
 
     destination = OUTPUT / f"{slug}-short-{index}-contact-sheet.jpg"
     sheet.save(destination, quality=88)
     say(f"contact sheet: {destination.relative_to(REPO_ROOT)}")
     return destination
+
+
+# --------------------------------------------------------------------------
+# stage 7: publish pack and thumbnail
+# --------------------------------------------------------------------------
+
+DEFAULT_HASHTAGS = ["#homeremodel", "#remodeling", "#renovation", "#contractor"]
+
+
+def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
+                       slug: str, starts: list[float]) -> tuple[Path, Path]:
+    """Everything the publishing checklist asks for, next to the video."""
+    stage("Stage 7, publish pack and thumbnail")
+
+    thumb = OUTPUT / f"{slug}-short-{index}-thumbnail.jpg"
+    grab_at = min(1.2, max(0.4, (starts[1] if len(starts) > 1 else 2.0) / 2))
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+         "-ss", f"{grab_at:.2f}", "-i", str(final),
+         "-frames:v", "1", "-q:v", "2", str(thumb)])
+    say(f"thumbnail: {thumb.relative_to(REPO_ROOT)}, first frame style, grabbed at {grab_at:.1f}s")
+
+    titles = short.get("seo_titles") or [short.get("working_title", "")]
+    cta = short.get("cta", {})
+    link = guide.get("video_url", "")
+    tags = guide.get("hashtags") or DEFAULT_HASHTAGS
+    body = short.get("description") or (
+        f"{titles[0]}.\n\n"
+        f"{short.get('primary_goal', '')}\n\n"
+        f"Watch the full remodel: {link}"
+    )
+
+    lines = [
+        f"# Publish pack, Short {index}",
+        "",
+        f"Episode: {guide.get('episode', '')}",
+        f"Video: {final.name}",
+        f"Thumbnail: {thumb.name}",
+        "",
+        "## SEO title, use the first unless you prefer another",
+        "",
+    ]
+    lines += [f"{i}. {t}" for i, t in enumerate(titles, start=1)]
+    lines += [
+        "",
+        "## Description",
+        "",
+        body,
+        "",
+        " ".join(tags),
+        "",
+        "## Pinned comment",
+        "",
+        cta.get("pinned", "").replace("[full video link]", link) or link,
+        "",
+        "## Hashtags",
+        "",
+        " ".join(tags),
+        "",
+        "## Checklist",
+        "",
+    ]
+    lines += [f"- [ ] {item}" for item in (guide.get("checklist") or DEFAULT_CHECKLIST_FALLBACK)]
+    pack = OUTPUT / f"{slug}-short-{index}-publish.md"
+    pack.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    say(f"publish pack: {pack.relative_to(REPO_ROOT)}")
+    return pack, thumb
+
+
+DEFAULT_CHECKLIST_FALLBACK = [
+    "Hook lands within 2 seconds",
+    "VO recorded and mixed",
+    "Captions burned in",
+    "Thumbnail reviewed",
+    "SEO title finalized",
+    "Description written with link to the full video",
+    "Pinned comment prepared",
+    "Hashtags added",
+    "Published to YouTube Shorts",
+]
 
 
 # --------------------------------------------------------------------------
@@ -1153,10 +1233,13 @@ def main() -> None:
     final, starts = stage_assemble(scenes, short, source, vo, work, args.number,
                                    slug, font_path, music, watermark)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
+    pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 
     print("\nDone.")
-    print(f"  Short:        {final.relative_to(REPO_ROOT)}")
-    print(f"  Contact sheet:{sheet.relative_to(REPO_ROOT)}")
+    print(f"  Short:         {final.relative_to(REPO_ROOT)}")
+    print(f"  Contact sheet: {sheet.relative_to(REPO_ROOT)}")
+    print(f"  Thumbnail:     {thumb.relative_to(REPO_ROOT)}")
+    print(f"  Publish pack:  {pack.relative_to(REPO_ROOT)}")
 
 
 if __name__ == "__main__":

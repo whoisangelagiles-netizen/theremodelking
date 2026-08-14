@@ -366,6 +366,32 @@
   {% endif %}
 </section>
 
+{% if opportunities %}
+<section class="section-block">
+  <h2 class="section">Shorts Opportunities Considered</h2>
+  {% if assessment %}<p>{{ assessment }}</p>{% endif %}
+  <table class="scenes">
+    <thead>
+      <tr><th>#</th><th>Lens</th><th>Timestamps</th><th>Length</th>
+          <th>Why it works</th><th>Hook text</th><th>Selected</th></tr>
+    </thead>
+    <tbody>
+      {% for o in opportunities %}
+      <tr>
+        <td class="n">{{ o.rank | default(loop.index) }}</td>
+        <td>{{ o.lens }}</td>
+        <td class="src">{{ o.timestamps }}</td>
+        <td class="tl">{{ o.clip_length }}</td>
+        <td>{{ o.why_it_works }}</td>
+        <td>{{ o.hook_text }}</td>
+        <td class="tl">{{ "yes" if o.selected else "no" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+
 <!-- ============================ SHORTS =========================== -->
 {% for s in shorts %}
 <section class="short-block">

@@ -30,6 +30,11 @@ here. Read that skill first if it is not already loaded. In particular:
   exclamation points per Short, occasional rhetorical questions, staccato short
   sentences, commas for flow, natural enthusiasm rather than hype.
 - First person, Mike's voice. Every fact comes from the transcript.
+- The read must sound homeowner friendly, clear and conversational, confident
+  and expert, and tighter and more intentional than the original walkthrough
+  audio. Mark the words that carry the point so the team can paste the block
+  straight into ElevenLabs.
+- Leave a small pause between sentences so cuts and punch-ins have room.
 - Never use em dashes in ANY output, ever.
 - If highlight footage is limited, use fewer and longer VO lines that hold over
   reveal footage instead of many quick cuts.
@@ -52,7 +57,35 @@ The transcript timestamps become the Source Footage timestamp ranges in the
 scene tables. Never invent a timestamp. If a beat has no matching transcript
 moment, say so in the Editor notes for that scene.
 
-## Step 2: default output is two Shorts, a mini funnel
+## Step 2: scan the episode for Shorts opportunities
+
+Before writing any guide, work the whole transcript through four lenses:
+
+1. Homeowner problems
+2. Solutions Mike provided through the remodel
+3. Problems encountered during the project and how they were fixed
+4. Product mentions, material recommendations, and product review angles
+
+For every strong opportunity, give all seven of these:
+
+1. Exact timestamps
+2. Clip length
+3. Why it works as a Short
+4. SEO friendly title options
+5. Hook text for the first 2 seconds
+6. On screen caption ideas
+7. Best CTA and end frame strategy
+
+**Be honest about weak episodes.** If the episode is not strong for problem and
+solution or product review Shorts, say so plainly and explain whether it works
+better as a project showcase. Do not force two Shorts out of an episode that
+does not carry them.
+
+Then pick the best two and build the guide from those. Keep the scan in the
+guide JSON under `opportunities` so the content team sees what was considered
+and what was left on the table.
+
+## Step 3: default output is two Shorts, a mini funnel
 
 Unless the user overrides it:
 
@@ -65,7 +98,7 @@ Publish order is Short 1 first, then Short 2. The user can override the count
 or the angle per episode. Honor the override and update the publish order logic
 section to match.
 
-## Step 3: each Short section
+## Step 4: each Short section
 
 Every Short in the guide contains, in this order:
 
@@ -82,7 +115,7 @@ Every Short in the guide contains, in this order:
 5. **Voice direction.** One or two lines.
 6. **CTA options.** Primary, alt comment-bait, and pinned comment text.
 
-## Step 4: the rest of the document
+## Step 5: the rest of the document
 
 - **Project context.** Which segment of the episode was chosen and why, and the
   publish order logic for the funnel.
@@ -93,7 +126,7 @@ Every Short in the guide contains, in this order:
   recorded, captions burned in, thumbnail, SEO title, description with the full
   video link, pinned comment, hashtags.
 
-## Step 5: render the PDF
+## Step 6: render the PDF
 
 Write the guide content as JSON to `guides/[slug].json` following the shape in
 `guides/example.schema.json`, then render:
@@ -118,7 +151,7 @@ guide:
 Set `cta_frame` on the Short for the end frame text, otherwise `cta.primary`
 is used.
 
-## Step 6: build the finished Short
+## Step 7: build the finished Short
 
 When the user wants a finished video rather than a handoff document:
 
@@ -176,3 +209,15 @@ numbers and rebuild. Send the user both files with SendUserFile.
 
 `--auto` skips the analysis pause with center crop defaults. It is for a quick
 technical check only, never for a Short that gets published.
+
+## What the finished build hands back
+
+Per Short, in `output/`:
+
+- `[slug]-short-[n]-FINAL.mp4`, 1080x1920, publish ready
+- `[slug]-short-[n]-contact-sheet.jpg`, one frame per scene
+- `[slug]-short-[n]-thumbnail.jpg`, first frame style
+- `[slug]-short-[n]-publish.md`, SEO titles, description with the full video
+  link, pinned comment, hashtags, and the publishing checklist
+
+That covers every line of the publishing checklist except the act of uploading.
