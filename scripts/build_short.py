@@ -46,6 +46,7 @@ BRAND_GREEN = (14, 147, 70)
 W, H = 1080, 1920
 FPS = 30
 CTA_SECONDS = 2.4
+DEFAULT_LOGO_WIDTH = 0.16
 MIN_SCENE_SECONDS = 1.2
 
 FONT_CANDIDATES = [
@@ -153,6 +154,19 @@ def load_dotenv() -> None:
             continue
         key, value = entry.split("=", 1)
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def find_logo(explicit: Path | None) -> Path | None:
+    """assets/logo.png, or any file in assets/ with 'logo' in the name."""
+    if explicit:
+        return explicit if explicit.exists() else None
+    for name in ("logo.png", "logo.webp", "logo.jpg"):
+        if (ASSETS / name).exists():
+            return ASSETS / name
+    matches = sorted(path for path in ASSETS.glob("*")
+                     if "logo" in path.stem.lower()
+                     and path.suffix.lower() in {".png", ".webp", ".jpg", ".jpeg"})
+    return matches[0] if matches else None
 
 
 def asset(*names: str) -> Path | None:
@@ -637,7 +651,7 @@ def draw_caption(text: str, zone: str, font_path: str | None, path: Path) -> Pat
     return path
 
 
-def build_watermark(logo_path: Path, destination: Path, width_frac: float,
+def build_watermark(logo_path: Path, destination: Path, width_frac: float | None,
                     margin_right: int, margin_top: int, opacity: float) -> Path:
     """Lay the channel logo into the top right of a transparent 1080x1920 plate."""
     from PIL import Image, ImageFilter
@@ -649,13 +663,26 @@ def build_watermark(logo_path: Path, destination: Path, width_frac: float,
                 "A PNG with an alpha channel looks far better.")
         logo = logo.convert("RGBA")
 
-    target_w = max(40, int(W * width_frac))
+    box = logo.getchannel("A").getbbox() if "A" in logo.getbands() else None
+    native_content_w = (box[2] - box[0]) if box else logo.width
+
+    if width_frac is None:
+        # Auto: never enlarge the mark past its native pixels, and never let it
+        # shrink below a readable 10 percent of frame width.
+        target_w = max(int(W * 0.10), min(int(W * DEFAULT_LOGO_WIDTH), native_content_w))
+    else:
+        target_w = max(40, int(W * width_frac))
     target_h = max(1, int(round(logo.height * target_w / logo.width)))
     logo = logo.resize((target_w, target_h), Image.LANCZOS)
 
     if opacity < 1.0:
         alpha = logo.getchannel("A").point(lambda value: int(value * opacity))
         logo.putalpha(alpha)
+
+    upscale = target_w / max(1, native_content_w)
+    if upscale > 1.15:
+        say(f"the logo is being enlarged {upscale:.1f}x from its native size, it may look "
+            "soft. A bigger export fixes it.")
 
     x = W - target_w - margin_right
     y = margin_top
@@ -1010,8 +1037,10 @@ def main() -> None:
     parser.add_argument("--logo", type=Path, default=None,
                         help="watermark logo override, defaults to assets/logo.png")
     parser.add_argument("--no-logo", action="store_true", help="build without the watermark")
-    parser.add_argument("--logo-width", type=float, default=0.16,
-                        help="watermark width as a fraction of frame width, default 0.16")
+    parser.add_argument("--logo-width", type=float, default=None,
+                        help="watermark width as a fraction of frame width. Default is "
+                             "automatic, up to 0.16 but never enlarging the mark past its "
+                             "native pixels")
     parser.add_argument("--logo-opacity", type=float, default=0.92)
     parser.add_argument("--font", default=None, help="bold TTF for captions")
     parser.add_argument("--redownload", action="store_true")
@@ -1057,14 +1086,17 @@ def main() -> None:
 
     watermark = None
     if not args.no_logo:
-        logo = args.logo or asset("logo.png", "logo.webp", "logo.jpg")
+        logo = find_logo(args.logo)
         if logo is None:
-            say("no assets/logo.png, building without the watermark")
+            say("no logo in assets/, building without the watermark")
         else:
             watermark = build_watermark(logo, work / "watermark.png",
                                         args.logo_width, 40, 52, args.logo_opacity)
-            say(f"watermark: {logo.name}, top right, {int(args.logo_width * 100)} percent "
-                "of frame width")
+            from PIL import Image
+            with Image.open(watermark) as plate:
+                mark = plate.getchannel("A").getbbox()
+            say(f"watermark: {logo.name}, top right, "
+                f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
     final, starts = stage_assemble(scenes, short, source, vo, work, args.number,
                                    slug, font_path, music, watermark)

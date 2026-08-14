@@ -84,13 +84,26 @@ def check_tools() -> None:
             line(FAIL if required else WARN, name, f"not installed, needed for {why}. {hint}")
 
 
+def image_content_width(path: Path) -> int:
+    from PIL import Image
+    with Image.open(path) as image:
+        if "A" in image.getbands():
+            box = image.getchannel("A").getbbox()
+            if box:
+                return box[2] - box[0]
+        return image.width
+
+
 def check_assets() -> None:
     heading("Assets")
 
-    logo = next((p for p in (ASSETS / "logo.png", ASSETS / "logo.webp", ASSETS / "logo.jpg")
-                 if p.exists()), None)
+    try:
+        from build_short import find_logo
+        logo = find_logo(None)
+    except ImportError:
+        logo = next((p for p in (ASSETS / "logo.png",) if p.exists()), None)
     if logo is None:
-        line(WARN, "logo watermark", "no assets/logo.png, Shorts build without a watermark")
+        line(WARN, "logo watermark", "no logo in assets/, Shorts build without a watermark")
     else:
         try:
             from PIL import Image
@@ -100,8 +113,11 @@ def check_assets() -> None:
             if not has_alpha:
                 line(WARN, "logo watermark", detail + ", no transparency, it will show a "
                                                      "solid rectangle. Export a PNG with alpha.")
-            elif min(Image.open(logo).size) < 120:
-                line(WARN, "logo watermark", detail + ", small, it may look soft at 1080 wide")
+            elif image_content_width(logo) < 260:
+                line(WARN, "logo watermark",
+                     detail + f", the mark is only {image_content_width(logo)}px wide inside "
+                              "the file. It renders around 173px, so a larger export would "
+                              "be crisper.")
             else:
                 line(OK, "logo watermark", detail)
         except Exception as exc:  # noqa: BLE001
