@@ -116,7 +116,7 @@ def whisper_fallback(video_id: str, url: str, model_size: str) -> tuple[list[dic
     except ImportError:
         sys.exit(
             "Captions unavailable and faster-whisper is not installed.\n"
-            "Install the fallback with: pip install -r requirements.txt"
+            "Install the fallback with: pip install -r requirements-whisper.txt"
         )
 
     with tempfile.TemporaryDirectory() as tmp:

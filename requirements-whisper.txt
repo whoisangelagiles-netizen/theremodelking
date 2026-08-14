@@ -1,0 +1,3 @@
+# Optional, only needed when a video has no captions and the pipeline has to
+# transcribe the audio itself. Heavy, it pulls in ctranslate2.
+faster-whisper>=1.0

@@ -174,5 +174,16 @@ footer.
 ## Requirements
 
 `ffmpeg` and `yt-dlp` on the system, plus `pip install -r requirements.txt`.
-`ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` come from the environment and are
-never written to the repo.
+`faster-whisper` lives in `requirements-whisper.txt` and is only needed when a
+video has no captions at all, so it stays out of the default install.
+
+`ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` come from the environment or a
+gitignored `.env`, never from a committed file.
+
+### Cloud sessions
+
+A fresh cloud session starts from a clean container, so `ffmpeg` and the python
+packages have to be installed before the pipeline can run. Paste
+`scripts/setup_session.sh` into the **Setup script** box in the cloud
+environment dialog at claude.ai/code, the same dialog that holds the
+environment variables. Then every new session comes up ready to build.

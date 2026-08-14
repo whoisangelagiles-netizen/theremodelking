@@ -79,8 +79,9 @@ def check_tools() -> None:
             __import__(name)
             line(OK, name)
         except ImportError:
-            line(FAIL if required else WARN, name,
-                 f"not installed, needed for {why}. pip install -r requirements.txt")
+            hint = ("pip install -r requirements-whisper.txt" if name == "faster_whisper"
+                    else "pip install -r requirements.txt")
+            line(FAIL if required else WARN, name, f"not installed, needed for {why}. {hint}")
 
 
 def check_assets() -> None:
