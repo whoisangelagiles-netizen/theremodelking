@@ -10,7 +10,8 @@
     "publish_order": "Short 1 publishes first as the homeowner problem hook, Short 2 second as the contractor solution proof. Together they form a mini funnel from pain point to authority.",
     "notes": [
       "Mike's AI voice avatar carries all narration in both Shorts, re-recorded for tighter pacing and search friendly language, over the original bathroom footage.",
-      "Scenes marked in Editor notes as needing a confirmed range have no timestamp in the source handoff and get one during frame analysis."
+      "Scenes marked in Editor notes as needing a confirmed range have no timestamp in the source handoff and get one during frame analysis.",
+      "Every scene is cut to the exact length of its own narration line, rendered one clip per line so the picture and the words land together. Timeline and source columns reflect the finished videos."
     ]
   },
   "shorts": [
@@ -18,7 +19,7 @@
       "angle": "Homeowner problem hook",
       "working_title": "Why Your Small Bathroom Feels Cramped",
       "source_range": "0:46 - 1:12",
-      "target_runtime": "19 seconds",
+      "target_runtime": "25 seconds",
       "primary_goal": "Homeowner pain point hook",
       "seo_titles": [
         "Why Your Small Bathroom Feels Cramped",
@@ -29,54 +30,49 @@
       "scenes": [
         {
           "number": 1,
-          "timeline": "0:00 - 0:02",
-          "source": "0:46 - 0:49",
+          "timeline": "0:00 - 0:04",
+          "source": "0:46 - 0:50",
           "vo": "If your small bathroom feels CRAMPED, the LAYOUT is usually the problem.",
           "caption": "Why your small bathroom feels cramped",
           "notes": "Open on the tightest cramped angle. Impact sound on the first frame. Slight punch-in.",
-          "caption_zone": "hook",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "hook"
         },
         {
           "number": 2,
-          "timeline": "0:02 - 0:07",
-          "source": "0:53 - 0:57",
+          "timeline": "0:04 - 0:10",
+          "source": "0:53 - 0:58",
           "vo": "This one had TWO doors fighting for space, which is a BAD setup in a tiny bathroom!",
           "caption": "Two doors in a tiny bathroom = wasted space",
           "notes": "Show both doors and the door conflict. Arrows highlighting each door.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 3,
-          "timeline": "0:07 - 0:12",
-          "source": "1:00 - 1:05",
+          "timeline": "0:10 - 0:14",
+          "source": "1:00 - 1:04",
           "vo": "And the vanity was so SMALL, the whole room felt tight and awkward.",
           "caption": "Tiny vanity + awkward flow",
           "notes": "Hold on the small vanity. Slight zoom to maintain motion.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 4,
-          "timeline": "0:12 - 0:16",
+          "timeline": "0:14 - 0:19",
           "source": "11:20 - 11:24",
           "vo": "So we REWORKED the layout to make the bathroom function better!",
           "caption": "So we changed the layout completely",
           "notes": "Whoosh transition to signal the shift from problem to solution.",
           "caption_zone": "support",
-          "transition": "whoosh",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "transition": "whoosh"
         },
         {
           "number": 5,
-          "timeline": "0:16 - 0:19",
-          "source": "13:20 - 13:24",
+          "timeline": "0:19 - 0:22",
+          "source": "13:20 - 13:23",
           "vo": "Watch the full remodel to see how we FIXED it.",
           "caption": "Watch the full transformation",
           "notes": "Best before hold or flash of the after. Ends into the CTA frame.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         }
       ],
       "full_vo": "If your small bathroom feels CRAMPED, the LAYOUT is usually the problem. This one had TWO doors fighting for space, which is a BAD setup in a tiny bathroom!\n\nAnd the vanity was so SMALL, the whole room felt tight and awkward. So we REWORKED the layout to make the bathroom function better!\n\nWatch the full remodel to see how we FIXED it.",
@@ -92,7 +88,7 @@
       "angle": "Contractor solution proof",
       "working_title": "How We Made a Tiny Bathroom Work",
       "source_range": "1:27 - 2:03",
-      "target_runtime": "36 seconds",
+      "target_runtime": "34 seconds",
       "primary_goal": "Show Mike's contractor solution, the layout logic",
       "seo_titles": [
         "How We Made a Tiny Bathroom Actually Work",
@@ -103,74 +99,67 @@
       "scenes": [
         {
           "number": 1,
-          "timeline": "0:00 - 0:03",
-          "source": "1:27 - 1:29.5",
+          "timeline": "0:00 - 0:04",
+          "source": "1:27 - 1:31",
           "vo": "Here is how we made this TINY bathroom actually work.",
           "caption": "How we made this tiny bathroom work",
           "notes": "Start on Mike pointing toward the built-in or wall area. Clean first frame. Impact sound on frame one.",
-          "caption_zone": "hook",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "hook"
         },
         {
           "number": 2,
-          "timeline": "0:03 - 0:09",
-          "source": "1:29.5 - 1:33",
+          "timeline": "0:04 - 0:09",
+          "source": "1:29 - 1:34",
           "vo": "FIRST, we removed the old BUILT-IN so we could gain some usable space.",
           "caption": "Step 1: remove the built-in",
           "notes": "Show the built-in cabinet. Highlight box on it.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 3,
-          "timeline": "0:09 - 0:16",
-          "source": "1:38 - 1:44",
+          "timeline": "0:09 - 0:14",
+          "source": "1:38 - 1:42",
           "vo": "Then we created a NOOK for the toilet, which got it out of the main traffic path!",
           "caption": "Move toilet out of the way",
           "notes": "Show the new toilet location. Arrow from the old spot to the new one.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 4,
-          "timeline": "0:16 - 0:23",
-          "source": "1:47 - 1:51",
+          "timeline": "0:14 - 0:19",
+          "source": "1:47 - 1:52",
           "vo": "We also CLOSED OFF one doorway so the bathroom door could swing the right way.",
           "caption": "Fix the door swing",
           "notes": "Show the door area. Highlight box on the closed off opening.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 5,
-          "timeline": "0:23 - 0:31",
+          "timeline": "0:19 - 0:25",
           "source": "1:57 - 2:02",
           "vo": "After that, we TURNED the vanity, so the room had a lot more function and better flow!",
           "caption": "Bigger vanity, better flow",
           "notes": "Show the vanity area. Arrow indicating the rotation.",
           "caption_zone": "support",
-          "transition": "whoosh",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "transition": "whoosh"
         },
         {
           "number": 6,
-          "timeline": "0:31 - 0:34",
+          "timeline": "0:25 - 0:29",
           "source": "10:20 - 10:24",
           "vo": "Same bathroom footprint...just a much SMARTER layout.",
           "caption": "Same bathroom. Smarter design.",
           "notes": "Best explanatory hold. Brief pause so the point lands.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         },
         {
           "number": 7,
-          "timeline": "0:34 - 0:36",
-          "source": "13:40 - 13:43",
+          "timeline": "0:29 - 0:31",
+          "source": "13:40 - 13:42",
           "vo": "Watch the full BEFORE and after!",
           "caption": "Watch the full remodel",
           "notes": "Final beat before the CTA frame.",
-          "caption_zone": "support",
-          "flag": "Range set during frame analysis after viewing the footage."
+          "caption_zone": "support"
         }
       ],
       "full_vo": "Here is how we made this TINY bathroom actually work. FIRST, we removed the old BUILT-IN so we could gain some usable space.\n\nThen we created a NOOK for the toilet, which got it out of the main traffic path! We also CLOSED OFF one doorway so the bathroom door could swing the right way.\n\nAfter that, we TURNED the vanity, so the room had a lot more function and better flow! Same bathroom footprint...just a much SMARTER layout.\n\nWatch the full BEFORE and after!",

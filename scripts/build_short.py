@@ -508,20 +508,63 @@ def annotation_is_placed(annotation: dict) -> bool:
 # stage 4: voice over
 # --------------------------------------------------------------------------
 
-def stage_vo(short: dict, work: Path, index: int, skip: bool, force: bool,
-             voice_id: str | None, model_id: str) -> Path | None:
-    stage("Stage 4, ElevenLabs voice over")
-    vo_path = work / f"short{index}" / "vo.mp3"
-    if vo_path.exists() and not force:
-        say(f"cached: {vo_path.relative_to(REPO_ROOT)}, {media_duration(vo_path):.1f}s")
-        return vo_path
+def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
+               voice_id: str, model_id: str, destination: Path) -> Path:
+    """One ElevenLabs render. previous_text and next_text keep prosody continuous
+    across separately rendered lines, so a per line read still sounds like one take."""
+    body = {
+        "text": text,
+        "model_id": model_id,
+        "voice_settings": {"stability": 0.45, "similarity_boost": 0.8,
+                           "style": 0.35, "use_speaker_boost": True},
+    }
+    if previous_text:
+        body["previous_text"] = previous_text
+    if next_text:
+        body["next_text"] = next_text
+
+    request = urllib.request.Request(
+        ELEVEN_ENDPOINT.format(voice_id=voice_id) + "?output_format=mp3_44100_128",
+        data=json.dumps(body).encode("utf-8"),
+        headers={"xi-api-key": api_key, "Content-Type": "application/json",
+                 "Accept": "audio/mpeg"},
+    )
+    ca_bundle = (os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE")
+                 or os.environ.get("CURL_CA_BUNDLE"))
+    context = (ssl.create_default_context(cafile=ca_bundle) if ca_bundle
+               else ssl.create_default_context())
+    try:
+        with urllib.request.urlopen(request, context=context, timeout=180) as response:
+            audio = response.read()
+    except urllib.error.HTTPError as exc:
+        die(f"ElevenLabs returned {exc.code}: {exc.read()[:400].decode('utf-8', 'replace')}")
+    except Exception as exc:  # noqa: BLE001
+        die(f"ElevenLabs request failed: {type(exc).__name__}: {exc}")
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(audio)
+    return destination
+
+
+def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
+             force: bool, voice_id: str | None, model_id: str,
+             gap: float) -> list[dict] | None:
+    """Render one audio clip per scene line, so every scene can be cut to its own line.
+
+    Returns a list of {scene, path, speech, hold} in scene order. A single block
+    render cannot be synced to picture, because nothing tells you where one line
+    ends and the next begins.
+    """
+    stage("Stage 4, ElevenLabs voice over, one clip per line")
+
+    lines_dir = work / f"short{index}" / "vo_lines"
+    texts = [" ".join((scene.vo or "").split()) for scene in scenes]
+    if not any(texts):
+        die("no per scene VO lines in the guide, nothing to synthesize")
+
     if skip:
         say("--skip-vo, building picture with no narration track")
         return None
-
-    text = (short.get("full_vo") or "").strip()
-    if not text:
-        die("the guide has no full_vo block for this Short, nothing to synthesize")
 
     api_key = os.environ.get("ELEVENLABS_API_KEY")
     if not api_key:
@@ -531,54 +574,44 @@ def stage_vo(short: dict, work: Path, index: int, skip: bool, force: bool,
     if not voice_id:
         die("no voice id. Pass --voice-id or export ELEVENLABS_VOICE_ID with Mike's voice.")
 
-    payload = json.dumps({
-        "text": text,
-        "model_id": model_id,
-        "voice_settings": {"stability": 0.45, "similarity_boost": 0.8,
-                           "style": 0.35, "use_speaker_boost": True},
-    }).encode("utf-8")
-    request = urllib.request.Request(
-        ELEVEN_ENDPOINT.format(voice_id=voice_id) + "?output_format=mp3_44100_128",
-        data=payload,
-        headers={"xi-api-key": api_key, "Content-Type": "application/json",
-                 "Accept": "audio/mpeg"},
-    )
-    ca_bundle = (os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE")
-                 or os.environ.get("CURL_CA_BUNDLE"))
-    context = ssl.create_default_context(cafile=ca_bundle) if ca_bundle else ssl.create_default_context()
-
-    say(f"synthesizing {len(text.split())} words with {model_id}...")
-    try:
-        with urllib.request.urlopen(request, context=context, timeout=180) as response:
-            audio = response.read()
-    except urllib.error.HTTPError as exc:  # noqa: PERF203
-        die(f"ElevenLabs returned {exc.code}: {exc.read()[:400].decode('utf-8', 'replace')}")
-    except Exception as exc:  # noqa: BLE001
-        die(f"ElevenLabs request failed: {type(exc).__name__}: {exc}")
-
-    vo_path.parent.mkdir(parents=True, exist_ok=True)
-    vo_path.write_bytes(audio)
-    say(f"voice over: {vo_path.relative_to(REPO_ROOT)}, {media_duration(vo_path):.1f}s")
-    return vo_path
+    rendered = []
+    for position, (scene, text) in enumerate(zip(scenes, texts)):
+        path = lines_dir / f"line{scene.number:02d}.mp3"
+        if not text:
+            rendered.append({"scene": scene.number, "path": None, "speech": 0.0,
+                             "hold": max(MIN_SCENE_SECONDS, scene.duration)})
+            continue
+        if path.exists() and not force:
+            say(f"line {scene.number}: cached, {media_duration(path):.2f}s")
+        else:
+            eleven_tts(text,
+                       texts[position - 1] if position else "",
+                       texts[position + 1] if position + 1 < len(texts) else "",
+                       api_key, voice_id, model_id, path)
+            say(f"line {scene.number}: {len(text.split())} words, {media_duration(path):.2f}s")
+        speech = media_duration(path)
+        rendered.append({"scene": scene.number, "path": path, "speech": speech,
+                         "hold": speech + gap})
+    total = sum(item["hold"] for item in rendered)
+    say(f"narration total {total:.1f}s including {gap:.2f}s between lines")
+    return rendered
 
 
-def fit_scenes_to_vo(scenes: list[Scene], vo_seconds: float, source_seconds: float) -> None:
-    """Stretch or tighten scene out-points so picture and narration land together."""
-    body = sum(scene.duration for scene in scenes)
-    if vo_seconds <= 0 or abs(vo_seconds - body) < 0.25:
-        return
-    factor = vo_seconds / body
-    say(f"fitting picture to narration, {body:.1f}s of footage against {vo_seconds:.1f}s of VO")
-    if factor > 1.5:
-        say("the narration runs well past the footage in the guide. Scenes are being "
-            "stretched hard, consider longer source ranges in the scene table.")
-    for scene in scenes:
-        wanted = max(MIN_SCENE_SECONDS, scene.duration * factor)
-        scene.end = min(source_seconds, scene.start + wanted)
-    drift = vo_seconds - sum(scene.duration for scene in scenes)
-    if drift > 0.2:
-        last = scenes[-1]
-        last.end = min(source_seconds, last.end + drift)
+def fit_scenes_to_lines(scenes: list[Scene], vo_lines: list[dict],
+                        source_seconds: float) -> None:
+    """Cut every scene to the exact length of its own narration line."""
+    for scene, item in zip(scenes, vo_lines):
+        wanted = item["hold"]
+        available = source_seconds - scene.start
+        if wanted > available:
+            say(f"scene {scene.number}: only {available:.1f}s of source left, "
+                f"line needs {wanted:.1f}s")
+            wanted = available
+        if wanted > scene.duration + 0.05:
+            say(f"scene {scene.number}: extending picture to {wanted:.1f}s to cover its line")
+        elif wanted < scene.duration - 0.05:
+            say(f"scene {scene.number}: trimming picture to {wanted:.1f}s to match its line")
+        scene.end = scene.start + wanted
 
 
 # --------------------------------------------------------------------------
@@ -887,8 +920,8 @@ def render_cta(text: str, font_path: str | None, work: Path, watermark: Path | N
          "-video_track_timescale", "30000", str(destination)])
 
 
-def mix_audio(body: Path, vo: Path | None, whoosh_at: float | None,
-              music: Path | None, destination: Path) -> None:
+def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
+              whoosh_at: float | None, music: Path | None, destination: Path) -> None:
     whoosh = asset("whoosh.wav", "whoosh.mp3")
     impact = asset("impact.wav", "impact.mp3")
     duration = media_duration(body)
@@ -900,11 +933,16 @@ def mix_audio(body: Path, vo: Path | None, whoosh_at: float | None,
     chain.append("[0:a]volume=0.03[orig]")
     mix_labels.append("[orig]")
 
-    if vo:
-        cmd += ["-i", str(vo)]
-        chain.append(f"[{index}:a]aresample=48000,volume=1.0[vo]")
-        mix_labels.append("[vo]")
-        index += 1
+    if vo_lines:
+        for position, item in enumerate(vo_lines):
+            if not item["path"]:
+                continue
+            cmd += ["-i", str(item["path"])]
+            offset = int(max(0.0, starts[position]) * 1000)
+            chain.append(f"[{index}:a]aresample=48000,adelay={offset}|{offset},"
+                         f"volume=1.0[vo{position}]")
+            mix_labels.append(f"[vo{position}]")
+            index += 1
 
     if impact:
         cmd += ["-i", str(impact)]
@@ -940,9 +978,10 @@ def mix_audio(body: Path, vo: Path | None, whoosh_at: float | None,
     run(cmd)
 
 
-def stage_assemble(scenes: list[Scene], short: dict, source: Path, vo: Path | None,
-                   work: Path, index: int, slug: str, font_path: str | None,
-                   music: Path | None, watermark: Path | None) -> tuple[Path, list[float]]:
+def stage_assemble(scenes: list[Scene], short: dict, source: Path,
+                   vo_lines: list[dict] | None, work: Path, index: int, slug: str,
+                   font_path: str | None, music: Path | None,
+                   watermark: Path | None) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -956,8 +995,8 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path, vo: Path | No
         if scene.start >= source_seconds:
             die(f"scene {scene.number} starts past the end of the source video")
 
-    if vo:
-        fit_scenes_to_vo(scenes, media_duration(vo), source_seconds)
+    if vo_lines:
+        fit_scenes_to_lines(scenes, vo_lines, source_seconds)
 
     parts = work / "parts"
     if parts.exists():
@@ -996,7 +1035,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path, vo: Path | No
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
     final = OUTPUT / f"{slug}-short-{index}-FINAL.mp4"
-    mix_audio(body, vo, whoosh_at, music, final)
+    mix_audio(body, vo_lines, starts, whoosh_at, music, final)
     say(f"final: {final.relative_to(REPO_ROOT)}, {media_duration(final):.1f}s")
     return final, starts
 
@@ -1158,6 +1197,8 @@ def main() -> None:
                         help="assemble with no narration, for a picture only check")
     parser.add_argument("--voice-id", default=None, help="ElevenLabs voice id for Mike")
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
+    parser.add_argument("--line-gap", type=float, default=0.28,
+                        help="pause held after each narration line, seconds, default 0.28")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
     parser.add_argument("--no-music", action="store_true")
     parser.add_argument("--logo", type=Path, default=None,
@@ -1203,8 +1244,8 @@ def main() -> None:
     edits = stage_analyze(source, scenes, work, video_id, args.number, args.auto, rescan)
     apply_edits(scenes, edits)
 
-    vo = stage_vo(short, work, args.number, args.skip_vo, args.revoice,
-                  args.voice_id, args.model_id)
+    vo_lines = stage_vo(short, scenes, work, args.number, args.skip_vo, args.revoice,
+                        args.voice_id, args.model_id, args.line_gap)
 
     font_path = args.font or find_font()
     if font_path is None:
@@ -1230,7 +1271,7 @@ def main() -> None:
             say(f"watermark: {logo.name}, top right, "
                 f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
-    final, starts = stage_assemble(scenes, short, source, vo, work, args.number,
+    final, starts = stage_assemble(scenes, short, source, vo_lines, work, args.number,
                                    slug, font_path, music, watermark)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
