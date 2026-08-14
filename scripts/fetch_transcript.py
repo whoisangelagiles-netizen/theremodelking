@@ -177,7 +177,8 @@ def to_seconds_clock(value: str) -> float:
     return seconds
 
 
-def fetch_ytdlp_subs(video_id: str, url: str, languages: list[str]) -> tuple[list[dict], str] | None:
+def fetch_ytdlp_subs(video_id: str, url: str, languages: list[str],
+                     cookies: Path | None = None) -> tuple[list[dict], str] | None:
     """Pull published or auto-generated subtitles with yt-dlp.
 
     This is the tier that works from a cloud container, where the caption API
@@ -188,12 +189,13 @@ def fetch_ytdlp_subs(video_id: str, url: str, languages: list[str]) -> tuple[lis
 
     with tempfile.TemporaryDirectory() as tmp:
         wanted = ",".join([lang for lang in languages] + [f"{lang}.*" for lang in languages])
-        result = subprocess.run(
-            ["yt-dlp", "--skip-download", "--write-subs", "--write-auto-subs",
-             "--sub-langs", wanted, "--sub-format", "json3/vtt/best",
-             "--no-warnings", "-o", str(Path(tmp) / "%(id)s.%(ext)s"), url],
-            capture_output=True, text=True,
-        )
+        cmd = ["yt-dlp", "--skip-download", "--ignore-no-formats-error",
+               "--write-subs", "--write-auto-subs",
+               "--sub-langs", wanted, "--sub-format", "json3/vtt/best",
+               "--no-warnings", "-o", str(Path(tmp) / "%(id)s.%(ext)s")]
+        if cookies:
+            cmd += ["--cookies", str(cookies)]
+        result = subprocess.run(cmd + [url], capture_output=True, text=True)
         files = sorted(Path(tmp).glob(f"{video_id}.*"))
         if not files:
             detail = (result.stderr or "").strip().splitlines()[-1:] or ["no subtitle tracks"]
@@ -281,6 +283,8 @@ def main() -> None:
                         help="faster-whisper model size for the fallback, default base")
     parser.add_argument("--force", action="store_true",
                         help="refetch even if the transcript JSON already exists")
+    parser.add_argument("--cookies", type=Path, default=None,
+                        help="cookies.txt for yt-dlp, needed when YouTube challenges the IP")
     parser.add_argument("--no-auto-install", action="store_true",
                         help="do not pip install faster-whisper when the last tier is reached")
     args = parser.parse_args()
@@ -295,13 +299,16 @@ def main() -> None:
         return
 
     languages = [lang.strip() for lang in args.languages.split(",") if lang.strip()]
+    cookies = args.cookies if args.cookies and args.cookies.exists() else None
+    if cookies is None and (REPO_ROOT / "cookies.txt").exists():
+        cookies = REPO_ROOT / "cookies.txt"
 
     # Three tiers, cheapest first. The caption API is fast but is commonly
     # blocked by IP from cloud containers, where yt-dlp still works.
     source = "youtube-captions"
     result = fetch_captions(video_id, languages)
     if result is None:
-        result = fetch_ytdlp_subs(video_id, url, languages)
+        result = fetch_ytdlp_subs(video_id, url, languages, cookies)
         source = "yt-dlp-subtitles"
     if result is None:
         result = whisper_fallback(video_id, url, args.whisper_model,

@@ -271,15 +271,26 @@ def scenes_from_short(short: dict) -> list[Scene]:
 # stage 1: transcript and guide
 # --------------------------------------------------------------------------
 
-def stage_guide(url: str, video_id: str, guide_arg: Path | None, render_pdf: bool) -> Path:
+def stage_guide(url: str, video_id: str, guide_arg: Path | None, render_pdf: bool,
+                cookies: Path | None) -> Path:
     stage("Stage 1, transcript and production guide")
     transcript = REPO_ROOT / "transcripts" / f"{video_id}.json"
-    if not transcript.exists():
-        say("fetching transcript...")
-        run([sys.executable, str(SCRIPTS / "fetch_transcript.py"), url])
-    say(f"transcript: {transcript.relative_to(REPO_ROOT)}")
-
     guide_path = find_guide(video_id, guide_arg)
+
+    if not transcript.exists():
+        if guide_path is not None:
+            # The guide already carries the timestamps, so the transcript is
+            # only needed to write one. Do not block the build on it.
+            say("no transcript cached, continuing from the existing guide")
+        else:
+            say("fetching transcript...")
+            cmd = [sys.executable, str(SCRIPTS / "fetch_transcript.py"), url]
+            if cookies:
+                cmd += ["--cookies", str(cookies)]
+            run(cmd)
+            guide_path = find_guide(video_id, guide_arg)
+    else:
+        say(f"transcript: {transcript.relative_to(REPO_ROOT)}")
     if guide_path is None:
         die(
             "no production guide found for this video.\n"
@@ -299,21 +310,56 @@ def stage_guide(url: str, video_id: str, guide_arg: Path | None, render_pdf: boo
 # stage 2: source video
 # --------------------------------------------------------------------------
 
-def stage_download(url: str, work: Path, force: bool) -> Path:
+def stage_download(url: str, work: Path, force: bool, local: Path | None,
+                   cookies: Path | None) -> Path:
     stage("Stage 2, source video")
+
+    if local is not None:
+        if not local.exists():
+            die(f"source file not found: {local}")
+        say(f"using local source: {local}")
+        return local
+
     source = work / "source.mp4"
     if source.exists() and not force:
         say(f"cached: {source.relative_to(REPO_ROOT)}")
         return source
+
     say("downloading highest quality source with yt-dlp, this can take a while...")
-    run(["yt-dlp",
-         "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best",
-         "--merge-output-format", "mp4",
-         "-o", str(source), url])
-    if not source.exists():
-        die("yt-dlp finished but no source.mp4 landed in the work folder")
+    cmd = ["yt-dlp",
+           "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best",
+           "--merge-output-format", "mp4", "-o", str(source)]
+    if cookies:
+        cmd += ["--cookies", str(cookies)]
+        say(f"using cookies from {cookies.name}")
+    cmd.append(url)
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0 or not source.exists():
+        detail = (result.stderr or "").strip().splitlines()[-3:]
+        blocked = any("not a bot" in line or "Sign in" in line for line in detail)
+        message = "yt-dlp could not download the source.\n  " + "\n  ".join(detail)
+        if blocked:
+            message += (
+                "\n\n  YouTube is refusing downloads from this IP, which is normal for a "
+                "cloud container.\n"
+                "  Two ways around it:\n"
+                "    1. Pass the master file you already have: --source /path/to/episode.mp4\n"
+                "    2. Export your YouTube cookies to cookies.txt at the repo root, it is\n"
+                "       gitignored, and rerun. The build picks it up automatically."
+            )
+        die(message)
     say(f"source: {source.relative_to(REPO_ROOT)}, {stamp(media_duration(source))}")
     return source
+
+
+def find_cookies(explicit: Path | None) -> Path | None:
+    if explicit:
+        return explicit if explicit.exists() else None
+    for name in ("cookies.txt", "youtube-cookies.txt"):
+        if (REPO_ROOT / name).exists():
+            return REPO_ROOT / name
+    return None
 
 
 # --------------------------------------------------------------------------
@@ -1043,6 +1089,11 @@ def main() -> None:
                              "native pixels")
     parser.add_argument("--logo-opacity", type=float, default=0.92)
     parser.add_argument("--font", default=None, help="bold TTF for captions")
+    parser.add_argument("--source", type=Path, default=None,
+                        help="use a local video file instead of downloading, for when "
+                             "YouTube blocks the container or you already have the master")
+    parser.add_argument("--cookies", type=Path, default=None,
+                        help="cookies.txt for yt-dlp, defaults to cookies.txt at the repo root")
     parser.add_argument("--redownload", action="store_true")
     parser.add_argument("--revoice", action="store_true", help="resynthesize the VO")
     args = parser.parse_args()
@@ -1060,12 +1111,13 @@ def main() -> None:
     work = WORK / video_id
     work.mkdir(parents=True, exist_ok=True)
 
-    guide_path = stage_guide(args.url, video_id, args.guide, render_pdf=True)
+    cookies = find_cookies(args.cookies)
+    guide_path = stage_guide(args.url, video_id, args.guide, True, cookies)
     guide, short = load_short(guide_path, args.number)
     slug = slugify(guide.get("episode") or guide_path.stem)
     scenes = scenes_from_short(short)
 
-    source = stage_download(args.url, work, args.redownload)
+    source = stage_download(args.url, work, args.redownload, args.source, cookies)
 
     rescan = {int(n) for n in args.rescan.split(",") if n.strip()} if args.rescan else None
     edits = stage_analyze(source, scenes, work, video_id, args.number, args.auto, rescan)
