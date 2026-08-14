@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ channel }} | {{ episode }} | Editor Handoff Production Guide</title>
+<style>
+  /* ---- Brand tokens ---------------------------------------------------- */
+  :root {
+    --brand: #0E9346;
+    --brand-soft: #E7F4EC;
+    --ink: #2B2F33;
+    --ink-soft: #5A6169;
+    --rule: #D9DEE2;
+    --paper: #FFFFFF;
+  }
+
+  @page {
+    size: Letter;
+    margin: 20mm 16mm 18mm 16mm;
+    @bottom-left {
+      content: "Internal Production Document";
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8A9299;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 8pt;
+      color: #8A9299;
+    }
+  }
+
+  @page cover {
+    margin: 0;
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    margin: 0;
+  }
+
+  /* ---- Cover ----------------------------------------------------------- */
+  .cover {
+    page: cover;
+    page-break-after: always;
+    height: 279mm; /* Letter page height, the cover page has zero margin */
+    padding: 46mm 22mm 18mm 22mm;
+    position: relative;
+  }
+  .cover-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 9mm;
+    background: var(--brand);
+  }
+  .cover-kicker {
+    font-size: 8.5pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--brand);
+    font-weight: 700;
+    margin-bottom: 6mm;
+  }
+  .cover-channel {
+    font-size: 30pt;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0 0 3mm 0;
+  }
+  .cover-doctype {
+    font-size: 13pt;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin: 0 0 10mm 0;
+  }
+  .cover-diamond-rule {
+    border-top: 1.4pt solid var(--brand);
+    text-align: center;
+    margin: 0 0 11mm 0;
+    line-height: 0;
+  }
+  .cover-diamond-rule .dia {
+    display: inline-block;
+    background: var(--paper);
+    padding: 0 3mm;
+    position: relative;
+    top: -4.6pt;
+    color: var(--brand);
+    font-size: 9pt;
+    line-height: 1;
+  }
+  .cover-episode-label {
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 2mm;
+  }
+  .cover-episode {
+    font-size: 19pt;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 12mm 0;
+  }
+  .cover-meta {
+    font-size: 9pt;
+    color: var(--ink-soft);
+  }
+  .cover-meta div { margin-bottom: 1.5mm; }
+  .cover-meta strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .cover-footer {
+    position: absolute;
+    left: 22mm; right: 22mm; bottom: 16mm;
+    border-top: 1pt solid var(--rule);
+    padding-top: 4mm;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8A9299;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ---- Sections -------------------------------------------------------- */
+  h2.section {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 4mm 0;
+    padding-bottom: 2.5mm;
+    border-bottom: 1.6pt solid var(--brand);
+  }
+  h2.section::before {
+    content: "\25C6";
+    color: var(--brand);
+    font-size: 8pt;
+    vertical-align: 2pt;
+    margin-right: 3mm;
+  }
+  .section-block { margin-bottom: 9mm; }
+  .short-block { page-break-before: always; }
+
+  h3.sub {
+    font-size: 9.5pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 7mm 0 2.5mm 0;
+  }
+  h3.sub::before {
+    content: "\25C6";
+    font-size: 6pt;
+    vertical-align: 2pt;
+    margin-right: 2.5mm;
+    color: var(--brand);
+  }
+
+  .short-tag {
+    display: inline-block;
+    background: var(--brand);
+    color: #FFFFFF;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 1.2mm 3mm;
+    margin-bottom: 3mm;
+  }
+
+  p { margin: 0 0 2.5mm 0; }
+  ul { margin: 0 0 3mm 0; padding-left: 5mm; }
+  li { margin-bottom: 1.2mm; }
+
+  /* ---- Overview grid --------------------------------------------------- */
+  table.meta {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2mm;
+  }
+  table.meta td {
+    padding: 1.8mm 3mm 1.8mm 0;
+    vertical-align: top;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+  table.meta td.k {
+    width: 34mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  /* ---- Scene table ----------------------------------------------------- */
+  table.scenes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+    line-height: 1.4;
+  }
+  table.scenes th {
+    background: var(--brand);
+    color: #FFFFFF;
+    font-size: 7.2pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 2mm;
+    border: 0.5pt solid var(--brand);
+  }
+  table.scenes td {
+    padding: 2mm;
+    border: 0.5pt solid var(--rule);
+    vertical-align: top;
+  }
+  table.scenes tr:nth-child(even) td { background: #F7F9F8; }
+  table.scenes td.n {
+    text-align: center;
+    font-weight: 700;
+    color: var(--brand);
+    width: 8mm;
+  }
+  table.scenes td.tl { width: 16mm; white-space: nowrap; }
+  table.scenes td.src { width: 22mm; font-variant-numeric: tabular-nums; }
+  table.scenes td.cap { text-transform: uppercase; font-weight: 600; }
+  .flag {
+    display: block;
+    margin-top: 1.2mm;
+    color: #A8410E;
+    font-weight: 700;
+    font-size: 7.2pt;
+  }
+
+  /* ---- VO block -------------------------------------------------------- */
+  .vo {
+    border-left: 2.5pt solid var(--brand);
+    background: var(--brand-soft);
+    padding: 4mm 5mm;
+    font-size: 9pt;
+    line-height: 1.62;
+    white-space: pre-wrap;
+  }
+  .voice-direction {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* ---- CTA ------------------------------------------------------------- */
+  table.cta { width: 100%; border-collapse: collapse; }
+  table.cta td {
+    padding: 2mm 3mm 2mm 0;
+    border-bottom: 0.5pt solid var(--rule);
+    vertical-align: top;
+  }
+  table.cta td.k {
+    width: 40mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    font-weight: 700;
+  }
+
+  /* ---- Checklist ------------------------------------------------------- */
+  ul.checklist { list-style: none; padding-left: 0; }
+  ul.checklist li {
+    padding-left: 7mm;
+    margin-bottom: 2mm;
+    position: relative;
+  }
+  ul.checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7mm;
+    width: 3.4mm;
+    height: 3.4mm;
+    border: 1pt solid var(--brand);
+  }
+
+  ol.titles { padding-left: 6mm; margin: 0 0 3mm 0; }
+  ol.titles li { margin-bottom: 1.4mm; }
+
+  .divider {
+    border-top: 0.7pt solid var(--rule);
+    text-align: center;
+    margin: 8mm 0;
+    line-height: 0;
+  }
+  .divider .dia {
+    display: inline-block;
+    background: var(--paper);
+    padding: 0 3mm;
+    position: relative;
+    top: -4pt;
+    color: var(--brand);
+    font-size: 8pt;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER ============================ -->
+<section class="cover">
+  <div class="cover-bar"></div>
+  <div class="cover-kicker">Editor Handoff</div>
+  <h1 class="cover-channel">{{ channel }}</h1>
+  <div class="cover-doctype">Shorts Production Guide</div>
+
+  <div class="cover-diamond-rule">
+    <span class="dia">&#9670;</span>
+  </div>
+
+  <div class="cover-episode-label">Episode</div>
+  <div class="cover-episode">{{ episode }}</div>
+
+  <div class="cover-meta">
+    <div><strong>Date:</strong> {{ date }}</div>
+    <div><strong>Shorts in this guide:</strong> {{ shorts|length }}</div>
+    {% if video_url %}<div><strong>Source video:</strong> {{ video_url }}</div>{% endif %}
+    {% if prepared_for %}<div><strong>Prepared for:</strong> {{ prepared_for }}</div>{% endif %}
+    <div><strong>Format:</strong> 9:16 vertical, 1080x1920</div>
+  </div>
+
+  <div class="cover-footer">
+    <span>Internal Production Document</span>
+    <span>{{ channel }}</span>
+  </div>
+</section>
+
+<!-- ======================= PROJECT CONTEXT ======================= -->
+<section class="section-block">
+  <h2 class="section">Project Context</h2>
+  {% if project_context.summary %}<p>{{ project_context.summary }}</p>{% endif %}
+
+  <h3 class="sub">Segment Choice</h3>
+  <p>{{ project_context.segment_choice }}</p>
+
+  <h3 class="sub">Publish Order Logic</h3>
+  <p>{{ project_context.publish_order }}</p>
+
+  {% if project_context.notes %}
+  <h3 class="sub">Notes</h3>
+  <ul>{% for n in project_context.notes %}<li>{{ n }}</li>{% endfor %}</ul>
+  {% endif %}
+</section>
+
+<!-- ============================ SHORTS =========================== -->
+{% for s in shorts %}
+<section class="short-block">
+  <div class="short-tag">Short {{ loop.index }} of {{ shorts|length }}{% if s.angle %} &nbsp;&#9670;&nbsp; {{ s.angle }}{% endif %}</div>
+  <h2 class="section">{{ s.working_title }}</h2>
+
+  <h3 class="sub">Overview</h3>
+  <table class="meta">
+    <tr><td class="k">Working title</td><td>{{ s.working_title }}</td></tr>
+    <tr><td class="k">Source clip range</td><td>{{ s.source_range }}</td></tr>
+    <tr><td class="k">Target runtime</td><td>{{ s.target_runtime }}</td></tr>
+    <tr><td class="k">Format</td><td>{{ s.format | default('9:16 vertical, 1080x1920') }}</td></tr>
+    <tr><td class="k">Primary goal</td><td>{{ s.primary_goal }}</td></tr>
+  </table>
+
+  <h3 class="sub">SEO Title Options</h3>
+  <ol class="titles">
+    {% for t in s.seo_titles %}<li>{{ t }}</li>{% endfor %}
+  </ol>
+
+  <h3 class="sub">Scene by Scene</h3>
+  <table class="scenes">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Short timeline</th>
+        <th>Source footage</th>
+        <th>Mike AI VO line</th>
+        <th>On-screen caption</th>
+        <th>Editor notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sc in s.scenes %}
+      <tr>
+        <td class="n">{{ sc.number | default(loop.index) }}</td>
+        <td class="tl">{{ sc.timeline }}</td>
+        <td class="src">{{ sc.source }}</td>
+        <td>{{ sc.vo }}</td>
+        <td class="cap">{{ sc.caption }}</td>
+        <td>
+          {{ sc.notes }}
+          {% if sc.flag %}<span class="flag">CHECK FOOTAGE: {{ sc.flag }}</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3 class="sub">Full VO, paste-ready for ElevenLabs</h3>
+  <div class="vo">{{ s.full_vo }}</div>
+
+  <h3 class="sub">Voice Direction</h3>
+  <p class="voice-direction">{{ s.voice_direction }}</p>
+
+  <h3 class="sub">CTA Options</h3>
+  <table class="cta">
+    <tr><td class="k">Primary</td><td>{{ s.cta.primary }}</td></tr>
+    <tr><td class="k">Alt, comment bait</td><td>{{ s.cta.alt }}</td></tr>
+    <tr><td class="k">Pinned comment</td><td>{{ s.cta.pinned }}</td></tr>
+  </table>
+</section>
+{% endfor %}
+
+<!-- ===================== PRODUCTION NOTES ======================== -->
+<section class="section-block" style="page-break-before: always;">
+  <h2 class="section">General Production Notes</h2>
+  <ul>
+    {% for n in production_notes %}<li>{{ n }}</li>{% endfor %}
+  </ul>
+
+  <div class="divider"><span class="dia">&#9670;</span></div>
+
+  <h2 class="section">Publishing Checklist, per video</h2>
+  <ul class="checklist">
+    {% for c in checklist %}<li>{{ c }}</li>{% endfor %}
+  </ul>
+</section>
+
+</body>
+</html>

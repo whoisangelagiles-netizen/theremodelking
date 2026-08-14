@@ -1,0 +1,53 @@
+{
+  "_comment": "Shape reference for a guide JSON. Copy this file, replace every value with real episode content pulled from the fetched transcript, save as guides/[slug].json, then run: python scripts/render_guide.py guides/[slug].json. Fields marked optional can be dropped and the renderer fills in the defaults.",
+
+  "channel": "The Remodel King",
+  "episode": "Episode name as the user gave it",
+  "date": "Month D, YYYY (optional, defaults to today)",
+  "video_url": "https://www.youtube.com/watch?v=VIDEO_ID (optional)",
+  "prepared_for": "Editor name (optional)",
+
+  "project_context": {
+    "summary": "One short paragraph on the project itself, drawn from the transcript.",
+    "segment_choice": "Which part of the episode these Shorts are cut from, and why that segment carries the hook.",
+    "publish_order": "Why Short 1 publishes first and Short 2 second, and how the funnel works.",
+    "notes": ["Optional extra context bullets."]
+  },
+
+  "shorts": [
+    {
+      "angle": "Homeowner problem hook",
+      "working_title": "Working title for the Short",
+      "source_range": "MM:SS - MM:SS from the transcript",
+      "target_runtime": "e.g. 34 seconds",
+      "format": "9:16 vertical, 1080x1920 (optional, this is the default)",
+      "primary_goal": "What this Short is supposed to do for the funnel.",
+      "seo_titles": [
+        "Longtail homeowner search phrase option 1",
+        "Longtail homeowner search phrase option 2",
+        "Longtail homeowner search phrase option 3"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "timeline": "0:00 - 0:03",
+          "source": "MM:SS - MM:SS",
+          "vo": "The VO line for this scene, ElevenLabs formatted.",
+          "caption": "On-screen caption text",
+          "notes": "Punch-in, arrow, highlight box, whoosh, impact sound. Always over a pre-demo walkthrough, progress state shot, or final reveal.",
+          "flag": "Optional. Set only when the footage for this line may not exist, and say what to check."
+        }
+      ],
+      "full_vo": "The full combined read as one paste-ready ElevenLabs block. Plain prose, no labels, no clip cues, paragraph breaks between beats are fine.",
+      "voice_direction": "One or two lines of direction for the synthesis.",
+      "cta": {
+        "primary": "Primary CTA line",
+        "alt": "Alt comment-bait CTA line",
+        "pinned": "Pinned comment text"
+      }
+    }
+  ],
+
+  "production_notes": ["Optional. Omit to use the renderer defaults."],
+  "checklist": ["Optional. Omit to use the renderer defaults."]
+}
