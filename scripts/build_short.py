@@ -200,6 +200,7 @@ class Scene:
     annotations: list = field(default_factory=list)
     crop_x: float = 0.5
     source_label: str = ""
+    face: dict | None = None
 
     @property
     def duration(self) -> float:
@@ -400,6 +401,8 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
             "with x and y the top left corner.",
             'arrow annotations are {"type":"arrow","target":"...","from":[x,y],"to":[x,y]} '
             "with the arrowhead landing on the feature.",
+            "face is Mike's head INCLUDING the cap and jaw, normalized to the source "
+            "frame. Captions are never allowed to touch it, the build moves them clear.",
             "If the frames do not show what the VO line describes, change source to a "
             "better range from the transcript and rerun with --rescan to re-extract.",
             'Set "analyzed": true when every scene is done.',
@@ -415,6 +418,7 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "crop_x": 0.5,
                 "punch_in": {"zoom": 1.28, "focus": [0.5, 0.45]} if wants_punch_in(scene.notes) else None,
                 "annotations": wanted_annotations(scene.notes),
+                "face": {"x": None, "y": None, "w": None, "h": None},
                 "frames_show_what_the_vo_says": None,
                 "analysis_note": "",
             }
@@ -494,6 +498,11 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
                 "the footage still needs a better range")
         if entry.get("overlay"):
             scene.overlay = entry["overlay"]
+        face = entry.get("face")
+        if face and all(face.get(k) is not None for k in ("x", "y", "w", "h")):
+            scene.face = {k: float(face[k]) for k in ("x", "y", "w", "h")}
+        elif entry.get("face", "missing") is None:
+            scene.face = None
 
 
 def annotation_is_placed(annotation: dict) -> bool:
@@ -638,6 +647,31 @@ def to_frame(sx: float, sy: float, src_w: int, src_h: int, window) -> tuple[floa
     return max(0.0, min(1.0, fx)) * W, max(0.0, min(1.0, fy)) * H
 
 
+def face_rect_in_frame(scene: Scene, src_w: int, src_h: int, window):
+    """Mike's head in final frame pixels, covering the whole punch in if there is one."""
+    if not scene.face:
+        return None
+    f = scene.face
+    x0, y0 = to_frame(f["x"], f["y"], src_w, src_h, window)
+    x1, y1 = to_frame(f["x"] + f["w"], f["y"] + f["h"], src_w, src_h, window)
+    rect = [x0, y0, x1, y1]
+
+    if scene.punch_in:
+        zoom = max(1.01, min(2.0, float(scene.punch_in["zoom"])))
+        fx, fy = scene.punch_in["focus"]
+        px, py = to_frame(fx, fy, src_w, src_h, window)
+        ox, oy = (px / W) * W * (1 - 1 / zoom), (py / H) * H * (1 - 1 / zoom)
+        zoomed = [(x0 - ox) * zoom, (y0 - oy) * zoom, (x1 - ox) * zoom, (y1 - oy) * zoom]
+        rect = [min(rect[0], zoomed[0]), min(rect[1], zoomed[1]),
+                max(rect[2], zoomed[2]), max(rect[3], zoomed[3])]
+
+    # the box comes from one frame, but Mike moves inside the shot, so give the
+    # head room to drift before a caption is allowed anywhere near it
+    drift_x, drift_y = 0.03 * W, 0.045 * H
+    return [max(0.0, rect[0] - drift_x), max(0.0, rect[1] - drift_y),
+            min(W, rect[2] + drift_x), min(H, rect[3] + drift_y)]
+
+
 def draw_annotations(scene: Scene, src_w: int, src_h: int, window, path: Path) -> Path | None:
     from PIL import Image, ImageDraw
 
@@ -705,7 +739,46 @@ def wrap_caption(text: str, font, max_width: int, draw) -> list[str]:
     return lines
 
 
-def draw_caption(text: str, zone: str, font_path: str | None, path: Path) -> Path | None:
+TOP_SAFE = 0.06 * H          # clear of the YouTube chrome
+BOTTOM_SAFE = 0.86 * H       # clear of the title and action rail
+FACE_PAD = 34                # never closer than this to Mike's head
+
+
+def place_caption(block: float, zone: str, face) -> float:
+    """Top y for the caption block. Mike's face is off limits, always."""
+    preferred = (H * 0.20 if zone == "hook" else H * 0.78) - block / 2
+    lowest = BOTTOM_SAFE - block
+
+    def clamp(value):
+        return max(TOP_SAFE, min(lowest, value))
+
+    if not face:
+        return clamp(preferred)
+
+    top, bottom = face[1] - FACE_PAD, face[3] + FACE_PAD
+
+    def clear(candidate):
+        return candidate + block <= top or candidate >= bottom
+
+    if TOP_SAFE <= preferred <= lowest and clear(preferred):
+        return preferred
+
+    above, below = top - block, bottom
+    options = []
+    if above >= TOP_SAFE:
+        options.append(above)
+    if below <= lowest:
+        options.append(below)
+    if options:
+        # hook text wants to be high, supporting text wants to be low
+        return min(options) if zone == "hook" else max(options)
+
+    # Mike fills the frame top to bottom, take the larger gap and hug the edge
+    return TOP_SAFE if (top - TOP_SAFE) >= (lowest - bottom) else clamp(lowest)
+
+
+def draw_caption(text: str, zone: str, font_path: str | None, path: Path,
+                 face=None) -> Path | None:
     from PIL import Image, ImageDraw, ImageFont
 
     text = (text or "").strip()
@@ -719,7 +792,16 @@ def draw_caption(text: str, zone: str, font_path: str | None, path: Path) -> Pat
     lines = wrap_caption(text.upper(), font, int(W * 0.84), draw)
     line_height = size * 1.22
     block = line_height * len(lines)
-    top = H * 0.20 - block / 2 if zone == "hook" else H * 0.78 - block / 2
+
+    # a tall block against a big face: shrink once rather than crowd him
+    if face and block > (H * 0.34):
+        size = int(size * 0.85)
+        font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
+        lines = wrap_caption(text.upper(), font, int(W * 0.88), draw)
+        line_height = size * 1.22
+        block = line_height * len(lines)
+
+    top = place_caption(block, zone, face)
 
     for row, line in enumerate(lines):
         width = draw.textlength(line, font=font)
@@ -821,8 +903,12 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
 
     annotation_png = draw_annotations(scene, src_w, src_h, window,
                                       parts / f"ann{scene.number:02d}.png")
+    face = face_rect_in_frame(scene, src_w, src_h, window)
     caption_png = draw_caption(scene.caption, scene.caption_zone, font_path,
-                               parts / f"cap{scene.number:02d}.png")
+                               parts / f"cap{scene.number:02d}.png", face)
+    if face:
+        say(f"scene {scene.number}: caption placed clear of Mike's head "
+            f"(head spans y {int(face[1])} to {int(face[3])} of {H})")
     overlay_mov = None
     if scene.overlay:
         overlay_mov = asset(f"overlays/{scene.overlay}", scene.overlay)

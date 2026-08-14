@@ -45,6 +45,7 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
   reveals. He never films workers or active construction, so edit notes never
   ask for demo or installation footage.
 - Cost is never the closer. Mike builds cost reveals as end slides by hand.
+- Nothing is ever laid over Mike's face, captions included.
 - First person, Mike's voice, facts only from the transcript.
 - ElevenLabs formatting applied directly to the script.
 - No em dashes, anywhere, ever.
@@ -155,7 +156,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Punch in | zoompan glued to the analyzed focus point |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
-| Captions | Bold white, black outline, hook upper third, supporting lower third, burned in |
+| Captions | Bold white, black outline, burned in. Hook upper third, supporting lower third, but never across Mike's face. The recorded face box plus a drift margin is off limits, and the caption moves above his head or below his chin as needed |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |

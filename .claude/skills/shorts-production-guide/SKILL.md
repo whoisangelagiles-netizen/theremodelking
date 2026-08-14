@@ -35,6 +35,9 @@ here. Read that skill first if it is not already loaded. In particular:
   audio. Mark the words that carry the point so the team can paste the block
   straight into ElevenLabs.
 - Leave a small pause between sentences so cuts and punch-ins have room.
+- NEVER put captions, words, or graphics on Mike's face. Captions go above his
+  head or below his chin, never across it. The build enforces this from the
+  face box you record during frame analysis.
 - Never use em dashes in ANY output, ever.
 - If highlight footage is limited, use fewer and longer VO lines that hold over
   reveal footage instead of many quick cuts.
@@ -190,6 +193,11 @@ looked at. For each scene write:
   `{"type":"arrow","target":"...","from":[x,y],"to":[x,y]}` with the arrowhead
   on the feature. All coordinates are normalized against the full source frame
   you are looking at, the build maps them through the crop for you.
+- `face`, Mike's head INCLUDING the cap and jaw, as `{"x","y","w","h"}`
+  normalized to the source frame, or `null` when he is not in shot. This is not
+  optional. Captions are never allowed to touch his face, so the build needs to
+  know where it is. It adds a drift margin on top of your box, because he moves
+  inside the shot, and then places each caption in the largest clear band.
 - `frames_show_what_the_vo_says`, true or false, honestly.
 
 If the frames do not show what the VO line describes, do not caption over the
