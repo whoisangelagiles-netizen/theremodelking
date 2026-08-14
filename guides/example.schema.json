@@ -35,11 +35,15 @@
           "vo": "The VO line for this scene, ElevenLabs formatted.",
           "caption": "On-screen caption text",
           "notes": "Punch-in, arrow, highlight box, whoosh, impact sound. Always over a pre-demo walkthrough, progress state shot, or final reveal.",
-          "flag": "Optional. Set only when the footage for this line may not exist, and say what to check."
+          "flag": "Optional. Set only when the footage for this line may not exist, and say what to check.",
+          "caption_zone": "Optional, hook or support. Defaults to hook on scene 1 and support everywhere else. Drives upper third against lower third placement.",
+          "transition": "Optional. Set to whoosh on the scene that carries the problem to solution shift, the build fires assets/whoosh.wav there.",
+          "overlay": "Optional. Filename of a branded alpha .mov in assets/overlays/ to composite over this scene."
         }
       ],
       "full_vo": "The full combined read as one paste-ready ElevenLabs block. Plain prose, no labels, no clip cues, paragraph breaks between beats are fine.",
       "voice_direction": "One or two lines of direction for the synthesis.",
+      "cta_frame": "Optional. Short line for the end CTA frame in the finished video. Falls back to cta.primary.",
       "cta": {
         "primary": "Primary CTA line",
         "alt": "Alt comment-bait CTA line",

@@ -49,22 +49,78 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 - ElevenLabs formatting applied directly to the script.
 - No em dashes, anywhere, ever.
 
-## Pipeline
+## One command, finished Short
 
 ```bash
-pip install -r requirements.txt
+export ELEVENLABS_API_KEY=...      # never committed
+export ELEVENLABS_VOICE_ID=...     # Mike's voice
 
-# 1. pull the timestamped transcript
+python scripts/build_short.py "https://www.youtube.com/watch?v=VIDEO_ID" 1
+```
+
+That is the whole job: transcript, production guide, source download at highest
+quality, keyframe analysis, ElevenLabs VO, cut, 9:16 crop, punch-ins, arrows and
+highlight boxes, burned in captions, whoosh and impact, ducked location audio,
+optional music bed, branded overlays, CTA end frame, export, contact sheet. No
+editing pass afterward.
+
+It stops twice and hands the work to Claude, because both steps need judgement:
+
+1. **Guide.** If no guide exists for the video, Claude writes it from the
+   fetched transcript, then you rerun the same command.
+2. **Frame analysis.** The build extracts 4 keyframes per scene and stops.
+   Claude looks at every frame and writes `work/[video_id]/short[n]/edits.json`,
+   the horizontal crop offset that keeps the subject in the 9:16 frame,
+   punch-in targets, and exact arrow and highlight box coordinates so they land
+   on the actual feature. If the frames do not show what the VO describes,
+   Claude picks a different transcript range and re-extracts with
+   `--rescan [scene]`. Then you rerun the same command and it finishes.
+
+Finished files:
+
+```
+output/[slug]-short-[n]-FINAL.mp4            1080x1920, publish ready
+output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
+```
+
+Useful flags: `--auto` (skip the analysis pause, center crop, technical checks
+only), `--skip-vo` (picture with no narration), `--no-music`, `--rescan 3`,
+`--redownload`, `--revoice`, `--voice-id`, `--font`.
+
+## Running the pieces on their own
+
+```bash
+pip install -r requirements.txt   # plus ffmpeg and yt-dlp on the system
+
+# pull the timestamped transcript
 python scripts/fetch_transcript.py "https://www.youtube.com/watch?v=VIDEO_ID"
 #    writes transcripts/[video_id].json
 #    no captions on the video? it falls back to yt-dlp plus faster-whisper
 
-# 2. the skill writes the guide content to guides/[slug].json
+# the skill writes the guide content to guides/[slug].json
 
-# 3. render the PDF
+# render the handoff PDF
 python scripts/render_guide.py guides/[slug].json
 #    writes output/[slug]-production-guide.pdf
 ```
+
+## What the assembly actually does
+
+| Step | Detail |
+| --- | --- |
+| Cut | One clip per scene from the analyzed source range |
+| Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
+| Punch in | zoompan glued to the analyzed focus point |
+| Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
+| Captions | Bold white, black outline, hook upper third, supporting lower third, burned in |
+| Overlays | Branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per scene |
+| Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |
+| Fit | Scene out-points stretch or tighten so the picture and the narration land together |
+| End | Simple text CTA frame, 2.4 seconds, no long end card |
+
+See `assets/README.md` for the exact files to upload and what happens when one
+is missing. Nothing in `assets/` is required, a missing file is skipped with a
+note rather than failing the build.
 
 `guides/example.schema.json` documents the guide JSON shape.
 `.claude/skills/shorts-production-guide/template.html` holds the branded
@@ -78,5 +134,13 @@ footer.
 | --- | --- |
 | `transcripts/` | Fetched transcript JSON, one per video id |
 | `guides/` | Guide content JSON, one per episode |
-| `output/` | Finished PDFs |
-| `scripts/` | `fetch_transcript.py`, `render_guide.py` |
+| `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
+| `work/` | Source video, keyframes, edit decisions, VO, scene clips. Gitignored, safe to delete |
+| `output/` | Finished PDFs, Shorts, and contact sheets |
+| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py` |
+
+## Requirements
+
+`ffmpeg` and `yt-dlp` on the system, plus `pip install -r requirements.txt`.
+`ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` come from the environment and are
+never written to the repo.

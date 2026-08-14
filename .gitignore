@@ -1,5 +1,7 @@
 output/*
 !output/.gitkeep
+work/
 __pycache__/
 *.pyc
 .venv/
+.env

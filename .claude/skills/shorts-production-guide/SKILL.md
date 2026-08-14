@@ -104,3 +104,74 @@ python scripts/render_guide.py guides/[slug].json
 The finished PDF lands in `output/[slug]-production-guide.pdf`. Give the user
 the path. General production notes and the publishing checklist have defaults
 built into the renderer, so only include them in the JSON to override.
+
+Three scene fields exist for the finishing pipeline, set them while writing the
+guide:
+
+- `caption_zone`, `hook` or `support`. Defaults to hook on scene 1.
+- `transition`, set to `whoosh` on the one scene carrying the problem to
+  solution shift.
+- `overlay`, the filename of a branded alpha `.mov` in `assets/overlays/` when
+  a scene calls for one.
+
+Set `cta_frame` on the Short for the end frame text, otherwise `cta.primary`
+is used.
+
+## Step 6: build the finished Short
+
+When the user wants a finished video rather than a handoff document:
+
+```bash
+python scripts/build_short.py "<YouTube URL>" <short number>
+```
+
+It runs transcript, guide check, source download, keyframe extraction, VO,
+assembly, and contact sheet. It stops twice and hands the work back to you.
+
+### Pause one, the guide
+
+If no guide JSON matches the video id, the build stops. Write the guide with
+this skill, save it to `guides/[slug].json` with the YouTube URL in
+`video_url`, then rerun the same command.
+
+### Pause two, frame analysis. This one is yours to do with your eyes.
+
+The build extracts 4 keyframes per scene into
+`work/[video_id]/short[n]/frames/` and writes a skeleton
+`work/[video_id]/short[n]/edits.json`, then stops.
+
+Read every frame with the Read tool. Do not fill in numbers you have not
+looked at. For each scene write:
+
+- `crop_x`, the horizontal center of the 9:16 window as 0 to 1 across the full
+  source frame. 0.5 is dead center. Move it so the subject and the feature the
+  VO names stay in frame after the crop. A wide kitchen reveal with the island
+  camera right needs `crop_x` near 0.65, not 0.5.
+- `punch_in`, `null` unless the editor notes ask for one, otherwise
+  `{"zoom": 1.15 to 1.6, "focus": [x, y]}` aimed at the feature being called
+  out. The zoom is glued to that point.
+- `annotations`, exact coordinates so arrows and boxes land on the real
+  feature, not near it. Boxes are `{"type":"box","target":"...","x","y","w","h"}`
+  with x and y the top left corner. Arrows are
+  `{"type":"arrow","target":"...","from":[x,y],"to":[x,y]}` with the arrowhead
+  on the feature. All coordinates are normalized against the full source frame
+  you are looking at, the build maps them through the crop for you.
+- `frames_show_what_the_vo_says`, true or false, honestly.
+
+If the frames do not show what the VO line describes, do not caption over the
+wrong footage. Pick a better range from the fetched transcript, put it in that
+scene's `source`, and rerun with `--rescan 3` to re-extract just that scene.
+Then look again.
+
+Set `"analyzed": true` when every scene is done and rerun the plain command.
+The build finishes and writes:
+
+- `output/[slug]-short-[n]-FINAL.mp4`, 1080x1920, publish ready
+- `output/[slug]-short-[n]-contact-sheet.jpg`, one frame per scene
+
+Read the contact sheet before you tell the user it is done. If a caption sits
+over a face, a crop cuts the feature, or an arrow points at nothing, fix the
+numbers and rebuild. Send the user both files with SendUserFile.
+
+`--auto` skips the analysis pause with center crop defaults. It is for a quick
+technical check only, never for a Short that gets published.
