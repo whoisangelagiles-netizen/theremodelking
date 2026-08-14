@@ -49,12 +49,31 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 - ElevenLabs formatting applied directly to the script.
 - No em dashes, anywhere, ever.
 
+## Setup, once
+
+1. Put your logo in `assets/logo.png`, transparent PNG. It becomes the
+   watermark in the top right of every Short. See `assets/README.md`.
+2. Set two environment variables, never in the repo:
+
+   ```bash
+   export ELEVENLABS_API_KEY=sk_...
+   export ELEVENLABS_VOICE_ID=...     # Mike's voice
+   ```
+
+3. Confirm it all landed:
+
+   ```bash
+   python scripts/check_setup.py                 # what is present, what is missing
+   python scripts/check_setup.py --list-voices   # every voice on the account with its id
+   ```
+
+   It validates the key against the ElevenLabs API, confirms the voice id
+   actually exists on your account, and reports your remaining character
+   budget. Warnings are optional pieces, they degrade gracefully.
+
 ## One command, finished Short
 
 ```bash
-export ELEVENLABS_API_KEY=...      # never committed
-export ELEVENLABS_VOICE_ID=...     # Mike's voice
-
 python scripts/build_short.py "https://www.youtube.com/watch?v=VIDEO_ID" 1
 ```
 
@@ -84,8 +103,9 @@ output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it wit
 ```
 
 Useful flags: `--auto` (skip the analysis pause, center crop, technical checks
-only), `--skip-vo` (picture with no narration), `--no-music`, `--rescan 3`,
-`--redownload`, `--revoice`, `--voice-id`, `--font`.
+only), `--skip-vo` (picture with no narration), `--no-music`, `--no-logo`,
+`--logo-width 0.16`, `--logo-opacity 0.92`, `--rescan 3`, `--redownload`,
+`--revoice`, `--voice-id`, `--font`.
 
 ## Running the pieces on their own
 
@@ -113,7 +133,8 @@ python scripts/render_guide.py guides/[slug].json
 | Punch in | zoompan glued to the analyzed focus point |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
 | Captions | Bold white, black outline, hook upper third, supporting lower third, burned in |
-| Overlays | Branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per scene |
+| Watermark | `assets/logo.png` top right of every scene and the CTA frame, soft shadow, fixed while the picture punches in |
+| Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
 | End | Simple text CTA frame, 2.4 seconds, no long end card |
@@ -137,7 +158,7 @@ footer.
 | `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
 | `work/` | Source video, keyframes, edit decisions, VO, scene clips. Gitignored, safe to delete |
 | `output/` | Finished PDFs, Shorts, and contact sheets |
-| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py` |
+| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py` |
 
 ## Requirements
 

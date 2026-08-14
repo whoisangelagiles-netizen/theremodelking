@@ -624,7 +624,45 @@ def draw_caption(text: str, zone: str, font_path: str | None, path: Path) -> Pat
     return path
 
 
-def draw_cta_frame(text: str, font_path: str | None, path: Path) -> Path:
+def build_watermark(logo_path: Path, destination: Path, width_frac: float,
+                    margin_right: int, margin_top: int, opacity: float) -> Path:
+    """Lay the channel logo into the top right of a transparent 1080x1920 plate."""
+    from PIL import Image, ImageFilter
+
+    logo = Image.open(logo_path)
+    if logo.mode != "RGBA":
+        if "A" not in logo.getbands():
+            say(f"{logo_path.name} has no transparency, it will sit in a solid rectangle. "
+                "A PNG with an alpha channel looks far better.")
+        logo = logo.convert("RGBA")
+
+    target_w = max(40, int(W * width_frac))
+    target_h = max(1, int(round(logo.height * target_w / logo.width)))
+    logo = logo.resize((target_w, target_h), Image.LANCZOS)
+
+    if opacity < 1.0:
+        alpha = logo.getchannel("A").point(lambda value: int(value * opacity))
+        logo.putalpha(alpha)
+
+    x = W - target_w - margin_right
+    y = margin_top
+
+    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    silhouette = Image.new("RGBA", logo.size, (0, 0, 0, 130))
+    shadow.paste(silhouette, (x, y + 5), logo)
+    canvas = Image.alpha_composite(canvas, shadow.filter(ImageFilter.GaussianBlur(7)))
+    canvas.paste(logo, (x, y), logo)
+    canvas.save(destination)
+
+    if y + target_h > H * 0.16:
+        say("the logo reaches down toward the hook caption zone, consider a smaller "
+            "--logo-width if it crowds the text")
+    return destination
+
+
+def draw_cta_frame(text: str, font_path: str | None, path: Path,
+                   watermark: Path | None = None) -> Path:
     from PIL import Image, ImageDraw, ImageFont
 
     canvas = Image.new("RGB", (W, H), (22, 24, 26))
@@ -641,6 +679,11 @@ def draw_cta_frame(text: str, font_path: str | None, path: Path) -> Path:
     bar = 14
     draw.rectangle([0, H // 2 - int(line_height * len(lines) / 2) - 90,
                     W, H // 2 - int(line_height * len(lines) / 2) - 90 + bar], fill=BRAND_GREEN)
+
+    if watermark:
+        with Image.open(watermark) as plate:
+            canvas = Image.alpha_composite(canvas.convert("RGBA"),
+                                           plate.convert("RGBA")).convert("RGB")
     canvas.save(path)
     return path
 
@@ -650,7 +693,8 @@ def draw_cta_frame(text: str, font_path: str | None, path: Path) -> Path:
 # --------------------------------------------------------------------------
 
 def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_audio: bool,
-                 work: Path, font_path: str | None, destination: Path) -> None:
+                 work: Path, font_path: str | None, watermark: Path | None,
+                 destination: Path) -> None:
     window = crop_window(src_w, src_h, scene.crop_x)
     crop_w, crop_h, x0, y0 = window
     parts = work / "parts"
@@ -682,6 +726,11 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     if overlay_mov:
         cmd += ["-i", str(overlay_mov)]
         ov_index = index
+        index += 1
+    wm_index = None
+    if watermark:
+        cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(watermark)]
+        wm_index = index
         index += 1
 
     chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H},setsar=1,fps={FPS}[base]"]
@@ -716,6 +765,11 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         chain.append(f"[{label}][ovl]overlay=0:0:format=auto:shortest=0:eof_action=pass[out]")
         label = "out"
 
+    if wm_index is not None:
+        chain.append(f"[{wm_index}:v]scale={W}:{H}[wm]")
+        chain.append(f"[{label}][wm]overlay=0:0:format=auto[marked]")
+        label = "marked"
+
     chain.append(f"[{label}]format=yuv420p[v]")
 
     if src_has_audio:
@@ -734,8 +788,9 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     run(cmd)
 
 
-def render_cta(text: str, font_path: str | None, work: Path, destination: Path) -> None:
-    png = draw_cta_frame(text, font_path, work / "parts" / "cta.png")
+def render_cta(text: str, font_path: str | None, work: Path, watermark: Path | None,
+               destination: Path) -> None:
+    png = draw_cta_frame(text, font_path, work / "parts" / "cta.png", watermark)
     run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
          "-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(png),
          "-f", "lavfi", "-t", f"{CTA_SECONDS}", "-i", "anullsrc=r=48000:cl=stereo",
@@ -800,7 +855,7 @@ def mix_audio(body: Path, vo: Path | None, whoosh_at: float | None,
 
 def stage_assemble(scenes: list[Scene], short: dict, source: Path, vo: Path | None,
                    work: Path, index: int, slug: str, font_path: str | None,
-                   music: Path | None) -> tuple[Path, list[float]]:
+                   music: Path | None, watermark: Path | None) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -829,14 +884,15 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path, vo: Path | No
             f"crop_x {scene.crop_x:.2f}"
             f"{', punch in' if scene.punch_in else ''}"
             f"{', ' + str(len(scene.annotations)) + ' annotation(s)' if scene.annotations else ''}")
-        render_scene(scene, source, src_w, src_h, src_audio, work, font_path, clip)
+        render_scene(scene, source, src_w, src_h, src_audio, work, font_path,
+                     watermark, clip)
         clips.append(clip)
         starts.append(elapsed)
         elapsed += media_duration(clip)
 
     cta_text = short.get("cta_frame") or short.get("cta", {}).get("primary") or "Follow for more"
     cta_clip = parts / "cta.mp4"
-    render_cta(cta_text, font_path, work, cta_clip)
+    render_cta(cta_text, font_path, work, watermark, cta_clip)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -938,6 +994,12 @@ def main() -> None:
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
     parser.add_argument("--no-music", action="store_true")
+    parser.add_argument("--logo", type=Path, default=None,
+                        help="watermark logo override, defaults to assets/logo.png")
+    parser.add_argument("--no-logo", action="store_true", help="build without the watermark")
+    parser.add_argument("--logo-width", type=float, default=0.16,
+                        help="watermark width as a fraction of frame width, default 0.16")
+    parser.add_argument("--logo-opacity", type=float, default=0.92)
     parser.add_argument("--font", default=None, help="bold TTF for captions")
     parser.add_argument("--redownload", action="store_true")
     parser.add_argument("--revoice", action="store_true", help="resynthesize the VO")
@@ -978,8 +1040,19 @@ def main() -> None:
         if music is None:
             say("no music bed in assets/, building without one")
 
+    watermark = None
+    if not args.no_logo:
+        logo = args.logo or asset("logo.png", "logo.webp", "logo.jpg")
+        if logo is None:
+            say("no assets/logo.png, building without the watermark")
+        else:
+            watermark = build_watermark(logo, work / "watermark.png",
+                                        args.logo_width, 40, 52, args.logo_opacity)
+            say(f"watermark: {logo.name}, top right, {int(args.logo_width * 100)} percent "
+                "of frame width")
+
     final, starts = stage_assemble(scenes, short, source, vo, work, args.number,
-                                   slug, font_path, music)
+                                   slug, font_path, music, watermark)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
 
     print("\nDone.")
