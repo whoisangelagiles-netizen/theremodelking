@@ -24,6 +24,7 @@ Everything intermediate lives in work/[video_id]/, finished files in output/.
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
 import shutil
@@ -43,6 +44,7 @@ OUTPUT = REPO_ROOT / "output"
 ASSETS = REPO_ROOT / "assets"
 
 BRAND_GREEN = (14, 147, 70)
+EMPHASIS_GREEN = (46, 214, 116)   # brand green lifted so it reads over dark footage
 W, H = 1080, 1920
 FPS = 30
 CTA_SECONDS = 2.4
@@ -57,7 +59,16 @@ FONT_CANDIDATES = [
     "C:/Windows/Fonts/arialbd.ttf",
 ]
 
-ELEVEN_ENDPOINT = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
+ELEVEN_ENDPOINT = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps"
+SUB_MAX_WORDS = 4            # words per subtitle card
+SUB_MAX_CHARS = 26           # characters per subtitle card
+SUB_TAIL = 0.30              # how long a card may linger before the next one
+HANGING_WORDS = {
+    "the", "a", "an", "and", "or", "but", "so", "to", "of", "in", "on", "at", "for",
+    "with", "is", "was", "were", "we", "it", "that", "this", "your", "our", "my",
+    "you", "i", "he", "she", "they", "had", "has", "have", "could", "would", "can",
+    "just", "some", "out", "up", "into", "how",
+}
 ELEVEN_DEFAULT_MODEL = "eleven_multilingual_v2"
 
 
@@ -517,8 +528,83 @@ def annotation_is_placed(annotation: dict) -> bool:
 # stage 4: voice over
 # --------------------------------------------------------------------------
 
+def word_is_emphasis(word: str) -> bool:
+    letters = "".join(c for c in word if c.isalpha())
+    return len(letters) >= 2 and letters.isupper()
+
+
+def phrases_from_alignment(chars: list[str], starts: list[float],
+                           ends: list[float]) -> list[dict]:
+    """Character timings into short subtitle cards that follow the read."""
+    words, current = [], None
+    for char, start, end in zip(chars, starts, ends):
+        if char.isspace():
+            if current:
+                words.append(current)
+                current = None
+            continue
+        if current is None:
+            current = {"text": "", "start": start, "end": end}
+        current["text"] += char
+        current["end"] = end
+    if current:
+        words.append(current)
+
+    soft_words, soft_chars = SUB_MAX_WORDS, SUB_MAX_CHARS
+    hard_words, hard_chars = SUB_MAX_WORDS + 2, SUB_MAX_CHARS + 10
+
+    def hanging(word):
+        return word["text"].strip(".,!?:;").lower() in HANGING_WORDS
+
+    groups, group = [], []
+    for word in words:
+        group.append(word)
+        joined = " ".join(w["text"] for w in group)
+        clause = word["text"].rstrip()[-1:] in ".,!?:;"
+        at_soft = len(group) >= soft_words or len(joined) >= soft_chars or clause
+        at_hard = len(group) >= hard_words or len(joined) >= hard_chars
+        # never end a card on a hanging word while there is room for one more
+        if at_hard or (at_soft and not hanging(word)):
+            groups.append(group)
+            group = []
+    if group:
+        groups.append(group)
+
+    # a lone word is not a subtitle, fold it into a neighbour that has room
+    index = 0
+    while index < len(groups):
+        if len(groups[index]) == 1 and len(groups) > 1:
+            back = groups[index - 1] if index > 0 else None
+            forward = groups[index + 1] if index + 1 < len(groups) else None
+            def fits(other):
+                if other is None:
+                    return False
+                merged = " ".join(w["text"] for w in other + groups[index])
+                return len(other) + 1 <= hard_words and len(merged) <= hard_chars
+            if fits(back):
+                groups[index - 1] = back + groups.pop(index)
+                continue
+            if fits(forward):
+                lone = groups.pop(index)
+                groups[index] = lone + groups[index]
+                continue
+        index += 1
+
+    phrases = [{
+        "words": [{"text": w["text"], "emph": word_is_emphasis(w["text"])} for w in g],
+        "start": round(g[0]["start"], 3),
+        "end": round(g[-1]["end"], 3),
+    } for g in groups if g]
+
+    # hold each card until the next one starts, so the screen is never empty
+    for index, phrase in enumerate(phrases):
+        limit = phrases[index + 1]["start"] if index + 1 < len(phrases) else phrase["end"] + SUB_TAIL
+        phrase["end"] = round(min(limit, phrase["end"] + SUB_TAIL), 3)
+    return phrases
+
+
 def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
-               voice_id: str, model_id: str, destination: Path) -> Path:
+               voice_id: str, model_id: str, destination: Path) -> list[dict]:
     """One ElevenLabs render. previous_text and next_text keep prosody continuous
     across separately rendered lines, so a per line read still sounds like one take."""
     body = {
@@ -535,8 +621,7 @@ def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
     request = urllib.request.Request(
         ELEVEN_ENDPOINT.format(voice_id=voice_id) + "?output_format=mp3_44100_128",
         data=json.dumps(body).encode("utf-8"),
-        headers={"xi-api-key": api_key, "Content-Type": "application/json",
-                 "Accept": "audio/mpeg"},
+        headers={"xi-api-key": api_key, "Content-Type": "application/json"},
     )
     ca_bundle = (os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE")
                  or os.environ.get("CURL_CA_BUNDLE"))
@@ -544,15 +629,26 @@ def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
                else ssl.create_default_context())
     try:
         with urllib.request.urlopen(request, context=context, timeout=180) as response:
-            audio = response.read()
+            payload = json.loads(response.read())
     except urllib.error.HTTPError as exc:
         die(f"ElevenLabs returned {exc.code}: {exc.read()[:400].decode('utf-8', 'replace')}")
     except Exception as exc:  # noqa: BLE001
         die(f"ElevenLabs request failed: {type(exc).__name__}: {exc}")
 
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_bytes(audio)
-    return destination
+    destination.write_bytes(base64.b64decode(payload["audio_base64"]))
+
+    alignment = payload.get("alignment") or payload.get("normalized_alignment") or {}
+    # keep the raw timing so cards can be regrouped later without paying for
+    # another render
+    destination.with_suffix(".alignment.json").write_text(json.dumps(alignment),
+                                                          encoding="utf-8")
+    phrases = phrases_from_alignment(alignment.get("characters", []),
+                                     alignment.get("character_start_times_seconds", []),
+                                     alignment.get("character_end_times_seconds", []))
+    destination.with_suffix(".phrases.json").write_text(json.dumps(phrases, indent=2),
+                                                        encoding="utf-8")
+    return phrases
 
 
 def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
@@ -588,19 +684,24 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
         path = lines_dir / f"line{scene.number:02d}.mp3"
         if not text:
             rendered.append({"scene": scene.number, "path": None, "speech": 0.0,
-                             "hold": max(MIN_SCENE_SECONDS, scene.duration)})
+                             "hold": max(MIN_SCENE_SECONDS, scene.duration),
+                             "phrases": []})
             continue
-        if path.exists() and not force:
-            say(f"line {scene.number}: cached, {media_duration(path):.2f}s")
+        phrase_file = path.with_suffix(".phrases.json")
+        if path.exists() and phrase_file.exists() and not force:
+            phrases = json.loads(phrase_file.read_text(encoding="utf-8"))
+            say(f"line {scene.number}: cached, {media_duration(path):.2f}s, "
+                f"{len(phrases)} subtitle cards")
         else:
-            eleven_tts(text,
-                       texts[position - 1] if position else "",
-                       texts[position + 1] if position + 1 < len(texts) else "",
-                       api_key, voice_id, model_id, path)
-            say(f"line {scene.number}: {len(text.split())} words, {media_duration(path):.2f}s")
+            phrases = eleven_tts(text,
+                                 texts[position - 1] if position else "",
+                                 texts[position + 1] if position + 1 < len(texts) else "",
+                                 api_key, voice_id, model_id, path)
+            say(f"line {scene.number}: {len(text.split())} words, "
+                f"{media_duration(path):.2f}s, {len(phrases)} subtitle cards")
         speech = media_duration(path)
         rendered.append({"scene": scene.number, "path": path, "speech": speech,
-                         "hold": speech + gap})
+                         "hold": speech + gap, "phrases": phrases})
     total = sum(item["hold"] for item in rendered)
     say(f"narration total {total:.1f}s including {gap:.2f}s between lines")
     return rendered
@@ -862,6 +963,67 @@ def build_watermark(logo_path: Path, destination: Path, width_frac: float | None
     return destination
 
 
+def measure_words(words, font, draw, max_width):
+    """Wrap words into lines, keeping each word's emphasis flag."""
+    space = draw.textlength(" ", font=font)
+    lines, current, width = [], [], 0.0
+    for word in words:
+        w = draw.textlength(word["text"], font=font)
+        extra = w if not current else w + space
+        if current and width + extra > max_width:
+            lines.append(current)
+            current, width = [word], w
+        else:
+            current.append(word)
+            width += extra
+    if current:
+        lines.append(current)
+    return lines
+
+
+def draw_subtitle(words, font_path: str | None, size: int, top: float,
+                  path: Path) -> tuple[Path, float]:
+    """One subtitle card. Emphasis words come through in brand green."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
+
+    upper = [{"text": w["text"].upper(), "emph": w.get("emph")} for w in words]
+    lines = measure_words(upper, font, draw, int(W * 0.84))
+    line_height = size * 1.2
+    space = draw.textlength(" ", font=font)
+    stroke = max(6, size // 11)
+
+    for row, line in enumerate(lines):
+        total = sum(draw.textlength(w["text"], font=font) for w in line) + space * (len(line) - 1)
+        x = W / 2 - total / 2
+        y = top + row * line_height
+        for word in line:
+            draw.text((x, y), word["text"], font=font,
+                      fill=EMPHASIS_GREEN if word["emph"] else (255, 255, 255, 255),
+                      stroke_width=stroke, stroke_fill=(0, 0, 0, 255))
+            x += draw.textlength(word["text"], font=font) + space
+    canvas.save(path)
+    return path, line_height * len(lines)
+
+
+def subtitle_block_height(phrases, font_path: str | None, size: int) -> float:
+    """Tallest card in the scene, so the band never jumps between cards."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    probe_img = Image.new("RGBA", (W, H))
+    draw = ImageDraw.Draw(probe_img)
+    font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
+    tallest = 0.0
+    for phrase in phrases:
+        upper = [{"text": w["text"].upper(), "emph": w.get("emph")} for w in phrase["words"]]
+        lines = measure_words(upper, font, draw, int(W * 0.84))
+        tallest = max(tallest, size * 1.2 * len(lines))
+    return tallest
+
+
 def draw_cta_frame(text: str, font_path: str | None, path: Path,
                    watermark: Path | None = None) -> Path:
     from PIL import Image, ImageDraw, ImageFont
@@ -895,7 +1057,8 @@ def draw_cta_frame(text: str, font_path: str | None, path: Path,
 
 def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_audio: bool,
                  work: Path, font_path: str | None, watermark: Path | None,
-                 destination: Path) -> None:
+                 destination: Path, phrases: list[dict] | None = None,
+                 caption_mode: str = "subtitles") -> None:
     window = crop_window(src_w, src_h, scene.crop_x)
     crop_w, crop_h, x0, y0 = window
     parts = work / "parts"
@@ -904,11 +1067,22 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     annotation_png = draw_annotations(scene, src_w, src_h, window,
                                       parts / f"ann{scene.number:02d}.png")
     face = face_rect_in_frame(scene, src_w, src_h, window)
-    caption_png = draw_caption(scene.caption, scene.caption_zone, font_path,
-                               parts / f"cap{scene.number:02d}.png", face)
-    if face:
-        say(f"scene {scene.number}: caption placed clear of Mike's head "
-            f"(head spans y {int(face[1])} to {int(face[3])} of {H})")
+
+    subtitle_cards = []
+    caption_png = None
+    if caption_mode in ("subtitles", "both") and phrases:
+        size = 72
+        block = subtitle_block_height(phrases, font_path, size)
+        band = place_caption(block, "support", face)
+        for i, phrase in enumerate(phrases):
+            card, _ = draw_subtitle(phrase["words"], font_path, size, band,
+                                    parts / f"sub{scene.number:02d}_{i:02d}.png")
+            subtitle_cards.append((card, phrase["start"], phrase["end"]))
+        say(f"scene {scene.number}: {len(subtitle_cards)} subtitle cards, "
+            f"band at y {int(band)}" + (", clear of Mike's head" if face else ""))
+    if caption_mode in ("labels", "both"):
+        caption_png = draw_caption(scene.caption, scene.caption_zone, font_path,
+                                   parts / f"cap{scene.number:02d}.png", face)
     overlay_mov = None
     if scene.overlay:
         overlay_mov = asset(f"overlays/{scene.overlay}", scene.overlay)
@@ -931,6 +1105,11 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     if overlay_mov:
         cmd += ["-i", str(overlay_mov)]
         ov_index = index
+        index += 1
+    sub_indexes = []
+    for card, _, _ in subtitle_cards:
+        cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(card)]
+        sub_indexes.append(index)
         index += 1
     wm_index = None
     if watermark:
@@ -965,6 +1144,12 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         chain.append(f"[{cap_index}:v]scale={W}:{H}[cap]")
         chain.append(f"[{label}][cap]overlay=0:0:format=auto[capped]")
         label = "capped"
+
+    for position, (input_index, (_, start, end)) in enumerate(zip(sub_indexes, subtitle_cards)):
+        chain.append(f"[{input_index}:v]scale={W}:{H}[subsrc{position}]")
+        chain.append(f"[{label}][subsrc{position}]overlay=0:0:format=auto:"
+                     f"enable='between(t,{start:.3f},{end:.3f})'[sub{position}]")
+        label = f"sub{position}"
 
     if ov_index is not None:
         chain.append(f"[{ov_index}:v]scale={W}:{H},setsar=1[ovl]")
@@ -1067,7 +1252,8 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
 def stage_assemble(scenes: list[Scene], short: dict, source: Path,
                    vo_lines: list[dict] | None, work: Path, index: int, slug: str,
                    font_path: str | None, music: Path | None,
-                   watermark: Path | None) -> tuple[Path, list[float]]:
+                   watermark: Path | None,
+                   caption_mode: str = "subtitles") -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -1090,14 +1276,15 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
     parts.mkdir(parents=True)
 
     clips, starts, elapsed = [], [], 0.0
-    for scene in scenes:
+    for position, scene in enumerate(scenes):
         clip = parts / f"scene{scene.number:02d}.mp4"
         say(f"scene {scene.number}: {stamp(scene.start)} to {stamp(scene.end)}, "
             f"crop_x {scene.crop_x:.2f}"
             f"{', punch in' if scene.punch_in else ''}"
             f"{', ' + str(len(scene.annotations)) + ' annotation(s)' if scene.annotations else ''}")
+        phrases = (vo_lines[position]["phrases"] if vo_lines else None)
         render_scene(scene, source, src_w, src_h, src_audio, work, font_path,
-                     watermark, clip)
+                     watermark, clip, phrases, caption_mode)
         clips.append(clip)
         starts.append(elapsed)
         elapsed += media_duration(clip)
@@ -1283,6 +1470,10 @@ def main() -> None:
                         help="assemble with no narration, for a picture only check")
     parser.add_argument("--voice-id", default=None, help="ElevenLabs voice id for Mike")
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
+    parser.add_argument("--captions", choices=["subtitles", "labels", "both"],
+                        default="subtitles",
+                        help="subtitles follow what Mike actually says, labels are the "
+                             "guide's summary captions, both draws each in its own band")
     parser.add_argument("--line-gap", type=float, default=0.28,
                         help="pause held after each narration line, seconds, default 0.28")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
@@ -1358,7 +1549,7 @@ def main() -> None:
                 f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
     final, starts = stage_assemble(scenes, short, source, vo_lines, work, args.number,
-                                   slug, font_path, music, watermark)
+                                   slug, font_path, music, watermark, args.captions)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 

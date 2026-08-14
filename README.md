@@ -115,8 +115,10 @@ output/[slug]-short-[n]-FINAL.mp4            1080x1920, publish ready
 output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
 ```
 
-Useful flags: `--auto` (skip the analysis pause, center crop, technical checks
-only), `--skip-vo` (picture with no narration), `--no-music`, `--no-logo`,
+Useful flags: `--captions subtitles|labels|both` (default subtitles, what Mike
+says, timed to the read), `--auto` (skip the analysis pause, center crop,
+technical checks only), `--skip-vo` (picture with no narration), `--no-music`,
+`--no-logo`,
 `--logo-width 0.16`, `--logo-opacity 0.92`, `--rescan 3`, `--redownload`,
 `--revoice`, `--voice-id`, `--font`.
 
@@ -156,7 +158,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Punch in | zoompan glued to the analyzed focus point |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
-| Captions | Bold white, black outline, burned in. Hook upper third, supporting lower third, but never across Mike's face. The recorded face box plus a drift margin is off limits, and the caption moves above his head or below his chin as needed |
+| Subtitles | What Mike actually says, timed from ElevenLabs character level timestamps, in cards of about 4 words. Bold white with a black outline, emphasis words in brand green. Burned in, never across his face, the recorded face box plus a drift margin is off limits |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |
