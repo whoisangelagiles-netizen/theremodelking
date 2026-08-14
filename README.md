@@ -53,11 +53,22 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 
 1. Put your logo in `assets/logo.png`, transparent PNG. It becomes the
    watermark in the top right of every Short. See `assets/README.md`.
-2. Set two environment variables, never in the repo:
+2. Provide two credentials. NEVER commit them, this repository is public.
+   Any of these three work, the scripts read them in this order:
 
    ```bash
+   # a. your shell, for local runs
    export ELEVENLABS_API_KEY=sk_...
    export ELEVENLABS_VOICE_ID=...     # Mike's voice
+
+   # b. a .env file at the repo root, gitignored, also for local runs
+   printf 'ELEVENLABS_API_KEY=sk_...\nELEVENLABS_VOICE_ID=...\n' > .env
+
+   # c. for cloud sessions, the environment variables box in the cloud
+   #    environment dialog at claude.ai/code. Open the cloud icon in the row
+   #    above the message box, hover your environment, click the gear. There
+   #    is no settings page for it. Values apply to sessions started after
+   #    you save, and anyone using that environment can read them.
    ```
 
 3. Confirm it all landed:

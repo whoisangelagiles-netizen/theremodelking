@@ -142,6 +142,19 @@ def find_font() -> str | None:
     return None
 
 
+def load_dotenv() -> None:
+    """Read a gitignored .env at the repo root, for credentials kept out of git."""
+    path = REPO_ROOT / ".env"
+    if not path.exists():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        entry = raw.strip()
+        if not entry or entry.startswith("#") or "=" not in entry:
+            continue
+        key, value = entry.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
 def asset(*names: str) -> Path | None:
     """First existing asset among the given names, else None."""
     for name in names:
@@ -1004,6 +1017,8 @@ def main() -> None:
     parser.add_argument("--redownload", action="store_true")
     parser.add_argument("--revoice", action="store_true", help="resynthesize the VO")
     args = parser.parse_args()
+
+    load_dotenv()
 
     for binary in ("ffmpeg", "ffprobe", "yt-dlp"):
         if shutil.which(binary) is None:

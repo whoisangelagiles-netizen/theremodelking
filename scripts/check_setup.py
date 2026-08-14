@@ -22,6 +22,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ASSETS = REPO_ROOT / "assets"
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 OK, WARN, FAIL = "  ok  ", " warn ", " FAIL "
 blocking = 0
@@ -180,6 +181,12 @@ def main() -> None:
     parser.add_argument("--list-voices", action="store_true",
                         help="print every voice on the account with its id")
     args = parser.parse_args()
+
+    try:
+        from build_short import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
 
     check_tools()
     check_assets()
