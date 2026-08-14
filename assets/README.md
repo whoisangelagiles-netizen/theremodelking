@@ -67,7 +67,7 @@ missing.
 | Layer | Level |
 | --- | --- |
 | Mike AI VO | full |
-| Original location audio | ducked to 3 percent, present but very low |
+| Original location audio | muted, pass `--location-audio 0.03` to bring it back as a low bed |
 | Impact | 70 percent |
 | Whoosh | 55 percent |
 | Music bed | 6 percent |

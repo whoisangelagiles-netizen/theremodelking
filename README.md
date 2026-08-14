@@ -158,10 +158,10 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Punch in | zoompan glued to the analyzed focus point |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
-| Subtitles | What Mike actually says, timed from ElevenLabs character level timestamps, in cards of about 4 words. Bold white with a black outline, emphasis words in brand green. Burned in, never across his face, the recorded face box plus a drift margin is off limits |
+| Captions | Summary label per scene by default, bold white with a black outline, burned in, hook upper third and support lower third, never across Mike's face. `--captions subtitles` switches to word for word subtitles timed from ElevenLabs character timestamps, `both` draws each in its own band |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
-| Audio | VO full, location audio ducked to 3 percent, impact on frame one, whoosh at the problem to solution shift, music bed at 6 percent, limited at 0.95 |
+| Audio | Mike's VO only. The original location audio is MUTED, `--location-audio 0.03` brings back the old low bed. Impact on frame one, whoosh at the problem to solution shift, optional music bed at 6 percent, limited at 0.95, padded to the picture |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
 | End | Simple text CTA frame, 2.4 seconds, no long end card |
 

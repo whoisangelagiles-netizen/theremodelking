@@ -35,10 +35,11 @@ here. Read that skill first if it is not already loaded. In particular:
   audio. Mark the words that carry the point so the team can paste the block
   straight into ElevenLabs.
 - Leave a small pause between sentences so cuts and punch-ins have room.
-- On screen text in the finished video is SUBTITLES of what Mike actually
-  says, timed to the read, not the summary labels. The guide still carries a
-  label per scene for the handoff document, and `--captions labels` or `both`
-  switches the video back if an episode wants them.
+- On screen text in the finished video is the SUMMARY LABEL per scene, the
+  caption column from the guide. `--captions subtitles` switches to word for
+  word subtitles timed to the read, `both` draws each in its own band.
+- The finished audio is Mike's VO alone. The original location audio is muted,
+  not ducked, so nothing of the walkthrough track survives under the read.
 - NEVER put captions, words, or graphics on Mike's face. Captions go above his
   head or below his chin, never across it. The build enforces this from the
   face box you record during frame analysis.

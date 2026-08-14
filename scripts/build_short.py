@@ -1192,7 +1192,8 @@ def render_cta(text: str, font_path: str | None, work: Path, watermark: Path | N
 
 
 def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
-              whoosh_at: float | None, music: Path | None, destination: Path) -> None:
+              whoosh_at: float | None, music: Path | None, destination: Path,
+              location_level: float = 0.0) -> None:
     whoosh = asset("whoosh.wav", "whoosh.mp3")
     impact = asset("impact.wav", "impact.mp3")
     duration = media_duration(body)
@@ -1201,8 +1202,11 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
     chain, mix_labels = [], []
     index = 1
 
-    chain.append("[0:a]volume=0.03[orig]")
-    mix_labels.append("[orig]")
+    if location_level > 0:
+        chain.append(f"[0:a]volume={location_level:.3f}[orig]")
+        mix_labels.append("[orig]")
+    else:
+        say("original location audio muted, the VO carries the whole track")
 
     if vo_lines:
         for position, item in enumerate(vo_lines):
@@ -1239,9 +1243,19 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
         mix_labels.append("[music]")
         index += 1
 
+    if not mix_labels:
+        cmd += ["-f", "lavfi", "-t", f"{duration:.2f}", "-i", "anullsrc=r=48000:cl=stereo"]
+        chain.append(f"[{index}:a]anull[silent]")
+        mix_labels.append("[silent]")
+        index += 1
+
+    # duration=longest, then pad and trim to the picture. Anchoring to the first
+    # input would cut the whole mix at the end of whichever layer happens to be
+    # first, which is a VO line once the location track is muted.
     chain.append("".join(mix_labels) +
-                 f"amix=inputs={len(mix_labels)}:duration=first:normalize=0,"
-                 "alimiter=limit=0.95,aresample=48000[aout]")
+                 f"amix=inputs={len(mix_labels)}:duration=longest:normalize=0,"
+                 "alimiter=limit=0.95,aresample=48000,"
+                 f"apad,atrim=0:{duration:.3f},asetpts=N/SR/TB[aout]")
 
     cmd += ["-filter_complex", ";".join(chain), "-map", "0:v", "-map", "[aout]",
             "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
@@ -1252,8 +1266,8 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
 def stage_assemble(scenes: list[Scene], short: dict, source: Path,
                    vo_lines: list[dict] | None, work: Path, index: int, slug: str,
                    font_path: str | None, music: Path | None,
-                   watermark: Path | None,
-                   caption_mode: str = "subtitles") -> tuple[Path, list[float]]:
+                   watermark: Path | None, caption_mode: str = "labels",
+                   location_level: float = 0.0) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -1308,7 +1322,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
     final = OUTPUT / f"{slug}-short-{index}-FINAL.mp4"
-    mix_audio(body, vo_lines, starts, whoosh_at, music, final)
+    mix_audio(body, vo_lines, starts, whoosh_at, music, final, location_level)
     say(f"final: {final.relative_to(REPO_ROOT)}, {media_duration(final):.1f}s")
     return final, starts
 
@@ -1471,9 +1485,12 @@ def main() -> None:
     parser.add_argument("--voice-id", default=None, help="ElevenLabs voice id for Mike")
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
     parser.add_argument("--captions", choices=["subtitles", "labels", "both"],
-                        default="subtitles",
+                        default="labels",
                         help="subtitles follow what Mike actually says, labels are the "
                              "guide's summary captions, both draws each in its own band")
+    parser.add_argument("--location-audio", type=float, default=0.0,
+                        help="level for the original clip audio, 0 mutes it, "
+                             "0.03 is the old low bed under the VO")
     parser.add_argument("--line-gap", type=float, default=0.28,
                         help="pause held after each narration line, seconds, default 0.28")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
@@ -1549,7 +1566,8 @@ def main() -> None:
                 f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
     final, starts = stage_assemble(scenes, short, source, vo_lines, work, args.number,
-                                   slug, font_path, music, watermark, args.captions)
+                                   slug, font_path, music, watermark, args.captions,
+                                   args.location_audio)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 
