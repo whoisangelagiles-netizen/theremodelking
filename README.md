@@ -92,7 +92,7 @@ python scripts/build_short.py "https://www.youtube.com/watch?v=VIDEO_ID" 1
 
 That is the whole job: transcript, production guide, source download at highest
 quality, keyframe analysis, ElevenLabs VO, cut, 9:16 crop, punch-ins, arrows and
-highlight boxes, burned in captions, whoosh and impact, ducked location audio,
+highlight boxes, burned in captions, whoosh and impact, muted location audio,
 optional music bed, branded overlays, CTA end frame, export, contact sheet. No
 editing pass afterward.
 
@@ -115,12 +115,13 @@ output/[slug]-short-[n]-FINAL.mp4            1080x1920, publish ready
 output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
 ```
 
-Useful flags: `--captions subtitles|labels|both` (default subtitles, what Mike
-says, timed to the read), `--auto` (skip the analysis pause, center crop,
-technical checks only), `--skip-vo` (picture with no narration), `--no-music`,
-`--no-logo`,
-`--logo-width 0.16`, `--logo-opacity 0.92`, `--rescan 3`, `--redownload`,
-`--revoice`, `--voice-id`, `--font`.
+Useful flags: `--captions labels|subtitles|both` (default labels, the guide's
+summary captions), `--location-audio 0.03` (bring the original clip audio back
+as a low bed, default is muted), `--line-gap 0.28` (pause held after each
+narration line), `--auto` (skip the analysis pause, center crop, technical
+checks only), `--skip-vo` (picture with no narration), `--no-music`,
+`--no-logo`, `--logo-width 0.16`, `--logo-opacity 0.92`, `--rescan 3`,
+`--redownload`, `--revoice`, `--voice-id`, `--font`.
 
 ## Running the pieces on their own
 
