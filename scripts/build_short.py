@@ -244,7 +244,9 @@ def find_guide(video_id: str, explicit: Path | None) -> Path | None:
             data = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             continue
-        if video_id in json.dumps(data.get("video_url", "")) or video_id == data.get("video_id"):
+        if (video_id in json.dumps(data.get("video_url", ""))
+                or video_id == data.get("video_id")
+                or video_id == data.get("work_id")):
             return path
     return None
 
@@ -768,6 +770,10 @@ def face_rect_in_frame(scene: Scene, src_w: int, src_h: int, window):
 
     # the box comes from one frame, but Mike moves inside the shot, so give the
     # head room to drift before a caption is allowed anywhere near it
+    if (rect[2] - rect[0]) < 0.04 * W:
+        # clamped to nothing, Mike is outside this crop
+        return None
+
     drift_x, drift_y = 0.03 * W, 0.045 * H
     return [max(0.0, rect[0] - drift_x), max(0.0, rect[1] - drift_y),
             min(W, rect[2] + drift_x), min(H, rect[3] + drift_y)]
@@ -1522,7 +1528,16 @@ def main() -> None:
     sys.path.insert(0, str(SCRIPTS))
     from fetch_transcript import extract_video_id  # noqa: E402
 
-    video_id = extract_video_id(args.url)
+    # The first argument is normally a YouTube URL, but a local master works too,
+    # for episodes that are not on YouTube or that YouTube will not serve.
+    local_media = Path(args.url)
+    if local_media.exists() and local_media.is_file():
+        video_id = slugify(local_media.parent.name if local_media.parent.name != "work"
+                           else local_media.stem)
+        args.source = args.source or local_media
+        say(f"local source: {local_media}")
+    else:
+        video_id = extract_video_id(args.url)
     work = WORK / video_id
     work.mkdir(parents=True, exist_ok=True)
 
