@@ -34,7 +34,7 @@ here. Read that skill first if it is not already loaded. In particular:
   and expert, and tighter and more intentional than the original walkthrough
   audio. Mark the words that carry the point so the team can paste the block
   straight into ElevenLabs.
-- Leave a small pause between sentences so cuts and punch-ins have room.
+- Leave a small pause between sentences so the cuts and the pans have room.
 - On screen text in the finished video is the SUMMARY LABEL per scene, the
   caption column from the guide. `--captions subtitles` switches to word for
   word subtitles timed to the read, `both` draws each in its own band.
@@ -118,8 +118,8 @@ Every Short in the guide contains, in this order:
    phrases, the way a homeowner types a problem into YouTube.
 3. **Scene by scene table.** Columns: Scene number, Short timeline, Source
    footage timestamps, Mike AI VO line, On-screen caption, Editor notes.
-   Editor notes cover punch-ins, arrows, highlight boxes, whoosh transitions,
-   and impact sounds, always over state shots.
+   Editor notes cover pans, arrows, highlight boxes, whoosh transitions, and
+   impact sounds, always over state shots. Never call for a punch in.
 4. **Full VO.** The combined read as one paste-ready ElevenLabs block, matching
    the scene lines exactly.
 5. **Voice direction.** One or two lines.

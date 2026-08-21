@@ -93,7 +93,7 @@ python scripts/build_short.py "https://www.youtube.com/watch?v=VIDEO_ID" 1
 ```
 
 That is the whole job: transcript, production guide, source download at highest
-quality, keyframe analysis, ElevenLabs VO, cut, 9:16 crop, punch-ins, arrows and
+quality, keyframe analysis, ElevenLabs VO, cut, 9:16 crop, pans, arrows and
 highlight boxes, burned in captions, whoosh and impact, muted location audio,
 optional music bed, branded overlays, CTA end frame, export, contact sheet. No
 editing pass afterward.
@@ -160,7 +160,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Cut | One clip per scene from the analyzed source range |
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Motion | The frame pans across the shot and settles on the feature Mike is naming, the way it would be keyframed by hand. Scaling is only ever what filling the 9:16 frame requires, there is no punch in on top |
-| Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
+| Annotations | Arrows and highlight boxes in brand green `#0E9346`, placed where the pan lands and held once it settles, so they never slide across the shot |
 | Captions | Summary label per scene by default, bold white with a black outline, burned in, hook upper third and support lower third, never across Mike's face. `--captions subtitles` switches to word for word subtitles timed from ElevenLabs character timestamps, `both` draws each in its own band |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
