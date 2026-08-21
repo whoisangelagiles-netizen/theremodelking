@@ -48,6 +48,9 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 - Nothing is ever laid over Mike's face, captions included.
 - No zoom beyond what makes the shot vertical, 178 percent on a 16:9 clip. The
   frame pans to the subject instead of punching in.
+- No repeated footage, within a Short or across an episode's Shorts. Two lines
+  can share one shot, but only as a single continuous take with no cut between
+  them. The build warns on repeats and on cuts between near identical frames.
 - Frame the feature, not the talker. If the line is about the vanity, the vanity
   fills the window. Mike carries the hook and the CTA, not every beat.
 - First person, Mike's voice, facts only from the transcript.
@@ -159,7 +162,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 
 | Step | Detail |
 | --- | --- |
-| Cut | One clip per scene from the analyzed source range |
+| Cut | One clip per scene from the analyzed source range. Overlapping ranges and cuts that land between near identical frames are flagged at build time |
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Motion | The frame pans across the shot and settles on the feature Mike is naming, the way it would be keyframed by hand. Scaling is only ever what filling the 9:16 frame requires, there is no punch in on top |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, placed where the pan lands and held once it settles, so they never slide across the shot |

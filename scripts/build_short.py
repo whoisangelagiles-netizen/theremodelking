@@ -427,6 +427,11 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
             "0.65 for something low in frame like a vanity or a toilet, raise it for a "
             "niche or a shower head.",
             "punch_in is OFF and stays OFF. Framing is chosen, not animated.",
+            "Never use the same footage twice, in this Short or the others from this "
+            "episode. If two consecutive lines want the same shot, do not cut between "
+            "them, run it as ONE continuous take: start the second scene exactly where "
+            "the first ends and continue the pan from where it stopped. A cut between "
+            "two nearly identical frames reads as a glitch.",
             "punch_in is null when the editor notes do not ask for one, otherwise "
             '{"zoom": 1.15 to 1.6, "focus": [x, y]} aimed at the feature.',
             'box annotations are {"type":"box","target":"...","x":..,"y":..,"w":..,"h":..} '
@@ -1334,6 +1339,42 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
     run(cmd)
 
 
+def check_footage_reuse(scenes: list[Scene], work: Path, index: int) -> None:
+    """No frame should appear twice, and no cut should land between two shots
+    that look the same. Two beats can share one take, but only as one continuous
+    run: the second starts exactly where the first ends."""
+    for position, scene in enumerate(scenes):
+        for other in scenes[position + 1:]:
+            overlap = min(scene.end, other.end) - max(scene.start, other.start)
+            if overlap > 0.05:
+                say(f"REPEAT: scenes {scene.number} and {other.number} both use "
+                    f"{stamp(max(scene.start, other.start))} to "
+                    f"{stamp(min(scene.end, other.end))}, {overlap:.1f}s of the same footage")
+
+    for first, second in zip(scenes, scenes[1:]):
+        gap = second.start - first.end
+        if 0.05 < gap < 0.5:
+            say(f"JUMP CUT: scene {second.number} starts {gap:.2f}s after scene "
+                f"{first.number} ends, close enough to look like the same frame. "
+                "Either start it exactly where the previous scene ends, so the take "
+                "runs continuously, or move it somewhere else in the episode.")
+
+    for other in sorted(work.glob("short*/edits.json")):
+        if other.parent.name == f"short{index}":
+            continue
+        try:
+            data = json.loads(other.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        for entry in data.get("scenes", []):
+            start, end = parse_range(entry.get("source", "0 - 0"))
+            for scene in scenes:
+                overlap = min(scene.end, end) - max(scene.start, start)
+                if overlap > 0.05:
+                    say(f"REPEAT across Shorts: scene {scene.number} shares {overlap:.1f}s "
+                        f"with {other.parent.name} scene {entry.get('scene')}")
+
+
 def stage_assemble(scenes: list[Scene], short: dict, source: Path,
                    vo_lines: list[dict] | None, work: Path, index: int, slug: str,
                    font_path: str | None, music: Path | None,
@@ -1354,6 +1395,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
 
     if vo_lines:
         fit_scenes_to_lines(scenes, vo_lines, source_seconds)
+    check_footage_reuse(scenes, work, index)
 
     parts = work / "parts"
     if parts.exists():

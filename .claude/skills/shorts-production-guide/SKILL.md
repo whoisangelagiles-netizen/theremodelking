@@ -43,6 +43,13 @@ here. Read that skill first if it is not already loaded. In particular:
 - Scale the shot JUST enough to fill the 9:16 frame, Premiere's 178 percent on a
   16:9 clip, and no more. No punch ins. `zoom` above 1.0 exists for a genuine
   detail framing on a 1080p or better source, and even then stays modest.
+- NEVER reuse footage, inside a Short or across the Shorts from one episode.
+  Every second on screen should be a second the viewer has not already seen.
+- If two consecutive lines want the same shot, do NOT cut between them. Run it
+  as ONE continuous take: the second scene starts exactly where the first ends
+  and its pan picks up where the first one stopped. A cut between two nearly
+  identical frames reads as a glitch. The build warns on both, REPEAT for
+  overlapping footage and JUMP CUT for a cut that lands too close to itself.
 - FRAME THE FEATURE, NOT THE TALKER. If the line is about the doors, the vanity,
   the built-in or the niche, that is what fills the window, even when Mike is
   the loudest thing in the source frame. He belongs in the hook and the CTA, not
