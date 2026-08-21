@@ -70,6 +70,11 @@ HANGING_WORDS = {
     "just", "some", "out", "up", "into", "how",
 }
 ELEVEN_DEFAULT_MODEL = "eleven_multilingual_v2"
+# Mike found the read flat. Lower stability lets the delivery move, higher style
+# exaggerates the emphasis the script marks in caps.
+VOICE_STABILITY = 0.28
+VOICE_STYLE = 0.70
+VOICE_SIMILARITY = 0.80
 
 
 # --------------------------------------------------------------------------
@@ -641,14 +646,19 @@ def phrases_from_alignment(chars: list[str], starts: list[float],
 
 
 def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
-               voice_id: str, model_id: str, destination: Path) -> list[dict]:
+               voice_id: str, model_id: str, destination: Path,
+               settings: dict | None = None) -> list[dict]:
     """One ElevenLabs render. previous_text and next_text keep prosody continuous
     across separately rendered lines, so a per line read still sounds like one take."""
+    settings = settings or {"stability": VOICE_STABILITY, "style": VOICE_STYLE,
+                            "similarity": VOICE_SIMILARITY}
     body = {
         "text": text,
         "model_id": model_id,
-        "voice_settings": {"stability": 0.45, "similarity_boost": 0.8,
-                           "style": 0.35, "use_speaker_boost": True},
+        "voice_settings": {"stability": settings["stability"],
+                           "similarity_boost": settings["similarity"],
+                           "style": settings["style"],
+                           "use_speaker_boost": True},
     }
     if previous_text:
         body["previous_text"] = previous_text
@@ -689,8 +699,8 @@ def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
 
 
 def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
-             force: bool, voice_id: str | None, model_id: str,
-             gap: float) -> list[dict] | None:
+             force: bool, voice_id: str | None, model_id: str, gap: float,
+             settings: dict | None = None) -> list[dict] | None:
     """Render one audio clip per scene line, so every scene can be cut to its own line.
 
     Returns a list of {scene, path, speech, hold} in scene order. A single block
@@ -698,6 +708,10 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     ends and the next begins.
     """
     stage("Stage 4, ElevenLabs voice over, one clip per line")
+    settings = settings or {"stability": VOICE_STABILITY, "style": VOICE_STYLE,
+                            "similarity": VOICE_SIMILARITY}
+    say(f"voice settings: stability {settings['stability']}, style {settings['style']}, "
+        f"similarity {settings['similarity']}")
 
     lines_dir = work / f"short{index}" / "vo_lines"
     texts = [" ".join((scene.vo or "").split()) for scene in scenes]
@@ -733,7 +747,7 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
             phrases = eleven_tts(text,
                                  texts[position - 1] if position else "",
                                  texts[position + 1] if position + 1 < len(texts) else "",
-                                 api_key, voice_id, model_id, path)
+                                 api_key, voice_id, model_id, path, settings)
             say(f"line {scene.number}: {len(text.split())} words, "
                 f"{media_duration(path):.2f}s, {len(phrases)} subtitle cards")
         speech = media_duration(path)
@@ -746,8 +760,19 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
 
 def fit_scenes_to_lines(scenes: list[Scene], vo_lines: list[dict],
                         source_seconds: float) -> None:
-    """Cut every scene to the exact length of its own narration line."""
-    for scene, item in zip(scenes, vo_lines):
+    """Cut every scene to the exact length of its own narration line.
+
+    A scene that continues the previous one starts where that one ends, whatever
+    the guide says, so the shared take stays exactly as long as the lines it
+    carries. Without this, a change in line length silently overlaps them.
+    """
+    for position, (scene, item) in enumerate(zip(scenes, vo_lines)):
+        if scene.continues_previous and position:
+            previous = scenes[position - 1]
+            if abs(scene.start - previous.end) > 0.01:
+                say(f"scene {scene.number}: chained to scene {previous.number}, "
+                    f"starting at {stamp(previous.end)} so the shared take stays continuous")
+                scene.start = previous.end
         wanted = item["hold"]
         available = source_seconds - scene.start
         if wanted > available:
@@ -1105,14 +1130,13 @@ def draw_cta_frame(text: str, font_path: str | None, path: Path,
 # --------------------------------------------------------------------------
 
 def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_audio: bool,
-                 work: Path, font_path: str | None, watermark: Path | None,
+                 parts: Path, font_path: str | None, watermark: Path | None,
                  destination: Path, phrases: list[dict] | None = None,
                  caption_mode: str = "subtitles",
                  caption_cards: list[tuple] | None = None) -> None:
     duration = scene.duration
     window = crop_window(src_w, src_h, scene.crop_x, scene.zoom, scene.crop_y)
     crop_w, crop_h, x0, y0 = window
-    parts = work / "parts"
     parts.mkdir(parents=True, exist_ok=True)
 
     # With a pan, anything drawn on the frame belongs where the move ends, and it
@@ -1281,9 +1305,9 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     run(cmd)
 
 
-def render_cta(text: str, font_path: str | None, work: Path, watermark: Path | None,
+def render_cta(text: str, font_path: str | None, parts: Path, watermark: Path | None,
                destination: Path) -> None:
-    png = draw_cta_frame(text, font_path, work / "parts" / "cta.png", watermark)
+    png = draw_cta_frame(text, font_path, parts / "cta.png", watermark)
     run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
          "-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(png),
          "-f", "lavfi", "-t", f"{CTA_SECONDS}", "-i", "anullsrc=r=48000:cl=stereo",
@@ -1365,6 +1389,36 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
     run(cmd)
 
 
+def check_reveal_balance(scenes: list[Scene], guide: dict) -> None:
+    """The finished house carries the Short. Before footage is the hook only.
+
+    The guide declares reveal_from, the point in the episode after which the
+    footage is the finished house, and optionally avoid_ranges for anything that
+    must never appear, such as Mike's cost slide.
+    """
+    reveal = guide.get("reveal_from")
+    if reveal:
+        cutoff = to_seconds(str(reveal).split("-")[0])
+        allowed = int(guide.get("hook_scenes", 1))
+        before = [s for s in scenes if s.start < cutoff]
+        for scene in before:
+            if scene.number > allowed:
+                say(f"PRE-DEMO: scene {scene.number} uses footage before the reveal at "
+                    f"{stamp(cutoff)}. Only the hook may sit in the before, everything "
+                    "else belongs in the finished house.")
+        share = sum(s.duration for s in before) / max(sum(s.duration for s in scenes), 0.01)
+        if share > 0.35:
+            say(f"PRE-DEMO: {share * 100:.0f} percent of the runtime is before footage. "
+                "The finished house should carry the Short.")
+
+    for entry in guide.get("avoid_ranges") or []:
+        start, end = parse_range(entry.get("range", "0 - 0"))
+        for scene in scenes:
+            if min(scene.end, end) - max(scene.start, start) > 0.05:
+                say(f"AVOID: scene {scene.number} overlaps {entry.get('range')}, "
+                    f"{entry.get('reason', 'marked do not use')}")
+
+
 def check_footage_reuse(scenes: list[Scene], work: Path, index: int) -> None:
     """No frame should appear twice, and no cut should land between two shots
     that look the same. Two beats can share one take, but only as one continuous
@@ -1401,7 +1455,7 @@ def check_footage_reuse(scenes: list[Scene], work: Path, index: int) -> None:
                         f"with {other.parent.name} scene {entry.get('scene')}")
 
 
-def stage_assemble(scenes: list[Scene], short: dict, source: Path,
+def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                    vo_lines: list[dict] | None, work: Path, index: int, slug: str,
                    font_path: str | None, music: Path | None,
                    watermark: Path | None, caption_mode: str = "labels",
@@ -1422,8 +1476,11 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
     if vo_lines:
         fit_scenes_to_lines(scenes, vo_lines, source_seconds)
     check_footage_reuse(scenes, work, index)
+    check_reveal_balance(scenes, guide)
 
-    parts = work / "parts"
+    # Each Short of an episode gets its own parts directory. They used to share
+    # one, so building Short 2 wiped Short 1's clips out from under it.
+    parts = work / f"short{index}" / "parts"
     if parts.exists():
         shutil.rmtree(parts)
     parts.mkdir(parents=True)
@@ -1473,7 +1530,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
                                     "end": phrase["end"] + offset})
             offset += member.duration
 
-        render_scene(held, source, src_w, src_h, src_audio, work, font_path,
+        render_scene(held, source, src_w, src_h, src_audio, parts, font_path,
                      watermark, clip, phrases or None, caption_mode,
                      cards if len(members) > 1 else None)
         clips.append(clip)
@@ -1487,7 +1544,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
 
     cta_text = short.get("cta_frame") or short.get("cta", {}).get("primary") or "Follow for more"
     cta_clip = parts / "cta.mp4"
-    render_cta(cta_text, font_path, work, watermark, cta_clip)
+    render_cta(cta_text, font_path, parts, watermark, cta_clip)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -1518,7 +1575,7 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
     stage("Stage 6, contact sheet")
     from PIL import Image, ImageDraw, ImageFont
 
-    shots = work / "parts" / "sheet"
+    shots = work / f"short{index}" / "parts" / "sheet"
     shots.mkdir(parents=True, exist_ok=True)
     total = media_duration(final)
 
@@ -1673,6 +1730,11 @@ def main() -> None:
     parser.add_argument("--location-audio", type=float, default=0.0,
                         help="level for the original clip audio, 0 mutes it, "
                              "0.03 is the old low bed under the VO")
+    parser.add_argument("--style", type=float, default=VOICE_STYLE,
+                        help="ElevenLabs style exaggeration, higher is more animated")
+    parser.add_argument("--stability", type=float, default=VOICE_STABILITY,
+                        help="ElevenLabs stability, lower lets the delivery move more")
+    parser.add_argument("--similarity", type=float, default=VOICE_SIMILARITY)
     parser.add_argument("--line-gap", type=float, default=0.28,
                         help="pause held after each narration line, seconds, default 0.28")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
@@ -1729,8 +1791,11 @@ def main() -> None:
     edits = stage_analyze(source, scenes, work, video_id, args.number, args.auto, rescan)
     apply_edits(scenes, edits)
 
+    voice_settings = {"stability": args.stability, "style": args.style,
+                      "similarity": args.similarity}
+    voice_settings.update(guide.get("voice_settings") or {})
     vo_lines = stage_vo(short, scenes, work, args.number, args.skip_vo, args.revoice,
-                        args.voice_id, args.model_id, args.line_gap)
+                        args.voice_id, args.model_id, args.line_gap, voice_settings)
 
     font_path = args.font or find_font()
     if font_path is None:
@@ -1756,7 +1821,7 @@ def main() -> None:
             say(f"watermark: {logo.name}, top right, "
                 f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
-    final, starts = stage_assemble(scenes, short, source, vo_lines, work, args.number,
+    final, starts = stage_assemble(scenes, short, guide, source, vo_lines, work, args.number,
                                    slug, font_path, music, watermark, args.captions,
                                    args.location_audio)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)

@@ -174,6 +174,16 @@ guide:
 - `continues_previous`, true when this line shares the previous scene's take.
   The two render as one uninterrupted clip.
 
+Two guide level fields matter to the build as well:
+
+- `avoid_ranges`, a list of `{"range": "12:55 - 13:10", "reason": "..."}` for
+  anything that must never appear in a Short, above all the cost segment. The
+  build warns when a scene overlaps one.
+- `voice_settings`, an override for this episode's read,
+  `{"stability": 0.28, "style": 0.70, "similarity": 0.80}`. Lower stability and
+  higher style make the delivery more animated. Leave it out to take the
+  defaults, which are already tuned so the read does not sound flat.
+
 Set `cta_frame` on the Short for the end frame text, otherwise `cta.primary`
 is used.
 

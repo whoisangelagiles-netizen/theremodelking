@@ -125,10 +125,16 @@ output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it wit
 Useful flags: `--captions labels|subtitles|both` (default labels, the guide's
 summary captions), `--location-audio 0.03` (bring the original clip audio back
 as a low bed, default is muted), `--line-gap 0.28` (pause held after each
-narration line), `--auto` (skip the analysis pause, center crop, technical
-checks only), `--skip-vo` (picture with no narration), `--no-music`,
-`--no-logo`, `--logo-width 0.16`, `--logo-opacity 0.92`, `--rescan 3`,
-`--redownload`, `--revoice`, `--voice-id`, `--font`.
+narration line), `--style 0.70` and `--stability 0.28` (how animated the read
+is, lower stability and higher style let Mike's voice move more), `--auto`
+(skip the analysis pause, center crop, technical checks only), `--skip-vo`
+(picture with no narration), `--no-music`, `--no-logo`, `--logo-width 0.16`,
+`--logo-opacity 0.92`, `--rescan 3`, `--redownload`, `--revoice`,
+`--voice-id`, `--font`.
+
+The guide can pin per episode voice settings with a `voice_settings` object,
+and mark footage that must never be used with `avoid_ranges`, for instance the
+segment where Mike talks price. The build warns when a scene overlaps one.
 
 ## Running the pieces on their own
 
@@ -190,7 +196,7 @@ footer.
 | `transcripts/` | Fetched transcript JSON, one per video id |
 | `guides/` | Guide content JSON, one per episode |
 | `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
-| `work/` | Source video, keyframes, edit decisions, VO, scene clips. Gitignored, safe to delete |
+| `work/` | Source video, then per Short keyframes, edit decisions, VO lines, and scene clips under `work/[video_id]/short[n]/`. Gitignored, safe to delete |
 | `output/` | Finished PDFs, Shorts, and contact sheets |
 | `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py` |
 

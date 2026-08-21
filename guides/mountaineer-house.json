@@ -146,5 +146,8 @@
         "pinned": "Full master bathroom transformation here: [full video link]"
       }
     }
+  ],
+  "avoid_ranges": [
+    { "range": "1:50 - 2:12", "reason": "price talk, cost is never used" }
   ]
 }

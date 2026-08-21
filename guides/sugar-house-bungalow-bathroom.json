@@ -202,5 +202,8 @@
     "#homeremodel",
     "#smallbathroom",
     "#remodeling"
+  ],
+  "avoid_ranges": [
+    { "range": "12:55 - 13:10", "reason": "Mike's manually built cost slide" }
   ]
 }
