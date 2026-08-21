@@ -100,20 +100,21 @@
         {
           "number": 1,
           "timeline": "0:00 - 0:04",
-          "source": "1:27 - 1:31",
+          "source": "1:23 - 1:27.1",
           "vo": "Here is how we made this TINY bathroom actually work.",
           "caption": "How we made this tiny bathroom work",
-          "notes": "Start on Mike pointing toward the built-in or wall area. Clean first frame. Impact sound on frame one. Pan toward the built-in.",
+          "notes": "Opens on the open built-in. Scenes 1 and 2 are ONE continuous take, no cut, the caption changes on time while Mike closes the cabinet door.",
           "caption_zone": "hook"
         },
         {
           "number": 2,
           "timeline": "0:04 - 0:09",
-          "source": "1:29 - 1:34",
+          "source": "1:27.1 - 1:32.5",
           "vo": "FIRST, we removed the old BUILT-IN so we could gain some usable space.",
           "caption": "Step 1: remove the built-in",
-          "notes": "Show the built-in cabinet. Highlight box on it.",
-          "caption_zone": "support"
+          "notes": "Same take as scene 1, no cut. Highlight box on the built-in once the pan settles.",
+          "caption_zone": "support",
+          "continues_previous": true
         },
         {
           "number": 3,

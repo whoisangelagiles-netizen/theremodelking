@@ -213,6 +213,7 @@ class Scene:
     crop_x: float = 0.5
     crop_y: float = 0.5
     zoom: float = 1.0
+    continues_previous: bool = False
     source_label: str = ""
     face: dict | None = None
 
@@ -544,6 +545,7 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
                 "the footage still needs a better range")
         if entry.get("overlay"):
             scene.overlay = entry["overlay"]
+        scene.continues_previous = bool(entry.get("continues_previous"))
         face = entry.get("face")
         if face and all(face.get(k) is not None for k in ("x", "y", "w", "h")):
             scene.face = {k: float(face[k]) for k in ("x", "y", "w", "h")}
@@ -1105,7 +1107,8 @@ def draw_cta_frame(text: str, font_path: str | None, path: Path,
 def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_audio: bool,
                  work: Path, font_path: str | None, watermark: Path | None,
                  destination: Path, phrases: list[dict] | None = None,
-                 caption_mode: str = "subtitles") -> None:
+                 caption_mode: str = "subtitles",
+                 caption_cards: list[tuple] | None = None) -> None:
     duration = scene.duration
     window = crop_window(src_w, src_h, scene.crop_x, scene.zoom, scene.crop_y)
     crop_w, crop_h, x0, y0 = window
@@ -1143,9 +1146,19 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
             subtitle_cards.append((card, phrase["start"], phrase["end"]))
         say(f"scene {scene.number}: {len(subtitle_cards)} subtitle cards, "
             f"band at y {int(band)}" + (", clear of Mike's head" if face else ""))
+    timed_captions = []
     if caption_mode in ("labels", "both"):
-        caption_png = draw_caption(scene.caption, scene.caption_zone, font_path,
-                                   parts / f"cap{scene.number:02d}.png", face)
+        if caption_cards:
+            # One uninterrupted shot carrying more than one line, so the label
+            # changes on time instead of the picture cutting.
+            for order, (text, zone, from_t, to_t) in enumerate(caption_cards):
+                card = draw_caption(text, zone, font_path,
+                                    parts / f"cap{scene.number:02d}_{order}.png", face)
+                if card:
+                    timed_captions.append((card, from_t, to_t))
+        else:
+            caption_png = draw_caption(scene.caption, scene.caption_zone, font_path,
+                                       parts / f"cap{scene.number:02d}.png", face)
     overlay_mov = None
     if scene.overlay:
         overlay_mov = asset(f"overlays/{scene.overlay}", scene.overlay)
@@ -1168,6 +1181,12 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         cmd += ["-i", str(overlay_mov)]
         ov_index = index
         index += 1
+    timed_cap_indexes = []
+    for card, _, _ in timed_captions:
+        cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(card)]
+        timed_cap_indexes.append(index)
+        index += 1
+
     sub_indexes = []
     for card, _, _ in subtitle_cards:
         cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(card)]
@@ -1220,6 +1239,13 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         chain.append(f"[{cap_index}:v]scale={W}:{H}[cap]")
         chain.append(f"[{label}][cap]overlay=0:0:format=auto[capped]")
         label = "capped"
+
+    for position, (input_index, (_, from_t, to_t)) in enumerate(zip(timed_cap_indexes,
+                                                                    timed_captions)):
+        chain.append(f"[{input_index}:v]scale={W}:{H}[capsrc{position}]")
+        chain.append(f"[{label}][capsrc{position}]overlay=0:0:format=auto:"
+                     f"enable='between(t,{from_t:.3f},{to_t:.3f})'[capped{position}]")
+        label = f"capped{position}"
 
     for position, (input_index, (_, start, end)) in enumerate(zip(sub_indexes, subtitle_cards)):
         chain.append(f"[{input_index}:v]scale={W}:{H}[subsrc{position}]")
@@ -1402,19 +1428,62 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
         shutil.rmtree(parts)
     parts.mkdir(parents=True)
 
-    clips, starts, elapsed = [], [], 0.0
+    # Consecutive scenes that continue the same take render as ONE clip, so the
+    # picture never cuts mid action. Their lines still change on time.
+    shots: list[list[int]] = []
     for position, scene in enumerate(scenes):
-        clip = parts / f"scene{scene.number:02d}.mp4"
-        say(f"scene {scene.number}: {stamp(scene.start)} to {stamp(scene.end)}, "
-            f"crop {scene.crop_x:.2f}/{scene.crop_y:.2f} zoom {scene.zoom:.2f}"
-            f"{', punch in' if scene.punch_in else ''}"
-            f"{', ' + str(len(scene.annotations)) + ' annotation(s)' if scene.annotations else ''}")
-        phrases = (vo_lines[position]["phrases"] if vo_lines else None)
-        render_scene(scene, source, src_w, src_h, src_audio, work, font_path,
-                     watermark, clip, phrases, caption_mode)
+        if shots and scene.continues_previous:
+            shots[-1].append(position)
+        else:
+            shots.append([position])
+
+    clips, starts, elapsed = [], [0.0] * len(scenes), 0.0
+    for shot in shots:
+        members = [scenes[i] for i in shot]
+        lead = members[0]
+        clip = parts / f"shot{lead.number:02d}.mp4"
+
+        held = lead
+        if len(members) > 1:
+            held = Scene(number=lead.number, start=lead.start, end=members[-1].end,
+                         vo=lead.vo, caption=lead.caption, notes=lead.notes,
+                         caption_zone=lead.caption_zone, overlay=lead.overlay,
+                         transition=lead.transition, crop_x=lead.crop_x,
+                         crop_y=lead.crop_y, zoom=lead.zoom, face=lead.face,
+                         annotations=[a for m in members for a in m.annotations],
+                         source_label=lead.source_label)
+            if lead.pan or members[-1].pan:
+                held.pan = {"from": (lead.pan or {}).get("from", lead.crop_x),
+                            "to": (members[-1].pan or {}).get("to", members[-1].crop_x)}
+            say(f"scenes {', '.join(str(m.number) for m in members)}: one continuous take, "
+                f"{stamp(held.start)} to {stamp(held.end)}, no cut between them")
+
+        say(f"scene {held.number}: {stamp(held.start)} to {stamp(held.end)}, "
+            f"crop {held.crop_x:.2f}/{held.crop_y:.2f} zoom {held.zoom:.2f}"
+            f"{', ' + str(len(held.annotations)) + ' annotation(s)' if held.annotations else ''}")
+
+        cards, phrases, offset = [], [], 0.0
+        for member in members:
+            cards.append((member.caption, member.caption_zone, offset,
+                          offset + member.duration))
+            if vo_lines:
+                for phrase in vo_lines[scenes.index(member)]["phrases"]:
+                    phrases.append({**phrase,
+                                    "start": phrase["start"] + offset,
+                                    "end": phrase["end"] + offset})
+            offset += member.duration
+
+        render_scene(held, source, src_w, src_h, src_audio, work, font_path,
+                     watermark, clip, phrases or None, caption_mode,
+                     cards if len(members) > 1 else None)
         clips.append(clip)
-        starts.append(elapsed)
-        elapsed += media_duration(clip)
+
+        measured = media_duration(clip)
+        share = elapsed
+        for member in members:
+            starts[scenes.index(member)] = share
+            share += member.duration * (measured / max(held.duration, 0.01))
+        elapsed += measured
 
     cta_text = short.get("cta_frame") or short.get("cta", {}).get("primary") or "Follow for more"
     cta_clip = parts / "cta.mp4"

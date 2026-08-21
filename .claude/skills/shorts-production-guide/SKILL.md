@@ -45,10 +45,12 @@ here. Read that skill first if it is not already loaded. In particular:
   detail framing on a 1080p or better source, and even then stays modest.
 - NEVER reuse footage, inside a Short or across the Shorts from one episode.
   Every second on screen should be a second the viewer has not already seen.
-- If two consecutive lines want the same shot, do NOT cut between them. Run it
-  as ONE continuous take: the second scene starts exactly where the first ends
-  and its pan picks up where the first one stopped. A cut between two nearly
-  identical frames reads as a glitch. The build warns on both, REPEAT for
+- If two consecutive lines want the same shot, do NOT cut between them. Set
+  `"continues_previous": true` on the second scene and the build renders both as
+  ONE clip, with one pan carrying the whole take and the caption changing on
+  time. Butting two separately rendered clips together is not enough, the join
+  still shows when it lands mid action, for instance while a door is swinging.
+  Let the action finish inside the shot. The build warns on REPEAT for
   overlapping footage and JUMP CUT for a cut that lands too close to itself.
 - FRAME THE FEATURE, NOT THE TALKER. If the line is about the doors, the vanity,
   the built-in or the niche, that is what fills the window, even when Mike is
@@ -169,6 +171,8 @@ guide:
   solution shift.
 - `overlay`, the filename of a branded alpha `.mov` in `assets/overlays/` when
   a scene calls for one.
+- `continues_previous`, true when this line shares the previous scene's take.
+  The two render as one uninterrupted clip.
 
 Set `cta_frame` on the Short for the end frame text, otherwise `cta.primary`
 is used.

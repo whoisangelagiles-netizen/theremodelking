@@ -49,8 +49,8 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 - No zoom beyond what makes the shot vertical, 178 percent on a 16:9 clip. The
   frame pans to the subject instead of punching in.
 - No repeated footage, within a Short or across an episode's Shorts. Two lines
-  can share one shot, but only as a single continuous take with no cut between
-  them. The build warns on repeats and on cuts between near identical frames.
+  can share one shot, but only as a single continuous take: they render as one
+  clip, so an action like a door closing finishes without a cut through it. The build warns on repeats and on cuts between near identical frames.
 - Frame the feature, not the talker. If the line is about the vanity, the vanity
   fills the window. Mike carries the hook and the CTA, not every beat.
 - First person, Mike's voice, facts only from the transcript.
