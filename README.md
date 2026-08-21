@@ -162,7 +162,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Motion | The frame pans across the shot and settles on the feature Mike is naming, the way it would be keyframed by hand. Scaling is only ever what filling the 9:16 frame requires, there is no punch in on top |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, placed where the pan lands and held once it settles, so they never slide across the shot |
 | Captions | Summary label per scene by default, bold white with a black outline, burned in, hook upper third and support lower third, never across Mike's face. `--captions subtitles` switches to word for word subtitles timed from ElevenLabs character timestamps, `both` draws each in its own band |
-| Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
+| Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, locked to the corner while the picture pans |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | Mike's VO only. The original location audio is MUTED, `--location-audio 0.03` brings back the old low bed. Impact on frame one, whoosh at the problem to solution shift, optional music bed at 6 percent, limited at 0.95, padded to the picture |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
