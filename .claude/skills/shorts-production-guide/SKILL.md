@@ -40,6 +40,8 @@ here. Read that skill first if it is not already loaded. In particular:
   word subtitles timed to the read, `both` draws each in its own band.
 - The finished audio is Mike's VO alone. The original location audio is muted,
   not ducked, so nothing of the walkthrough track survives under the read.
+- NEVER add zoom on top of the vertical crop. Scale the shot just enough to fill
+  the 9:16 frame, then pan to the subject. No punch ins.
 - NEVER put captions, words, or graphics on Mike's face. Captions go above his
   head or below his chin, never across it. The build enforces this from the
   face box you record during frame analysis.
@@ -189,9 +191,13 @@ looked at. For each scene write:
   source frame. 0.5 is dead center. Move it so the subject and the feature the
   VO names stay in frame after the crop. A wide kitchen reveal with the island
   camera right needs `crop_x` near 0.65, not 0.5.
-- `punch_in`, `null` unless the editor notes ask for one, otherwise
-  `{"zoom": 1.15 to 1.6, "focus": [x, y]}` aimed at the feature being called
-  out. The zoom is glued to that point.
+- `pan`, `{"from": x, "to": x}`. This is the house move. The 9:16 crop is
+  already the only zoom there is, so the frame does not punch in, it SLIDES
+  across the shot and settles on whatever Mike is talking about. Keep it gentle,
+  0.08 to 0.18 of frame width, and check the feature is in frame at both ends.
+  A shot under about 2 seconds holds static instead.
+- `punch_in` stays `null`. Mike does not want extra zoom on top of the vertical
+  crop, and a punch in on a 720p or 1080p source only softens it further.
 - `annotations`, exact coordinates so arrows and boxes land on the real
   feature, not near it. Boxes are `{"type":"box","target":"...","x","y","w","h"}`
   with x and y the top left corner. Arrows are

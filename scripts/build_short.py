@@ -208,6 +208,7 @@ class Scene:
     overlay: str | None = None
     transition: str | None = None
     punch_in: dict | None = None
+    pan: dict | None = None
     annotations: list = field(default_factory=list)
     crop_x: float = 0.5
     source_label: str = ""
@@ -219,7 +220,9 @@ class Scene:
 
 
 def wants_punch_in(notes: str) -> bool:
-    return any(word in notes.lower() for word in ("punch", "push in", "zoom"))
+    """Punch in is opt in only. Mike does not want extra zoom on top of the
+    vertical crop, so the default motion is a pan across the frame instead."""
+    return False
 
 
 def wanted_annotations(notes: str) -> list[dict]:
@@ -408,6 +411,13 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
             "are looking at, not the cropped Short. The build maps them for you.",
             "crop_x is the horizontal center of the 9:16 window. 0.5 is dead center. "
             "Move it so the subject and the feature the VO names stay in frame.",
+            "pan is the house style: {\"from\": x, \"to\": x} slides that window across "
+            "the shot, starting wide on the subject and settling on whatever Mike is "
+            "talking about. Keep the move gentle, 0.08 to 0.18 of frame width, and set "
+            "both ends so the feature is never out of frame at either end. Leave pan null "
+            "only for a shot under about 2 seconds.",
+            "punch_in is OFF by default and should stay that way. The vertical crop is "
+            "already the only zoom Mike wants.",
             "punch_in is null when the editor notes do not ask for one, otherwise "
             '{"zoom": 1.15 to 1.6, "focus": [x, y]} aimed at the feature.',
             'box annotations are {"type":"box","target":"...","x":..,"y":..,"w":..,"h":..} '
@@ -429,7 +439,8 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "frames": [str((frames_dir / f"scene{scene.number:02d}_{i}.jpg")
                                .relative_to(REPO_ROOT)) for i in range(1, 5)],
                 "crop_x": 0.5,
-                "punch_in": {"zoom": 1.28, "focus": [0.5, 0.45]} if wants_punch_in(scene.notes) else None,
+                "pan": {"from": None, "to": None},
+                "punch_in": None,
                 "annotations": wanted_annotations(scene.notes),
                 "face": {"x": None, "y": None, "w": None, "h": None},
                 "frames_show_what_the_vo_says": None,
@@ -496,6 +507,10 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
             scene.start, scene.end = parse_range(entry["source"])
             scene.source_label = entry["source"]
         scene.crop_x = float(entry.get("crop_x", 0.5) or 0.5)
+        pan = entry.get("pan")
+        if pan and pan.get("from") is not None and pan.get("to") is not None:
+            scene.pan = {"from": float(pan["from"]), "to": float(pan["to"])}
+            scene.crop_x = float(pan["from"])
         punch = entry.get("punch_in")
         if punch and punch.get("zoom"):
             focus = punch.get("focus") or [0.5, 0.5]
@@ -1065,14 +1080,30 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
                  work: Path, font_path: str | None, watermark: Path | None,
                  destination: Path, phrases: list[dict] | None = None,
                  caption_mode: str = "subtitles") -> None:
+    duration = scene.duration
     window = crop_window(src_w, src_h, scene.crop_x)
     crop_w, crop_h, x0, y0 = window
     parts = work / "parts"
     parts.mkdir(parents=True, exist_ok=True)
 
-    annotation_png = draw_annotations(scene, src_w, src_h, window,
+    # With a pan, anything drawn on the frame belongs where the move ends, and it
+    # waits for the move to finish rather than sliding across the shot.
+    settle = 0.0
+    window_end = window
+    if scene.pan:
+        window_end = crop_window(src_w, src_h, scene.pan["to"])
+        settle = round(duration * 0.60, 2)
+
+    annotation_png = draw_annotations(scene, src_w, src_h, window_end,
                                       parts / f"ann{scene.number:02d}.png")
     face = face_rect_in_frame(scene, src_w, src_h, window)
+    if scene.pan:
+        face_end = face_rect_in_frame(scene, src_w, src_h, window_end)
+        if face and face_end:
+            face = [min(face[0], face_end[0]), min(face[1], face_end[1]),
+                    max(face[2], face_end[2]), max(face[3], face_end[3])]
+        else:
+            face = face or face_end
 
     subtitle_cards = []
     caption_png = None
@@ -1095,7 +1126,6 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         if overlay_mov is None:
             say(f"scene {scene.number}: overlay {scene.overlay} missing from assets/, skipped")
 
-    duration = scene.duration
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
            "-ss", f"{scene.start:.2f}", "-t", f"{duration:.2f}", "-i", str(source)]
     index = 1
@@ -1123,13 +1153,27 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         wm_index = index
         index += 1
 
-    chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},"
-             f"scale={W}:{H}:flags=lanczos,setsar=1,fps={FPS}[base]"]
+    if scene.pan:
+        # Scale first, then slide a full height 9:16 window across the frame. Doing
+        # it in output space keeps the move smooth instead of stepping a source pixel
+        # at a time, and the scale is exactly what filling the frame needs, no more.
+        settle_at = max(duration * 0.60, 0.1)
+        span = f"min(t/{settle_at:.3f},1)"
+        ease = f"(3*pow({span},2)-2*pow({span},3))"
+        start, end = scene.pan["from"], scene.pan["to"]
+        centre = f"({start:.4f}+({end - start:.4f})*{ease})"
+        x_expr = f"max(0\,min(iw-{W}\,{centre}*iw-{W // 2}))"
+        chain = [f"[0:v]scale=-2:{H}:flags=lanczos,"
+                 f"crop={W}:{H}:x='{x_expr}':y=0,setsar=1,fps={FPS}[base]"]
+    else:
+        chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},"
+                 f"scale={W}:{H}:flags=lanczos,setsar=1,fps={FPS}[base]"]
     label = "base"
 
     if ann_index is not None:
         chain.append(f"[{ann_index}:v]scale={W}:{H}[ann]")
-        chain.append(f"[{label}][ann]overlay=0:0:format=auto[anned]")
+        gate = f":enable='gte(t,{settle:.2f})'" if settle > 0 else ""
+        chain.append(f"[{label}][ann]overlay=0:0:format=auto{gate}[anned]")
         label = "anned"
 
     if scene.punch_in:

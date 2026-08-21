@@ -46,6 +46,8 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
   ask for demo or installation footage.
 - Cost is never the closer. Mike builds cost reveals as end slides by hand.
 - Nothing is ever laid over Mike's face, captions included.
+- No zoom beyond what makes the shot vertical. The frame pans to the subject
+  instead of punching in.
 - First person, Mike's voice, facts only from the transcript.
 - ElevenLabs formatting applied directly to the script.
 - No em dashes, anywhere, ever.
@@ -103,8 +105,8 @@ It stops twice and hands the work to Claude, because both steps need judgement:
 2. **Frame analysis.** The build extracts 4 keyframes per scene and stops.
    Claude looks at every frame and writes `work/[video_id]/short[n]/edits.json`,
    the horizontal crop offset that keeps the subject in the 9:16 frame,
-   punch-in targets, and exact arrow and highlight box coordinates so they land
-   on the actual feature. If the frames do not show what the VO describes,
+   the pan that carries the frame to the feature Mike is naming, and exact arrow
+   and highlight box coordinates so they land on the actual feature. If the frames do not show what the VO describes,
    Claude picks a different transcript range and re-extracts with
    `--rescan [scene]`. Then you rerun the same command and it finishes.
 
@@ -157,7 +159,7 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | --- | --- |
 | Cut | One clip per scene from the analyzed source range |
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
-| Punch in | zoompan glued to the analyzed focus point |
+| Motion | The frame pans across the shot and settles on the feature Mike is naming, the way it would be keyframed by hand. Scaling is only ever what filling the 9:16 frame requires, there is no punch in on top |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, drawn before the punch in so they stay stuck to the feature |
 | Captions | Summary label per scene by default, bold white with a black outline, burned in, hook upper third and support lower third, never across Mike's face. `--captions subtitles` switches to word for word subtitles timed from ElevenLabs character timestamps, `both` draws each in its own band |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, fixed while the picture punches in |
