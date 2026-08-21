@@ -211,6 +211,8 @@ class Scene:
     pan: dict | None = None
     annotations: list = field(default_factory=list)
     crop_x: float = 0.5
+    crop_y: float = 0.5
+    zoom: float = 1.0
     source_label: str = ""
     face: dict | None = None
 
@@ -416,8 +418,15 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
             "talking about. Keep the move gentle, 0.08 to 0.18 of frame width, and set "
             "both ends so the feature is never out of frame at either end. Leave pan null "
             "only for a shot under about 2 seconds.",
-            "punch_in is OFF by default and should stay that way. The vertical crop is "
-            "already the only zoom Mike wants.",
+            "zoom frames the shot. 1.0 is the widest that still fills the frame, "
+            "Premiere's 178 percent. 1.12 matches Premiere's 200 percent. Go to 1.3 or "
+            "1.6 when the line is about a FEATURE, so the feature fills the frame "
+            "instead of sitting in a wide shot of the room with Mike in it. Only the "
+            "hook and the closing wide should sit near 1.0.",
+            "crop_y is the vertical centre, only meaningful above zoom 1.0. Drop it to "
+            "0.65 for something low in frame like a vanity or a toilet, raise it for a "
+            "niche or a shower head.",
+            "punch_in is OFF and stays OFF. Framing is chosen, not animated.",
             "punch_in is null when the editor notes do not ask for one, otherwise "
             '{"zoom": 1.15 to 1.6, "focus": [x, y]} aimed at the feature.',
             'box annotations are {"type":"box","target":"...","x":..,"y":..,"w":..,"h":..} '
@@ -439,6 +448,8 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "frames": [str((frames_dir / f"scene{scene.number:02d}_{i}.jpg")
                                .relative_to(REPO_ROOT)) for i in range(1, 5)],
                 "crop_x": 0.5,
+                "crop_y": 0.5,
+                "zoom": 1.0,
                 "pan": {"from": None, "to": None},
                 "punch_in": None,
                 "annotations": wanted_annotations(scene.notes),
@@ -507,6 +518,8 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
             scene.start, scene.end = parse_range(entry["source"])
             scene.source_label = entry["source"]
         scene.crop_x = float(entry.get("crop_x", 0.5) or 0.5)
+        scene.crop_y = float(entry.get("crop_y", 0.5) or 0.5)
+        scene.zoom = max(1.0, float(entry.get("zoom", 1.0) or 1.0))
         pan = entry.get("pan")
         if pan and pan.get("from") is not None and pan.get("to") is not None:
             scene.pan = {"from": float(pan["from"]), "to": float(pan["to"])}
@@ -745,15 +758,23 @@ def fit_scenes_to_lines(scenes: list[Scene], vo_lines: list[dict],
 # overlays drawn with Pillow
 # --------------------------------------------------------------------------
 
-def crop_window(src_w: int, src_h: int, crop_x: float) -> tuple[int, int, int, int]:
+def crop_window(src_w: int, src_h: int, crop_x: float, zoom: float = 1.0,
+                crop_y: float = 0.5) -> tuple[int, int, int, int]:
+    """The 9:16 window. zoom 1.0 is the widest the frame can be and still fill
+    vertically, which is Premiere's 178 percent on a 16:9 clip. zoom 1.12 is
+    Premiere's 200 percent, and anything above that is a detail framing."""
     target = 9 / 16
-    crop_w = min(src_w, int(round(src_h * target)))
-    crop_h = min(src_h, int(round(crop_w / target)))
-    crop_w -= crop_w % 2
-    crop_h -= crop_h % 2
-    x0 = int(round(crop_x * src_w - crop_w / 2))
-    x0 = max(0, min(src_w - crop_w, x0))
-    y0 = max(0, (src_h - crop_h) // 2)
+    zoom = max(1.0, float(zoom))
+    widest = min(src_w, src_h * target)
+    crop_w = widest / zoom
+    crop_h = crop_w / target
+    if crop_h > src_h:
+        crop_h = src_h
+        crop_w = crop_h * target
+    crop_w = int(crop_w) - int(crop_w) % 2
+    crop_h = int(crop_h) - int(crop_h) % 2
+    x0 = max(0, min(src_w - crop_w, int(round(crop_x * src_w - crop_w / 2))))
+    y0 = max(0, min(src_h - crop_h, int(round(crop_y * src_h - crop_h / 2))))
     return crop_w, crop_h, x0, y0
 
 
@@ -1081,7 +1102,7 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
                  destination: Path, phrases: list[dict] | None = None,
                  caption_mode: str = "subtitles") -> None:
     duration = scene.duration
-    window = crop_window(src_w, src_h, scene.crop_x)
+    window = crop_window(src_w, src_h, scene.crop_x, scene.zoom, scene.crop_y)
     crop_w, crop_h, x0, y0 = window
     parts = work / "parts"
     parts.mkdir(parents=True, exist_ok=True)
@@ -1091,7 +1112,7 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     settle = 0.0
     window_end = window
     if scene.pan:
-        window_end = crop_window(src_w, src_h, scene.pan["to"])
+        window_end = crop_window(src_w, src_h, scene.pan["to"], scene.zoom, scene.crop_y)
         settle = round(duration * 0.60, 2)
 
     annotation_png = draw_annotations(scene, src_w, src_h, window_end,
@@ -1343,7 +1364,7 @@ def stage_assemble(scenes: list[Scene], short: dict, source: Path,
     for position, scene in enumerate(scenes):
         clip = parts / f"scene{scene.number:02d}.mp4"
         say(f"scene {scene.number}: {stamp(scene.start)} to {stamp(scene.end)}, "
-            f"crop_x {scene.crop_x:.2f}"
+            f"crop {scene.crop_x:.2f}/{scene.crop_y:.2f} zoom {scene.zoom:.2f}"
             f"{', punch in' if scene.punch_in else ''}"
             f"{', ' + str(len(scene.annotations)) + ' annotation(s)' if scene.annotations else ''}")
         phrases = (vo_lines[position]["phrases"] if vo_lines else None)

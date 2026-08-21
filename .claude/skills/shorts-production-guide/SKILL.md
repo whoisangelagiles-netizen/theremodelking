@@ -40,8 +40,13 @@ here. Read that skill first if it is not already loaded. In particular:
   word subtitles timed to the read, `both` draws each in its own band.
 - The finished audio is Mike's VO alone. The original location audio is muted,
   not ducked, so nothing of the walkthrough track survives under the read.
-- NEVER add zoom on top of the vertical crop. Scale the shot just enough to fill
-  the 9:16 frame, then pan to the subject. No punch ins.
+- Scale the shot JUST enough to fill the 9:16 frame, Premiere's 178 percent on a
+  16:9 clip, and no more. No punch ins. `zoom` above 1.0 exists for a genuine
+  detail framing on a 1080p or better source, and even then stays modest.
+- FRAME THE FEATURE, NOT THE TALKER. If the line is about the doors, the vanity,
+  the built-in or the niche, that is what fills the window, even when Mike is
+  the loudest thing in the source frame. He belongs in the hook and the CTA, not
+  in every beat. A Short where every scene is Mike talking is the failure mode.
 - NEVER put captions, words, or graphics on Mike's face. Captions go above his
   head or below his chin, never across it. The build enforces this from the
   face box you record during frame analysis.

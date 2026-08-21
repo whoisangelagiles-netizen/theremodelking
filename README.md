@@ -46,8 +46,10 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
   ask for demo or installation footage.
 - Cost is never the closer. Mike builds cost reveals as end slides by hand.
 - Nothing is ever laid over Mike's face, captions included.
-- No zoom beyond what makes the shot vertical. The frame pans to the subject
-  instead of punching in.
+- No zoom beyond what makes the shot vertical, 178 percent on a 16:9 clip. The
+  frame pans to the subject instead of punching in.
+- Frame the feature, not the talker. If the line is about the vanity, the vanity
+  fills the window. Mike carries the hook and the CTA, not every beat.
 - First person, Mike's voice, facts only from the transcript.
 - ElevenLabs formatting applied directly to the script.
 - No em dashes, anywhere, ever.
