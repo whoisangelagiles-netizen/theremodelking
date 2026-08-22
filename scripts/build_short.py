@@ -90,6 +90,7 @@ CAPTION_BASELINE = 0.746     # bottom edge of the plate, as a fraction of height
 CAPTION_SIZE = 48
 CAPTION_LINE = 57            # line pitch inside the plate
 CAPTION_PAD_X = 10
+CAPTION_STROKE = 2         # thin black edge so the white holds over a light plate
 CAPTION_WRAP = 0.72          # widest a text line may run, fraction of width
 SUB_TAIL = 0.30              # how long a card may linger before the next one
 HANGING_WORDS = {
@@ -1374,7 +1375,9 @@ def caption_plate(draw, canvas, lines: list[str], font, path_unused=None,
     from PIL import Image, ImageDraw
 
     widths = [draw.textlength(line, font=font) for line in lines]
-    plate_w = int(max(widths) + CAPTION_PAD_X * 2)
+    # the stroke grows each glyph outward, so the plate has to grow with it or
+    # the side padding shrinks by the stroke width
+    plate_w = int(max(widths) + (CAPTION_PAD_X + CAPTION_STROKE) * 2)
     plate_h = int(CAPTION_LINE * len(lines))
     bottom = H * baseline
     top = bottom - plate_h
@@ -1397,7 +1400,8 @@ def caption_plate(draw, canvas, lines: list[str], font, path_unused=None,
         row_top = top + row * CAPTION_LINE
         y = row_top + (CAPTION_LINE - (ascent + descent)) / 2
         draw.text((W / 2 - widths[row] / 2, y), line, font=font,
-                  fill=(255, 255, 255, 255))
+                  fill=(255, 255, 255, 255),
+                  stroke_width=CAPTION_STROKE, stroke_fill=(0, 0, 0, 255))
 
 
 def draw_caption(text: str, zone: str, font_path: str | None, path: Path,
