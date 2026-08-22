@@ -1073,6 +1073,10 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     """
     lines_dir = work / f"short{index}" / "vo_lines"
     lines_dir.mkdir(parents=True, exist_ok=True)
+    # per line renders are how this used to work and they left seams at every
+    # join, clear any left behind so nothing stale can be picked up
+    for stale in lines_dir.glob("line*"):
+        stale.unlink()
     # The voice hears the respelled text, the screen always shows the real one.
     texts = [respell_for_voice(" ".join((scene.vo or "").split())) for scene in scenes]
     if not any(texts):
