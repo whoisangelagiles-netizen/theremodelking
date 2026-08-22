@@ -132,9 +132,19 @@ It stops twice and hands the work to Claude, because both steps need judgement:
 Finished files:
 
 ```
-output/[slug]-short-[n]-FINAL.mp4            1080x1920, publish ready
+output/[slug]-short-[n]-PUBLISH.mp4          THIS IS THE ONE TO UPLOAD
+output/[slug]-short-[n]-FINAL.mp4            CRF 18 master, archive quality
 output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
+output/[slug]-short-[n]-thumbnail.jpg        first frame style
+output/[slug]-short-[n]-publish.md           SEO titles, description, pinned comment, hashtags
 ```
+
+**`output/` is gitignored and a cloud container gets reclaimed**, so nothing in
+there survives a session. Take the `PUBLISH` copy out before you close the
+session. It is CRF 20 capped at 3.5 Mbps, which keeps a 60 second Short around
+20 to 26MB, under the 30MB chat upload limit, and is well above what YouTube
+keeps after its own re-encode. The `FINAL` master is CRF 18 and runs past 40MB,
+which is worth keeping only if you plan to re-edit.
 
 Useful flags: `--captions labels|subtitles|both` (default labels, the guide's
 summary captions), `--location-audio 0.03` (bring the original clip audio back

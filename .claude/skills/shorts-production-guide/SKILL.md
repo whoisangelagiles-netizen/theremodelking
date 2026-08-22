@@ -278,17 +278,13 @@ blurred camera swing, or if a caption sits over a face, fix the numbers and
 rebuild. A tile that is "close enough" is the thing that got a set of Shorts
 rejected.
 
-A finished Short is around 40MB, over the 30MB chat upload limit, so encode a
-preview next to it before sending:
+The build writes `output/[slug]-short-[n]-PUBLISH.mp4` alongside the master.
+That is the file to send and the file to upload: CRF 20 capped at 3.5 Mbps, so
+a 60 second Short lands around 20 to 26MB, under the 30MB chat limit and well
+above what YouTube keeps. Send it with SendUserFile.
 
-```bash
-ffmpeg -y -i output/[name]-FINAL.mp4 -c:v libx264 -preset slow -crf 26 \
-  -maxrate 3200k -bufsize 6400k -pix_fmt yuv420p -c:a aac -b:a 128k \
-  output/[name]-preview.mp4
-```
-
-Send the preview with SendUserFile and say the full quality master is in
-`output/`.
+Send it, do not just name the path. `output/` is gitignored and the container is
+reclaimed after the session, so a path is not a deliverable.
 
 `--auto` skips the analysis pause with center crop defaults. It is for a quick
 technical check only, never for a Short that gets published.

@@ -52,6 +52,7 @@ FPS = 30
 CTA_SECONDS = 3.0
 # End card geometry, measured off the reference Short: a stack of rotated
 # stickers alternating white and green, then the handle pill under it.
+SHARE_BITRATE = 3500       # kbps for the publish copy, keeps a 60s Short under 30MB
 CTA_FONT_SIZE = 112
 CTA_PAD_X = 30
 CTA_PAD_Y = 16
@@ -2214,6 +2215,23 @@ def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
     """Everything the publishing checklist asks for, next to the video."""
     stage("Stage 7, publish pack and thumbnail")
 
+    # A publish copy small enough to hand over. The FINAL is a CRF 18 master and
+    # runs past 40MB, which is over the chat upload limit, and output/ is
+    # gitignored on a container that gets reclaimed, so the master alone is not
+    # a way to get the video out of here.
+    share = OUTPUT / f"{slug}-short-{index}-PUBLISH.mp4"
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(final),
+         "-c:v", "libx264", "-preset", "slow", "-crf", "20",
+         "-maxrate", f"{SHARE_BITRATE}k", "-bufsize", f"{SHARE_BITRATE * 2}k",
+         "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+         "-c:a", "aac", "-b:a", "192k", str(share)])
+    size = share.stat().st_size / (1024 * 1024)
+    say(f"publish copy: {share.relative_to(REPO_ROOT)}, {size:.1f}MB, "
+        "this is the one to upload and the one to send")
+    if size > 29:
+        say("  that is close to the 30MB chat limit, drop SHARE_BITRATE if it "
+            "needs to go over chat")
+
     thumb = OUTPUT / f"{slug}-short-{index}-thumbnail.jpg"
     grab_at = min(1.2, max(0.4, (starts[1] if len(starts) > 1 else 2.0) / 2))
     run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
@@ -2415,7 +2433,11 @@ def main() -> None:
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 
     print("\nDone.")
-    print(f"  Short:         {final.relative_to(REPO_ROOT)}")
+    publish = OUTPUT / f"{slug}-short-{args.number}-PUBLISH.mp4"
+    if publish.exists():
+        print(f"  UPLOAD THIS:   {publish.relative_to(REPO_ROOT)}  "
+              f"({publish.stat().st_size / (1024 * 1024):.1f}MB)")
+    print(f"  Master:        {final.relative_to(REPO_ROOT)}")
     print(f"  Contact sheet: {sheet.relative_to(REPO_ROOT)}")
     print(f"  Thumbnail:     {thumb.relative_to(REPO_ROOT)}")
     print(f"  Publish pack:  {pack.relative_to(REPO_ROOT)}")
