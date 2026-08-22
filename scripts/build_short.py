@@ -638,6 +638,7 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "candidate_strip": str((frames_dir / f"scene{scene.number:02d}_candidates.jpg")
                                        .relative_to(REPO_ROOT)),
                 "candidate_times": (candidates or {}).get(scene.number, []),
+                "continues_previous": scene.continues_previous,
                 "crop_x": 0.5,
                 "crop_y": 0.5,
                 "zoom": 1.0,
@@ -743,7 +744,10 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
                 "the footage still needs a better range")
         if entry.get("overlay"):
             scene.overlay = entry["overlay"]
-        scene.continues_previous = bool(entry.get("continues_previous"))
+        # only the guide decides this unless the analysis explicitly overrides it,
+        # otherwise a skeleton written before the flag existed silently drops it
+        if "continues_previous" in entry:
+            scene.continues_previous = bool(entry["continues_previous"])
         face = entry.get("face")
         if face and all(face.get(k) is not None for k in ("x", "y", "w", "h")):
             scene.face = {k: float(face[k]) for k in ("x", "y", "w", "h")}
@@ -809,11 +813,20 @@ def word_is_emphasis(word: str) -> bool:
     return len(letters) >= 2 and letters.isupper()
 
 
-def phrases_from_alignment(chars: list[str], starts: list[float],
-                           ends: list[float]) -> list[dict]:
-    """Character timings into short subtitle cards that follow the read."""
+def phrases_from_alignment(chars: list[str], starts: list[float], ends: list[float],
+                           window_start: float | None = None,
+                           window_end: float | None = None) -> list[dict]:
+    """Character timings into short subtitle cards that follow the read.
+
+    window_start and window_end cut one line out of a continuous take, so a
+    single render still produces per line cards.
+    """
     words, current = [], None
     for char, start, end in zip(chars, starts, ends):
+        if window_start is not None and end < window_start - 1e-6:
+            continue
+        if window_end is not None and start > window_end + 1e-6:
+            break
         if char.isspace():
             if current:
                 words.append(current)
@@ -825,7 +838,11 @@ def phrases_from_alignment(chars: list[str], starts: list[float],
         current["end"] = end
     if current:
         words.append(current)
+    return phrases_from_words(words)
 
+
+def phrases_from_words(words: list[dict]) -> list[dict]:
+    """Timed words into short subtitle cards. words carry text, start and end."""
     soft_words, soft_chars = SUB_MAX_WORDS, SUB_MAX_CHARS
     hard_words, hard_chars = SUB_MAX_WORDS + 2, SUB_MAX_CHARS + 10
 
@@ -933,30 +950,174 @@ def eleven_tts(text: str, previous_text: str, next_text: str, api_key: str,
     return phrases
 
 
+def normalise_word(word: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", word.lower())
+
+
+def split_alignment_by_line(chars: list[str], starts: list[float], ends: list[float],
+                            texts: list[str], joiner: str = " ") -> list[tuple[float, float]]:
+    """Where each script line begins and ends inside one continuous render.
+
+    ElevenLabs returns a character per character of exactly the text it was
+    sent, so walking the cursor through the joined script lands on the right
+    boundaries without any matching.
+    """
+    spans, cursor = [], 0
+    for position, text in enumerate(texts):
+        length = len(text)
+        first, last = cursor, cursor + length - 1
+        if length == 0 or first >= len(starts):
+            spans.append((starts[-1] if starts else 0.0, ends[-1] if ends else 0.0))
+        else:
+            last = min(last, len(ends) - 1)
+            spans.append((starts[first], ends[last]))
+        cursor += length + (len(joiner) if position + 1 < len(texts) else 0)
+    return spans
+
+
+def align_supplied_vo(audio: Path, texts: list[str], model_size: str = "small") -> list[dict]:
+    """Word timings for a VO file somebody else recorded.
+
+    The supplied read is never cut or retimed, the picture is cut to it. All this
+    does is find where each script line lands so the scenes can be laid against it.
+    """
+    sys.path.insert(0, str(SCRIPTS))
+    from fetch_transcript import ensure_faster_whisper  # noqa: E402
+    if not ensure_faster_whisper(True):
+        die("faster-whisper is needed to line a supplied VO up with the script.\n"
+            "  Install it with: pip install -r requirements-whisper.txt")
+    from faster_whisper import WhisperModel
+
+    say(f"transcribing the supplied VO with faster-whisper ({model_size}) to find "
+        "where each line lands")
+    model = WhisperModel(model_size, device="auto", compute_type="int8")
+    segments, _ = model.transcribe(str(audio), word_timestamps=True, vad_filter=False)
+    heard = []
+    for seg in segments:
+        for word in (seg.words or []):
+            token = normalise_word(word.word)
+            if token:
+                heard.append({"token": token, "start": word.start, "end": word.end})
+    if not heard:
+        die("nothing audible in the supplied VO file")
+
+    spans, cursor = [], 0
+    for text in texts:
+        script_words = [w for w in text.split() if normalise_word(w)]
+        if not script_words:
+            spans.append(None)
+            continue
+        wanted = [normalise_word(w) for w in script_words]
+        # find the line's first word, then take its words in order, tolerating a
+        # word the model misheard rather than losing the rest of the line
+        start_at = next((probe for probe in range(cursor, min(len(heard), cursor + 80))
+                         if heard[probe]["token"] == wanted[0]), cursor)
+        at, timed = start_at, []
+        for script_word, token in zip(script_words, wanted):
+            hit = next((probe for probe in range(at, min(len(heard), at + 4))
+                        if heard[probe]["token"] == token), None)
+            if hit is None:
+                timed.append({"text": script_word, "start": None, "end": None})
+                continue
+            timed.append({"text": script_word, "start": heard[hit]["start"],
+                          "end": heard[hit]["end"]})
+            at = hit + 1
+        matched = sum(1 for w in timed if w["start"] is not None)
+        if not matched:
+            spans.append(None)
+            continue
+        spans.append({"start": next(w["start"] for w in timed if w["start"] is not None),
+                      "end": next(w["end"] for w in reversed(timed) if w["end"] is not None),
+                      "words": timed, "matched": matched, "of": len(timed)})
+        cursor = at
+
+    total = media_duration(audio)
+    for position, span in enumerate(spans):
+        if span and span["matched"] < max(2, span["of"] // 2):
+            say(f"line {position + 1}: only {span['matched']} of {span['of']} words "
+                "matched the supplied read, check the script against the recording")
+
+    # every line runs to where the next one starts, so no audio is ever skipped
+    for position, span in enumerate(spans):
+        if span is None:
+            continue
+        nxt = next((other for other in spans[position + 1:] if other), None)
+        span["end_hold"] = nxt["start"] if nxt else total
+        # a word the model missed gets slid between its timed neighbours
+        words = span["words"]
+        for order, word in enumerate(words):
+            if word["start"] is not None:
+                continue
+            before = next((w for w in reversed(words[:order]) if w["end"] is not None), None)
+            after = next((w for w in words[order + 1:] if w["start"] is not None), None)
+            left = before["end"] if before else span["start"]
+            right = after["start"] if after else span["end"]
+            word["start"], word["end"] = left, max(left + 0.08, right)
+    return spans
+
+
 def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
              force: bool, voice_id: str | None, model_id: str, gap: float,
-             settings: dict | None = None) -> list[dict] | None:
-    """Render one audio clip per scene line, so every scene can be cut to its own line.
+             settings: dict | None = None,
+             supplied: Path | None = None) -> tuple[list[dict] | None, Path | None]:
+    """One continuous narration take, plus where each script line falls inside it.
 
-    Returns a list of {scene, path, speech, hold} in scene order. A single block
-    render cannot be synced to picture, because nothing tells you where one line
-    ends and the next begins.
+    The read is never chopped into per line files any more. Rendering line by line
+    and butting the pieces together put an audible seam at every cut, because each
+    render carries its own lead in, room tone and level. One take has no seams, and
+    the character timings say exactly where each line ends, which is all the picture
+    needs in order to cut with the words.
+
+    Returns (lines, master). Each line carries hold, the seconds of the take that
+    belong to it, and phrases, its subtitle cards with times relative to the line.
     """
-    stage("Stage 4, ElevenLabs voice over, one clip per line")
-    settings = settings or {"stability": VOICE_STABILITY, "style": VOICE_STYLE,
-                            "similarity": VOICE_SIMILARITY}
-    say(f"voice settings: stability {settings['stability']}, style {settings['style']}, "
-        f"similarity {settings['similarity']}")
-
     lines_dir = work / f"short{index}" / "vo_lines"
+    lines_dir.mkdir(parents=True, exist_ok=True)
     # The voice hears the respelled text, the screen always shows the real one.
     texts = [respell_for_voice(" ".join((scene.vo or "").split())) for scene in scenes]
     if not any(texts):
         die("no per scene VO lines in the guide, nothing to synthesize")
 
     if skip:
+        stage("Stage 4, voice over")
         say("--skip-vo, building picture with no narration track")
-        return None
+        return None, None
+
+    if supplied:
+        stage("Stage 4, supplied voice over")
+        if not supplied.exists():
+            die(f"no VO file at {supplied}")
+        master = lines_dir / "master.wav"
+        run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(supplied),
+             "-vn", "-ac", "2", "-ar", "48000", str(master)])
+        say(f"supplied VO: {supplied.name}, {media_duration(master):.1f}s, used as recorded")
+        spans = align_supplied_vo(master, texts)
+        rendered = []
+        for position, scene in enumerate(scenes):
+            span = spans[position]
+            if span is None:
+                rendered.append({"scene": scene.number, "path": None, "speech": 0.0,
+                                 "hold": max(MIN_SCENE_SECONDS, scene.duration),
+                                 "phrases": [], "at": 0.0})
+                continue
+            hold = max(MIN_SCENE_SECONDS, span["end_hold"] - span["start"])
+            cards = phrases_from_words([dict(w) for w in span["words"]])
+            for card in cards:
+                card["start"] -= span["start"]
+                card["end"] -= span["start"]
+            rendered.append({"scene": scene.number, "path": None,
+                             "speech": span["end"] - span["start"], "hold": hold,
+                             "at": span["start"], "phrases": cards})
+            say(f"line {scene.number}: {span['start']:5.2f}s to {span['end']:5.2f}s "
+                f"in the supplied read, holds {hold:.2f}s, {len(cards)} cards")
+        say(f"narration total {sum(i['hold'] for i in rendered):.1f}s, one continuous take")
+        return rendered, master
+
+    stage("Stage 4, ElevenLabs voice over, one continuous take")
+    settings = settings or {"stability": VOICE_STABILITY, "style": VOICE_STYLE,
+                            "similarity": VOICE_SIMILARITY}
+    say(f"voice settings: stability {settings['stability']}, style {settings['style']}, "
+        f"similarity {settings['similarity']}")
 
     api_key = os.environ.get("ELEVENLABS_API_KEY")
     if not api_key:
@@ -966,32 +1127,42 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     if not voice_id:
         die("no voice id. Pass --voice-id or export ELEVENLABS_VOICE_ID with Mike's voice.")
 
+    master = lines_dir / "master.mp3"
+    script = " ".join(texts)
+    alignment_file = master.with_suffix(".alignment.json")
+    if master.exists() and alignment_file.exists() and not force:
+        alignment = json.loads(alignment_file.read_text(encoding="utf-8"))
+        say(f"cached take, {media_duration(master):.2f}s")
+    else:
+        eleven_tts(script, "", "", api_key, voice_id, model_id, master, settings)
+        alignment = json.loads(alignment_file.read_text(encoding="utf-8"))
+        say(f"one take, {len(script.split())} words, {media_duration(master):.2f}s")
+
+    chars = alignment.get("characters", [])
+    starts = alignment.get("character_start_times_seconds", [])
+    ends = alignment.get("character_end_times_seconds", [])
+    spans = split_alignment_by_line(chars, starts, ends, texts)
+    total = media_duration(master)
+
     rendered = []
-    for position, (scene, text) in enumerate(zip(scenes, texts)):
-        path = lines_dir / f"line{scene.number:02d}.mp3"
-        if not text:
-            rendered.append({"scene": scene.number, "path": None, "speech": 0.0,
-                             "hold": max(MIN_SCENE_SECONDS, scene.duration),
-                             "phrases": []})
-            continue
-        phrase_file = path.with_suffix(".phrases.json")
-        if path.exists() and phrase_file.exists() and not force:
-            phrases = json.loads(phrase_file.read_text(encoding="utf-8"))
-            say(f"line {scene.number}: cached, {media_duration(path):.2f}s, "
-                f"{len(phrases)} subtitle cards")
-        else:
-            phrases = eleven_tts(text,
-                                 texts[position - 1] if position else "",
-                                 texts[position + 1] if position + 1 < len(texts) else "",
-                                 api_key, voice_id, model_id, path, settings)
-            say(f"line {scene.number}: {len(text.split())} words, "
-                f"{media_duration(path):.2f}s, {len(phrases)} subtitle cards")
-        speech = media_duration(path)
-        rendered.append({"scene": scene.number, "path": path, "speech": speech,
-                         "hold": speech + gap, "phrases": phrases})
-    total = sum(item["hold"] for item in rendered)
-    say(f"narration total {total:.1f}s including {gap:.2f}s between lines")
-    return rendered
+    for position, scene in enumerate(scenes):
+        begin, finish = spans[position]
+        # the line owns the take right up to where the next one starts, so the
+        # breath after it stays with the picture it belongs to
+        finish = spans[position + 1][0] if position + 1 < len(spans) else total
+        hold = max(MIN_SCENE_SECONDS, finish - begin)
+        cards = phrases_from_alignment(chars, starts, ends, begin, spans[position][1])
+        for card in cards:
+            card["start"] -= begin
+            card["end"] -= begin
+            for word in card["words"]:
+                word["text"] = respell_for_screen(word["text"])
+        rendered.append({"scene": scene.number, "path": None, "speech": hold,
+                         "hold": hold, "at": begin, "phrases": cards})
+        say(f"line {scene.number}: {begin:5.2f}s to {finish:5.2f}s, "
+            f"{len(cards)} subtitle cards")
+    say(f"narration total {total:.1f}s, one continuous take, no joins")
+    return rendered, master
 
 
 def fit_scenes_to_lines(scenes: list[Scene], vo_lines: list[dict],
@@ -1597,32 +1768,85 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     run(cmd)
 
 
+def has_alpha(path: Path) -> bool:
+    fmt = probe(path, "v:0", "stream=pix_fmt") or ""
+    return any(token in fmt for token in ("yuva", "rgba", "argb", "abgr", "bgra", "ya"))
+
+
+def find_end_card() -> Path | None:
+    """A branded end card animation, if the team has supplied one.
+
+    With an alpha channel it is composited over the live tail, replacing the
+    drawn sticker stack. Without one it plays as its own clip at the end.
+    """
+    for folder in (ASSETS / "overlays", ASSETS):
+        for path in sorted(folder.glob("end_card.*")) + sorted(folder.glob("endcard.*")):
+            if path.suffix.lower() in (".mov", ".webm", ".mp4", ".mkv", ".png", ".gif"):
+                return path
+    return None
+
+
+def render_end_card_clip(card: Path, watermark: Path | None, destination: Path) -> float:
+    """A supplied end card with no transparency just plays as the closing clip."""
+    chain = [f"[0:v]scale={W}:{H}:force_original_aspect_ratio=decrease,"
+             f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,fps={FPS}[base]"]
+    inputs = ["-i", str(card)]
+    seconds = media_duration(card)
+    if watermark:
+        inputs += ["-loop", "1", "-t", f"{seconds:.2f}", "-i", str(watermark)]
+        chain.append("[base][1:v]overlay=0:0[v]")
+        silence = 2
+    else:
+        chain.append("[base]copy[v]")
+        silence = 1
+    inputs += ["-f", "lavfi", "-t", f"{seconds:.2f}", "-i", "anullsrc=r=48000:cl=stereo"]
+    audio = f"{silence}:a" if not has_audio(card) else "0:a"
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", *inputs,
+         "-filter_complex", ";".join(chain), "-map", "[v]", "-map", audio,
+         "-t", f"{seconds:.2f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+         "-pix_fmt", "yuv420p", "-r", str(FPS),
+         "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+         "-video_track_timescale", "30000", str(destination)])
+    return seconds
+
+
 def render_cta(text: str, handle: str, display_font: str | None, body_font: str | None,
                parts: Path, watermark: Path | None, destination: Path,
                source: Path, start: float, src_w: int, src_h: int,
-               crop_x: float = 0.5, zoom: float = 1.0) -> None:
+               crop_x: float = 0.5, zoom: float = 1.0,
+               animation: Path | None = None) -> float:
     """The end card plays over live footage, not over a black card.
 
     The reference Short holds the last reveal shot and lays the sticker stack on
     top of it, so the video never goes dead before the viewer decides to follow.
     """
-    png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
+    seconds = CTA_SECONDS
+    if animation is not None:
+        seconds = max(1.0, media_duration(animation))
+        say(f"end card: {animation.name}, {seconds:.1f}s, alpha composited over the "
+            "live tail")
+        overlay = ["-i", str(animation)]
+        cta_filter = "[base][1:v]overlay=0:0:shortest=0[withcta]"
+    else:
+        png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
+        overlay = ["-loop", "1", "-t", f"{seconds}", "-i", str(png)]
+        cta_filter = "[base][1:v]overlay=0:0[withcta]"
+
     crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, crop_x, zoom, 0.5)
     chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos,"
              f"setsar=1,fps={FPS}[base]",
-             "[base][1:v]overlay=0:0[withcta]"]
-    inputs = ["-ss", f"{start:.3f}", "-t", f"{CTA_SECONDS}", "-i", str(source),
-              "-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(png)]
+             cta_filter]
+    inputs = ["-ss", f"{start:.3f}", "-t", f"{seconds}", "-i", str(source), *overlay]
     if watermark:
-        inputs += ["-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(watermark)]
+        inputs += ["-loop", "1", "-t", f"{seconds}", "-i", str(watermark)]
         chain.append("[withcta][2:v]overlay=0:0[v]")
     else:
         chain.append("[withcta]copy[v]")
     silence = 3 if watermark else 2
-    inputs += ["-f", "lavfi", "-t", f"{CTA_SECONDS}", "-i", "anullsrc=r=48000:cl=stereo"]
+    inputs += ["-f", "lavfi", "-t", f"{seconds}", "-i", "anullsrc=r=48000:cl=stereo"]
     run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", *inputs,
          "-filter_complex", ";".join(chain), "-map", "[v]", "-map", f"{silence}:a",
-         "-t", f"{CTA_SECONDS}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+         "-t", f"{seconds}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
          "-pix_fmt", "yuv420p", "-r", str(FPS),
          "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
          "-video_track_timescale", "30000", str(destination)])
@@ -1630,7 +1854,7 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
 
 def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
               whoosh_at: float | None, music: Path | None, destination: Path,
-              location_level: float = 0.0) -> None:
+              location_level: float = 0.0, master: Path | None = None) -> None:
     whoosh = asset("whoosh.wav", "whoosh.mp3")
     impact = asset("impact.wav", "impact.mp3")
     duration = media_duration(body)
@@ -1645,7 +1869,19 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
     else:
         say("original location audio muted, the VO carries the whole track")
 
-    if vo_lines:
+    if master:
+        # One unbroken take laid at zero. The picture was cut to it, so there is
+        # nothing to place and no join anywhere in the narration.
+        head = min((item.get("at", 0.0) for item in (vo_lines or []) if item.get("phrases")),
+                   default=0.0)
+        offset = int(max(0.0, starts[0] if starts else 0.0) * 1000)
+        trim = f"atrim={head:.3f},asetpts=PTS-STARTPTS," if head > 0.01 else ""
+        chain.append(f"[{index}:a]aresample=48000,{trim}"
+                     f"adelay={offset}|{offset},volume=1.0[vo]")
+        mix_labels.append("[vo]")
+        cmd += ["-i", str(master)]
+        index += 1
+    elif vo_lines:
         for position, item in enumerate(vo_lines):
             if not item["path"]:
                 continue
@@ -1771,7 +2007,8 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                    font_path: str | None, music: Path | None,
                    watermark: Path | None, caption_mode: str = "labels",
                    location_level: float = 0.0,
-                   display_font: str | None = None) -> tuple[Path, list[float]]:
+                   display_font: str | None = None,
+                   master: Path | None = None) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -1864,8 +2101,14 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
     if cta_start + CTA_SECONDS > source_seconds:
         cta_start = max(0.0, source_seconds - CTA_SECONDS)
     cta_clip = parts / "cta.mp4"
-    render_cta(cta_text, handle, display_font or font_path, font_path, parts, watermark,
-               cta_clip, source, cta_start, src_w, src_h, cta_crop, cta_zoom)
+    supplied = find_end_card()
+    if supplied is not None and not has_alpha(supplied):
+        say(f"end card: {supplied.name}, no alpha channel, playing it as the closing clip")
+        cta_seconds = render_end_card_clip(supplied, watermark, cta_clip)
+    else:
+        cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
+                                 parts, watermark, cta_clip, source, cta_start,
+                                 src_w, src_h, cta_crop, cta_zoom, supplied)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -1882,7 +2125,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
     final = OUTPUT / f"{slug}-short-{index}-FINAL.mp4"
-    mix_audio(body, vo_lines, starts, whoosh_at, music, final, location_level)
+    mix_audio(body, vo_lines, starts, whoosh_at, music, final, location_level, master)
     say(f"final: {final.relative_to(REPO_ROOT)}, {media_duration(final):.1f}s")
     return final, starts
 
@@ -1902,7 +2145,8 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
 
     grabs = []
     marks = [starts[i] + (scenes[i].duration / 2) for i in range(len(scenes))]
-    marks.append(min(total - 0.3, (starts[-1] + scenes[-1].duration) + CTA_SECONDS / 2))
+    body_end = starts[-1] + scenes[-1].duration
+    marks.append(min(total - 0.3, body_end + (total - body_end) / 2))
     labels = [f"{scene.number}. {scene.caption or scene.vo[:40]}" for scene in scenes] + ["CTA"]
 
     for position, mark in enumerate(marks):
@@ -2042,6 +2286,11 @@ def main() -> None:
                         help="comma separated scene numbers to re-extract keyframes for")
     parser.add_argument("--skip-vo", action="store_true",
                         help="assemble with no narration, for a picture only check")
+    parser.add_argument("--vo", type=Path, default=None,
+                        help="a narration file you recorded yourself. It is used exactly "
+                             "as supplied, never cut or retimed. The script lines are "
+                             "located inside it with whisper and the picture is cut to "
+                             "them")
     parser.add_argument("--voice-id", default=None, help="ElevenLabs voice id for Mike")
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
     parser.add_argument("--captions", choices=["subtitles", "labels", "both"],
@@ -2056,8 +2305,9 @@ def main() -> None:
     parser.add_argument("--stability", type=float, default=VOICE_STABILITY,
                         help="ElevenLabs stability, lower lets the delivery move more")
     parser.add_argument("--similarity", type=float, default=VOICE_SIMILARITY)
-    parser.add_argument("--line-gap", type=float, default=0.28,
-                        help="pause held after each narration line, seconds, default 0.28")
+    parser.add_argument("--line-gap", type=float, default=0.0,
+                        help="unused now that the narration is one continuous take, the "
+                             "pauses the read already has are what the picture cuts on")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
     parser.add_argument("--no-music", action="store_true")
     parser.add_argument("--logo", type=Path, default=None,
@@ -2116,8 +2366,9 @@ def main() -> None:
     voice_settings = {"stability": args.stability, "style": args.style,
                       "similarity": args.similarity}
     voice_settings.update(guide.get("voice_settings") or {})
-    vo_lines = stage_vo(short, scenes, work, args.number, args.skip_vo, args.revoice,
-                        args.voice_id, args.model_id, args.line_gap, voice_settings)
+    vo_lines, vo_master = stage_vo(short, scenes, work, args.number, args.skip_vo,
+                                   args.revoice, args.voice_id, args.model_id,
+                                   args.line_gap, voice_settings, args.vo)
 
     font_path = args.font or find_font()
     if font_path is None:
@@ -2147,7 +2398,7 @@ def main() -> None:
     display_font = find_font(DISPLAY_FONT_CANDIDATES)
     final, starts = stage_assemble(scenes, short, guide, source, vo_lines, work, args.number,
                                    slug, font_path, music, watermark, args.captions,
-                                   args.location_audio, display_font)
+                                   args.location_audio, display_font, vo_master)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 

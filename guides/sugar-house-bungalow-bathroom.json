@@ -1,209 +1,155 @@
 {
   "channel": "The Remodel King",
   "episode": "Complete Bathroom Remodel, Sugar House Bungalow",
-  "date": "July 2026",
+  "date": "August 2026",
+  "work_id": "PanD4TChGbA",
   "video_url": "https://www.youtube.com/watch?v=PanD4TChGbA",
+  "handle": "@theremodelking",
   "prepared_for": "Editor / Content Team",
-  "project_context": {
-    "summary": "The source bathroom remodel contains strong homeowner problem and solution content that translates naturally into short form vertical video. These two Shorts pull from the segments where Mike explains why a small bathroom feels cramped and how the layout was reworked to make it functional.",
-    "segment_choice": "Short 1 comes from 0:46 to 1:12, where the cramped layout, the two conflicting doors, and the undersized vanity are all visible in one run of footage. Short 2 comes from 1:27 to 2:03, where the layout logic is laid out step by step, the built-in, the toilet nook, the closed off doorway, and the turned vanity.",
-    "publish_order": "Short 1 publishes first as the homeowner problem hook, Short 2 second as the contractor solution proof. Together they form a mini funnel from pain point to authority.",
-    "notes": [
-      "Mike's AI voice avatar carries all narration in both Shorts, re-recorded for tighter pacing and search friendly language, over the original bathroom footage.",
-      "Scenes marked in Editor notes as needing a confirmed range have no timestamp in the source handoff and get one during frame analysis.",
-      "Every scene is cut to the exact length of its own narration line, rendered one clip per line so the picture and the words land together. Timeline and source columns reflect the finished videos."
-    ]
-  },
-  "shorts": [
-    {
-      "angle": "Homeowner problem hook",
-      "working_title": "Why Your Small Bathroom Feels Cramped",
-      "source_range": "0:46 - 1:12",
-      "target_runtime": "25 seconds",
-      "primary_goal": "Homeowner pain point hook",
-      "seo_titles": [
-        "Why Your Small Bathroom Feels Cramped",
-        "The Small Bathroom Layout Mistake Homeowners Miss",
-        "This Tiny Bathroom Had a Huge Design Problem",
-        "Bad Bathroom Layout? This Could Be Why"
-      ],
-      "scenes": [
-        {
-          "number": 1,
-          "timeline": "0:00 - 0:04",
-          "source": "0:46 - 0:50",
-          "vo": "If your small bathroom feels CRAMPED, the LAYOUT is usually the problem.",
-          "caption": "Why your small bathroom feels cramped",
-          "notes": "Open on the tightest cramped angle. Impact sound on the first frame. Gentle pan across the shot.",
-          "caption_zone": "hook"
-        },
-        {
-          "number": 2,
-          "timeline": "0:04 - 0:10",
-          "source": "0:53 - 0:58",
-          "vo": "This one had TWO doors fighting for space, which is a BAD setup in a tiny bathroom!",
-          "caption": "Two doors in a tiny bathroom = wasted space",
-          "notes": "Show both doors and the door conflict. Arrows highlighting each door.",
-          "caption_zone": "support"
-        },
-        {
-          "number": 3,
-          "timeline": "0:10 - 0:14",
-          "source": "1:00 - 1:04",
-          "vo": "And the vanity was so SMALL, the whole room felt tight and awkward.",
-          "caption": "Tiny vanity + awkward flow",
-          "notes": "Hold on the small vanity, panning gently toward it.",
-          "caption_zone": "support"
-        },
-        {
-          "number": 4,
-          "timeline": "0:14 - 0:19",
-          "source": "11:20 - 11:24",
-          "vo": "So we REWORKED the layout to make the bathroom function better!",
-          "caption": "So we changed the layout completely",
-          "notes": "Whoosh transition to signal the shift from problem to solution.",
-          "caption_zone": "support",
-          "transition": "whoosh"
-        },
-        {
-          "number": 5,
-          "timeline": "0:19 - 0:22",
-          "source": "13:20 - 13:23",
-          "vo": "Watch the full remodel to see how we FIXED it.",
-          "caption": "Watch the full transformation",
-          "notes": "Best before hold or flash of the after. Ends into the CTA frame.",
-          "caption_zone": "support"
-        }
-      ],
-      "full_vo": "If your small bathroom feels CRAMPED, the LAYOUT is usually the problem. This one had TWO doors fighting for space, which is a BAD setup in a tiny bathroom!\n\nAnd the vanity was so SMALL, the whole room felt tight and awkward. So we REWORKED the layout to make the bathroom function better!\n\nWatch the full remodel to see how we FIXED it.",
-      "voice_direction": "Confident and homeowner friendly, slightly punchy on the first line, conversational rather than announcer style.",
-      "cta_frame": "Watch the full bathroom transformation",
-      "cta": {
-        "primary": "Watch the full bathroom transformation",
-        "alt": "Comment LAYOUT if your bathroom has this problem",
-        "pinned": "See the full before and after here: [full video link]"
-      }
-    },
-    {
-      "angle": "Contractor solution proof",
-      "working_title": "How We Made a Tiny Bathroom Work",
-      "source_range": "1:27 - 2:03",
-      "target_runtime": "34 seconds",
-      "primary_goal": "Show Mike's contractor solution, the layout logic",
-      "seo_titles": [
-        "How We Made a Tiny Bathroom Actually Work",
-        "Small Bathroom Remodel Trick That Changed Everything",
-        "We Reworked This Bathroom Layout to Actually Function",
-        "Same Bathroom, Smarter Layout"
-      ],
-      "scenes": [
-        {
-          "number": 1,
-          "timeline": "0:00 - 0:04",
-          "source": "1:23 - 1:27.1",
-          "vo": "Here is how we made this TINY bathroom actually work.",
-          "caption": "How we made this tiny bathroom work",
-          "notes": "Opens on the open built-in. Scenes 1 and 2 are ONE continuous take, no cut, the caption changes on time while Mike closes the cabinet door.",
-          "caption_zone": "hook"
-        },
-        {
-          "number": 2,
-          "timeline": "0:04 - 0:09",
-          "source": "1:27.1 - 1:32.5",
-          "vo": "FIRST, we removed the old BUILT-IN so we could gain some usable space.",
-          "caption": "Step 1: remove the built-in",
-          "notes": "Same take as scene 1, no cut. Highlight box on the built-in once the pan settles.",
-          "caption_zone": "support",
-          "continues_previous": true
-        },
-        {
-          "number": 3,
-          "timeline": "0:09 - 0:14",
-          "source": "1:38 - 1:42",
-          "vo": "Then we created a NOOK for the toilet, which got it out of the main traffic path!",
-          "caption": "Move toilet out of the way",
-          "notes": "Show the new toilet location. Arrow from the old spot to the new one.",
-          "caption_zone": "support"
-        },
-        {
-          "number": 4,
-          "timeline": "0:14 - 0:19",
-          "source": "1:47 - 1:52",
-          "vo": "We also CLOSED OFF one doorway so the bathroom door could swing the right way.",
-          "caption": "Fix the door swing",
-          "notes": "Show the door area. Highlight box on the closed off opening.",
-          "caption_zone": "support"
-        },
-        {
-          "number": 5,
-          "timeline": "0:19 - 0:25",
-          "source": "1:57 - 2:02",
-          "vo": "After that, we TURNED the vanity, so the room had a lot more function and better flow!",
-          "caption": "Bigger vanity, better flow",
-          "notes": "Show the vanity area. Arrow indicating the rotation.",
-          "caption_zone": "support",
-          "transition": "whoosh"
-        },
-        {
-          "number": 6,
-          "timeline": "0:25 - 0:29",
-          "source": "10:20 - 10:24",
-          "vo": "Same bathroom footprint...just a much SMARTER layout.",
-          "caption": "Same bathroom. Smarter design.",
-          "notes": "Best explanatory hold. Brief pause so the point lands.",
-          "caption_zone": "support"
-        },
-        {
-          "number": 7,
-          "timeline": "0:29 - 0:31",
-          "source": "13:40 - 13:42",
-          "vo": "Watch the full BEFORE and after!",
-          "caption": "Watch the full remodel",
-          "notes": "Final beat before the CTA frame.",
-          "caption_zone": "support"
-        }
-      ],
-      "full_vo": "Here is how we made this TINY bathroom actually work. FIRST, we removed the old BUILT-IN so we could gain some usable space.\n\nThen we created a NOOK for the toilet, which got it out of the main traffic path! We also CLOSED OFF one doorway so the bathroom door could swing the right way.\n\nAfter that, we TURNED the vanity, so the room had a lot more function and better flow! Same bathroom footprint...just a much SMARTER layout.\n\nWatch the full BEFORE and after!",
-      "voice_direction": "Clear and practical, an expert explainer tone, slightly slower than Short 1 so the layout logic lands.",
-      "cta_frame": "Watch the full before and after",
-      "cta": {
-        "primary": "Watch the full before and after",
-        "alt": "Save this for your bathroom remodel",
-        "pinned": "Full bathroom transformation here: [full video link]"
-      }
-    }
-  ],
-  "production_notes": [
-    "Export 1080x1920, 9:16 vertical, for both Shorts.",
-    "Captions are bold white with a black outline, large enough to read on mobile, always burned in.",
-    "Hook text sits in the upper third, supporting captions in the lower third.",
-    "Fast cuts, no dead air, the hook must land within 2 seconds.",
-    "Mike's AI voice avatar carries all narration in both Shorts, with a tiny pause between sentences so cuts and punch-ins have room.",
-    "Original ambient audio stays very low under the VO for texture.",
-    "Optional low volume music bed, it must not compete with the VO.",
-    "Every cut plays over pre-demo walkthrough, progress state, or final reveal footage. No footage of demo or installation happening, and no workers on camera.",
-    "Simple text CTA end frame, no traditional long end cards on Shorts.",
-    "Publish order is Short 1 first, then Short 2, problem hook into solution proof."
-  ],
-  "checklist": [
-    "Final Short exported at 9:16, 1080x1920",
-    "Hook lands within 2 seconds",
-    "Mike AI VO recorded and mixed",
-    "Captions burned in",
-    "Thumbnail, custom or first frame, reviewed",
-    "SEO title finalized",
-    "Description written with link to the full video",
-    "Pinned comment prepared with the full video link",
-    "Hashtags added: #bathroomremodel #homeremodel #smallbathroom #remodeling",
-    "Published to YouTube Shorts"
-  ],
   "hashtags": [
     "#bathroomremodel",
     "#homeremodel",
     "#smallbathroom",
     "#remodeling"
   ],
+  "assessment": "A small bathroom in a hundred year old bungalow, and the whole story is space. A second door closed off, the vanity turned sideways, the toilet moved into a cubby cut from an old built in, and a cabinet above it reaching into the dead space behind the neighbouring TV wall. Every one of those reads in the finished footage from 9:55 onward, so the Short lives entirely in the reveal. The upstairs bathroom at 8:33 is a different room and stays out, it only confuses the story.",
   "avoid_ranges": [
-    { "range": "12:55 - 13:10", "reason": "Mike's manually built cost slide" }
+    {
+      "range": "3:52 - 4:14",
+      "reason": "Mike states the project cost, cost is never used"
+    },
+    {
+      "range": "0:00 - 9:08",
+      "reason": "pre demo, demo, and progress. The reveal starts at 9:10"
+    },
+    {
+      "range": "13:10 - 13:55",
+      "reason": "Mike's spoken outro, the Short has its own end card"
+    }
+  ],
+  "project_context": {
+    "summary": "Main bathroom in a Sugar House bungalow, roughly a hundred years old. Two doors fought for space and the vanity was tiny. One doorway was closed off, the vanity turned sideways to a 42 inch, the toilet moved into a cubby built out of an old built in cabinet, and a linen cupboard above the toilet reaches back into the hollow space behind the entertainment centre on the other side of the wall.",
+    "segment_choice": "One Short, a reveal tour, cut entirely from 9:55 to 12:15. No before footage at all: the jetted tub note from the last round applies here too, anything that was torn out is not what the Short is selling.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is the finished room.",
+      "Nothing in the Short shows demo, workers, or price."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "Every Inch Of This 100 Year Old Bathroom Is Working",
+      "source_range": "9:55 - 12:15",
+      "target_runtime": "52 seconds",
+      "primary_goal": "Show the finished bathroom, one space saving move at a time",
+      "seo_titles": [
+        "How We Made This Tiny 100 Year Old Bathroom Work",
+        "The Small Bathroom Layout That Fixed Everything",
+        "We Turned The Vanity Sideways And It Changed The Whole Room",
+        "Every Space Saving Trick In This Bungalow Bathroom"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "10:35 - 10:40",
+          "vo": "This tiny bathroom in a hundred year old Sugar House bungalow is finally finished.",
+          "caption": "A hundred year old bungalow bathroom, finished",
+          "notes": "vanity, mirror and light fixture, the room reads. Scanner: 1 percent dark",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "11:39 - 11:43",
+          "vo": "There used to be a second door right here. We closed it off.",
+          "caption": "One doorway closed off",
+          "notes": "hand on the filled in wall where the second door was"
+        },
+        {
+          "number": 3,
+          "source": "12:11 - 12:15",
+          "vo": "That gave us the wall space to turn the vanity sideways.",
+          "caption": "Vanity turned sideways",
+          "notes": "the vanity running along its wall. Scenes 3 and 4 are ONE take"
+        },
+        {
+          "number": 4,
+          "source": "12:15 - 12:19",
+          "vo": "So a dinky little vanity became a full forty two inch one.",
+          "caption": "42 inches instead of a dinky little one",
+          "notes": "same take as scene 3, the marble top and the drawers",
+          "continues_previous": true
+        },
+        {
+          "number": 5,
+          "source": "10:24 - 10:31",
+          "vo": "Look underneath. The light comes on and off under the vanity.",
+          "caption": "The light under the vanity",
+          "notes": "the vanity from the side, the light spilling onto the floor"
+        },
+        {
+          "number": 6,
+          "source": "10:41 - 10:44",
+          "vo": "The homeowner picked the LED fixture above it.",
+          "caption": "Homeowner picked the LED fixture",
+          "notes": "the LED fixture over the vanity, lit"
+        },
+        {
+          "number": 7,
+          "source": "10:58 - 11:03",
+          "vo": "All the tile around the tub is glass tile.",
+          "caption": "Glass tile around the tub",
+          "notes": "the tub wall, glass tile floor to ceiling. Scenes 7 and 8 are ONE take"
+        },
+        {
+          "number": 8,
+          "source": "11:03 - 11:08",
+          "vo": "And that tile runs right around the whole room as a wainscot.",
+          "caption": "Tile wainscot right around the room",
+          "notes": "same take as scene 7, the tile carrying on around the room",
+          "continues_previous": true
+        },
+        {
+          "number": 9,
+          "source": "11:28.5 - 11:33",
+          "vo": "The toilet moved into a cubby we built out of an old built in cabinet.",
+          "caption": "Toilet moved into a new cubby",
+          "notes": "the marble wainscot and the toilet in its cubby. Scenes 9 and 10 are ONE take"
+        },
+        {
+          "number": 10,
+          "source": "11:33 - 11:38",
+          "vo": "Which got it out of the way, so the door swings in now.",
+          "caption": "Now the door swings in",
+          "notes": "same take as scene 9, the camera reaching the door at the end of the pan",
+          "continues_previous": true
+        },
+        {
+          "number": 11,
+          "source": "9:38 - 9:43",
+          "vo": "And that space came out of the wall behind the entertainment center in the next room.",
+          "caption": "The space came from behind the TV wall",
+          "notes": "the finished entertainment centre cabinets, the payoff for the line before",
+          "transition": "whoosh"
+        },
+        {
+          "number": 12,
+          "source": "11:59 - 12:03.5",
+          "vo": "Same footprint, a hundred year old house, and every inch of it working.",
+          "caption": "Same footprint. Every inch working.",
+          "notes": "the tub with its spout and valve, the last look before the end card"
+        }
+      ],
+      "full_vo": "This tiny bathroom in a hundred year old Sugar House bungalow is finally finished. There used to be a second door right here. We closed it off. That gave us the wall space to turn the vanity sideways. So a dinky little vanity became a full forty two inch one. Look underneath. The light comes on and off under the vanity. The homeowner picked the LED fixture above it. All the tile around the tub is glass tile. And that tile runs right around the whole room as a wainscot. The toilet moved into a cubby we built out of an old built in cabinet. Which got it out of the way, so the door swings in now. And that space came out of the wall behind the entertainment center in the next room. Same footprint, a hundred year old house, and every inch of it working.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend around the finished room. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "12:03.5 - 12:07",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Which move would you make in your bathroom?",
+        "pinned": "Full bathroom transformation here: [full video link]"
+      },
+      "assessment_note": "The cabinet above the toilet is never cleanly on camera in the episode, so that line was cut rather than captioned over the wrong shot."
+    }
   ]
 }

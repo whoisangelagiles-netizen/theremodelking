@@ -27,6 +27,43 @@ the frame, but never enlarged past the mark's native pixels, so a small file
 renders crisp rather than soft. Override with `--logo-width`, adjust
 `--logo-opacity` (default `0.92`), or drop it with `--no-logo`.
 
+## Things you supply per Short
+
+| What | Where it goes | Format |
+| --- | --- | --- |
+| **A narration file you recorded** | anywhere, pass it with `--vo path/to/file.mp3` | mp3, wav, or m4a. One continuous read of the script, start to finish |
+| **The end card animation** | `assets/end_card.mov` (or `.webm`, `.mp4`) | 1080x1920. **With** an alpha channel it lays over the last shot, the way the drawn stickers do. **Without** one it plays as its own closing clip |
+
+### The narration file
+
+It is used exactly as you recorded it. Nothing is cut, trimmed, retimed, or
+resynthesized. The build transcribes it with whisper only to find where each
+script line falls, then cuts the picture to those moments, so the words and the
+frames land together and the read stays one unbroken take.
+
+```bash
+python scripts/build_short.py <url or master> 1 --vo ~/Downloads/sugar-house-vo.mp3
+```
+
+Read the script straight through, in order, without stopping between lines. If
+you change the wording as you read, change it in the guide too, otherwise the
+line matching drifts and the build says so.
+
+### The end card animation
+
+Name it `end_card` and drop it in `assets/` or `assets/overlays/`. The build
+finds it by name and uses it instead of drawing the sticker stack.
+
+- **With alpha** (ProRes 4444 `.mov`, or VP9 `.webm` in `yuva420p`): it is
+  composited over the tail of the last shot, so the picture keeps running
+  behind it. This is what the current drawn end card does and it is the better
+  look.
+- **Without alpha** (a normal `.mp4`): it plays as its own clip after the last
+  shot, at its own length, letterboxed if it is not 1080x1920.
+
+Either way the length of the animation sets the length of the end card, and the
+logo watermark still goes on top.
+
 ## Optional extras
 
 | File | What it is | Format |
