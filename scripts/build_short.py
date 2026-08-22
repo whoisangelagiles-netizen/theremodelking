@@ -89,7 +89,7 @@ CAPTION_GREEN = (22, 163, 74)
 CAPTION_BASELINE = 0.746     # bottom edge of the plate, as a fraction of height
 CAPTION_SIZE = 48
 CAPTION_LINE = 57            # line pitch inside the plate
-CAPTION_PAD_X = 12
+CAPTION_PAD_X = 10
 CAPTION_WRAP = 0.72          # widest a text line may run, fraction of width
 SUB_TAIL = 0.30              # how long a card may linger before the next one
 HANGING_WORDS = {
@@ -1628,15 +1628,19 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     subtitle_cards = []
     caption_png = None
     if caption_mode in ("subtitles", "both") and phrases:
-        size = 72
+        # CAPTION_SIZE, not a number of its own. This was 72, left over from the
+        # outlined style, and it rendered the type half again too big and wrapped
+        # cards onto a third line the reference Short never uses.
+        size = CAPTION_SIZE
         block = subtitle_block_height(phrases, font_path, size)
         band = place_caption(block, "support", face)
         for i, phrase in enumerate(phrases):
             card, _ = draw_subtitle(phrase["words"], font_path, size, band,
                                     parts / f"sub{scene.number:02d}_{i:02d}.png")
             subtitle_cards.append((card, phrase["start"], phrase["end"]))
-        say(f"scene {scene.number}: {len(subtitle_cards)} subtitle cards, "
-            f"band at y {int(band)}" + (", clear of Mike's head" if face else ""))
+        say(f"scene {scene.number}: {len(subtitle_cards)} subtitle cards on the "
+            f"{CAPTION_BASELINE:.3f} baseline"
+            + (", lifted clear of Mike's head" if face else ""))
     timed_captions = []
     if caption_mode in ("labels", "both"):
         if caption_cards:
