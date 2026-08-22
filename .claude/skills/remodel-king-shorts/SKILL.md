@@ -67,7 +67,9 @@ template.
 - **Frame the feature, not the talker.** If the line is about the niche, the
   niche fills the frame. Mike is the narrator, not the subject. A Short where
   the camera keeps landing on him is the failure, and it is the note the channel
-  has already given once.
+  has already given once. A glimpse of him at the edge is fine though, do not
+  push the crop to an extreme just to erase him, that costs the room around the
+  feature.
 - Mike's footage is ONLY pre demo walkthroughs, progress state shots, and final
   reveals. He never films workers or active construction. "We gutted it" is fine
   as narration but it plays over a state shot.

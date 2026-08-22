@@ -56,10 +56,14 @@ here. Read that skill first if it is not already loaded. In particular:
   overlapping footage and JUMP CUT for a cut that lands too close to itself.
 - FRAME THE FEATURE, NOT THE TALKER. This is the note the channel has already
   given once, on a set of Shorts that got rejected for it. If the line is about
-  the niche, the niche fills the window, even when Mike is the loudest thing in
-  the source frame. Cropping 16:9 to 9:16 throws away two thirds of the picture,
-  so the crop decides the whole shot. A Short where the window keeps landing on
-  Mike is the failure mode, and "he is only at the edge of frame" is the target.
+  the niche, the niche fills the window. Cropping 16:9 to 9:16 throws away two
+  thirds of the picture, so the crop decides the whole shot.
+- But do NOT contort the crop to erase Mike. A glimpse of him at the edge, a
+  shoulder, an arm, a hand pointing, is fine and often helps. Pushing crop_x out
+  to 0.16 or 0.84 purely to keep him out costs the room around the feature, and
+  a slice of wall with no context is worse than a good frame with him in the
+  corner. Pick the framing that shows the feature best, then check he has not
+  become the subject of it. Feature centre stage, Mike at the edge.
 - NEVER put captions, words, or graphics on Mike's face. Captions go above his
   head or below his chin, never across it. The build enforces this from the
   face box you record during frame analysis.
