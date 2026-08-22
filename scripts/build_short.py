@@ -27,6 +27,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import shutil
 import ssl
 import subprocess
@@ -42,26 +43,54 @@ GUIDES = REPO_ROOT / "guides"
 WORK = REPO_ROOT / "work"
 OUTPUT = REPO_ROOT / "output"
 ASSETS = REPO_ROOT / "assets"
+TRANSCRIPTS = REPO_ROOT / "transcripts"
 
 BRAND_GREEN = (14, 147, 70)
 EMPHASIS_GREEN = (46, 214, 116)   # brand green lifted so it reads over dark footage
 W, H = 1080, 1920
 FPS = 30
-CTA_SECONDS = 2.4
+CTA_SECONDS = 3.0
+# End card geometry, measured off the reference Short: a stack of rotated
+# stickers alternating white and green, then the handle pill under it.
+CTA_FONT_SIZE = 112
+CTA_PAD_X = 30
+CTA_PAD_Y = 16
+CTA_TILTS = (-1.6, 1.4, -1.2, 1.8, -1.0)
+CTA_HANDLE = "@theremodelking"
+# One beat per sticker. Newlines in the guide's cta_frame are honoured as written.
+CTA_DEFAULT = "Follow\nfor more\nbefore\nand afters"
 DEFAULT_LOGO_WIDTH = 0.16
 MIN_SCENE_SECONDS = 1.2
 
+# Captions run in Montserrat ExtraBold and the end card in Anton, the two faces
+# the channel's own Shorts use. Both ship in assets/fonts, so a fresh container
+# renders identically to a local one. The system faces are only a fallback.
 FONT_CANDIDATES = [
+    str(REPO_ROOT / "assets" / "fonts" / "Montserrat-ExtraBold.ttf"),
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
     "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
     "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
     "C:/Windows/Fonts/arialbd.ttf",
 ]
+DISPLAY_FONT_CANDIDATES = [
+    str(REPO_ROOT / "assets" / "fonts" / "Anton-Regular.ttf"),
+    *FONT_CANDIDATES,
+]
 
 ELEVEN_ENDPOINT = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps"
-SUB_MAX_WORDS = 4            # words per subtitle card
-SUB_MAX_CHARS = 26           # characters per subtitle card
+SUB_MAX_WORDS = 6            # words per subtitle card
+SUB_MAX_CHARS = 34           # characters per subtitle card
+
+# The caption look, measured off the reference Short the channel already
+# publishes: a solid green plate sitting on a fixed baseline, white Montserrat
+# ExtraBold on top, no outline. Keep these numbers, they are the house style.
+CAPTION_GREEN = (22, 163, 74)
+CAPTION_BASELINE = 0.746     # bottom edge of the plate, as a fraction of height
+CAPTION_SIZE = 48
+CAPTION_LINE = 57            # line pitch inside the plate
+CAPTION_PAD_X = 12
+CAPTION_WRAP = 0.72          # widest a text line may run, fraction of width
 SUB_TAIL = 0.30              # how long a card may linger before the next one
 HANGING_WORDS = {
     "the", "a", "an", "and", "or", "but", "so", "to", "of", "in", "on", "at", "for",
@@ -152,8 +181,8 @@ def has_audio(path: Path) -> bool:
     return bool(result.stdout.strip())
 
 
-def find_font() -> str | None:
-    for candidate in FONT_CANDIDATES:
+def find_font(candidates: list[str] | None = None) -> str | None:
+    for candidate in (candidates or FONT_CANDIDATES):
         if Path(candidate).exists():
             return candidate
     return None
@@ -391,6 +420,120 @@ def find_cookies(explicit: Path | None) -> Path | None:
 # stage 3: keyframes and edit decisions
 # --------------------------------------------------------------------------
 
+STOPWORDS = {
+    "a", "an", "the", "and", "or", "but", "so", "then", "we", "i", "you", "they",
+    "it", "its", "this", "that", "these", "those", "is", "are", "was", "were",
+    "be", "been", "to", "of", "in", "on", "at", "for", "with", "from", "into",
+    "just", "all", "up", "out", "our", "your", "their", "there", "here", "have",
+    "has", "had", "got", "get", "put", "went", "go", "going", "do", "did", "not",
+    "no", "very", "really", "some", "one", "two", "now", "right", "like", "what",
+    "how", "when", "where", "which", "who", "can", "will", "would", "could",
+    "about", "over", "under", "through", "across", "down", "off", "more", "most",
+}
+
+
+def content_words(text: str) -> set[str]:
+    words = re.findall(r"[a-z]+", (text or "").lower())
+    return {w for w in words if len(w) > 2 and w not in STOPWORDS}
+
+
+def load_transcript(video_id: str) -> list[dict]:
+    path = TRANSCRIPTS / f"{video_id}.json"
+    if not path.exists():
+        return []
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("lines", [])
+    except (ValueError, OSError):
+        return []
+
+
+def rank_transcript_windows(vo: str, lines: list[dict], taken: list[tuple[float, float]],
+                            avoid: list[tuple[float, float]], want: int = 3) -> list[float]:
+    """Where in the episode does Mike talk about this? Best moments first.
+
+    Mike narrates while he points, so the frames around the words are the frames
+    that show the thing. Overlap on content words is a blunt instrument, but it
+    beats guessing, and the picked windows still go past a pair of eyes.
+    """
+    wanted = content_words(vo)
+    if not wanted or not lines:
+        return []
+    scored = []
+    for line in lines:
+        overlap = wanted & content_words(line.get("text", ""))
+        if not overlap:
+            continue
+        start = float(line.get("start", 0.0))
+        if any(start < end and (start + 4.0) > begin for begin, end in avoid):
+            continue
+        if any(start < end and (start + 4.0) > begin for begin, end in taken):
+            continue
+        scored.append((len(overlap) / len(wanted), start, sorted(overlap)))
+    scored.sort(key=lambda row: (-row[0], row[1]))
+
+    picked: list[float] = []
+    for score, start, _ in scored:
+        if any(abs(start - other) < 6.0 for other in picked):
+            continue
+        picked.append(start)
+        if len(picked) >= want:
+            break
+    return picked
+
+
+def contact_strip(source: Path, marks: list[float], destination: Path,
+                  columns: int = 4, tile_width: int = 360) -> Path | None:
+    """One image holding every candidate frame, each stamped with its timestamp.
+
+    Reading one strip beats opening twelve files, and the timestamp under each
+    tile is what gets written back into the edit decisions.
+    """
+    from PIL import Image, ImageDraw, ImageFont
+
+    if not marks:
+        return None
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    scratch = destination.parent / f".{destination.stem}_tiles"
+    scratch.mkdir(exist_ok=True)
+    grabs = []
+    for order, mark in enumerate(marks):
+        tile = scratch / f"{order:02d}.jpg"
+        run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+             "-ss", f"{mark:.2f}", "-i", str(source), "-frames:v", "1", "-q:v", "3",
+             str(tile)])
+        if tile.exists():
+            grabs.append((mark, tile))
+    if not grabs:
+        shutil.rmtree(scratch, ignore_errors=True)
+        return None
+
+    with Image.open(grabs[0][1]) as probe_img:
+        ratio = probe_img.height / probe_img.width
+    tile_h = int(tile_width * ratio)
+    label_h = 30
+    rows = (len(grabs) + columns - 1) // columns
+    sheet = Image.new("RGB", (columns * tile_width, rows * (tile_h + label_h)), (16, 16, 16))
+    pen = ImageDraw.Draw(sheet)
+    font_path = find_font()
+    font = ImageFont.truetype(font_path, 20) if font_path else ImageFont.load_default(20)
+
+    for order, (mark, tile) in enumerate(grabs):
+        with Image.open(tile) as img:
+            frame = img.convert("RGB").resize((tile_width, tile_h))
+        x = (order % columns) * tile_width
+        y = (order // columns) * (tile_h + label_h)
+        sheet.paste(frame, (x, y))
+        # the 9:16 window at centre crop, so the tile shows what actually survives
+        window = int(tile_h * 9 / 16)
+        left = x + tile_width // 2 - window // 2
+        pen.rectangle([left, y, left + window, y + tile_h], outline=CAPTION_GREEN, width=2)
+        pen.text((x + 8, y + tile_h + 6), f"{stamp(mark)}  ({mark:.1f}s)",
+                 font=font, fill=(235, 235, 235))
+    sheet.save(destination, quality=86)
+    shutil.rmtree(scratch, ignore_errors=True)
+    return destination
+
+
 def extract_keyframes(source: Path, scene: Scene, frames_dir: Path, count: int = 4) -> list[Path]:
     frames_dir.mkdir(parents=True, exist_ok=True)
     for old in frames_dir.glob(f"scene{scene.number:02d}_*.jpg"):
@@ -408,7 +551,41 @@ def extract_keyframes(source: Path, scene: Scene, frames_dir: Path, count: int =
     return written
 
 
-def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Path) -> dict:
+def scene_candidates(scenes: list[Scene], video_id: str, guide: dict,
+                     source_seconds: float) -> dict[int, list[float]]:
+    """For every line, the moments in the episode where Mike is on that subject.
+
+    The line's own source range always leads, because the guide writer chose it,
+    then transcript matches follow. Nothing that overlaps an avoid_range or a
+    window already claimed by another line is offered.
+    """
+    lines = load_transcript(video_id)
+    avoid = [parse_range(entry.get("range", "0 - 0"))
+             for entry in (guide.get("avoid_ranges") or [])]
+    taken: list[tuple[float, float]] = []
+    proposals: dict[int, list[float]] = {}
+
+    for scene in scenes:
+        marks = [scene.start] if scene.start else []
+        for start in rank_transcript_windows(scene.vo, lines, taken, avoid, want=3):
+            if all(abs(start - other) > 5.0 for other in marks):
+                marks.append(start)
+        spread = []
+        for mark in marks[:4]:
+            for step in (0.0, 1.6, 3.2):
+                moment = mark + step
+                if moment + 0.2 < source_seconds:
+                    spread.append(round(moment, 2))
+        proposals[scene.number] = spread[:12]
+        taken.extend((mark - 2.0, mark + 5.0) for mark in marks[:4])
+        if not lines:
+            say(f"scene {scene.number}: no transcript to anchor against, "
+                "candidates are the guide's range only")
+    return proposals
+
+
+def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Path,
+                  candidates: dict[int, list[float]] | None = None) -> dict:
     return {
         "video_id": video_id,
         "short": index,
@@ -458,6 +635,9 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "source": scene.source_label or f"{stamp(scene.start)} - {stamp(scene.end)}",
                 "frames": [str((frames_dir / f"scene{scene.number:02d}_{i}.jpg")
                                .relative_to(REPO_ROOT)) for i in range(1, 5)],
+                "candidate_strip": str((frames_dir / f"scene{scene.number:02d}_candidates.jpg")
+                                       .relative_to(REPO_ROOT)),
+                "candidate_times": (candidates or {}).get(scene.number, []),
                 "crop_x": 0.5,
                 "crop_y": 0.5,
                 "zoom": 1.0,
@@ -474,7 +654,8 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
 
 
 def stage_analyze(source: Path, scenes: list[Scene], work: Path, video_id: str,
-                  index: int, auto: bool, rescan: set[int] | None) -> dict:
+                  index: int, auto: bool, rescan: set[int] | None,
+                  guide: dict | None = None) -> dict:
     stage("Stage 3, frame analysis")
     frames_dir = work / f"short{index}" / "frames"
     edits_path = work / f"short{index}" / "edits.json"
@@ -495,10 +676,19 @@ def stage_analyze(source: Path, scenes: list[Scene], work: Path, video_id: str,
             code=2)
 
     if existing is None:
+        source_seconds = media_duration(source)
+        candidates = scene_candidates(scenes, video_id, guide or {}, source_seconds)
         for scene in scenes:
             say(f"scene {scene.number}: keyframes from {stamp(scene.start)} to {stamp(scene.end)}")
             extract_keyframes(source, scene, frames_dir)
-        skeleton = edit_skeleton(scenes, video_id, index, frames_dir)
+            marks = candidates.get(scene.number) or []
+            if marks:
+                contact_strip(source, marks,
+                              frames_dir / f"scene{scene.number:02d}_candidates.jpg")
+                say(f"  {len(marks)} candidate moments: "
+                    + ", ".join(stamp(m) for m in marks[:6])
+                    + ("..." if len(marks) > 6 else ""))
+        skeleton = edit_skeleton(scenes, video_id, index, frames_dir, candidates)
         edits_path.write_text(json.dumps(skeleton, indent=2), encoding="utf-8")
         existing = skeleton
 
@@ -511,8 +701,11 @@ def stage_analyze(source: Path, scenes: list[Scene], work: Path, video_id: str,
             "frames are waiting on your eyes.\n"
             f"  Frames:    {frames_dir.relative_to(REPO_ROOT)}\n"
             f"  Decisions: {edits_path.relative_to(REPO_ROOT)}\n"
-            "  Look at every frame, fill in crop_x, punch_in, and annotation coordinates,\n"
-            '  set "analyzed": true, then run this same command again.',
+            "  Read each scene's candidate_strip first. It holds every moment in the\n"
+            "  episode where Mike is on that subject, one tile per moment, timestamped,\n"
+            "  with the 9:16 window drawn on. Pick the tile that shows the FEATURE and\n"
+            "  write its timestamp into source, then set crop_x, pan, and face.\n"
+            '  Set "analyzed": true and run this same command again.',
             code=2,
         )
     say(f"edit decisions: {edits_path.relative_to(REPO_ROOT)}")
@@ -569,6 +762,47 @@ def annotation_is_placed(annotation: dict) -> bool:
 # --------------------------------------------------------------------------
 # stage 4: voice over
 # --------------------------------------------------------------------------
+
+# Words the model reads wrong no matter how the sentence is built. The left side
+# is what the script says, the right side is what gets sent to ElevenLabs. The
+# captions still show the real spelling, the swap is reversed on the way back.
+PRONUNCIATION = {
+    "niche": "nitch",
+    "niches": "nitches",
+    "quartzite": "kwartz-ite",
+    "soffit": "sof-it",
+    "shiplap": "ship-lap",
+}
+
+
+def _match_case(source: str, replacement: str) -> str:
+    if source.isupper():
+        return replacement.upper()
+    if source[:1].isupper():
+        return replacement.capitalize()
+    return replacement
+
+
+def respell_for_voice(text: str) -> str:
+    """Spell the awkward words the way the voice model needs to hear them."""
+    def swap(match):
+        word = match.group(0)
+        return _match_case(word, PRONUNCIATION[word.lower()])
+    if not PRONUNCIATION:
+        return text
+    pattern = r"\b(" + "|".join(sorted(PRONUNCIATION, key=len, reverse=True)) + r")\b"
+    return re.sub(pattern, swap, text, flags=re.IGNORECASE)
+
+
+def respell_for_screen(text: str) -> str:
+    """Undo respell_for_voice, so a caption never shows the phonetic spelling."""
+    back = {v.lower(): k for k, v in PRONUNCIATION.items()}
+    if not back:
+        return text
+    pattern = r"\b(" + "|".join(sorted(back, key=len, reverse=True)) + r")\b"
+    return re.sub(pattern, lambda m: _match_case(m.group(0), back[m.group(0).lower()]),
+                  text, flags=re.IGNORECASE)
+
 
 def word_is_emphasis(word: str) -> bool:
     letters = "".join(c for c in word if c.isalpha())
@@ -633,7 +867,8 @@ def phrases_from_alignment(chars: list[str], starts: list[float],
         index += 1
 
     phrases = [{
-        "words": [{"text": w["text"], "emph": word_is_emphasis(w["text"])} for w in g],
+        "words": [{"text": respell_for_screen(w["text"]),
+                   "emph": word_is_emphasis(w["text"])} for w in g],
         "start": round(g[0]["start"], 3),
         "end": round(g[-1]["end"], 3),
     } for g in groups if g]
@@ -714,7 +949,8 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
         f"similarity {settings['similarity']}")
 
     lines_dir = work / f"short{index}" / "vo_lines"
-    texts = [" ".join((scene.vo or "").split()) for scene in scenes]
+    # The voice hears the respelled text, the screen always shows the real one.
+    texts = [respell_for_voice(" ".join((scene.vo or "").split())) for scene in scenes]
     if not any(texts):
         die("no per scene VO lines in the guide, nothing to synthesize")
 
@@ -952,6 +1188,43 @@ def place_caption(block: float, zone: str, face) -> float:
     return TOP_SAFE if (top - TOP_SAFE) >= (lowest - bottom) else clamp(lowest)
 
 
+def caption_plate(draw, canvas, lines: list[str], font, path_unused=None,
+                  baseline: float = CAPTION_BASELINE, face=None) -> None:
+    """Draw the house caption: one green plate, white text, sitting on a baseline.
+
+    The plate is as wide as its longest line and grows upward, so the bottom
+    edge never moves between cards. If Mike's head is in the band the whole
+    plate lifts above it rather than crossing his face.
+    """
+    from PIL import Image, ImageDraw
+
+    widths = [draw.textlength(line, font=font) for line in lines]
+    plate_w = int(max(widths) + CAPTION_PAD_X * 2)
+    plate_h = int(CAPTION_LINE * len(lines))
+    bottom = H * baseline
+    top = bottom - plate_h
+
+    if face:
+        head_top, head_bottom = face[1] - FACE_PAD, face[3] + FACE_PAD
+        if top < head_bottom and bottom > head_top:
+            lifted = head_top - plate_h
+            if lifted >= TOP_SAFE:
+                top, bottom = lifted, head_top
+            elif head_bottom + plate_h <= BOTTOM_SAFE:
+                top, bottom = head_bottom, head_bottom + plate_h
+
+    x0 = int(W / 2 - plate_w / 2)
+    draw.rectangle([x0, int(top), x0 + plate_w, int(top + plate_h)],
+                   fill=CAPTION_GREEN + (255,))
+
+    ascent, descent = font.getmetrics()
+    for row, line in enumerate(lines):
+        row_top = top + row * CAPTION_LINE
+        y = row_top + (CAPTION_LINE - (ascent + descent)) / 2
+        draw.text((W / 2 - widths[row] / 2, y), line, font=font,
+                  fill=(255, 255, 255, 255))
+
+
 def draw_caption(text: str, zone: str, font_path: str | None, path: Path,
                  face=None) -> Path | None:
     from PIL import Image, ImageDraw, ImageFont
@@ -961,28 +1234,10 @@ def draw_caption(text: str, zone: str, font_path: str | None, path: Path,
         return None
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
-    size = 86 if zone == "hook" else 68
-    font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
-
-    lines = wrap_caption(text.upper(), font, int(W * 0.84), draw)
-    line_height = size * 1.22
-    block = line_height * len(lines)
-
-    # a tall block against a big face: shrink once rather than crowd him
-    if face and block > (H * 0.34):
-        size = int(size * 0.85)
-        font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
-        lines = wrap_caption(text.upper(), font, int(W * 0.88), draw)
-        line_height = size * 1.22
-        block = line_height * len(lines)
-
-    top = place_caption(block, zone, face)
-
-    for row, line in enumerate(lines):
-        width = draw.textlength(line, font=font)
-        draw.text((W / 2 - width / 2, top + row * line_height), line, font=font,
-                  fill=(255, 255, 255, 255), stroke_width=max(6, size // 12),
-                  stroke_fill=(0, 0, 0, 255))
+    font = (ImageFont.truetype(font_path, CAPTION_SIZE) if font_path
+            else ImageFont.load_default(CAPTION_SIZE))
+    lines = wrap_caption(text.upper(), font, int(W * CAPTION_WRAP), draw)
+    caption_plate(draw, canvas, lines, font, face=face)
     canvas.save(path)
     return path
 
@@ -1056,31 +1311,24 @@ def measure_words(words, font, draw, max_width):
 
 
 def draw_subtitle(words, font_path: str | None, size: int, top: float,
-                  path: Path) -> tuple[Path, float]:
-    """One subtitle card. Emphasis words come through in brand green."""
+                  path: Path, face=None) -> tuple[Path, float]:
+    """One subtitle card, drawn on the same green plate as every other caption.
+
+    top is ignored, the plate sits on the house baseline so the bottom edge
+    never moves from card to card. Emphasis is not coloured here, the reference
+    Short runs every word in plain white.
+    """
     from PIL import Image, ImageDraw, ImageFont
 
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
     font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
 
-    upper = [{"text": w["text"].upper(), "emph": w.get("emph")} for w in words]
-    lines = measure_words(upper, font, draw, int(W * 0.84))
-    line_height = size * 1.2
-    space = draw.textlength(" ", font=font)
-    stroke = max(6, size // 11)
-
-    for row, line in enumerate(lines):
-        total = sum(draw.textlength(w["text"], font=font) for w in line) + space * (len(line) - 1)
-        x = W / 2 - total / 2
-        y = top + row * line_height
-        for word in line:
-            draw.text((x, y), word["text"], font=font,
-                      fill=EMPHASIS_GREEN if word["emph"] else (255, 255, 255, 255),
-                      stroke_width=stroke, stroke_fill=(0, 0, 0, 255))
-            x += draw.textlength(word["text"], font=font) + space
+    text = " ".join(w["text"] for w in words).upper()
+    lines = wrap_caption(text, font, int(W * CAPTION_WRAP), draw)
+    caption_plate(draw, canvas, lines, font, face=face)
     canvas.save(path)
-    return path, line_height * len(lines)
+    return path, CAPTION_LINE * len(lines)
 
 
 def subtitle_block_height(phrases, font_path: str | None, size: int) -> float:
@@ -1092,35 +1340,79 @@ def subtitle_block_height(phrases, font_path: str | None, size: int) -> float:
     font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
     tallest = 0.0
     for phrase in phrases:
-        upper = [{"text": w["text"].upper(), "emph": w.get("emph")} for w in phrase["words"]]
-        lines = measure_words(upper, font, draw, int(W * 0.84))
-        tallest = max(tallest, size * 1.2 * len(lines))
+        text = " ".join(w["text"] for w in phrase["words"]).upper()
+        lines = wrap_caption(text, font, int(W * CAPTION_WRAP), draw)
+        tallest = max(tallest, CAPTION_LINE * len(lines))
     return tallest
 
 
-def draw_cta_frame(text: str, font_path: str | None, path: Path,
-                   watermark: Path | None = None) -> Path:
+def draw_cta_stickers(text: str, handle: str, display_font: str | None,
+                      body_font: str | None, path: Path) -> Path:
+    """The end card, drawn as a transparent plate to lay over live footage.
+
+    One sticker per line, alternating white plate with green type and green
+    plate with white type, each tilted a degree or two so the stack reads as
+    stickers rather than a lower third. The handle sits under it in a pill.
+    """
     from PIL import Image, ImageDraw, ImageFont
 
-    canvas = Image.new("RGB", (W, H), (22, 24, 26))
-    draw = ImageDraw.Draw(canvas)
-    font = ImageFont.truetype(font_path, 92) if font_path else ImageFont.load_default(92)
+    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    probe = ImageDraw.Draw(canvas)
+    font = (ImageFont.truetype(display_font, CTA_FONT_SIZE) if display_font
+            else ImageFont.load_default(CTA_FONT_SIZE))
 
-    lines = wrap_caption(text.strip().upper(), font, int(W * 0.8), draw)
-    line_height = 92 * 1.24
-    top = H / 2 - (line_height * len(lines)) / 2
+    # Short lines. The stack reads as stickers only when each one is a beat of
+    # its own, so an explicit newline in the guide wins and the auto wrap is tight.
+    raw = [part.strip() for part in text.strip().upper().split("\n") if part.strip()]
+    lines = []
+    for part in raw:
+        lines.extend(wrap_caption(part, font, int(W * 0.52), probe))
+    ascent, descent = font.getmetrics()
+    cap = ascent - descent // 2
+    box_h = cap + CTA_PAD_Y * 2
+    green, white = CAPTION_GREEN + (255,), (255, 255, 255, 255)
+
+    plates = []
     for row, line in enumerate(lines):
-        width = draw.textlength(line, font=font)
-        draw.text((W / 2 - width / 2, top + row * line_height), line, font=font,
-                  fill=(255, 255, 255))
-    bar = 14
-    draw.rectangle([0, H // 2 - int(line_height * len(lines) / 2) - 90,
-                    W, H // 2 - int(line_height * len(lines) / 2) - 90 + bar], fill=BRAND_GREEN)
+        text_w = probe.textlength(line, font=font)
+        box_w = int(text_w + CTA_PAD_X * 2)
+        plate = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+        pen = ImageDraw.Draw(plate)
+        fill = white if row % 2 == 0 else green
+        ink = green if row % 2 == 0 else white
+        pen.rounded_rectangle([0, 0, box_w - 1, box_h - 1], radius=16, fill=fill)
+        pen.text((CTA_PAD_X, CTA_PAD_Y - descent // 2), line, font=font, fill=ink)
+        plates.append(plate.rotate(CTA_TILTS[row % len(CTA_TILTS)], expand=True,
+                                   resample=Image.BICUBIC))
 
-    if watermark:
-        with Image.open(watermark) as plate:
-            canvas = Image.alpha_composite(canvas.convert("RGBA"),
-                                           plate.convert("RGBA")).convert("RGB")
+    handle_plate = None
+    if handle:
+        hfont = (ImageFont.truetype(body_font, 34) if body_font
+                 else ImageFont.load_default(34))
+        label = handle.strip().upper()
+        text_w = probe.textlength(label, font=hfont)
+        icon = 46
+        pill_h, gap = 84, 14
+        pill_w = int(text_w + icon + gap + 26 * 2)
+        handle_plate = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
+        pen = ImageDraw.Draw(handle_plate)
+        pen.rounded_rectangle([0, 0, pill_w - 1, pill_h - 1], radius=pill_h // 2, fill=green)
+        cx, cy = 26 + icon / 2, pill_h / 2
+        pen.ellipse([cx - icon / 2, cy - icon / 2, cx + icon / 2, cy + icon / 2], fill=white)
+        pen.polygon([(cx - 7, cy - 11), (cx - 7, cy + 11), (cx + 12, cy)], fill=green)
+        ha, hd = hfont.getmetrics()
+        pen.text((26 + icon + gap, cy - (ha + hd) / 2 + 2), label, font=hfont, fill=white)
+
+    overlap = 6
+    stack_h = sum(plate.height for plate in plates) - overlap * (len(plates) - 1)
+    total = stack_h + (handle_plate.height + 30 if handle_plate else 0)
+    y = int(H * 0.48 - total / 2)
+    for plate in plates:
+        canvas.alpha_composite(plate, (int(W / 2 - plate.width / 2), y))
+        y += plate.height - overlap
+    if handle_plate:
+        canvas.alpha_composite(handle_plate,
+                               (int(W / 2 - handle_plate.width / 2), y + 30))
     canvas.save(path)
     return path
 
@@ -1305,14 +1597,33 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
     run(cmd)
 
 
-def render_cta(text: str, font_path: str | None, parts: Path, watermark: Path | None,
-               destination: Path) -> None:
-    png = draw_cta_frame(text, font_path, parts / "cta.png", watermark)
-    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-         "-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(png),
-         "-f", "lavfi", "-t", f"{CTA_SECONDS}", "-i", "anullsrc=r=48000:cl=stereo",
-         "-vf", f"scale={W}:{H},setsar=1,fps={FPS},format=yuv420p",
-         "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+def render_cta(text: str, handle: str, display_font: str | None, body_font: str | None,
+               parts: Path, watermark: Path | None, destination: Path,
+               source: Path, start: float, src_w: int, src_h: int,
+               crop_x: float = 0.5, zoom: float = 1.0) -> None:
+    """The end card plays over live footage, not over a black card.
+
+    The reference Short holds the last reveal shot and lays the sticker stack on
+    top of it, so the video never goes dead before the viewer decides to follow.
+    """
+    png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
+    crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, crop_x, zoom, 0.5)
+    chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos,"
+             f"setsar=1,fps={FPS}[base]",
+             "[base][1:v]overlay=0:0[withcta]"]
+    inputs = ["-ss", f"{start:.3f}", "-t", f"{CTA_SECONDS}", "-i", str(source),
+              "-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(png)]
+    if watermark:
+        inputs += ["-loop", "1", "-t", f"{CTA_SECONDS}", "-i", str(watermark)]
+        chain.append("[withcta][2:v]overlay=0:0[v]")
+    else:
+        chain.append("[withcta]copy[v]")
+    silence = 3 if watermark else 2
+    inputs += ["-f", "lavfi", "-t", f"{CTA_SECONDS}", "-i", "anullsrc=r=48000:cl=stereo"]
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", *inputs,
+         "-filter_complex", ";".join(chain), "-map", "[v]", "-map", f"{silence}:a",
+         "-t", f"{CTA_SECONDS}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+         "-pix_fmt", "yuv420p", "-r", str(FPS),
          "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
          "-video_track_timescale", "30000", str(destination)])
 
@@ -1459,7 +1770,8 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                    vo_lines: list[dict] | None, work: Path, index: int, slug: str,
                    font_path: str | None, music: Path | None,
                    watermark: Path | None, caption_mode: str = "labels",
-                   location_level: float = 0.0) -> tuple[Path, list[float]]:
+                   location_level: float = 0.0,
+                   display_font: str | None = None) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -1542,9 +1854,18 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
             share += member.duration * (measured / max(held.duration, 0.01))
         elapsed += measured
 
-    cta_text = short.get("cta_frame") or short.get("cta", {}).get("primary") or "Follow for more"
+    cta_text = short.get("cta_frame") or CTA_DEFAULT
+    handle = guide.get("handle", CTA_HANDLE)
+    # The end card holds live footage. Prefer a range the guide names, otherwise
+    # carry on straight out of the last scene so the picture never goes dead.
+    cta_start, cta_crop, cta_zoom = scenes[-1].end, scenes[-1].crop_x, scenes[-1].zoom
+    if short.get("cta_source"):
+        cta_start = parse_range(short["cta_source"])[0]
+    if cta_start + CTA_SECONDS > source_seconds:
+        cta_start = max(0.0, source_seconds - CTA_SECONDS)
     cta_clip = parts / "cta.mp4"
-    render_cta(cta_text, font_path, parts, watermark, cta_clip)
+    render_cta(cta_text, handle, display_font or font_path, font_path, parts, watermark,
+               cta_clip, source, cta_start, src_w, src_h, cta_crop, cta_zoom)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -1724,7 +2045,7 @@ def main() -> None:
     parser.add_argument("--voice-id", default=None, help="ElevenLabs voice id for Mike")
     parser.add_argument("--model-id", default=ELEVEN_DEFAULT_MODEL)
     parser.add_argument("--captions", choices=["subtitles", "labels", "both"],
-                        default="labels",
+                        default="subtitles",
                         help="subtitles follow what Mike actually says, labels are the "
                              "guide's summary captions, both draws each in its own band")
     parser.add_argument("--location-audio", type=float, default=0.0,
@@ -1788,7 +2109,8 @@ def main() -> None:
     source = stage_download(args.url, work, args.redownload, args.source, cookies)
 
     rescan = {int(n) for n in args.rescan.split(",") if n.strip()} if args.rescan else None
-    edits = stage_analyze(source, scenes, work, video_id, args.number, args.auto, rescan)
+    edits = stage_analyze(source, scenes, work, video_id, args.number, args.auto,
+                          rescan, guide)
     apply_edits(scenes, edits)
 
     voice_settings = {"stability": args.stability, "style": args.style,
@@ -1813,17 +2135,19 @@ def main() -> None:
         if logo is None:
             say("no logo in assets/, building without the watermark")
         else:
+            # Measured off the channel's own Shorts: hard into the corner.
             watermark = build_watermark(logo, work / "watermark.png",
-                                        args.logo_width, 40, 52, args.logo_opacity)
+                                        args.logo_width, 16, 26, args.logo_opacity)
             from PIL import Image
             with Image.open(watermark) as plate:
                 mark = plate.getchannel("A").getbbox()
             say(f"watermark: {logo.name}, top right, "
                 f"{(mark[2] - mark[0]) if mark else 0}px wide")
 
+    display_font = find_font(DISPLAY_FONT_CANDIDATES)
     final, starts = stage_assemble(scenes, short, guide, source, vo_lines, work, args.number,
                                    slug, font_path, music, watermark, args.captions,
-                                   args.location_audio)
+                                   args.location_audio, display_font)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 

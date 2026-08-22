@@ -12,10 +12,15 @@ editor handoff as a branded PDF.
 
 > Here is the transcript for [EPISODE NAME] create a youtube short script ready
 
-**Output:** a Shorts VO script already formatted for ElevenLabs, then an edit
-map of source timestamps and what each frame shows. Nothing else, no titles,
+**Output:** a Shorts VO script ready to paste into ElevenLabs, then an edit map
+of source timestamps and what each frame shows. Nothing else, no titles,
 descriptions, or hashtags unless you ask. Ends with a one line offer of an A/B
 alternate, same cut, entirely reworded narration.
+
+The format is a **reveal tour**: the transformation in one sentence, who it was
+for, the turn, then six to ten named features one per line. Plain prose, 145 to
+175 words, 50 to 60 seconds. The end card carries the call to action, not the
+narration.
 
 Lives in `.claude/skills/remodel-king-shorts/SKILL.md`.
 
@@ -25,11 +30,9 @@ Lives in `.claude/skills/remodel-king-shorts/SKILL.md`.
 
 > build the production guide for [YouTube URL]
 
-The input is a URL, not a transcript. The skill fetches the timestamped
-transcript itself, then builds the guide. Default output is two Shorts forming
-a mini funnel, Short 1 a homeowner problem hook and Short 2 the contractor
-solution proof, published in that order. Override the count or the angle per
-episode just by saying so.
+The input is a URL or a local master, not a transcript. The skill transcribes
+the episode with whisper itself, then builds the guide. **One Short per
+episode.** Override the angle per episode just by saying so.
 
 Each Short section carries an overview, 3 to 4 longtail SEO title options, a
 scene by scene table with source footage timestamps, the full paste-ready
@@ -41,20 +44,31 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 
 ## House rules baked into both skills
 
+- **Frame the feature, not the talker.** Cropping 16:9 to 9:16 throws away two
+  thirds of the picture, so the crop decides the entire shot. If the line is
+  about the niche, the niche fills the window and Mike sits outside it. A Short
+  where the window keeps landing on him is the failure mode.
 - Mike's footage is only pre-demo walkthroughs, progress state shots, and final
   reveals. He never films workers or active construction, so edit notes never
   ask for demo or installation footage.
-- Cost is never the closer. Mike builds cost reveals as end slides by hand.
+- The finished house carries the Short. Before footage is the hook and at most
+  one beat after it.
+- Cost is never the closer. Mike builds cost reveals as end slides by hand, and
+  the price segment goes in `avoid_ranges` so no scene can land on it.
 - Nothing is ever laid over Mike's face, captions included.
 - No zoom beyond what makes the shot vertical, 178 percent on a 16:9 clip. The
-  frame pans to the subject instead of punching in.
+  source is handheld and already moves, so `pan` stays null by default.
 - No repeated footage, within a Short or across an episode's Shorts. Two lines
   can share one shot, but only as a single continuous take: they render as one
   clip, so an action like a door closing finishes without a cut through it. The build warns on repeats and on cuts between near identical frames.
 - Frame the feature, not the talker. If the line is about the vanity, the vanity
   fills the window. Mike carries the hook and the CTA, not every beat.
-- First person, Mike's voice, facts only from the transcript.
-- ElevenLabs formatting applied directly to the script.
+- First person for the work, third person for the homeowner, facts only from
+  the transcript.
+- Plain prose. No ALL CAPS emphasis markers, no stacked exclamation points, no
+  rhetorical questions.
+- Words the voice model reads wrong are respelled on the way to ElevenLabs and
+  put back to the real spelling on screen. "niche" is sent as "nitch".
 - No em dashes, anywhere, ever.
 
 ## Setup, once
@@ -158,11 +172,14 @@ Three tiers, cheapest first, all producing the same timestamped JSON:
 
 | Tier | How | When it runs |
 | --- | --- | --- |
-| 1 | `youtube-transcript-api` | First. Fast, no download. Commonly blocked by IP from cloud containers, and it fails fast when it is |
-| 2 | `yt-dlp` subtitles, json3 or vtt, published track preferred over auto | When tier 1 fails. This is the tier that works from a cloud session |
-| 3 | `yt-dlp` audio plus `faster-whisper` | Only when a video genuinely has no captions. Installs itself on demand, so it stays out of `requirements.txt` and out of session startup |
+| 1 | `faster-whisper` on the audio, from `--source` or pulled with `yt-dlp` | **First, by default.** The only tier that returns punctuation, sentence boundaries, and word level timings, which is what the guide and the shot anchoring are written from |
+| 2 | `youtube-transcript-api` | When whisper cannot get the audio |
+| 3 | `yt-dlp` subtitles, json3 or vtt, published track preferred over auto | When tier 2 is blocked by IP, which is normal from a cloud container |
 
-Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
+Auto captions arrive with no punctuation and mangle trade words, and a guide
+written from them inherits both, so the extra minute of transcription is worth
+it. `--captions-first` flips the order for a quick scan. `--no-auto-install`
+stops whisper installing itself.
 
 ## What the assembly actually does
 
@@ -172,12 +189,12 @@ Nothing to configure. `--no-auto-install` stops tier 3 from installing itself.
 | Crop | 9:16 window at the per scene `crop_x`, scaled to 1080x1920 |
 | Motion | The frame pans across the shot and settles on the feature Mike is naming, the way it would be keyframed by hand. Scaling is only ever what filling the 9:16 frame requires, there is no punch in on top |
 | Annotations | Arrows and highlight boxes in brand green `#0E9346`, placed where the pan lands and held once it settles, so they never slide across the shot |
-| Captions | Summary label per scene by default, bold white with a black outline, burned in, hook upper third and support lower third, never across Mike's face. `--captions subtitles` switches to word for word subtitles timed from ElevenLabs character timestamps, `both` draws each in its own band |
+| Captions | The spoken words, four to six at a time, timed from ElevenLabs character timestamps. White Montserrat ExtraBold on a solid green plate, no outline, sitting on a fixed baseline at 0.746 of frame height so the bottom edge never moves between cards. Lifts clear of Mike's face when he is in the band. `--captions labels` switches to the guide's summary captions |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, locked to the corner while the picture pans |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
 | Audio | Mike's VO only. The original location audio is MUTED, `--location-audio 0.03` brings back the old low bed. Impact on frame one, whoosh at the problem to solution shift, optional music bed at 6 percent, limited at 0.95, padded to the picture |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
-| End | Simple text CTA frame, 2.4 seconds, no long end card |
+| End | 3 seconds of live footage carrying a stack of tilted stickers, alternating white and green, plus the handle in a pill. Never a black card. `cta_frame` in the guide takes one line per sticker |
 
 See `assets/README.md` for the exact files to upload and what happens when one
 is missing. Nothing in `assets/` is required, a missing file is skipped with a
@@ -198,6 +215,7 @@ footer.
 | `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
 | `work/` | Source video, then per Short keyframes, edit decisions, VO lines, and scene clips under `work/[video_id]/short[n]/`. Gitignored, safe to delete |
 | `output/` | Finished PDFs, Shorts, and contact sheets |
+| `assets/fonts/` | Montserrat ExtraBold for captions, Anton for the end card, both committed so a fresh container renders identically |
 | `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py` |
 
 ## Requirements

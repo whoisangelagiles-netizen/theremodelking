@@ -1,6 +1,6 @@
 ---
 name: shorts-production-guide
-description: Build a full Editor Handoff Production Guide PDF for The Remodel King from a YouTube episode URL. Fetches the timestamped transcript from the URL, then produces a branded PDF containing two Shorts (a homeowner problem hook and a contractor solution proof), each with SEO title options, a scene by scene edit table with source footage timestamps, a paste-ready ElevenLabs VO block, voice direction, and CTA options. Use whenever the user says "build the production guide for [YouTube URL]", asks for an editor handoff document, a Shorts production guide, or a production guide PDF for an episode.
+description: Build one finished Short, or the Editor Handoff Production Guide PDF, for The Remodel King from a YouTube URL or a local master. Transcribes the episode with whisper, scans it for the strongest reveal tour, then writes the guide JSON the build runs on, with SEO title options, a scene by scene edit table anchored to source timestamps, the paste-ready ElevenLabs VO block, and CTA options. Use whenever the user says "build the production guide for [URL]", "make a short for this one", asks for an editor handoff document, a Shorts production guide, or a production guide PDF for an episode.
 ---
 
 # Shorts Production Guide
@@ -25,24 +25,26 @@ here. Read that skill first if it is not already loaded. In particular:
   call for footage of demo or installation happening.
 - NEVER close on project cost or budget. Mike handles cost reveals with end
   slides he builds manually. Do not flag a missing cost as an issue.
-- ElevenLabs formatting applied directly to the VO: ALL CAPS on roughly 10 to
-  15 percent of words, ellipses before reveals with no space after, 3 to 5
-  exclamation points per Short, occasional rhetorical questions, staccato short
-  sentences, commas for flow, natural enthusiasm rather than hype.
+- Plain prose. No ALL CAPS emphasis markers, no stacked exclamation points, no
+  rhetorical questions. The original spec asked for those, Mike does not want
+  them, and the reference Short the channel publishes has none of them.
 - First person, Mike's voice. Every fact comes from the transcript.
-- The read must sound homeowner friendly, clear and conversational, confident
-  and expert, and tighter and more intentional than the original walkthrough
-  audio. Mark the words that carry the point so the team can paste the block
-  straight into ElevenLabs.
-- Leave a small pause between sentences so the cuts and the pans have room.
-- On screen text in the finished video is the SUMMARY LABEL per scene, the
-  caption column from the guide. `--captions subtitles` switches to word for
-  word subtitles timed to the read, `both` draws each in its own band.
+- The read is warm and unhurried, a contractor showing a friend the finished
+  room. The features carry it, the delivery does not push.
+- Lines run 8 to 15 words. One line is one shot, so a 20 word line is a seven
+  second hold on one frame, which is too long on a phone. Do NOT make every
+  shot the same length either, the variation is what stops it feeling like a
+  template.
+- On screen text is the SPOKEN WORDS, four to six at a time, on the green plate
+  in the lower third. That is the default. `--captions labels` switches to the
+  guide's summary captions.
 - The finished audio is Mike's VO alone. The original location audio is muted,
   not ducked, so nothing of the walkthrough track survives under the read.
 - Scale the shot JUST enough to fill the 9:16 frame, Premiere's 178 percent on a
   16:9 clip, and no more. No punch ins. `zoom` above 1.0 exists for a genuine
   detail framing on a 1080p or better source, and even then stays modest.
+- The source footage is handheld and already moves. Leave `pan` null and let
+  the camera do the moving, a synthetic pan on top of a moving shot fights it.
 - NEVER reuse footage, inside a Short or across the Shorts from one episode.
   Every second on screen should be a second the viewer has not already seen.
 - If two consecutive lines want the same shot, do NOT cut between them. Set
@@ -52,10 +54,12 @@ here. Read that skill first if it is not already loaded. In particular:
   still shows when it lands mid action, for instance while a door is swinging.
   Let the action finish inside the shot. The build warns on REPEAT for
   overlapping footage and JUMP CUT for a cut that lands too close to itself.
-- FRAME THE FEATURE, NOT THE TALKER. If the line is about the doors, the vanity,
-  the built-in or the niche, that is what fills the window, even when Mike is
-  the loudest thing in the source frame. He belongs in the hook and the CTA, not
-  in every beat. A Short where every scene is Mike talking is the failure mode.
+- FRAME THE FEATURE, NOT THE TALKER. This is the note the channel has already
+  given once, on a set of Shorts that got rejected for it. If the line is about
+  the niche, the niche fills the window, even when Mike is the loudest thing in
+  the source frame. Cropping 16:9 to 9:16 throws away two thirds of the picture,
+  so the crop decides the whole shot. A Short where the window keeps landing on
+  Mike is the failure mode, and "he is only at the edge of frame" is the target.
 - NEVER put captions, words, or graphics on Mike's face. Captions go above his
   head or below his chin, never across it. The build enforces this from the
   face box you record during frame analysis.
@@ -69,13 +73,18 @@ Run the fetcher before writing anything:
 
 ```bash
 python scripts/fetch_transcript.py "<YouTube URL>"
+python scripts/fetch_transcript.py <slug> --source work/<slug>/source.mp4   # local master
 ```
 
-It saves `transcripts/[video_id].json` with per line timestamps and prints the
-path. It tries three tiers by itself, the caption API, then yt-dlp subtitles,
-then faster-whisper on the downloaded audio, and every tier produces the same
-JSON shape. The `source` field records which one was used. Read that JSON and
-work only from it.
+Whisper runs FIRST and it is the tier you want. YouTube's auto captions arrive
+with no punctuation and mangle trade words, and every guide written from them
+inherits that. Whisper returns sentences, punctuation, and word level timings,
+which is what the shot anchoring in step 7 runs on. The caption tiers are only
+a fallback when the audio cannot be got hold of.
+
+It saves `transcripts/[video_id].json` and prints the path. The `source` field
+records which tier was used, confirm it says `faster-whisper`. Read that JSON
+and work only from it.
 
 The transcript timestamps become the Source Footage timestamp ranges in the
 scene tables. Never invent a timestamp. If a beat has no matching transcript
@@ -109,18 +118,16 @@ Then pick the best two and build the guide from those. Keep the scan in the
 guide JSON under `opportunities` so the content team sees what was considered
 and what was left on the table.
 
-## Step 3: default output is two Shorts, a mini funnel
+## Step 3: ONE Short per episode, a reveal tour
 
-Unless the user overrides it:
+One URL in, one Short out. The two Short funnel is retired.
 
-- **Short 1, homeowner problem hook.** The pain the homeowner recognizes in
-  their own house. Ends pointing at the fact that it is fixable.
-- **Short 2, contractor solution proof.** The proof that Mike solved it, built
-  on the reveal and the specific upgrades.
+The format is in the `remodel-king-shorts` skill and it is not optional:
+transformation line, homeowner context, the turn, then six to ten named
+features one per line, and the end card carries the call to action. Plain prose,
+145 to 175 words, 50 to 60 seconds.
 
-Publish order is Short 1 first, then Short 2. The user can override the count
-or the angle per episode. Honor the override and update the publish order logic
-section to match.
+The user can override the count or the angle per episode. Honour the override.
 
 ## Step 4: each Short section
 
@@ -206,12 +213,25 @@ this skill, save it to `guides/[slug].json` with the YouTube URL in
 
 ### Pause two, frame analysis. This one is yours to do with your eyes.
 
-The build extracts 4 keyframes per scene into
-`work/[video_id]/short[n]/frames/` and writes a skeleton
-`work/[video_id]/short[n]/edits.json`, then stops.
+For every scene the build writes TWO things into
+`work/[video_id]/short[n]/frames/`:
 
-Read every frame with the Read tool. Do not fill in numbers you have not
-looked at. For each scene write:
+- `sceneNN_candidates.jpg`, the one that matters. It holds every moment in the
+  episode where Mike is talking about that feature, found by matching the VO
+  line's content words against the whisper transcript, one tile per moment,
+  each stamped with its timestamp and with the 9:16 window drawn on. Mike
+  narrates while he points, so the frames around the words are the frames that
+  show the thing.
+- `sceneNN_1..4.jpg`, four stills from whatever range the guide named.
+
+**Read the candidate strip first.** Pick the tile that shows the FEATURE, write
+its timestamp into `source`, then set `crop_x` so the feature sits inside the
+window and Mike sits outside it. If none of the tiles show the feature, widen
+the search yourself: grab frames every half second across the window with ffmpeg
+and look again. Two seconds either side of a pick is often the difference
+between the lit mirror and a blurred wall.
+
+Do not fill in numbers you have not looked at. For each scene write:
 
 - `crop_x`, the horizontal center of the 9:16 window as 0 to 1 across the full
   source frame. 0.5 is dead center. Move it so the subject and the feature the
@@ -248,9 +268,23 @@ The build finishes and writes:
 - `output/[slug]-short-[n]-FINAL.mp4`, 1080x1920, publish ready
 - `output/[slug]-short-[n]-contact-sheet.jpg`, one frame per scene
 
-Read the contact sheet before you tell the user it is done. If a caption sits
-over a face, a crop cuts the feature, or an arrow points at nothing, fix the
-numbers and rebuild. Send the user both files with SendUserFile.
+Read the contact sheet before you tell the user it is done, and check every
+single tile. If a crop landed on Mike instead of the feature, if a tile shows a
+blurred camera swing, or if a caption sits over a face, fix the numbers and
+rebuild. A tile that is "close enough" is the thing that got a set of Shorts
+rejected.
+
+A finished Short is around 40MB, over the 30MB chat upload limit, so encode a
+preview next to it before sending:
+
+```bash
+ffmpeg -y -i output/[name]-FINAL.mp4 -c:v libx264 -preset slow -crf 26 \
+  -maxrate 3200k -bufsize 6400k -pix_fmt yuv420p -c:a aac -b:a 128k \
+  output/[name]-preview.mp4
+```
+
+Send the preview with SendUserFile and say the full quality master is in
+`output/`.
 
 `--auto` skips the analysis pause with center crop defaults. It is for a quick
 technical check only, never for a Short that gets published.

@@ -1,0 +1,960 @@
+{
+  "video_id": "reference-angela-mountaineer",
+  "url": "https://www.youtube.com/watch?v=reference-angela-mountaineer",
+  "source": "faster-whisper",
+  "language": "en",
+  "duration": 63.28,
+  "line_count": 11,
+  "lines": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 4.66,
+      "timestamp": "0:00",
+      "range": "0:00 - 0:04",
+      "text": "This master bathroom went from dated to a total showpiece. They love mountain climbing,",
+      "words": [
+        {
+          "word": "This",
+          "start": 0.0,
+          "end": 0.28
+        },
+        {
+          "word": "master",
+          "start": 0.28,
+          "end": 0.6
+        },
+        {
+          "word": "bathroom",
+          "start": 0.6,
+          "end": 0.96
+        },
+        {
+          "word": "went",
+          "start": 0.96,
+          "end": 1.22
+        },
+        {
+          "word": "from",
+          "start": 1.22,
+          "end": 1.42
+        },
+        {
+          "word": "dated",
+          "start": 1.42,
+          "end": 1.7
+        },
+        {
+          "word": "to",
+          "start": 1.7,
+          "end": 1.94
+        },
+        {
+          "word": "a",
+          "start": 1.94,
+          "end": 2.08
+        },
+        {
+          "word": "total",
+          "start": 2.08,
+          "end": 2.34
+        },
+        {
+          "word": "showpiece.",
+          "start": 2.34,
+          "end": 2.8
+        },
+        {
+          "word": "They",
+          "start": 3.32,
+          "end": 3.48
+        },
+        {
+          "word": "love",
+          "start": 3.48,
+          "end": 3.9
+        },
+        {
+          "word": "mountain",
+          "start": 3.9,
+          "end": 4.3
+        },
+        {
+          "word": "climbing,",
+          "start": 4.3,
+          "end": 4.66
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "start": 5.12,
+      "end": 9.64,
+      "timestamp": "0:05",
+      "range": "0:05 - 0:09",
+      "text": "so this master bath was built around those red rock colors they had throughout the house",
+      "words": [
+        {
+          "word": "so",
+          "start": 5.12,
+          "end": 5.58
+        },
+        {
+          "word": "this",
+          "start": 5.58,
+          "end": 5.76
+        },
+        {
+          "word": "master",
+          "start": 5.76,
+          "end": 6.12
+        },
+        {
+          "word": "bath",
+          "start": 6.12,
+          "end": 6.44
+        },
+        {
+          "word": "was",
+          "start": 6.44,
+          "end": 6.64
+        },
+        {
+          "word": "built",
+          "start": 6.64,
+          "end": 6.9
+        },
+        {
+          "word": "around",
+          "start": 6.9,
+          "end": 7.24
+        },
+        {
+          "word": "those",
+          "start": 7.24,
+          "end": 7.54
+        },
+        {
+          "word": "red",
+          "start": 7.54,
+          "end": 7.84
+        },
+        {
+          "word": "rock",
+          "start": 7.84,
+          "end": 8.08
+        },
+        {
+          "word": "colors",
+          "start": 8.08,
+          "end": 8.42
+        },
+        {
+          "word": "they",
+          "start": 8.42,
+          "end": 8.64
+        },
+        {
+          "word": "had",
+          "start": 8.64,
+          "end": 8.82
+        },
+        {
+          "word": "throughout",
+          "start": 8.82,
+          "end": 9.04
+        },
+        {
+          "word": "the",
+          "start": 9.04,
+          "end": 9.32
+        },
+        {
+          "word": "house",
+          "start": 9.32,
+          "end": 9.64
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "start": 10.28,
+      "end": 16.24,
+      "timestamp": "0:10",
+      "range": "0:10 - 0:16",
+      "text": "and we completely transformed it. We tore out the old jetted tub and turned that whole space",
+      "words": [
+        {
+          "word": "and",
+          "start": 10.28,
+          "end": 10.56
+        },
+        {
+          "word": "we",
+          "start": 10.56,
+          "end": 10.68
+        },
+        {
+          "word": "completely",
+          "start": 10.68,
+          "end": 11.22
+        },
+        {
+          "word": "transformed",
+          "start": 11.22,
+          "end": 11.72
+        },
+        {
+          "word": "it.",
+          "start": 11.72,
+          "end": 12.04
+        },
+        {
+          "word": "We",
+          "start": 12.66,
+          "end": 12.84
+        },
+        {
+          "word": "tore",
+          "start": 12.84,
+          "end": 13.1
+        },
+        {
+          "word": "out",
+          "start": 13.1,
+          "end": 13.3
+        },
+        {
+          "word": "the",
+          "start": 13.3,
+          "end": 13.46
+        },
+        {
+          "word": "old",
+          "start": 13.46,
+          "end": 13.74
+        },
+        {
+          "word": "jetted",
+          "start": 13.74,
+          "end": 14.08
+        },
+        {
+          "word": "tub",
+          "start": 14.08,
+          "end": 14.44
+        },
+        {
+          "word": "and",
+          "start": 14.44,
+          "end": 15.28
+        },
+        {
+          "word": "turned",
+          "start": 15.28,
+          "end": 15.54
+        },
+        {
+          "word": "that",
+          "start": 15.54,
+          "end": 15.76
+        },
+        {
+          "word": "whole",
+          "start": 15.76,
+          "end": 15.94
+        },
+        {
+          "word": "space",
+          "start": 15.94,
+          "end": 16.24
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "start": 16.24,
+      "end": 22.5,
+      "timestamp": "0:16",
+      "range": "0:16 - 0:22",
+      "text": "into the shower. The shower is the star. The homeowner fell in love with it, paired with a",
+      "words": [
+        {
+          "word": "into",
+          "start": 16.24,
+          "end": 16.54
+        },
+        {
+          "word": "the",
+          "start": 16.54,
+          "end": 16.72
+        },
+        {
+          "word": "shower.",
+          "start": 16.72,
+          "end": 17.04
+        },
+        {
+          "word": "The",
+          "start": 17.6,
+          "end": 17.72
+        },
+        {
+          "word": "shower",
+          "start": 17.72,
+          "end": 18.06
+        },
+        {
+          "word": "is",
+          "start": 18.06,
+          "end": 18.34
+        },
+        {
+          "word": "the",
+          "start": 18.34,
+          "end": 18.52
+        },
+        {
+          "word": "star.",
+          "start": 18.52,
+          "end": 18.82
+        },
+        {
+          "word": "The",
+          "start": 19.52,
+          "end": 19.7
+        },
+        {
+          "word": "homeowner",
+          "start": 19.7,
+          "end": 20.16
+        },
+        {
+          "word": "fell",
+          "start": 20.16,
+          "end": 20.42
+        },
+        {
+          "word": "in",
+          "start": 20.42,
+          "end": 20.6
+        },
+        {
+          "word": "love",
+          "start": 20.6,
+          "end": 20.78
+        },
+        {
+          "word": "with",
+          "start": 20.78,
+          "end": 21.0
+        },
+        {
+          "word": "it,",
+          "start": 21.0,
+          "end": 21.2
+        },
+        {
+          "word": "paired",
+          "start": 21.7,
+          "end": 22.1
+        },
+        {
+          "word": "with",
+          "start": 22.1,
+          "end": 22.32
+        },
+        {
+          "word": "a",
+          "start": 22.32,
+          "end": 22.5
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "start": 22.5,
+      "end": 27.52,
+      "timestamp": "0:22",
+      "range": "0:22 - 0:27",
+      "text": "complimentary marble, and they matched the grain so it flows right down the walls",
+      "words": [
+        {
+          "word": "complimentary",
+          "start": 22.5,
+          "end": 22.96
+        },
+        {
+          "word": "marble,",
+          "start": 22.96,
+          "end": 23.56
+        },
+        {
+          "word": "and",
+          "start": 24.2,
+          "end": 24.5
+        },
+        {
+          "word": "they",
+          "start": 24.5,
+          "end": 24.64
+        },
+        {
+          "word": "matched",
+          "start": 24.64,
+          "end": 24.98
+        },
+        {
+          "word": "the",
+          "start": 24.98,
+          "end": 25.18
+        },
+        {
+          "word": "grain",
+          "start": 25.18,
+          "end": 25.46
+        },
+        {
+          "word": "so",
+          "start": 25.46,
+          "end": 26.08
+        },
+        {
+          "word": "it",
+          "start": 26.08,
+          "end": 26.22
+        },
+        {
+          "word": "flows",
+          "start": 26.22,
+          "end": 26.42
+        },
+        {
+          "word": "right",
+          "start": 26.42,
+          "end": 26.74
+        },
+        {
+          "word": "down",
+          "start": 26.74,
+          "end": 27.0
+        },
+        {
+          "word": "the",
+          "start": 27.0,
+          "end": 27.18
+        },
+        {
+          "word": "walls",
+          "start": 27.18,
+          "end": 27.52
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "start": 27.52,
+      "end": 34.7,
+      "timestamp": "0:27",
+      "range": "0:27 - 0:34",
+      "text": "and across the threshold. Inside the niche, an LED strip light running all the way across,",
+      "words": [
+        {
+          "word": "and",
+          "start": 27.52,
+          "end": 28.22
+        },
+        {
+          "word": "across",
+          "start": 28.22,
+          "end": 28.52
+        },
+        {
+          "word": "the",
+          "start": 28.52,
+          "end": 28.78
+        },
+        {
+          "word": "threshold.",
+          "start": 28.78,
+          "end": 29.16
+        },
+        {
+          "word": "Inside",
+          "start": 29.96,
+          "end": 30.6
+        },
+        {
+          "word": "the",
+          "start": 30.6,
+          "end": 30.86
+        },
+        {
+          "word": "niche,",
+          "start": 30.86,
+          "end": 31.1
+        },
+        {
+          "word": "an",
+          "start": 32.08,
+          "end": 32.3
+        },
+        {
+          "word": "LED",
+          "start": 32.3,
+          "end": 32.68
+        },
+        {
+          "word": "strip",
+          "start": 32.68,
+          "end": 33.04
+        },
+        {
+          "word": "light",
+          "start": 33.04,
+          "end": 33.32
+        },
+        {
+          "word": "running",
+          "start": 33.32,
+          "end": 33.66
+        },
+        {
+          "word": "all",
+          "start": 33.66,
+          "end": 33.98
+        },
+        {
+          "word": "the",
+          "start": 33.98,
+          "end": 34.16
+        },
+        {
+          "word": "way",
+          "start": 34.16,
+          "end": 34.32
+        },
+        {
+          "word": "across,",
+          "start": 34.32,
+          "end": 34.7
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "start": 35.6,
+      "end": 41.68,
+      "timestamp": "0:35",
+      "range": "0:35 - 0:41",
+      "text": "plus glass hooks that go right through the shower door. The floating vanity has LED mood",
+      "words": [
+        {
+          "word": "plus",
+          "start": 35.6,
+          "end": 35.98
+        },
+        {
+          "word": "glass",
+          "start": 35.98,
+          "end": 36.34
+        },
+        {
+          "word": "hooks",
+          "start": 36.34,
+          "end": 36.8
+        },
+        {
+          "word": "that",
+          "start": 36.8,
+          "end": 37.36
+        },
+        {
+          "word": "go",
+          "start": 37.36,
+          "end": 37.54
+        },
+        {
+          "word": "right",
+          "start": 37.54,
+          "end": 37.76
+        },
+        {
+          "word": "through",
+          "start": 37.76,
+          "end": 38.0
+        },
+        {
+          "word": "the",
+          "start": 38.0,
+          "end": 38.16
+        },
+        {
+          "word": "shower",
+          "start": 38.16,
+          "end": 38.42
+        },
+        {
+          "word": "door.",
+          "start": 38.42,
+          "end": 38.74
+        },
+        {
+          "word": "The",
+          "start": 39.52,
+          "end": 39.82
+        },
+        {
+          "word": "floating",
+          "start": 39.82,
+          "end": 40.1
+        },
+        {
+          "word": "vanity",
+          "start": 40.1,
+          "end": 40.5
+        },
+        {
+          "word": "has",
+          "start": 40.5,
+          "end": 40.86
+        },
+        {
+          "word": "LED",
+          "start": 40.86,
+          "end": 41.36
+        },
+        {
+          "word": "mood",
+          "start": 41.36,
+          "end": 41.68
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "start": 41.68,
+      "end": 47.96,
+      "timestamp": "0:41",
+      "range": "0:41 - 0:47",
+      "text": "lighting underneath, a hidden USB outlet in the drawer for hairdryers, and a magnifying",
+      "words": [
+        {
+          "word": "lighting",
+          "start": 41.68,
+          "end": 41.96
+        },
+        {
+          "word": "underneath,",
+          "start": 41.96,
+          "end": 42.4
+        },
+        {
+          "word": "a",
+          "start": 43.14,
+          "end": 43.28
+        },
+        {
+          "word": "hidden",
+          "start": 43.28,
+          "end": 43.62
+        },
+        {
+          "word": "USB",
+          "start": 43.62,
+          "end": 44.62
+        },
+        {
+          "word": "outlet",
+          "start": 44.62,
+          "end": 45.18
+        },
+        {
+          "word": "in",
+          "start": 45.18,
+          "end": 45.48
+        },
+        {
+          "word": "the",
+          "start": 45.48,
+          "end": 45.58
+        },
+        {
+          "word": "drawer",
+          "start": 45.58,
+          "end": 45.82
+        },
+        {
+          "word": "for",
+          "start": 45.82,
+          "end": 46.04
+        },
+        {
+          "word": "hairdryers,",
+          "start": 46.04,
+          "end": 46.74
+        },
+        {
+          "word": "and",
+          "start": 47.12,
+          "end": 47.44
+        },
+        {
+          "word": "a",
+          "start": 47.44,
+          "end": 47.56
+        },
+        {
+          "word": "magnifying",
+          "start": 47.56,
+          "end": 47.96
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "start": 47.96,
+      "end": 53.76,
+      "timestamp": "0:47",
+      "range": "0:47 - 0:53",
+      "text": "makeup mirror wired right in. And the whole tile floor is heated with a programmable thermostat,",
+      "words": [
+        {
+          "word": "makeup",
+          "start": 47.96,
+          "end": 48.32
+        },
+        {
+          "word": "mirror",
+          "start": 48.32,
+          "end": 48.62
+        },
+        {
+          "word": "wired",
+          "start": 48.62,
+          "end": 49.08
+        },
+        {
+          "word": "right",
+          "start": 49.08,
+          "end": 49.32
+        },
+        {
+          "word": "in.",
+          "start": 49.32,
+          "end": 49.52
+        },
+        {
+          "word": "And",
+          "start": 50.32,
+          "end": 50.7
+        },
+        {
+          "word": "the",
+          "start": 50.7,
+          "end": 50.84
+        },
+        {
+          "word": "whole",
+          "start": 50.84,
+          "end": 51.02
+        },
+        {
+          "word": "tile",
+          "start": 51.02,
+          "end": 51.26
+        },
+        {
+          "word": "floor",
+          "start": 51.26,
+          "end": 51.6
+        },
+        {
+          "word": "is",
+          "start": 51.6,
+          "end": 51.82
+        },
+        {
+          "word": "heated",
+          "start": 51.82,
+          "end": 52.06
+        },
+        {
+          "word": "with",
+          "start": 52.06,
+          "end": 52.34
+        },
+        {
+          "word": "a",
+          "start": 52.34,
+          "end": 52.48
+        },
+        {
+          "word": "programmable",
+          "start": 52.48,
+          "end": 53.2
+        },
+        {
+          "word": "thermostat,",
+          "start": 53.2,
+          "end": 53.76
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "start": 54.3,
+      "end": 59.74,
+      "timestamp": "0:54",
+      "range": "0:54 - 0:59",
+      "text": "no more cold feet. And then, where the old cramped shower used to be, now there's a full",
+      "words": [
+        {
+          "word": "no",
+          "start": 54.3,
+          "end": 54.78
+        },
+        {
+          "word": "more",
+          "start": 54.78,
+          "end": 54.98
+        },
+        {
+          "word": "cold",
+          "start": 54.98,
+          "end": 55.22
+        },
+        {
+          "word": "feet.",
+          "start": 55.22,
+          "end": 55.52
+        },
+        {
+          "word": "And",
+          "start": 56.06,
+          "end": 56.42
+        },
+        {
+          "word": "then,",
+          "start": 56.42,
+          "end": 56.62
+        },
+        {
+          "word": "where",
+          "start": 56.72,
+          "end": 56.86
+        },
+        {
+          "word": "the",
+          "start": 56.86,
+          "end": 57.0
+        },
+        {
+          "word": "old",
+          "start": 57.0,
+          "end": 57.16
+        },
+        {
+          "word": "cramped",
+          "start": 57.16,
+          "end": 57.52
+        },
+        {
+          "word": "shower",
+          "start": 57.52,
+          "end": 57.84
+        },
+        {
+          "word": "used",
+          "start": 57.84,
+          "end": 58.12
+        },
+        {
+          "word": "to",
+          "start": 58.12,
+          "end": 58.3
+        },
+        {
+          "word": "be,",
+          "start": 58.3,
+          "end": 58.48
+        },
+        {
+          "word": "now",
+          "start": 59.04,
+          "end": 59.22
+        },
+        {
+          "word": "there's",
+          "start": 59.22,
+          "end": 59.44
+        },
+        {
+          "word": "a",
+          "start": 59.44,
+          "end": 59.54
+        },
+        {
+          "word": "full",
+          "start": 59.54,
+          "end": 59.74
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "start": 59.74,
+      "end": 63.28,
+      "timestamp": "0:59",
+      "range": "0:59 - 1:03",
+      "text": "linen storage cabinet. Follow for more before and afters.",
+      "words": [
+        {
+          "word": "linen",
+          "start": 59.74,
+          "end": 59.96
+        },
+        {
+          "word": "storage",
+          "start": 59.96,
+          "end": 60.32
+        },
+        {
+          "word": "cabinet.",
+          "start": 60.32,
+          "end": 60.84
+        },
+        {
+          "word": "Follow",
+          "start": 61.22,
+          "end": 61.56
+        },
+        {
+          "word": "for",
+          "start": 61.56,
+          "end": 61.8
+        },
+        {
+          "word": "more",
+          "start": 61.8,
+          "end": 62.02
+        },
+        {
+          "word": "before",
+          "start": 62.02,
+          "end": 62.36
+        },
+        {
+          "word": "and",
+          "start": 62.36,
+          "end": 62.62
+        },
+        {
+          "word": "afters.",
+          "start": 62.62,
+          "end": 63.28
+        }
+      ]
+    }
+  ]
+}

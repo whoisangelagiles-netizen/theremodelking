@@ -1,119 +1,95 @@
 ---
 name: remodel-king-shorts
-description: Turn a full YouTube episode transcript from The Remodel King into a ready-to-use YouTube Shorts package, a voice script already formatted for ElevenLabs synthesis plus an edit map of episode timestamps for finding footage in Premiere Pro. Use this skill whenever the user pastes an episode transcript and asks for a Shorts script, says anything like "Here is the transcript for [EPISODE NAME] create a youtube short script ready", mentions making a Short from an episode, or asks for an alternate/reworded version of a previous Shorts script. Trigger even if they only paste a renovation episode transcript with a brief request attached.
+description: Write a YouTube Shorts VO script for The Remodel King from a full episode transcript, in the channel's reveal tour format, plus the edit map of source timestamps for the picture. Use whenever the user pastes an episode transcript and asks for a Shorts script, says anything like "Here is the transcript for [EPISODE NAME] create a youtube short script ready", mentions making a Short from an episode, or asks for an alternate reworded version of a previous Shorts script. Trigger even if they only paste a renovation episode transcript with a brief request attached.
 ---
 
-# Remodel King Shorts
+# The Remodel King, Shorts script
 
-Convert one episode transcript into one vertical Short: a spoken VO script in
-Mike's voice, plus an edit map the editor can cut from.
+One episode in, ONE Short out. The channel publishes one Short per episode.
 
 ## Trigger
 
-The user pastes an episode transcript and asks for a Short. Typical phrasing:
-
 > Here is the transcript for [EPISODE NAME] create a youtube short script ready
 
-Any paste of a renovation episode transcript with a request for a Short,
-a Shorts script, or a reworded alternate of a previous script counts.
+## Output, and nothing else
 
-## Output
+1. The VO script, ready to paste into ElevenLabs.
+2. The edit map: source timestamp per line, and what the picture shows.
 
-Exactly two things: the Shorts VO script, then the edit map. Nothing else.
-No titles, no descriptions, no hashtags, no thumbnail ideas, no strategy notes,
-unless the user asks for them.
+No titles, descriptions, hashtags, or thumbnail ideas unless asked. Close with a
+one line offer of an A/B alternate, same cut, entirely reworded narration.
 
-## The script
+## The format: a reveal tour
 
-- Under 60 seconds spoken. Roughly 110 to 140 words.
-- First person, Mike's voice. "I ripped out...", "we went with...",
-  "I could not believe what was behind that wall".
-- Every fact comes from the transcript. Never invent a material, brand,
-  measurement, timeline, or number that is not in the source.
+This is the format Mike signs off on. It is not a problem and solution funnel
+and it is not a hook question. It is a walk through the finished room, naming
+one upgrade at a time.
 
-### Structure
+```
+1. The transformation, in one sentence.
+   "This master bathroom went from dated to a total showpiece."
+2. Who it was for and why it looks the way it does, one or two sentences.
+   "They love mountain climbing, so the whole bath was built around red rock colors."
+3. The turn.
+   "And we completely transformed it."
+4. Then the features, six to ten of them, one per line, in the order a person
+   walking the room would meet them. Every line names a real thing:
+   a material, a mechanism, or the benefit it buys.
+5. Nothing else. The end card carries the call to action, the VO does not.
+```
 
-Follow this beat order every time. Never label the sections in the output.
+## How the read sounds
 
-1. **Visual preview hook**, 2 to 3 seconds. The opening line that earns the
-   scroll stop. It must be worded differently from the line that follows it,
-   never a restatement of the before-state hook.
-2. **Before-state hook.** What was wrong with the space.
-3. **Transition and reveal.** The turn from old to new.
-4. **Feature showcase.** Specific upgrades, pulled only from transcript facts.
-5. **Closing payoff.** An emotional beat or a non-cost stat.
-6. **Follow CTA.** Short, natural, in Mike's voice.
+Warm, unhurried, a contractor showing a friend around. The features do the
+work, so the delivery does not have to push.
 
-### Hard rule on cost
+- **Plain prose.** No ALL CAPS emphasis markers, no stacked exclamation points,
+  no rhetorical questions. The old spec asked for those. Mike does not want them.
+- 145 to 175 words, which lands at 50 to 60 seconds.
+- First person for the work, "we tore out", "we turned". Third person for the
+  homeowner, "they love", "she found".
+- Every fact from the transcript. Never invent a material, a brand, or a number.
+- Never an em dash, anywhere, ever.
+- Some words the voice model reads wrong. The build respells them on the way to
+  ElevenLabs and puts the real spelling back on screen, "niche" is sent as
+  "nitch". Write the real word, the pipeline handles it.
 
-NEVER use project cost or budget as the closer. Mike reveals cost with end
-slides he builds manually. Do not put a price in the payoff, do not tease a
-price, and do not flag a missing cost figure as a problem with the script.
+## Line length sets the cut
 
-### Footage constraint
+One line, one shot. A 20 word line is a seven second shot, which is a long time
+to hold one frame on a phone. Keep lines to 8 to 15 words and the cutting rhythm
+comes out right on its own. Do not aim for a fixed shot length, and do not make
+every shot the same length, the variation is what stops it feeling like a
+template.
 
-Mike's footage is only ever:
+## Footage rules, absolute
 
-- pre-demo walkthroughs
-- progress STATE shots (the room mid-project, sitting still)
-- final reveals
+- **Frame the feature, not the talker.** If the line is about the niche, the
+  niche fills the frame. Mike is the narrator, not the subject. A Short where
+  the camera keeps landing on him is the failure, and it is the note the channel
+  has already given once.
+- Mike's footage is ONLY pre demo walkthroughs, progress state shots, and final
+  reveals. He never films workers or active construction. "We gutted it" is fine
+  as narration but it plays over a state shot.
+- **The finished house carries the Short.** Before footage is the hook and at
+  most one beat after it. Everything else is the reveal.
+- **NEVER close on cost.** Mike builds cost reveals as end slides by hand. Do
+  not treat a missing cost as a gap, and fence off the price segment in
+  `avoid_ranges` so no scene can land on it.
+- Never reuse footage. If two consecutive lines want the same shot, do not cut
+  between them, mark the second `continues_previous` and they render as one take.
+- Never put captions, words, or graphics over Mike's face.
 
-He never films workers and never films active construction. Narration like
-"we gutted it" is fine, but it must play over a state shot. The edit map must
-never suggest footage of demo happening, installation happening, or anyone
-working. If a beat seems to call for action footage, hold on a state shot or a
-reveal instead.
+## The look, for reference
 
-### When highlight footage is limited
+Captions are the spoken words, four to six at a time, white Montserrat ExtraBold
+on a solid green plate sitting on a fixed baseline in the lower third. The end
+card is a stack of tilted stickers over live footage, "Follow / for more /
+before / and afters", with the handle in a pill underneath. `scripts/build_short.py`
+draws all of it. Do not describe caption styling in the edit map.
 
-Use fewer, longer lines that hold over reveal footage. Do not write many quick
-lines that imply cuts the editor cannot make.
+## Then what
 
-### A/B alternates
-
-When the user asks for an alternate, keep the same clip order and the same
-visual beats, reword the narration entirely, and keep the existing edit map
-valid. The alternate is a new read over the same cut.
-
-## ElevenLabs formatting
-
-Apply the formatting directly in the script text. It is a synthesis script,
-not a clean-read script.
-
-- Strategic ALL CAPS on roughly 10 to 15 percent of words: numbers, materials,
-  outcomes, punch words.
-- Ellipses before reveals, with no space after the ellipsis. Like this...THAT
-  is what changed everything.
-- 3 to 5 exclamation points across the whole script.
-- Occasional rhetorical questions.
-- Staccato short sentences for impact, commas for flow.
-- Natural enthusiasm, not hype. Mike sounds like a contractor who is proud of
-  the work, not an ad read.
-
-## Script formatting rules
-
-- Plain prose only. No labels, no clip cues, no markdown, no bullets,
-  no quotation marks around the script.
-- Paragraph breaks between beats are fine and encouraged.
-- Never use em dashes in ANY output, ever. Not in the script, not in the edit
-  map, not in the surrounding text. Use commas, periods, or ellipses.
-
-## Edit map
-
-After the script, give a beat by beat map. For each beat:
-
-- the abbreviated VO line (first few words, enough to locate it)
-- the source timestamp range from the transcript
-- what the frame shows, in state-shot or reveal terms
-
-Flag any line where the footage may not exist, so the editor knows to check
-before cutting.
-
-## Output shape
-
-1. The script, standing alone, first.
-2. A separator.
-3. The edit map.
-4. At most one line offering an A/B alternate.
-
-Nothing after that.
+If the user wants the finished video rather than the script, use the
+`shorts-production-guide` skill: it writes the guide JSON, fetches the whisper
+transcript, and runs the build.

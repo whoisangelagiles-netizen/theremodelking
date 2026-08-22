@@ -1,153 +1,158 @@
 {
   "channel": "The Remodel King",
-  "episode": "Mountaineer House, Master Bathroom Remodel",
+  "episode": "Master Bathroom Remodel, Mountaineer House",
   "date": "August 2026",
   "work_id": "mountaineer-house",
   "video_url": "[add full video link]",
+  "handle": "@theremodelking",
   "prepared_for": "Editor / Content Team",
-  "hashtags": ["#bathroomremodel", "#masterbathroom", "#showerremodel", "#remodeling"],
-
-  "assessment": "Strong problem and solution episode. The jetted tub to shower swap is the clearest homeowner story, and the finished shower carries three product beats worth their own Shorts later, the lit niche, the grain matched marble, and the heated floor. Cost talk at 1:52 to 2:10 is deliberately left out, Mike handles price with his own end slides.",
-
-  "opportunities": [
+  "hashtags": [
+    "#bathroomremodel",
+    "#masterbathroom",
+    "#showerremodel",
+    "#remodeling"
+  ],
+  "assessment": "A reveal tour episode. The finished bathroom carries eight named upgrades that each read in two seconds on a phone, which is what the format wants. The pre demo walkthrough is worth about four seconds at the top and nothing after that. Price talk at 1:44 to 2:14 is fenced off, Mike handles cost with his own end slides.",
+  "avoid_ranges": [
     {
-      "rank": 1,
-      "lens": "homeowner problem into contractor solution",
-      "timestamps": "0:34 - 1:15, reveal 4:43 - 5:40",
-      "clip_length": "33 seconds",
-      "why_it_works": "A jetted tub nobody wanted and a shower that was too small is a problem homeowners recognise instantly, and the payoff shot is a full walk in shower in the same footprint.",
-      "seo_titles": ["We Turned a Jetted Tub Into a Walk In Shower", "Why We Rip Out Jetted Tubs"],
-      "hook_text": "Jetted tub + a tiny shower",
-      "caption_ideas": ["Tub out, shower in", "Bench, niche, LED light"],
-      "cta_strategy": "Simple text end frame pointing at the full remodel.",
-      "selected": true
+      "range": "1:44 - 2:14",
+      "reason": "price talk, cost is never used"
     },
     {
-      "rank": 2,
-      "lens": "product and material",
-      "timestamps": "5:26 - 5:40",
-      "clip_length": "14 seconds",
-      "why_it_works": "The marble is cut so the grain runs continuously down the side and across the threshold, a detail most homeowners have never noticed.",
-      "seo_titles": ["The Marble Detail Most People Never Notice"],
-      "hook_text": "Look how the grain lines up",
-      "caption_ideas": ["Grain matched, not a solid slab"],
-      "cta_strategy": "Comment bait, ask if they spotted it.",
-      "selected": false
+      "range": "6:17 - 7:04",
+      "reason": "kitchen detour, wrong room for this Short"
     },
     {
-      "rank": 3,
-      "lens": "solution, comfort upgrade",
-      "timestamps": "1:34 - 1:44, 4:30 - 4:42",
-      "clip_length": "12 seconds",
-      "why_it_works": "Heated floor with a programmable thermostat is a cheap to explain, high desire upgrade.",
-      "seo_titles": ["Heated Bathroom Floors, Worth It?"],
-      "hook_text": "No more cold feet",
-      "caption_ideas": ["Heated tile floor"],
-      "cta_strategy": "Ask if they would add one.",
-      "selected": false
+      "range": "7:04 - 7:46",
+      "reason": "Mike's spoken outro, the Short has its own end card"
     }
   ],
-
   "project_context": {
-    "summary": "Master bathroom remodel on the Mountaineer House. The jetted tub came out, the old corner shower became a linen cabinet, and the tub footprint became a full walk in shower with a bench, a lit niche, and a heated tile floor.",
-    "segment_choice": "The Short is cut from the pre demo walkthrough at 0:34 to 1:15, the framed state at 2:45, and the finished reveal from 3:05 to 5:40. Those three states carry the whole story without any footage of work happening.",
-    "publish_order": "Single Short for this episode. The lit niche and the grain matched marble are held back as follow up Shorts.",
+    "summary": "Master bathroom remodel on the Mountaineer House. The jetted tub came out and became a walk in shower with a lit niche and glass hooks through the door, the old cramped shower became a linen cabinet, and the floating vanity picked up under lighting, a hidden USB drawer, and a wired in makeup mirror. The tile floor is heated.",
+    "segment_choice": "One Short, a reveal tour. It opens on four seconds of the dated vanity so the viewer has a before to measure against, then spends the rest of its runtime in the finished room, naming one upgrade per beat.",
+    "publish_order": "Single Short per episode.",
     "notes": [
-      "On screen text is the script itself, burned in as subtitles timed to Mike's AI read.",
-      "Cost is never the closer, the price segment at 1:52 to 2:10 is deliberately unused."
+      "Every beat after the hook plays over finished house footage.",
+      "Nothing in the Short shows demo, workers, or price."
     ]
   },
-
   "shorts": [
     {
-      "angle": "Homeowner problem into contractor solution",
-      "working_title": "We Turned a Jetted Tub Into a Walk In Shower",
-      "source_range": "0:34 - 5:40",
-      "target_runtime": "33 seconds",
-      "primary_goal": "Show the swap most homeowners do not think of, tub footprint into a real shower",
+      "angle": "Reveal tour",
+      "working_title": "This Master Bathroom Went From Dated To A Showpiece",
+      "source_range": "0:26 - 6:00",
+      "target_runtime": "58 seconds",
+      "primary_goal": "Show the finished room, one named upgrade at a time",
       "seo_titles": [
-        "We Turned a Jetted Tub Into a Walk In Shower",
-        "Why We Keep Ripping Out Jetted Tubs",
-        "Master Bathroom Remodel: Tub Out, Shower In",
-        "Small Shower? Use the Tub Space Instead"
+        "This Master Bathroom Went From Dated To A Total Showpiece",
+        "We Turned A Jetted Tub Into A Walk In Shower",
+        "Every Upgrade In This Master Bathroom Remodel",
+        "The Lit Niche And Heated Floor Everyone Asks About"
       ],
       "scenes": [
         {
           "number": 1,
-          "timeline": "0:00 - 0:05",
-          "source": "0:40 - 0:45",
-          "vo": "This master bath had a big JETTED tub...and a shower that was REALLY small.",
-          "caption": "Jetted tub + a tiny shower",
-          "notes": "Open wide on the jetted tub. Impact sound on the first frame. Gentle pan across the shot.",
+          "source": "0:26 - 0:31",
+          "vo": "This master bathroom went from dated to a total showpiece.",
+          "caption": "This master bathroom went from dated to a total showpiece",
+          "notes": "The only before shot at the top. Old tile counter and oak vanity.",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "timeline": "0:05 - 0:10",
-          "source": "0:58 - 1:03",
-          "vo": "The shower was tucked behind this GLASS, over in the corner.",
-          "caption": "The old shower, behind glass",
-          "notes": "Show the old corner shower. Highlight box on the glass enclosure.",
-          "caption_zone": "support"
+          "source": "3:21 - 3:26",
+          "vo": "They love mountain climbing, so the whole bath was built around red rock colors.",
+          "caption": "Built around the red rock colors",
+          "notes": "First finished shot. The new vanity and the warm tile."
         },
         {
           "number": 3,
-          "timeline": "0:10 - 0:15",
-          "source": "2:45 - 2:50",
-          "vo": "So we took the TUB out...and turned that space into the new shower!",
-          "caption": "Tub out, shower in",
-          "notes": "Framed state, the tub corner stripped back. Whoosh transition into the reveal.",
-          "caption_zone": "support",
+          "source": "4:43 - 4:47",
+          "vo": "And we completely transformed it.",
+          "caption": "Completely transformed",
+          "notes": "Wide of the finished shower. Whoosh on the cut in.",
           "transition": "whoosh"
         },
         {
           "number": 4,
-          "timeline": "0:15 - 0:21",
-          "source": "4:58 - 5:04",
-          "vo": "Look at it NOW! A bench, a recessed NICHE, and an LED light right inside it.",
-          "caption": "Bench, niche, LED light",
-          "notes": "Finished shower interior. Arrow to the lit niche.",
-          "caption_zone": "support"
+          "source": "0:31 - 0:36",
+          "vo": "We tore out the old jetted tub and turned that whole space into the shower.",
+          "caption": "Jetted tub out, shower in",
+          "notes": "Back to before for one beat only, the jetted tub."
         },
         {
           "number": 5,
-          "timeline": "0:21 - 0:27",
-          "source": "5:26 - 5:32",
-          "vo": "See the GRAIN? They cut the marble so it runs right down the side...even on the threshold.",
-          "caption": "Marble grain matched",
-          "notes": "Hold on the marble curb. Highlight box on the matched grain.",
-          "caption_zone": "support"
+          "source": "4:47 - 4:52",
+          "vo": "The shower is the star. The homeowner fell in love with the tile,",
+          "caption": "The shower is the star",
+          "notes": "Finished shower, the tile wall filling the frame."
         },
         {
           "number": 6,
-          "timeline": "0:27 - 0:32",
-          "source": "4:35 - 4:40",
-          "vo": "And the whole tile floor is HEATED, with a programmable thermostat!",
-          "caption": "Heated tile floor",
-          "notes": "Thermostat on the wall. Pan onto the display and hold.",
-          "caption_zone": "support"
+          "source": "5:19 - 5:26",
+          "vo": "paired with a complementary marble, grain matched so it flows down the wall and across the threshold.",
+          "caption": "Grain matched down the wall and across the threshold",
+          "notes": "The grain match. This is the detail nobody notices until it is pointed at."
         },
         {
           "number": 7,
-          "timeline": "0:32 - 0:35",
-          "source": "3:05 - 3:08",
-          "vo": "Watch the full remodel.",
-          "caption": "Watch the full remodel",
-          "notes": "Finished wide of the room, into the CTA frame.",
-          "caption_zone": "support"
+          "source": "5:05 - 5:11",
+          "vo": "Inside the niche, an LED strip light running all the way across,",
+          "caption": "LED strip inside the niche",
+          "notes": "The lit niche. Frame the niche, not the room."
+        },
+        {
+          "number": 8,
+          "source": "5:15 - 5:21",
+          "vo": "plus glass hooks that go right through the shower door.",
+          "caption": "Glass hooks straight through the door",
+          "notes": "The hooks through the glass."
+        },
+        {
+          "number": 9,
+          "source": "4:00 - 4:04",
+          "vo": "The floating vanity has LED mood lighting underneath,",
+          "caption": "LED mood lighting under the vanity",
+          "notes": "Low framing, the light strip under the suspended vanity."
+        },
+        {
+          "number": 10,
+          "source": "3:47 - 3:53",
+          "vo": "a hidden USB outlet in the drawer for hair dryers,",
+          "caption": "Hidden USB outlet in the drawer",
+          "notes": "The open drawer with the outlet."
+        },
+        {
+          "number": 11,
+          "source": "4:20.6 - 4:23.6",
+          "vo": "and a magnifying makeup mirror wired right in.",
+          "caption": "Makeup mirror wired right in",
+          "notes": "The makeup mirror on its arm."
+        },
+        {
+          "number": 12,
+          "source": "4:29 - 4:36",
+          "vo": "And the whole tile floor is heated, with a programmable thermostat. No more cold feet.",
+          "caption": "Heated floor, programmable thermostat",
+          "notes": "The thermostat on the wall, then the tile floor if the pan reaches it."
+        },
+        {
+          "number": 13,
+          "source": "5:52 - 5:59",
+          "vo": "And where the old cramped shower was, there is now full linen storage.",
+          "caption": "Old shower is now linen storage",
+          "notes": "The linen cabinet. Last beat before the end card."
         }
       ],
-      "full_vo": "This master bath had a big JETTED tub...and a shower that was REALLY small. The shower was tucked behind this GLASS, over in the corner.\n\nSo we took the TUB out...and turned that space into the new shower! Look at it NOW! A bench, a recessed NICHE, and an LED light right inside it.\n\nSee the GRAIN? They cut the marble so it runs right down the side...even on the threshold. And the whole tile floor is HEATED, with a programmable thermostat!\n\nWatch the full remodel.",
-      "voice_direction": "Confident and homeowner friendly, a little wry on the jetted tub line, then genuinely pleased through the reveal. Conversational, never announcer.",
-      "cta_frame": "Watch the full remodel",
+      "full_vo": "This master bathroom went from dated to a total showpiece. They love mountain climbing, so the whole bath was built around red rock colors. And we completely transformed it. We tore out the old jetted tub and turned that whole space into the shower. The shower is the star. The homeowner fell in love with the tile, paired with a complementary marble, grain matched so it flows down the wall and across the threshold. Inside the niche, an LED strip light running all the way across, plus glass hooks that go right through the shower door. The floating vanity has LED mood lighting underneath, a hidden USB outlet in the drawer for hair dryers, and a magnifying makeup mirror wired right in. And the whole tile floor is heated, with a programmable thermostat. No more cold feet. And where the old cramped shower was, there is now full linen storage.",
+      "voice_direction": "Warm and unhurried, a contractor walking a friend through the finished room. Plain delivery, no announcer push. Let the features do the work.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "4:52 - 4:56",
       "cta": {
-        "primary": "Watch the full bathroom remodel",
-        "alt": "Would you swap your tub for a bigger shower? Comment TUB or SHOWER",
+        "primary": "Follow for more before and afters",
+        "alt": "Which upgrade would you put in first?",
         "pinned": "Full master bathroom transformation here: [full video link]"
       }
     }
-  ],
-  "avoid_ranges": [
-    { "range": "1:50 - 2:12", "reason": "price talk, cost is never used" }
   ]
 }
