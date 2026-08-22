@@ -1,0 +1,165 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Small Bathroom Remodel, Happy House",
+  "date": "August 2026",
+  "work_id": "happy-house",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#bathroomremodel",
+    "#smallbathroom",
+    "#basementremodel",
+    "#remodeling"
+  ],
+  "assessment": "A small three quarter bath in an older basement, and the honest note is that the reveal is short. Finished footage runs 4:18 to 5:22, about 64 seconds in total, and roughly a third of that is the hallway floor and the louvred furnace closet. There is enough for one Short and no more, and no room to be wasteful with it. The relocated floor drain is the strongest single beat, it is a real problem most homeowners have never thought about, and the payoff is a tiled entry with no drain in the middle of it. No cost talk anywhere in this episode.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 4:17",
+      "reason": "pre demo, walkthrough and progress. The reveal starts at 4:18"
+    },
+    {
+      "range": "5:26 - 5:44",
+      "reason": "Mike's spoken outro with burned in subscribe and bell graphics"
+    },
+    {
+      "range": "5:12 - 5:15.5",
+      "reason": "the episode's own Johnny Cabinet label is on screen"
+    },
+    {
+      "range": "5:54 - 6:06",
+      "reason": "Mike's Project Statistics slide, which he builds himself"
+    },
+    {
+      "range": "5:51 - 5:54",
+      "reason": "cuts back to the hallway, then the stats slide"
+    }
+  ],
+  "project_context": {
+    "summary": "Small basement three quarter bath in an older home. A floor drain sat in the middle of the hallway outside it, so the drain was relocated into the furnace closet, the old one filled and the slab leveled, and the whole entry tiled. Inside, the shower was rebuilt in tile with a glass door and a half wall, on a hex mosaic pan, with a custom vanity built to the space, a quartz top, a medicine cabinet mirror, an elongated comfort height toilet, and a cabinet above it the homeowner chose.",
+    "segment_choice": "One Short, cut entirely from 4:18 to 5:23, the finished reveal. No before footage and no progress footage, so nothing that was torn out appears.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is the finished room.",
+      "The episode has no cost segment, so nothing to fence off there."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "We Moved A Floor Drain To Fix This Basement Bathroom",
+      "source_range": "4:18 - 5:23",
+      "target_runtime": "54 seconds",
+      "primary_goal": "Show the finished small bath, one move at a time, with the drain relocation as the hook",
+      "seo_titles": [
+        "We Moved The Floor Drain To Fix This Basement Bathroom",
+        "Small Basement Bathroom Remodel, Start To Finish",
+        "Why We Moved This Floor Drain Into The Furnace Closet",
+        "This Tiny Three Quarter Bath Feels Twice The Size"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "4:44.2 - 4:48.5",
+          "vo": "This little basement three quarter bath in the Happy House is done.",
+          "caption": "Small basement bath, finished",
+          "notes": "the shower and its glass door, Mike stays right of the window",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "4:34 - 4:38.5",
+          "vo": "Out here in the hallway, the floor used to be painted concrete.",
+          "caption": "The hallway was painted concrete",
+          "notes": "the new tile. Scenes 2 and 3 are ONE take"
+        },
+        {
+          "number": 3,
+          "source": "4:38.5 - 4:43",
+          "vo": "With a floor drain sitting right in the middle of it.",
+          "caption": "A drain sat in the middle of it",
+          "notes": "same take as scene 2",
+          "continues_previous": true
+        },
+        {
+          "number": 4,
+          "source": "4:21 - 4:25.5",
+          "vo": "So we moved that drain into the furnace closet, out of the way.",
+          "caption": "Drain moved into the furnace closet",
+          "notes": "the louvred doors opening. Scenes 4 and 5 are ONE take",
+          "transition": "whoosh"
+        },
+        {
+          "number": 5,
+          "source": "4:25.5 - 4:30",
+          "vo": "Then filled the old one, leveled the slab, and tiled the whole entry.",
+          "caption": "Old drain filled, slab leveled, entry tiled",
+          "notes": "same take as scene 4",
+          "continues_previous": true
+        },
+        {
+          "number": 6,
+          "source": "4:48.6 - 4:53.2",
+          "vo": "Inside, the shower is all tile now, with a glass door and a half wall.",
+          "caption": "All tile, glass door, half wall",
+          "notes": "the shower. Scenes 6 and 7 are ONE take, carrying down to the pan"
+        },
+        {
+          "number": 7,
+          "source": "4:53.2 - 4:58",
+          "vo": "The shower floor is a hex mosaic in grey and white.",
+          "caption": "Hex mosaic shower floor",
+          "notes": "same take as scene 6",
+          "continues_previous": true
+        },
+        {
+          "number": 8,
+          "source": "5:02 - 5:06.5",
+          "vo": "The vanity is custom, built to fit the space exactly, with a quartz top.",
+          "caption": "Custom vanity, quartz top",
+          "notes": "the vanity. Scenes 8 and 9 are ONE take, lifting to the mirror"
+        },
+        {
+          "number": 9,
+          "source": "5:06.5 - 5:10",
+          "vo": "And over the sink, a medicine cabinet mirror.",
+          "caption": "Medicine cabinet mirror over the sink",
+          "notes": "same take as scene 8",
+          "continues_previous": true
+        },
+        {
+          "number": 10,
+          "source": "5:16 - 5:20",
+          "vo": "The toilet is elongated and comfort height, like a dining chair.",
+          "caption": "Elongated, comfort height toilet",
+          "notes": "framed onto the toilet and cabinet. Scenes 10 and 11 are ONE take"
+        },
+        {
+          "number": 11,
+          "source": "5:20 - 5:24",
+          "vo": "And the cabinet above it is the homeowner's own pick.",
+          "caption": "Cabinet above it, the homeowner's pick",
+          "notes": "same take as scene 10",
+          "continues_previous": true
+        },
+        {
+          "number": 12,
+          "source": "5:46 - 5:50",
+          "vo": "Small room, and it feels a lot bigger than it did.",
+          "caption": "Small room. Feels a lot bigger.",
+          "notes": "the one clean beauty shot in the episode, 5:46 to 5:51, nobody in frame"
+        }
+      ],
+      "full_vo": "This little basement three quarter bath in the Happy House is done. Out here in the hallway, the floor used to be painted concrete. With a floor drain sitting right in the middle of it. So we moved that drain into the furnace closet, out of the way. Then filled the old one, leveled the slab, and tiled the whole entry. Inside, the shower is all tile now, with a glass door and a half wall. The shower floor is a hex mosaic in grey and white. The vanity is custom, built to fit the space exactly, with a quartz top. And over the sink, a medicine cabinet mirror. The toilet is elongated and comfort height, like a dining chair. And the cabinet above it is the homeowner's own pick. Small room, and it feels a lot bigger than it did.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend the finished room. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "4:58 - 5:01",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you have moved the drain?",
+        "pinned": "Full bathroom transformation here: [full video link]"
+      },
+      "avoid_note": "5:26 to 5:44 is Mike's spoken outro with burned in SUBSCRIBE and BELL graphics, and 5:55 to 6:02 is his own Project Statistics slide. Both stay out. 5:12 to 5:15 carries a Johnny Cabinet label in the episode."
+    }
+  ]
+}
