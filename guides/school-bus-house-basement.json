@@ -1,0 +1,159 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Basement Conversion, The School Bus House",
+  "date": "August 2026",
+  "work_id": "ep4",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#basementremodel",
+    "#basementfinishing",
+    "#homeremodel",
+    "#remodeling"
+  ],
+  "assessment": "The strongest episode of the four so far. The reveal runs 25:53 to 36:29, roughly ten minutes, so for once footage is not the constraint and the job is choosing. The basement became a full second living space: family room, kitchen, laundry, bathroom, an added bedroom and storage. Three beats are genuinely surprising and carry the Short, outlets set into the concrete floor so no cord crosses to the wall, a recessed pan so the dryer sits flat against the wall, and an egress ladder in the new window well. Mike talks budget once at 33:39 and the cost slide runs after 38:14, both fenced off. There is easily a second Short in this episode if you want one.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 25:52",
+      "reason": "pre demo, demo and progress. The reveal starts at 25:53"
+    },
+    {
+      "range": "33:37 - 33:46",
+      "reason": "Mike talks about going over the original budget"
+    },
+    {
+      "range": "36:29 - 38:38",
+      "reason": "Mike's spoken outro and the cost slide that follows it"
+    }
+  ],
+  "project_context": {
+    "summary": "A basement turned into a self contained living space. Family room with an electric fireplace and outlets set into the concrete floor, a full kitchen with flat packed cabinets, a relocated laundry with a recessed dryer pan, a remodelled bathroom with glass shelves instead of a recessed niche, an added bedroom with a four foot window well and an egress ladder, baseboard heaters and thermostats per room, and a run of closet storage.",
+    "segment_choice": "One Short, cut entirely from 25:53 to 36:20, the finished reveal. No before footage and no progress footage.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is the finished space.",
+      "Nothing in the Short shows demo, workers, or price."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "We Put Outlets In The Concrete Floor Of This Basement",
+      "source_range": "25:53 - 36:20",
+      "target_runtime": "57 seconds",
+      "primary_goal": "Show the finished basement as a full second living space, one detail at a time",
+      "seo_titles": [
+        "We Put Power Outlets In A Concrete Basement Floor",
+        "This Basement Became A Full Second Apartment",
+        "Every Upgrade In This Basement Conversion",
+        "The Basement Details Most Contractors Skip"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "26:02 - 26:06",
+          "vo": "This whole basement is finished, and it works like its own apartment.",
+          "caption": "The whole basement, finished",
+          "notes": "The fireplace wall and the mounted TV.",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "26:07 - 26:12",
+          "vo": "The family room has an electric fireplace that runs off wifi.",
+          "caption": "Electric fireplace, runs off wifi",
+          "notes": "The fireplace lit, filling the frame."
+        },
+        {
+          "number": 3,
+          "source": "26:58 - 27:04",
+          "vo": "Look at the sectional, sitting right out in the middle of the room.",
+          "caption": "The sectional out in the middle of the room",
+          "notes": "the sectional and the clear floor around it. Scenes 3 and 4 are ONE take"
+        },
+        {
+          "number": 4,
+          "source": "27:04 - 27:10",
+          "vo": "No cord runs across the floor, because the outlets are in the concrete.",
+          "caption": "No cord to the wall. Outlets are in the slab.",
+          "notes": "same take as scene 3. The floor outlet itself is never framed close enough to read in a vertical crop, so the line is written to the clear floor, which is the visible fact",
+          "continues_previous": true
+        },
+        {
+          "number": 5,
+          "source": "28:03 - 28:10",
+          "vo": "The closets went in where all her storage used to pile up.",
+          "caption": "Closet storage where the piles were",
+          "notes": "The run of closet doors.",
+          "transition": "whoosh"
+        },
+        {
+          "number": 6,
+          "source": "29:28 - 29:36",
+          "vo": "There is a full kitchen down here, flat packed cabinets with soft close.",
+          "caption": "A full kitchen in the basement",
+          "notes": "The counter, sink and cabinets."
+        },
+        {
+          "number": 7,
+          "source": "30:05 - 30:12",
+          "vo": "The washer and dryer moved somewhere bright and easy to get to.",
+          "caption": "Laundry moved somewhere bright",
+          "notes": "The washer and dryer in their new spot."
+        },
+        {
+          "number": 8,
+          "source": "30:30 - 30:38",
+          "vo": "With a recessed pan, so the dryer does not stick out from the wall.",
+          "caption": "Recessed pan, dryer sits flat",
+          "notes": "The recessed dryer vent pan behind the machine."
+        },
+        {
+          "number": 9,
+          "source": "32:02 - 32:08",
+          "vo": "The bathroom is all new tile and a new tub.",
+          "caption": "New tile, new tub",
+          "notes": "The tub and surround."
+        },
+        {
+          "number": 10,
+          "source": "32:12 - 32:20",
+          "vo": "Glass shelves instead of a niche, so you can reach them from the tub.",
+          "caption": "Glass shelves instead of a niche",
+          "notes": "The two glass shelves at their different heights."
+        },
+        {
+          "number": 11,
+          "source": "34:08 - 34:16",
+          "vo": "Each bedroom got a baseboard heater and its own thermostat.",
+          "caption": "Baseboard heater and its own thermostat",
+          "notes": "The heater running under the window."
+        },
+        {
+          "number": 12,
+          "source": "35:45 - 35:51",
+          "vo": "And the new window well has an egress ladder for a fire escape.",
+          "caption": "Egress ladder in the new window well",
+          "notes": "the window open onto the new well, the ladder visible inside"
+        },
+        {
+          "number": 13,
+          "source": "36:16 - 36:24",
+          "vo": "A basement that used to be storage. Now you could live down here.",
+          "caption": "It used to be storage. Now you could live here.",
+          "notes": "the under stair closet open, shelved out"
+        }
+      ],
+      "full_vo": "This whole basement is finished, and it works like its own apartment. The family room has an electric fireplace that runs off wifi. Look at the sectional, sitting right out in the middle of the room. No cord runs across the floor, because the outlets are in the concrete. The closets went in where all her storage used to pile up. There is a full kitchen down here, flat packed cabinets with soft close. The washer and dryer moved somewhere bright and easy to get to. With a recessed pan, so the dryer does not stick out from the wall. The bathroom is all new tile and a new tub. Glass shelves instead of a niche, so you can reach them from the tub. Each bedroom got a baseboard heater and its own thermostat. And the new window well has an egress ladder for a fire escape. A basement that used to be storage. Now you could live down here.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend around the finished space. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "26:14 - 26:18",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you put outlets in your floor?",
+        "pinned": "Full basement transformation here: [full video link]"
+      }
+    }
+  ]
+}
