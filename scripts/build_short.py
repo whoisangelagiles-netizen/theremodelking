@@ -64,6 +64,11 @@ CTA_DEFAULT = "Follow\nfor more\nbefore\nand afters"
 # last line of every read unless the guide overrides it with cta_vo.
 CTA_VO_DEFAULT = "Follow for more before and afters."
 CTA_TAIL = 0.45            # beat held after the sign off before the Short ends
+# A pause is not one length. Two lines inside one shot are one thought and want
+# only a breath. A cut to another room is a new subject and wants real air, or it
+# lands as a jump. The sign off wants the most of all.
+CONTINUE_GAP = 0.12        # the next line carries on in the same take
+SIGN_OFF_GAP = 0.62        # before "Follow for more before and afters"
 DEFAULT_LOGO_WIDTH = 0.16
 MIN_SCENE_SECONDS = 1.2
 
@@ -1063,7 +1068,24 @@ def align_supplied_vo(audio: Path, texts: list[str], model_size: str = "small") 
     return spans
 
 
-def splice_pauses(master: Path, spans: list[tuple[float, float]], gap: float,
+def pause_plan(scenes: list[Scene], gap: float) -> list[float]:
+    """How long to hold at each line boundary.
+
+    One length for every boundary is what makes a read feel mechanical: it puts
+    the same beat between two halves of one thought as it does between a bathroom
+    and a bedroom, so the continuations sound chopped and the subject changes
+    sound abrupt. A boundary inside a shared take gets a breath, a cut to
+    somewhere new gets the full pause, and the sign off gets more than either.
+    """
+    gaps = []
+    for position in range(len(scenes) - 1):
+        following = scenes[position + 1]
+        gaps.append(CONTINUE_GAP if following.continues_previous else gap)
+    gaps.append(SIGN_OFF_GAP)
+    return gaps
+
+
+def splice_pauses(master: Path, spans: list[tuple[float, float]], gaps: list[float],
                   total: float, destination: Path) -> list[float]:
     """Insert a pause at every line boundary, inside the one take.
 
@@ -1084,7 +1106,7 @@ def splice_pauses(master: Path, spans: list[tuple[float, float]], gap: float,
                      f"asetpts=N/SR/TB[p{order}]")
         labels.append(f"[p{order}]")
         if order < len(pieces) - 1:
-            chain.append(f"anullsrc=r=44100:cl=mono,atrim=0:{gap:.3f},"
+            chain.append(f"anullsrc=r=44100:cl=mono,atrim=0:{gaps[order]:.3f},"
                          f"asetpts=N/SR/TB[g{order}]")
             labels.append(f"[g{order}]")
     chain.append("".join(labels) + f"concat=n={len(labels)}:v=0:a=1[out]")
@@ -1095,7 +1117,7 @@ def splice_pauses(master: Path, spans: list[tuple[float, float]], gap: float,
     shifted, clock = [], 0.0
     for order, (begin, end) in enumerate(pieces):
         shifted.append(clock)
-        clock += (end - begin) + (gap if order < len(pieces) - 1 else 0.0)
+        clock += (end - begin) + (gaps[order] if order < len(pieces) - 1 else 0.0)
     return shifted
 
 
@@ -1200,20 +1222,24 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     spans = split_alignment_by_line(chars, starts, ends, texts)
     total = media_duration(master)
 
+    gaps = pause_plan(scenes, gap)
     if gap > 0.005:
         spliced = lines_dir / "master.mp3"
-        shifted = splice_pauses(master, spans, gap, total, spliced)
-        say(f"{gap:.2f}s pause spliced in at each of the {len(spans) - 1} line "
-            "boundaries, inside the one take")
+        shifted = splice_pauses(master, spans, gaps, total, spliced)
+        breaths = sum(1 for g in gaps[:-1] if g <= CONTINUE_GAP + 1e-6)
+        say(f"pauses spliced in: {len(gaps) - 1 - breaths} at {gap:.2f}s where the "
+            f"subject changes, {breaths} at {CONTINUE_GAP:.2f}s inside a shared take, "
+            f"{SIGN_OFF_GAP:.2f}s before the sign off")
     else:
         spliced = master
         shifted = [span[0] for span in spans]
+        gaps = [0.0] * len(gaps)
 
     rendered = []
     for position, scene in enumerate(scenes):
         begin = spans[position][0]
         finish = spans[position + 1][0] if position + 1 < len(spans) else total
-        hold = max(MIN_SCENE_SECONDS, (finish - begin) + gap)
+        hold = max(MIN_SCENE_SECONDS, (finish - begin) + gaps[position])
         cards = phrases_from_alignment(chars, starts, ends, begin, spans[position][1])
         for card in cards:
             card["start"] -= begin
@@ -2400,9 +2426,11 @@ def main() -> None:
     parser.add_argument("--stability", type=float, default=VOICE_STABILITY,
                         help="ElevenLabs stability, lower lets the delivery move more")
     parser.add_argument("--similarity", type=float, default=VOICE_SIMILARITY)
-    parser.add_argument("--line-gap", type=float, default=0.26,
-                        help="pause spliced in at each line boundary, seconds. The read is "
-                             "still one render, the silence is laid between pieces of it")
+    parser.add_argument("--line-gap", type=float, default=0.45,
+                        help="pause where the subject changes, seconds. Boundaries inside a "
+                             "shared take get a breath instead, and the sign off gets more. "
+                             "The read is still one render, the silence is laid between "
+                             "pieces of it")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
     parser.add_argument("--no-music", action="store_true")
     parser.add_argument("--logo", type=Path, default=None,
