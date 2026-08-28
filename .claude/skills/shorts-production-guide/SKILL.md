@@ -31,6 +31,14 @@ here. Read that skill first if it is not already loaded. In particular:
 - First person, Mike's voice. Every fact comes from the transcript.
 - The read is warm and unhurried, a contractor showing a friend the finished
   room. The features carry it, the delivery does not push.
+- The read ALWAYS ends on the spoken sign off, "Follow for more before and
+  afters". Do not write it as a scene, the build appends it to the script by
+  itself and plays it over the end card. Override it with `cta_vo` on the Short
+  if an episode wants different words.
+- The narration is one render with a 0.26s pause spliced in at each line
+  boundary, so budget for it: thirteen lines is 3.4 seconds of pause and the
+  sign off is another 3, which together is most of a beat. A 150 word script
+  lands near 54 seconds, not 50.
 - Lines run 8 to 15 words. One line is one shot, so a 20 word line is a seven
   second hold on one frame, which is too long on a phone. Do NOT make every
   shot the same length either, the variation is what stops it feeling like a

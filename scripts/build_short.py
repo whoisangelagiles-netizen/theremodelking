@@ -60,6 +60,10 @@ CTA_TILTS = (-1.6, 1.4, -1.2, 1.8, -1.0)
 CTA_HANDLE = "@theremodelking"
 # One beat per sticker. Newlines in the guide's cta_frame are honoured as written.
 CTA_DEFAULT = "Follow\nfor more\nbefore\nand afters"
+# The channel's own Shorts end on this line spoken, not just drawn. It is the
+# last line of every read unless the guide overrides it with cta_vo.
+CTA_VO_DEFAULT = "Follow for more before and afters."
+CTA_TAIL = 0.45            # beat held after the sign off before the Short ends
 DEFAULT_LOGO_WIDTH = 0.16
 MIN_SCENE_SECONDS = 1.2
 
@@ -101,10 +105,11 @@ HANGING_WORDS = {
     "just", "some", "out", "up", "into", "how",
 }
 ELEVEN_DEFAULT_MODEL = "eleven_multilingual_v2"
-# Mike found the read flat. Lower stability lets the delivery move, higher style
-# exaggerates the emphasis the script marks in caps.
-VOICE_STABILITY = 0.28
-VOICE_STYLE = 0.70
+# Mike found the read flat twice. Style is the exaggeration dial and it is most
+# of what stops the delivery sounding bored, stability is how far it is allowed
+# to move between takes. Pushed as far as the model holds together cleanly.
+VOICE_STABILITY = 0.24
+VOICE_STYLE = 0.85
 VOICE_SIMILARITY = 0.80
 
 
@@ -1058,6 +1063,42 @@ def align_supplied_vo(audio: Path, texts: list[str], model_size: str = "small") 
     return spans
 
 
+def splice_pauses(master: Path, spans: list[tuple[float, float]], gap: float,
+                  total: float, destination: Path) -> list[float]:
+    """Insert a pause at every line boundary, inside the one take.
+
+    The read has to be a single render or the joins are audible, but a single
+    render also runs the lines together with no room to breathe. So the take is
+    cut at the boundaries the character timings give and digital silence is laid
+    between the pieces. Nothing is re synthesized, the timbre and level either
+    side of a pause are the same sample, and what sits in the gap is silence,
+    which is what a pause is.
+
+    Returns the new start time of each line in the spliced audio.
+    """
+    edges = [span[0] for span in spans] + [total]
+    pieces = [(edges[i], edges[i + 1]) for i in range(len(edges) - 1)]
+    chain, labels = [], []
+    for order, (begin, end) in enumerate(pieces):
+        chain.append(f"[0:a]atrim=start={begin:.4f}:end={end:.4f},"
+                     f"asetpts=N/SR/TB[p{order}]")
+        labels.append(f"[p{order}]")
+        if order < len(pieces) - 1:
+            chain.append(f"anullsrc=r=44100:cl=mono,atrim=0:{gap:.3f},"
+                         f"asetpts=N/SR/TB[g{order}]")
+            labels.append(f"[g{order}]")
+    chain.append("".join(labels) + f"concat=n={len(labels)}:v=0:a=1[out]")
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(master),
+         "-filter_complex", ";".join(chain), "-map", "[out]",
+         "-c:a", "libmp3lame", "-q:a", "2", str(destination)])
+
+    shifted, clock = [], 0.0
+    for order, (begin, end) in enumerate(pieces):
+        shifted.append(clock)
+        clock += (end - begin) + (gap if order < len(pieces) - 1 else 0.0)
+    return shifted
+
+
 def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
              force: bool, voice_id: str | None, model_id: str, gap: float,
              settings: dict | None = None,
@@ -1083,11 +1124,15 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     texts = [respell_for_voice(" ".join((scene.vo or "").split())) for scene in scenes]
     if not any(texts):
         die("no per scene VO lines in the guide, nothing to synthesize")
+    # The sign off is spoken, not just drawn, and it is rendered inside the same
+    # take so it carries the same voice and the same pause before it.
+    sign_off_text = " ".join((short.get("cta_vo") or CTA_VO_DEFAULT).split())
+    texts.append(respell_for_voice(sign_off_text))
 
     if skip:
         stage("Stage 4, voice over")
         say("--skip-vo, building picture with no narration track")
-        return None, None
+        return None, None, None
 
     if supplied:
         stage("Stage 4, supplied voice over")
@@ -1116,8 +1161,13 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
                              "at": span["start"], "phrases": cards})
             say(f"line {scene.number}: {span['start']:5.2f}s to {span['end']:5.2f}s "
                 f"in the supplied read, holds {hold:.2f}s, {len(cards)} cards")
+        tail = spans[-1] if spans and spans[-1] else None
+        sign_off = {"scene": None, "path": None,
+                    "speech": (tail["end"] - tail["start"]) if tail else CTA_SECONDS,
+                    "hold": ((tail["end_hold"] - tail["start"]) if tail else CTA_SECONDS) + CTA_TAIL,
+                    "at": tail["start"] if tail else 0.0, "phrases": []}
         say(f"narration total {sum(i['hold'] for i in rendered):.1f}s, one continuous take")
-        return rendered, master
+        return rendered, master, sign_off
 
     stage("Stage 4, ElevenLabs voice over, one continuous take")
     settings = settings or {"stability": VOICE_STABILITY, "style": VOICE_STYLE,
@@ -1133,7 +1183,7 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     if not voice_id:
         die("no voice id. Pass --voice-id or export ELEVENLABS_VOICE_ID with Mike's voice.")
 
-    master = lines_dir / "master.mp3"
+    master = lines_dir / "master_raw.mp3"
     script = " ".join(texts)
     alignment_file = master.with_suffix(".alignment.json")
     if master.exists() and alignment_file.exists() and not force:
@@ -1150,25 +1200,38 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     spans = split_alignment_by_line(chars, starts, ends, texts)
     total = media_duration(master)
 
+    if gap > 0.005:
+        spliced = lines_dir / "master.mp3"
+        shifted = splice_pauses(master, spans, gap, total, spliced)
+        say(f"{gap:.2f}s pause spliced in at each of the {len(spans) - 1} line "
+            "boundaries, inside the one take")
+    else:
+        spliced = master
+        shifted = [span[0] for span in spans]
+
     rendered = []
     for position, scene in enumerate(scenes):
-        begin, finish = spans[position]
-        # the line owns the take right up to where the next one starts, so the
-        # breath after it stays with the picture it belongs to
+        begin = spans[position][0]
         finish = spans[position + 1][0] if position + 1 < len(spans) else total
-        hold = max(MIN_SCENE_SECONDS, finish - begin)
+        hold = max(MIN_SCENE_SECONDS, (finish - begin) + gap)
         cards = phrases_from_alignment(chars, starts, ends, begin, spans[position][1])
         for card in cards:
             card["start"] -= begin
             card["end"] -= begin
             for word in card["words"]:
                 word["text"] = respell_for_screen(word["text"])
-        rendered.append({"scene": scene.number, "path": None, "speech": hold,
-                         "hold": hold, "at": begin, "phrases": cards})
-        say(f"line {scene.number}: {begin:5.2f}s to {finish:5.2f}s, "
+        rendered.append({"scene": scene.number, "path": None, "speech": finish - begin,
+                         "hold": hold, "at": shifted[position], "phrases": cards})
+        say(f"line {scene.number}: {shifted[position]:5.2f}s in, holds {hold:5.2f}s, "
             f"{len(cards)} subtitle cards")
-    say(f"narration total {total:.1f}s, one continuous take, no joins")
-    return rendered, master
+
+    # the sign off is the last line of the same take, and it plays over the end card
+    sign_off = {"scene": None, "path": None,
+                "speech": total - spans[-1][0],
+                "hold": (total - spans[-1][0]) + CTA_TAIL,
+                "at": shifted[-1], "phrases": []}
+    say(f"narration total {media_duration(spliced):.1f}s, one take")
+    return rendered, spliced, sign_off
 
 
 def fit_scenes_to_lines(scenes: list[Scene], vo_lines: list[dict],
@@ -1827,13 +1890,13 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
                parts: Path, watermark: Path | None, destination: Path,
                source: Path, start: float, src_w: int, src_h: int,
                crop_x: float = 0.5, zoom: float = 1.0,
-               animation: Path | None = None) -> float:
+               animation: Path | None = None, hold: float | None = None) -> float:
     """The end card plays over live footage, not over a black card.
 
     The reference Short holds the last reveal shot and lays the sticker stack on
     top of it, so the video never goes dead before the viewer decides to follow.
     """
-    seconds = CTA_SECONDS
+    seconds = hold or CTA_SECONDS
     if animation is not None:
         seconds = max(1.0, media_duration(animation))
         say(f"end card: {animation.name}, {seconds:.1f}s, alpha composited over the "
@@ -2021,7 +2084,8 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                    watermark: Path | None, caption_mode: str = "labels",
                    location_level: float = 0.0,
                    display_font: str | None = None,
-                   master: Path | None = None) -> tuple[Path, list[float]]:
+                   master: Path | None = None,
+                   sign_off: dict | None = None) -> tuple[Path, list[float]]:
     stage("Stage 5, assembly")
     src_w = int(probe(source, "v:0", "stream=width"))
     src_h = int(probe(source, "v:0", "stream=height"))
@@ -2111,8 +2175,9 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
     cta_start, cta_crop, cta_zoom = scenes[-1].end, scenes[-1].crop_x, scenes[-1].zoom
     if short.get("cta_source"):
         cta_start = parse_range(short["cta_source"])[0]
-    if cta_start + CTA_SECONDS > source_seconds:
-        cta_start = max(0.0, source_seconds - CTA_SECONDS)
+    cta_hold = sign_off["hold"] if sign_off else CTA_SECONDS
+    if cta_start + cta_hold > source_seconds:
+        cta_start = max(0.0, source_seconds - cta_hold)
     cta_clip = parts / "cta.mp4"
     supplied = find_end_card()
     if supplied is not None and not has_alpha(supplied):
@@ -2121,7 +2186,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
     else:
         cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
                                  parts, watermark, cta_clip, source, cta_start,
-                                 src_w, src_h, cta_crop, cta_zoom, supplied)
+                                 src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -2335,9 +2400,9 @@ def main() -> None:
     parser.add_argument("--stability", type=float, default=VOICE_STABILITY,
                         help="ElevenLabs stability, lower lets the delivery move more")
     parser.add_argument("--similarity", type=float, default=VOICE_SIMILARITY)
-    parser.add_argument("--line-gap", type=float, default=0.0,
-                        help="unused now that the narration is one continuous take, the "
-                             "pauses the read already has are what the picture cuts on")
+    parser.add_argument("--line-gap", type=float, default=0.26,
+                        help="pause spliced in at each line boundary, seconds. The read is "
+                             "still one render, the silence is laid between pieces of it")
     parser.add_argument("--music", type=Path, default=None, help="music bed override")
     parser.add_argument("--no-music", action="store_true")
     parser.add_argument("--logo", type=Path, default=None,
@@ -2396,9 +2461,9 @@ def main() -> None:
     voice_settings = {"stability": args.stability, "style": args.style,
                       "similarity": args.similarity}
     voice_settings.update(guide.get("voice_settings") or {})
-    vo_lines, vo_master = stage_vo(short, scenes, work, args.number, args.skip_vo,
-                                   args.revoice, args.voice_id, args.model_id,
-                                   args.line_gap, voice_settings, args.vo)
+    vo_lines, vo_master, sign_off = stage_vo(short, scenes, work, args.number, args.skip_vo,
+                                             args.revoice, args.voice_id, args.model_id,
+                                             args.line_gap, voice_settings, args.vo)
 
     font_path = args.font or find_font()
     if font_path is None:
@@ -2428,7 +2493,7 @@ def main() -> None:
     display_font = find_font(DISPLAY_FONT_CANDIDATES)
     final, starts = stage_assemble(scenes, short, guide, source, vo_lines, work, args.number,
                                    slug, font_path, music, watermark, args.captions,
-                                   args.location_audio, display_font, vo_master)
+                                   args.location_audio, display_font, vo_master, sign_off)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
     pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
 

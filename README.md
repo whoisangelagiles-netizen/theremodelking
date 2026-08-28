@@ -155,8 +155,7 @@ which is worth keeping only if you plan to re-edit.
 
 Useful flags: `--captions labels|subtitles|both` (default labels, the guide's
 summary captions), `--location-audio 0.03` (bring the original clip audio back
-as a low bed, default is muted), `--line-gap 0.28` (pause held after each
-narration line), `--style 0.70` and `--stability 0.28` (how animated the read
+as a low bed, default is muted), `--line-gap 0.26` (pause spliced in at each line boundary, inside the one take), `--style 0.85` and `--stability 0.24` (how animated the read
 is, lower stability and higher style let Mike's voice move more), `--auto`
 (skip the analysis pause, center crop, technical checks only), `--skip-vo`
 (picture with no narration), `--no-music`, `--no-logo`, `--logo-width 0.16`,
@@ -209,6 +208,7 @@ stops whisper installing itself.
 | Captions | The spoken words, four to six at a time, timed from ElevenLabs character timestamps. White Montserrat ExtraBold at 48px with a 2px black stroke, on a solid green plate `#16A34A`, 10px side padding, 57px line pitch, wrapping at 0.72 of frame width so a card never runs past two lines. The plate's bottom edge is pinned at 0.746 of frame height so it never moves between cards. All of it measured off the channel's own Shorts. Lifts clear of Mike's face when he is in the band. `--captions labels` switches to the guide's summary captions |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, locked to the corner while the picture pans |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
+| Sign off | The read always ends on "Follow for more before and afters", spoken, not just drawn. It is rendered inside the same take as the rest of the narration and plays over the end card, which runs as long as the line does. Override per episode with `cta_vo` in the guide |
 | Audio | Mike's VO only. The original location audio is MUTED, `--location-audio 0.03` brings back the old low bed. Impact on frame one, whoosh at the problem to solution shift, optional music bed at 6 percent, limited at 0.95, padded to the picture |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
 | End | 3 seconds of live footage carrying a stack of tilted stickers, alternating white and green, plus the handle in a pill. Never a black card. `cta_frame` in the guide takes one line per sticker |
