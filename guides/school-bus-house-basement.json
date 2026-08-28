@@ -52,100 +52,103 @@
       "scenes": [
         {
           "number": 1,
-          "source": "29:44 - 29:50",
+          "source": "26:52 - 26:57",
           "vo": "This whole basement is finished, and it works like its own apartment.",
           "caption": "The whole basement, finished",
-          "notes": "the kitchen run, fridge to sink. An established ROOM, not one object. A living room wide cannot establish in a 9:16 crop because the room is horizontal and the frame is not",
+          "notes": "the sectional and the room around it. Scenes 1, 2 and 3 are ONE take, the camera moves across the family room",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "26:42 - 26:48",
-          "vo": "The family room has an electric fireplace that runs off wifi.",
-          "caption": "Electric fireplace, runs off wifi",
-          "notes": "the lit fireplace from the closer camera position, NOT the locked off wide at 25:56 to 26:26"
+          "source": "26:57 - 27:02",
+          "vo": "Look at the sectional, sitting right out in the middle of the room.",
+          "caption": "The sectional, out in the middle",
+          "notes": "same take as scene 1",
+          "continues_previous": true
         },
         {
           "number": 3,
-          "source": "26:58 - 27:04",
-          "vo": "Look at the sectional, sitting right out in the middle of the room.",
-          "caption": "The sectional out in the middle of the room",
-          "notes": "the sectional and the clear floor around it. Scenes 3 and 4 are ONE take"
+          "source": "27:02 - 27:07",
+          "vo": "No cord runs across the floor, because the outlets are in the concrete.",
+          "caption": "No cord to the wall. Outlets are in the slab.",
+          "notes": "same take. The floor outlet is never framed close enough to read once cropped, so the line is written to the clear floor, which is the visible fact",
+          "continues_previous": true
         },
         {
           "number": 4,
-          "source": "27:04 - 27:10",
-          "vo": "No cord runs across the floor, because the outlets are in the concrete.",
-          "caption": "No cord to the wall. Outlets are in the slab.",
-          "notes": "same take as scene 3. The floor outlet itself is never framed close enough to read in a vertical crop, so the line is written to the clear floor, which is the visible fact",
-          "continues_previous": true
+          "source": "26:42 - 26:48",
+          "vo": "The family room has an electric fireplace that runs off wifi.",
+          "caption": "Electric fireplace, runs off wifi",
+          "notes": "the lit fireplace from the closer camera position, not the locked off wide at 25:56"
         },
         {
           "number": 5,
           "source": "28:03 - 28:10",
           "vo": "The closets went in where all her storage used to pile up.",
           "caption": "Closet storage where the piles were",
-          "notes": "The run of closet doors.",
+          "notes": "the run of closet doors",
           "transition": "whoosh"
         },
         {
           "number": 6,
-          "source": "29:56 - 30:02",
+          "source": "29:44 - 29:50",
           "vo": "There is a full kitchen down here, flat packed cabinets with soft close.",
           "caption": "A full kitchen in the basement",
-          "notes": "the counter, sink and range from the closer position, a different framing to the hook"
+          "notes": "the kitchen run, fridge to sink"
         },
         {
           "number": 7,
-          "source": "30:05 - 30:12",
+          "source": "30:29 - 30:34",
           "vo": "The washer and dryer moved somewhere bright and easy to get to.",
           "caption": "Laundry moved somewhere bright",
-          "notes": "The washer and dryer in their new spot."
+          "notes": "ONE take covering scenes 7 and 8, the dryer and the vent work behind it"
         },
         {
           "number": 8,
-          "source": "30:30 - 30:38",
+          "source": "30:34 - 30:39",
           "vo": "With a recessed pan, so the dryer does not stick out from the wall.",
           "caption": "Recessed pan, dryer sits flat",
-          "notes": "The recessed dryer vent pan behind the machine."
+          "notes": "same take as scene 7, the duct going into the recessed pan",
+          "continues_previous": true
         },
         {
           "number": 9,
-          "source": "32:02 - 32:08",
+          "source": "32:13 - 32:18",
           "vo": "The bathroom is all new tile and a new tub.",
           "caption": "New tile, new tub",
-          "notes": "The tub and surround."
+          "notes": "ONE take covering scenes 9 and 10, held on the glass shelves and the tile"
         },
         {
           "number": 10,
-          "source": "32:12 - 32:20",
+          "source": "32:18 - 32:23",
           "vo": "Glass shelves instead of a niche, so you can reach them from the tub.",
           "caption": "Glass shelves instead of a niche",
-          "notes": "The two glass shelves at their different heights."
+          "notes": "same take as scene 9",
+          "continues_previous": true
         },
         {
           "number": 11,
           "source": "34:08 - 34:16",
           "vo": "Each bedroom got a baseboard heater and its own thermostat.",
           "caption": "Baseboard heater and its own thermostat",
-          "notes": "The heater running under the window."
+          "notes": "the heater running under the window"
         },
         {
           "number": 12,
           "source": "35:45 - 35:51",
           "vo": "And the new window well has an egress ladder for a fire escape.",
           "caption": "Egress ladder in the new window well",
-          "notes": "the window open onto the new well, the ladder visible inside"
+          "notes": "the window open onto the new well"
         },
         {
           "number": 13,
           "source": "36:16 - 36:24",
           "vo": "A basement that used to be storage. Now you could live down here.",
           "caption": "It used to be storage. Now you could live here.",
-          "notes": "the under stair closet open, shelved out"
+          "notes": "the under stair closet, shelved out"
         }
       ],
-      "full_vo": "This whole basement is finished, and it works like its own apartment. The family room has an electric fireplace that runs off wifi. Look at the sectional, sitting right out in the middle of the room. No cord runs across the floor, because the outlets are in the concrete. The closets went in where all her storage used to pile up. There is a full kitchen down here, flat packed cabinets with soft close. The washer and dryer moved somewhere bright and easy to get to. With a recessed pan, so the dryer does not stick out from the wall. The bathroom is all new tile and a new tub. Glass shelves instead of a niche, so you can reach them from the tub. Each bedroom got a baseboard heater and its own thermostat. And the new window well has an egress ladder for a fire escape. A basement that used to be storage. Now you could live down here.",
+      "full_vo": "This whole basement is finished, and it works like its own apartment. Look at the sectional, sitting right out in the middle of the room. No cord runs across the floor, because the outlets are in the concrete. The family room has an electric fireplace that runs off wifi. The closets went in where all her storage used to pile up. There is a full kitchen down here, flat packed cabinets with soft close. The washer and dryer moved somewhere bright and easy to get to. With a recessed pan, so the dryer does not stick out from the wall. The bathroom is all new tile and a new tub. Glass shelves instead of a niche, so you can reach them from the tub. Each bedroom got a baseboard heater and its own thermostat. And the new window well has an egress ladder for a fire escape. A basement that used to be storage. Now you could live down here.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend around the finished space. Plain delivery, no announcer push.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "26:14 - 26:18",
