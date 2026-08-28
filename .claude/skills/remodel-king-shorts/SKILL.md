@@ -78,7 +78,13 @@ template.
 - **NEVER close on cost.** Mike builds cost reveals as end slides by hand. Do
   not treat a missing cost as a gap, and fence off the price segment in
   `avoid_ranges` so no scene can land on it.
-- Never reuse footage. If two consecutive lines want the same shot, do not cut
+- Never reuse footage, and non overlapping timestamps are not enough. Two scenes
+  cut from one locked off camera read as the same shot twice even though they
+  share no frames. If the camera did not move between them, move one.
+- The hook establishes a ROOM, not a detail. The frame is vertical and most rooms
+  are not, so pick the space whose content stacks up the frame, a kitchen or a
+  bathroom, rather than a wide of a living room that crops down to a slice of wall.
+- If two consecutive lines want the same shot, do not cut
   between them, mark the second `continues_previous` and they render as one take.
 - Never put captions, words, or graphics over Mike's face.
 

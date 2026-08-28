@@ -47,6 +47,21 @@ here. Read that skill first if it is not already loaded. In particular:
   the camera do the moving, a synthetic pan on top of a moving shot fights it.
 - NEVER reuse footage, inside a Short or across the Shorts from one episode.
   Every second on screen should be a second the viewer has not already seen.
+- Non overlapping timestamps are NOT enough. Mike often locks the camera off and
+  talks to it for thirty seconds, so two scenes cut from that stretch overlap by
+  nothing and still read as the same shot played twice. The build cannot catch
+  this, only your eyes can: before you call a cut finished, look at the frame
+  check sheet and ask whether any two tiles could be the same shot. If the camera
+  did not move between two scenes, move one of them.
+- THE HOOK ESTABLISHES A SPACE, not a detail. The first scene has to show a
+  finished ROOM so the viewer knows where they are. A tight shot on a fireplace
+  or a faucet is a detail, and details belong in the body.
+  Remember the frame is vertical and most rooms are horizontal, so a wide of a
+  living room does not survive the 9:16 crop, it just becomes a slice of wall. A
+  kitchen, a bathroom, or a hallway does survive, because their content stacks
+  up the frame: floor, cabinets, counter, uppers. Pick the room that reads
+  tallest as the hook, even if it is not the room the Short opens on in the
+  script.
 - If two consecutive lines want the same shot, do NOT cut between them. Set
   `"continues_previous": true` on the second scene and the build renders both as
   ONE clip, with one pan carrying the whole take and the caption changing on

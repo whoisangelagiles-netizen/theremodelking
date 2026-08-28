@@ -52,18 +52,18 @@
       "scenes": [
         {
           "number": 1,
-          "source": "26:02 - 26:06",
+          "source": "29:44 - 29:50",
           "vo": "This whole basement is finished, and it works like its own apartment.",
           "caption": "The whole basement, finished",
-          "notes": "The fireplace wall and the mounted TV.",
+          "notes": "the kitchen run, fridge to sink. An established ROOM, not one object. A living room wide cannot establish in a 9:16 crop because the room is horizontal and the frame is not",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "26:07 - 26:12",
+          "source": "26:42 - 26:48",
           "vo": "The family room has an electric fireplace that runs off wifi.",
           "caption": "Electric fireplace, runs off wifi",
-          "notes": "The fireplace lit, filling the frame."
+          "notes": "the lit fireplace from the closer camera position, NOT the locked off wide at 25:56 to 26:26"
         },
         {
           "number": 3,
@@ -90,10 +90,10 @@
         },
         {
           "number": 6,
-          "source": "29:28 - 29:36",
+          "source": "29:56 - 30:02",
           "vo": "There is a full kitchen down here, flat packed cabinets with soft close.",
           "caption": "A full kitchen in the basement",
-          "notes": "The counter, sink and cabinets."
+          "notes": "the counter, sink and range from the closer position, a different framing to the hook"
         },
         {
           "number": 7,

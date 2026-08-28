@@ -58,7 +58,14 @@ Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 - Nothing is ever laid over Mike's face, captions included.
 - No zoom beyond what makes the shot vertical, 178 percent on a 16:9 clip. The
   source is handheld and already moves, so `pan` stays null by default.
-- No repeated footage, within a Short or across an episode's Shorts. Two lines
+- The hook establishes a room, not a detail. The frame is vertical and most rooms
+  are not, so the establishing shot comes from a space whose content stacks up the
+  frame, a kitchen or a bathroom, rather than a living room wide that crops to a
+  slice of wall.
+- No repeated footage, within a Short or across an episode's Shorts. Different
+  timestamps are not enough, two scenes cut from one locked off camera read as the
+  same shot twice. `scripts/check_frames.py` renders every scene across its whole
+  length so that shows up before the Short goes out. Two lines
   can share one shot, but only as a single continuous take: they render as one
   clip, so an action like a door closing finishes without a cut through it. The build warns on repeats and on cuts between near identical frames.
 - Frame the feature, not the talker. If the line is about the vanity, the vanity
