@@ -1,0 +1,162 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Basement Apartment, The Kennel House",
+  "date": "September 2026",
+  "work_id": "kennel-house",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#basementapartment",
+    "#basementremodel",
+    "#homeremodel",
+    "#remodeling"
+  ],
+  "assessment": "Part 3 of a series, and the honest note is that the finished footage is short: 18:14 to 20:25, about two minutes, of which two stretches are comparison shots of the UPSTAIRS unit with the word upstairs burned into frame. Those are out, which leaves roughly a hundred seconds across nine camera setups. Enough for one Short and nothing spare. The countertop running into the window recess is the best single beat, and the stackable laundry is the one that sells it as an apartment rather than a finished basement. Cost slide after 21:00, fenced off.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 18:12",
+      "reason": "before, demo and progress. The finished reveal starts at 18:14"
+    },
+    {
+      "range": "18:31 - 18:44",
+      "reason": "comparison shot of the upstairs kitchen with 'upstairs' burned into frame"
+    },
+    {
+      "range": "19:31 - 19:38",
+      "reason": "comparison shot of the upstairs bathroom with 'upstairs' burned into frame"
+    },
+    {
+      "range": "20:25 - 21:54",
+      "reason": "Mike's spoken outro and the Project Statistics slide with the price on it"
+    }
+  ],
+  "project_context": {
+    "summary": "A basement turned into a self contained apartment. Full kitchen with a dishwasher, cabinets and countertop matching the upstairs remodel but a different backsplash, the counter carried into the window recess, a bathroom with a new deep tub and the same tile as upstairs, a resized vanity with the door shifted across, a stackable washer and dryer in a closet, and two bedrooms off the hall.",
+    "segment_choice": "One Short, cut entirely from 18:14 to 20:08, the finished apartment. No before footage, no progress footage, and nothing from the upstairs comparison shots.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is the finished basement apartment.",
+      "The two 'upstairs' labelled stretches are excluded, they show a different unit."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "This Basement Is Now A Full Apartment",
+      "source_range": "18:14 - 20:08",
+      "target_runtime": "52 seconds",
+      "primary_goal": "Show the finished basement apartment as a place someone could actually live",
+      "seo_titles": [
+        "This Basement Is Now A Full Apartment",
+        "We Ran The Countertop Into The Window Recess",
+        "Basement Apartment With Its Own Kitchen And Laundry",
+        "Everything We Put In This Basement Apartment"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "18:16 - 18:22",
+          "vo": "We just finished turning this whole basement into a self contained apartment.",
+          "caption": "The basement is a full apartment now",
+          "notes": "the kitchen run and the dishwasher. Scenes 1 and 2 are ONE take",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "18:22 - 18:28",
+          "vo": "The kitchen cabinets and the countertop match the ones we did upstairs.",
+          "caption": "Cabinets and counter match upstairs",
+          "notes": "same take as scene 1",
+          "continues_previous": true
+        },
+        {
+          "number": 3,
+          "source": "18:44 - 18:50",
+          "vo": "Different backsplash, and it is a proper kitchen down here, dishwasher and all.",
+          "caption": "A proper kitchen, dishwasher and all",
+          "notes": "the counter and range. Scenes 3, 4 and 5 are ONE take",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "18:50 - 18:56",
+          "vo": "Look how the countertop runs right into the window.",
+          "caption": "The counter runs into the window",
+          "notes": "same take, reaching the window recess",
+          "continues_previous": true
+        },
+        {
+          "number": 5,
+          "source": "18:56 - 19:00",
+          "vo": "So you get all that extra space behind the sink.",
+          "caption": "Extra space behind the sink",
+          "notes": "same take as scene 3",
+          "continues_previous": true
+        },
+        {
+          "number": 6,
+          "source": "19:04 - 19:10",
+          "vo": "The bathroom uses the same tile as the bathrooms upstairs.",
+          "caption": "Same tile as the upstairs bathrooms",
+          "notes": "the tub surround and the mosaic band"
+        },
+        {
+          "number": 7,
+          "source": "19:14 - 19:20",
+          "vo": "The tub is new, and it is a deep one.",
+          "caption": "A new, deep tub",
+          "notes": "close on the tub rim. Scenes 7 and 8 are ONE take"
+        },
+        {
+          "number": 8,
+          "source": "19:20 - 19:24",
+          "vo": "With a stone mosaic band running through it.",
+          "caption": "Stone mosaic band through the tile",
+          "notes": "same take as scene 7, the camera rises to the mosaic band. The wood look floor is only in frame at the very start of the take, so the line follows the band instead",
+          "continues_previous": true
+        },
+        {
+          "number": 9,
+          "source": "19:38 - 19:44",
+          "vo": "And behind this door, a stackable washer and dryer.",
+          "caption": "Stackable laundry behind the door",
+          "notes": "the laundry closet. Scenes 9 and 10 are ONE take"
+        },
+        {
+          "number": 10,
+          "source": "19:44 - 19:48",
+          "vo": "So whoever is living down here does their own laundry.",
+          "caption": "Own laundry, downstairs",
+          "notes": "same take as scene 9",
+          "continues_previous": true
+        },
+        {
+          "number": 11,
+          "source": "20:04 - 20:09",
+          "vo": "Two bedrooms at the end of the hall, painted and carpeted.",
+          "caption": "Two bedrooms off the hall",
+          "notes": "the hallway. Scenes 11 and 12 are ONE take, ending back in the kitchen"
+        },
+        {
+          "number": 12,
+          "source": "20:09 - 20:14",
+          "vo": "Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
+          "caption": "Own kitchen, bathroom, laundry and entrance",
+          "notes": "same take as scene 11",
+          "continues_previous": true
+        }
+      ],
+      "full_vo": "We just finished turning this whole basement into a self contained apartment. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So whoever is living down here does their own laundry. Two bedrooms at the end of the hall, painted and carpeted. Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend the finished apartment. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "20:14 - 20:18",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you finish your basement like this?",
+        "pinned": "Full basement apartment build here: [full video link]"
+      },
+      "assessment_note": "The vanity beat was cut. Mike talks about resizing it but never frames it without himself filling the shot, and there is no other angle on it."
+    }
+  ]
+}

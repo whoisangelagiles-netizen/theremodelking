@@ -1,0 +1,160 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Kitchen Remodel, The Blue House",
+  "date": "September 2026",
+  "work_id": "blue-house-kitchen",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#kitchenremodel",
+    "#smallkitchen",
+    "#kitchenmakeover",
+    "#remodeling"
+  ],
+  "assessment": "A strong episode for the format. The reveal runs 5:54 to 10:36 and Mike explains the reasoning behind almost every choice, which is what makes a good Short: a narrow island because a standard one would not fit, tape lighting instead of pucks, a shallow vented microwave so the cabinets above can be taller, and open shelving instead of a pantry with the depth argument spelled out. Eight distinct camera setups in the reveal, so there is no need to cut twice from any one of them. Cost slide at 11:10, fenced off.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 5:52",
+      "reason": "before, demo and install. The reveal starts at 5:54"
+    },
+    {
+      "range": "11:04 - 11:28",
+      "reason": "the Project Statistics slide. Mike's spoken outro from 10:36 plays over clean kitchen footage and the location audio is muted, so the picture is usable"
+    }
+  ],
+  "project_context": {
+    "summary": "Kitchen and family room remodel in a house with a small kitchen footprint. White oak cabinets with a grey stain, a narrower than standard island with the bins inside it, under cabinet tape lighting, a shallow vented microwave, full depth adjustable shelving where two closets used to be, drawers instead of doors, and the half wall replaced with a matching white oak railing.",
+    "segment_choice": "One Short, cut entirely from 5:54 to 10:44, the finished reveal. No before footage and no install footage.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is the finished kitchen.",
+      "Seven camera setups used, none twice."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "Every Smart Decision In This Small Kitchen Remodel",
+      "source_range": "5:54 - 10:44",
+      "target_runtime": "57 seconds",
+      "primary_goal": "Show the finished kitchen and the reasoning behind each choice",
+      "seo_titles": [
+        "Every Smart Decision In This Small Kitchen Remodel",
+        "Why We Made This Kitchen Island Narrower Than Standard",
+        "Shelving Beats A Pantry, And Here Is The Math",
+        "Small Kitchen Makeover With Smart Design"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "6:53 - 6:58",
+          "vo": "This kitchen in the Blue House is done, and it is a completely different room.",
+          "caption": "The Blue House kitchen, finished",
+          "notes": "Kitchen corner, uppers and backsplash and counter. Establishes the room.",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "6:02 - 6:07",
+          "vo": "The island is narrower than standard, because a normal one would not fit.",
+          "caption": "A narrower island, because a standard one would not fit",
+          "notes": "The island. Scenes 2 and 3 are ONE take."
+        },
+        {
+          "number": 3,
+          "source": "6:07 - 6:13",
+          "vo": "No overhang, and the garbage cans live inside it.",
+          "caption": "No overhang. Bins inside it.",
+          "notes": "Same take as scene 2.",
+          "continues_previous": true
+        },
+        {
+          "number": 4,
+          "source": "6:38 - 6:43",
+          "vo": "Under the cabinets we switched to tape lighting.",
+          "caption": "Tape lighting under the cabinets",
+          "notes": "Close on the LED tape strip. Scenes 4 and 5 are ONE take.",
+          "transition": "whoosh"
+        },
+        {
+          "number": 5,
+          "source": "6:43 - 6:48",
+          "vo": "A narrow LED band, unobtrusive and very bright.",
+          "caption": "A narrow LED band",
+          "notes": "Same take as scene 4.",
+          "continues_previous": true
+        },
+        {
+          "number": 6,
+          "source": "7:20 - 7:26",
+          "vo": "The microwave is the shallow kind, and we vented it outside.",
+          "caption": "Shallow microwave, vented outside",
+          "notes": "The range and microwave. Scenes 6 and 7 are ONE take."
+        },
+        {
+          "number": 7,
+          "source": "7:26 - 7:32",
+          "vo": "Which leaves room for taller cabinets above it.",
+          "caption": "Taller cabinets above it",
+          "notes": "Same take as scene 6.",
+          "continues_previous": true
+        },
+        {
+          "number": 8,
+          "source": "8:20 - 8:26",
+          "vo": "Where two closets used to be, there is full depth adjustable shelving.",
+          "caption": "Full depth adjustable shelving",
+          "notes": "The tall storage bank. Scenes 8, 9 and 10 are ONE take."
+        },
+        {
+          "number": 9,
+          "source": "8:26 - 8:32",
+          "vo": "A pantry is two feet deep, but its shelves are only sixteen inches.",
+          "caption": "A pantry wastes eight inches of its own depth",
+          "notes": "Same take as scene 8.",
+          "continues_previous": true
+        },
+        {
+          "number": 10,
+          "source": "8:32 - 8:38",
+          "vo": "And drawers instead of doors, so nothing hides at the back.",
+          "caption": "Drawers, so nothing hides at the back",
+          "notes": "Same take as scene 8.",
+          "continues_previous": true
+        },
+        {
+          "number": 11,
+          "source": "9:10.5 - 9:16",
+          "vo": "The half wall came out and became a white oak railing, stained to match.",
+          "caption": "Half wall out, matching oak railing in",
+          "notes": "the new railing, after Mike clears frame. Scenes 11 and 12 are ONE take"
+        },
+        {
+          "number": 12,
+          "source": "9:14 - 9:20",
+          "vo": "Which makes the whole room feel bigger.",
+          "caption": "The room feels bigger",
+          "notes": "Same take as scene 11.",
+          "continues_previous": true
+        },
+        {
+          "number": 13,
+          "source": "10:38 - 10:44",
+          "vo": "White oak cabinets, grey stain, and a floor that is fully waterproof.",
+          "caption": "White oak, grey stain, waterproof floor",
+          "notes": "the cabinet run and the counter, Mike right of the window"
+        }
+      ],
+      "full_vo": "This kitchen in the Blue House is done, and it is a completely different room. The island is narrower than standard, because a normal one would not fit. No overhang, and the garbage cans live inside it.\n\nUnder the cabinets we switched to tape lighting. A narrow LED band, unobtrusive and very bright. The microwave is the shallow kind, and we vented it outside. Which leaves room for taller cabinets above it.\n\nWhere two closets used to be, there is full depth adjustable shelving. A pantry is two feet deep, but its shelves are only sixteen inches. And drawers instead of doors, so nothing hides at the back.\n\nThe half wall came out and became a white oak railing, stained to match. Which makes the whole room feel bigger. White oak cabinets, grey stain, and a floor that is fully waterproof.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend the finished room. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "10:56 - 11:00",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Shelving or a pantry, which would you pick?",
+        "pinned": "Full kitchen transformation here: [full video link]"
+      }
+    }
+  ]
+}
