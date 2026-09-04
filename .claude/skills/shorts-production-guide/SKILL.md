@@ -51,8 +51,18 @@ here. Read that skill first if it is not already loaded. In particular:
 - Scale the shot JUST enough to fill the 9:16 frame, Premiere's 178 percent on a
   16:9 clip, and no more. No punch ins. `zoom` above 1.0 exists for a genuine
   detail framing on a 1080p or better source, and even then stays modest.
-- The source footage is handheld and already moves. Leave `pan` null and let
-  the camera do the moving, a synthetic pan on top of a moving shot fights it.
+- The source footage is usually handheld and already moves, so leave `pan` null
+  and let the camera do the moving. A synthetic pan on top of a moving shot
+  fights it.
+- The exception is a LOCKED OFF camera. Mike often sets the camera down and talks
+  to it, and a shot cut from that stretch sits dead still. If a take runs more
+  than about six seconds with no camera movement in it, give it a `pan` across
+  the room, roughly 0.25 of frame width. With no annotations to land on it drifts
+  for the whole shot rather than settling early.
+- `cta_source` is footage too, and it is the one range in the guide that is not a
+  scene. Channel outros are exactly where burned in SUBSCRIBE and BELL graphics
+  live, so check the frames before you pick it. The build warns if it overlaps an
+  avoid_range, so put any burned in graphic you find into avoid_ranges.
 - NEVER reuse footage, inside a Short or across the Shorts from one episode.
   Every second on screen should be a second the viewer has not already seen.
 - Non overlapping timestamps are NOT enough. Mike often locks the camera off and

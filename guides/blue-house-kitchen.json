@@ -19,6 +19,10 @@
       "reason": "before, demo and install. The reveal starts at 5:54"
     },
     {
+      "range": "10:54 - 10:59.5",
+      "reason": "the PRESS THE BELL ICON graphic is burned into frame"
+    },
+    {
       "range": "11:04 - 11:28",
       "reason": "the Project Statistics slide. Mike's spoken outro from 10:36 plays over clean kitchen footage and the location audio is muted, so the picture is usable"
     }
@@ -149,7 +153,7 @@
       "full_vo": "This kitchen in the Blue House is done, and it is a completely different room. The island is narrower than standard, because a normal one would not fit. No overhang, and the garbage cans live inside it.\n\nUnder the cabinets we switched to tape lighting. A narrow LED band, unobtrusive and very bright. The microwave is the shallow kind, and we vented it outside. Which leaves room for taller cabinets above it.\n\nWhere two closets used to be, there is full depth adjustable shelving. A pantry is two feet deep, but its shelves are only sixteen inches. And drawers instead of doors, so nothing hides at the back.\n\nThe half wall came out and became a white oak railing, stained to match. Which makes the whole room feel bigger. White oak cabinets, grey stain, and a floor that is fully waterproof.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend the finished room. Plain delivery, no announcer push.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
-      "cta_source": "10:56 - 11:00",
+      "cta_source": "11:00 - 11:04",
       "cta": {
         "primary": "Follow for more before and afters",
         "alt": "Shelving or a pantry, which would you pick?",

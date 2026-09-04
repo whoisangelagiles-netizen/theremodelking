@@ -1791,7 +1791,12 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         # Scale first, then slide a full height 9:16 window across the frame. Doing
         # it in output space keeps the move smooth instead of stepping a source pixel
         # at a time, and the scale is exactly what filling the frame needs, no more.
-        settle_at = max(duration * 0.60, 0.1)
+        # A pan only needs to settle early when something has to be drawn on the
+        # spot it lands. With nothing to land on, it drifts for the whole shot,
+        # because a move that stops two thirds through leaves the tail static,
+        # which is the thing the pan was added to fix.
+        settle_share = 0.60 if scene.annotations else 1.0
+        settle_at = max(duration * settle_share, 0.1)
         span = f"min(t/{settle_at:.3f},1)"
         ease = f"(3*pow({span},2)-2*pow({span},3))"
         start, end = scene.pan["from"], scene.pan["to"]
@@ -2038,6 +2043,24 @@ def mix_audio(body: Path, vo_lines: list[dict] | None, starts: list[float],
     run(cmd)
 
 
+def check_cta_source(short: dict, guide: dict) -> None:
+    """The end card plays over live footage, so that footage needs checking too.
+
+    It is the one range in the guide that is not a scene, so it was skipped by
+    every other check, and a channel outro is exactly where burned in subscribe
+    and bell graphics live.
+    """
+    raw = short.get("cta_source")
+    if not raw:
+        return
+    start, end = parse_range(raw)
+    for entry in guide.get("avoid_ranges") or []:
+        begin, finish = parse_range(entry.get("range", "0 - 0"))
+        if min(end, finish) - max(start, begin) > 0.05:
+            say(f"AVOID: the end card footage at {raw} overlaps {entry.get('range')}, "
+                f"{entry.get('reason', 'marked do not use')}")
+
+
 def check_reveal_balance(scenes: list[Scene], guide: dict) -> None:
     """The finished house carries the Short. Before footage is the hook only.
 
@@ -2129,6 +2152,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         fit_scenes_to_lines(scenes, vo_lines, source_seconds)
     check_footage_reuse(scenes, work, index)
     check_reveal_balance(scenes, guide)
+    check_cta_source(short, guide)
 
     # Each Short of an episode gets its own parts directory. They used to share
     # one, so building Short 2 wiped Short 1's clips out from under it.
