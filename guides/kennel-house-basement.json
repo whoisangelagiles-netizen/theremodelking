@@ -96,7 +96,7 @@
         },
         {
           "number": 6,
-          "source": "19:04 - 19:10",
+          "source": "19:05 - 19:11",
           "vo": "The bathroom uses the same tile as the bathrooms upstairs.",
           "caption": "Same tile as the upstairs bathrooms",
           "notes": "the tub surround and the mosaic band"
@@ -118,45 +118,45 @@
         },
         {
           "number": 9,
-          "source": "19:38 - 19:44",
+          "source": "19:38.5 - 19:42",
           "vo": "And behind this door, a stackable washer and dryer.",
           "caption": "Stackable laundry behind the door",
-          "notes": "the laundry closet. Scenes 9 and 10 are ONE take"
+          "notes": "the laundry closet, cut before Mike crosses the take at 19:43"
         },
         {
           "number": 10,
-          "source": "19:44 - 19:48",
-          "vo": "So whoever is living down here does their own laundry.",
+          "source": "19:44.5 - 19:48",
+          "vo": "So they do their own laundry down here.",
           "caption": "Own laundry, downstairs",
-          "notes": "same take as scene 9",
-          "continues_previous": true
+          "notes": "picks the move up after Mike crosses at 19:43, on the tall cabinet and mirror. Scenes 10 and 11 are ONE take that ends at 19:50.5, before he steps into the doorway"
         },
         {
           "number": 11,
-          "source": "20:04 - 20:09",
-          "vo": "Two bedrooms at the end of the hall, painted and carpeted.",
-          "caption": "Two bedrooms off the hall",
-          "notes": "the hallway. Scenes 11 and 12 are ONE take, ending back in the kitchen"
+          "source": "19:48 - 19:51",
+          "vo": "Own kitchen, own bathroom, own laundry, own entrance.",
+          "caption": "Own kitchen, bathroom, laundry, entrance",
+          "notes": "same take as scene 10, the vanity and granite. Clean of Mike until 19:51.5",
+          "continues_previous": true
         },
         {
           "number": 12,
-          "source": "20:09 - 20:14",
-          "vo": "Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
-          "caption": "Own kitchen, bathroom, laundry and entrance",
-          "notes": "same take as scene 11",
-          "continues_previous": true
+          "source": "20:03 - 20:06.2",
+          "vo": "Two bedrooms at the end of the hall.",
+          "caption": "Two bedrooms off the hall",
+          "notes": "the empty hallway. The only clean stretch left, 20:03 to 20:06.2, after that Mike stands centre frame to the end of the episode"
         }
       ],
-      "full_vo": "We just finished turning this whole basement into a self contained apartment. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So whoever is living down here does their own laundry. Two bedrooms at the end of the hall, painted and carpeted. Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
+      "full_vo": "We just finished turning this whole basement into a self contained apartment. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So they do their own laundry down here. Own kitchen, own bathroom, own laundry, own entrance. Two bedrooms at the end of the hall.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend the finished apartment. Plain delivery, no announcer push.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
-      "cta_source": "20:14 - 20:18",
+      "cta_source": "19:24 - 19:28",
       "cta": {
         "primary": "Follow for more before and afters",
         "alt": "Would you finish your basement like this?",
         "pinned": "Full basement apartment build here: [full video link]"
       },
-      "assessment_note": "The vanity beat was cut. Mike talks about resizing it but never frames it without himself filling the shot, and there is no other angle on it."
+      "assessment_note": "The vanity beat was cut. Mike talks about resizing it but never frames it without himself filling the shot, and there is no other angle on it.",
+      "cta_crop": 0.78
     }
   ]
 }

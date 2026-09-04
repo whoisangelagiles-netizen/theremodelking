@@ -60,7 +60,8 @@ here. Read that skill first if it is not already loaded. In particular:
   the room, roughly 0.25 of frame width. With no annotations to land on it drifts
   for the whole shot rather than settling early.
 - `cta_source` is footage too, and it is the one range in the guide that is not a
-  scene. Channel outros are exactly where burned in SUBSCRIBE and BELL graphics
+  scene. `cta_crop` frames it independently of the last scene, which matters
+  because the end card rarely sits on the same footage the Short ended on. Channel outros are exactly where burned in SUBSCRIBE and BELL graphics
   live, so check the frames before you pick it. The build warns if it overlaps an
   avoid_range, so put any burned in graphic you find into avoid_ranges.
 - NEVER reuse footage, inside a Short or across the Shorts from one episode.
@@ -74,6 +75,10 @@ here. Read that skill first if it is not already loaded. In particular:
 - THE HOOK ESTABLISHES A SPACE, not a detail. The first scene has to show a
   finished ROOM so the viewer knows where they are. A tight shot on a fireplace
   or a faucet is a detail, and details belong in the body.
+  Watch the tail of every take as well as its head. Mike walks through his own
+  shots, so a take that is clean for six seconds can have him crossing it at the
+  seventh. Trim the line rather than the framing when that happens, it is cheaper
+  than finding new footage.
   Remember the frame is vertical and most rooms are horizontal, so a wide of a
   living room does not survive the 9:16 crop, it just becomes a slice of wall. A
   kitchen, a bathroom, or a hallway does survive, because their content stacks

@@ -2243,6 +2243,10 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
     cta_start, cta_crop, cta_zoom = scenes[-1].end, scenes[-1].crop_x, scenes[-1].zoom
     if short.get("cta_source"):
         cta_start = parse_range(short["cta_source"])[0]
+    # The end card is its own shot and often wants its own framing, because the
+    # footage under it is rarely the same footage as the last scene.
+    if short.get("cta_crop") is not None:
+        cta_crop = float(short["cta_crop"])
     cta_hold = sign_off["hold"] if sign_off else CTA_SECONDS
     if cta_start + cta_hold > source_seconds:
         cta_start = max(0.0, source_seconds - cta_hold)
