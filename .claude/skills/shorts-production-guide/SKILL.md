@@ -299,6 +299,11 @@ wrong footage. Pick a better range from the fetched transcript, put it in that
 scene's `source`, and rerun with `--rescan 3` to re-extract just that scene.
 Then look again.
 
+If you change any VO line after a build, the take is resynthesized automatically.
+The cached narration is fingerprinted against the script, because reusing it after
+the words or their order changed leaves the line timings pointing at the old text
+and every caption lands on the wrong shot with nothing failing.
+
 Set `"analyzed": true` when every scene is done and rerun the plain command.
 The build finishes and writes:
 

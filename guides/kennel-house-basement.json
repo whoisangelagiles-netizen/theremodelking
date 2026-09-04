@@ -56,42 +56,42 @@
       "scenes": [
         {
           "number": 1,
-          "source": "18:16 - 18:22",
+          "source": "18:46 - 18:51",
           "vo": "We just finished turning this whole basement into a self contained apartment.",
           "caption": "The basement is a full apartment now",
-          "notes": "the kitchen run. The camera is locked off here, so the frame pans across it rather than sitting still for ten seconds. Scenes 1 and 2 are ONE take",
+          "notes": "opens on the range, counter and cabinets and keeps moving. Scenes 1, 2 and 3 are ONE take, the camera swings round to the window",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "18:22 - 18:28",
-          "vo": "The kitchen cabinets and the countertop match the ones we did upstairs.",
-          "caption": "Cabinets and counter match upstairs",
+          "source": "18:51 - 18:55",
+          "vo": "Look how the countertop runs right into the window.",
+          "caption": "The counter runs into the window",
           "notes": "same take as scene 1",
           "continues_previous": true
         },
         {
           "number": 3,
-          "source": "18:44 - 18:50",
-          "vo": "Different backsplash, and it is a proper kitchen down here, dishwasher and all.",
-          "caption": "A proper kitchen, dishwasher and all",
-          "notes": "the counter and range. Scenes 3, 4 and 5 are ONE take",
-          "transition": "whoosh"
-        },
-        {
-          "number": 4,
-          "source": "18:50 - 18:56",
-          "vo": "Look how the countertop runs right into the window.",
-          "caption": "The counter runs into the window",
-          "notes": "same take, reaching the window recess",
+          "source": "18:55 - 18:59",
+          "vo": "So you get all that extra space behind the sink.",
+          "caption": "Extra space behind the sink",
+          "notes": "same take as scene 1",
           "continues_previous": true
         },
         {
+          "number": 4,
+          "source": "18:16 - 18:22",
+          "vo": "The kitchen cabinets and the countertop match the ones we did upstairs.",
+          "caption": "Cabinets and counter match upstairs",
+          "notes": "the cabinet run. Locked off camera, so the frame pans across it. Scenes 4 and 5 are ONE take",
+          "transition": "whoosh"
+        },
+        {
           "number": 5,
-          "source": "18:56 - 19:00",
-          "vo": "So you get all that extra space behind the sink.",
-          "caption": "Extra space behind the sink",
-          "notes": "same take as scene 3",
+          "source": "18:22 - 18:28",
+          "vo": "Different backsplash, and it is a proper kitchen down here, dishwasher and all.",
+          "caption": "A proper kitchen, dishwasher and all",
+          "notes": "same take as scene 4",
           "continues_previous": true
         },
         {
@@ -147,7 +147,7 @@
           "continues_previous": true
         }
       ],
-      "full_vo": "We just finished turning this whole basement into a self contained apartment. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So whoever is living down here does their own laundry. Two bedrooms at the end of the hall, painted and carpeted. Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
+      "full_vo": "We just finished turning this whole basement into a self contained apartment. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So whoever is living down here does their own laundry. Two bedrooms at the end of the hall, painted and carpeted. Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend the finished apartment. Plain delivery, no announcer push.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "20:14 - 20:18",

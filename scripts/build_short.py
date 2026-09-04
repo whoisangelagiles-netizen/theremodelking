@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import json
 import os
 import re
@@ -751,6 +752,12 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
         for dropped in [a for a in wanted if not annotation_is_placed(a)]:
             say(f"scene {scene.number}: {dropped.get('type', 'annotation')} for "
                 f"{dropped.get('target') or 'an unnamed feature'} has no coordinates, dropped")
+        # The skeleton writes the line out, so an edit to it there should count.
+        # It used to be ignored, which made a correction look applied when it was
+        # not, and the guide stayed the only source of truth without saying so.
+        if entry.get("vo") and " ".join(str(entry["vo"]).split()) != " ".join(scene.vo.split()):
+            say(f"scene {scene.number}: line taken from the analysis file, not the guide")
+            scene.vo = str(entry["vo"])
         if entry.get("frames_show_what_the_vo_says") is False:
             say(f"scene {scene.number}: marked as not matching the VO line, "
                 "the footage still needs a better range")
@@ -1208,12 +1215,23 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
     master = lines_dir / "master_raw.mp3"
     script = " ".join(texts)
     alignment_file = master.with_suffix(".alignment.json")
-    if master.exists() and alignment_file.exists() and not force:
+    # The cached take is only valid for the script it was rendered from. Reusing
+    # it after the words or their order changed leaves the line timings pointing
+    # at the old text, which puts every caption on the wrong shot without
+    # anything failing. Fingerprint the script and re-render when it moves.
+    stamp_file = lines_dir / "script.sha"
+    fingerprint = hashlib.sha256(script.encode("utf-8")).hexdigest()
+    cached_stamp = stamp_file.read_text(encoding="utf-8").strip() if stamp_file.exists() else ""
+    if master.exists() and alignment_file.exists() and not force and cached_stamp == fingerprint:
         alignment = json.loads(alignment_file.read_text(encoding="utf-8"))
         say(f"cached take, {media_duration(master):.2f}s")
     else:
+        if master.exists() and cached_stamp and cached_stamp != fingerprint:
+            say("the script changed since the cached take, resynthesizing so the "
+                "line timings match the words")
         eleven_tts(script, "", "", api_key, voice_id, model_id, master, settings)
         alignment = json.loads(alignment_file.read_text(encoding="utf-8"))
+        stamp_file.write_text(fingerprint, encoding="utf-8")
         say(f"one take, {len(script.split())} words, {media_duration(master):.2f}s")
 
     chars = alignment.get("characters", [])
