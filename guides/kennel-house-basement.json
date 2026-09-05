@@ -56,64 +56,65 @@
       "scenes": [
         {
           "number": 1,
-          "source": "18:46 - 18:51",
-          "vo": "We just finished turning this whole basement into a self contained apartment.",
+          "source": "18:46 - 18:49",
+          "vo": "This basement is a full apartment now.",
           "caption": "The basement is a full apartment now",
-          "notes": "opens on the range, counter and cabinets and keeps moving. Scenes 1, 2 and 3 are ONE take, the camera swings round to the window",
+          "notes": "opens on the range and counter. Scenes 1 to 5 are ONE take, 18:46 to 19:00, the camera carries all the way round to the cabinets. No cut anywhere in the opening",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "18:51 - 18:55",
+          "source": "18:49 - 18:52",
           "vo": "Look how the countertop runs right into the window.",
           "caption": "The counter runs into the window",
-          "notes": "same take as scene 1",
+          "notes": "same take",
           "continues_previous": true
         },
         {
           "number": 3,
-          "source": "18:55 - 18:59",
-          "vo": "So you get all that extra space behind the sink.",
+          "source": "18:52 - 18:55",
+          "vo": "So you get that extra space behind the sink.",
           "caption": "Extra space behind the sink",
-          "notes": "same take as scene 1",
+          "notes": "same take",
           "continues_previous": true
         },
         {
           "number": 4,
-          "source": "18:16 - 18:22",
-          "vo": "The kitchen cabinets and the countertop match the ones we did upstairs.",
+          "source": "18:55 - 18:58",
+          "vo": "The cabinets and counter match the ones upstairs.",
           "caption": "Cabinets and counter match upstairs",
-          "notes": "the cabinet run. Locked off camera, so the frame pans across it. Scenes 4 and 5 are ONE take",
-          "transition": "whoosh"
+          "notes": "same take, the camera reaching the cabinet run",
+          "continues_previous": true
         },
         {
           "number": 5,
-          "source": "18:22 - 18:28",
-          "vo": "Different backsplash, and it is a proper kitchen down here, dishwasher and all.",
+          "source": "18:58 - 19:00",
+          "vo": "A proper kitchen, dishwasher and all.",
           "caption": "A proper kitchen, dishwasher and all",
-          "notes": "same take as scene 4",
+          "notes": "same take, ending on the kitchen wide before the episode cuts away at 19:01.5",
           "continues_previous": true
         },
         {
           "number": 6,
           "source": "19:05 - 19:11",
-          "vo": "The bathroom uses the same tile as the bathrooms upstairs.",
+          "vo": "The bathroom uses the same tile we put in the bathrooms upstairs.",
           "caption": "Same tile as the upstairs bathrooms",
-          "notes": "the tub surround and the mosaic band"
+          "notes": "the tub surround and the mosaic band",
+          "transition": "whoosh"
         },
         {
           "number": 7,
-          "source": "19:14 - 19:20",
-          "vo": "The tub is new, and it is a deep one.",
+          "source": "19:14 - 19:18",
+          "vo": "The tub is new, and it is a nice deep one.",
           "caption": "A new, deep tub",
           "notes": "close on the tub rim. Scenes 7 and 8 are ONE take"
         },
         {
           "number": 8,
-          "source": "19:20 - 19:24",
-          "vo": "With a stone mosaic band running through it.",
+          "source": "19:18 - 19:22",
+          "vo": "With a stone mosaic band running the whole way through it.",
           "caption": "Stone mosaic band through the tile",
-          "notes": "same take as scene 7, the camera rises to the mosaic band. The wood look floor is only in frame at the very start of the take, so the line follows the band instead",
+          "notes": "same take, the camera rises to the band",
           "continues_previous": true
         },
         {
@@ -121,32 +122,31 @@
           "source": "19:38.5 - 19:42",
           "vo": "And behind this door, a stackable washer and dryer.",
           "caption": "Stackable laundry behind the door",
-          "notes": "the laundry closet, cut before Mike crosses the take at 19:43"
+          "notes": "the laundry closet, cut before Mike crosses at 19:43"
         },
         {
           "number": 10,
-          "source": "19:44.5 - 19:48",
-          "vo": "So they do their own laundry down here.",
+          "source": "19:44.5 - 19:50.5",
+          "vo": "So whoever is living down here does their own laundry.",
           "caption": "Own laundry, downstairs",
-          "notes": "picks the move up after Mike crosses at 19:43, on the tall cabinet and mirror. Scenes 10 and 11 are ONE take that ends at 19:50.5, before he steps into the doorway"
+          "notes": "picks the move up after Mike passes, on the tall cabinet and the vanity. Ends at 19:50.5, before he steps into the doorway"
         },
         {
           "number": 11,
-          "source": "19:48 - 19:51",
-          "vo": "Own kitchen, own bathroom, own laundry, own entrance.",
-          "caption": "Own kitchen, bathroom, laundry, entrance",
-          "notes": "same take as scene 10, the vanity and granite. Clean of Mike until 19:51.5",
-          "continues_previous": true
+          "source": "18:16 - 18:22",
+          "vo": "Its own kitchen, its own bathroom, its own laundry, and its own entrance.",
+          "caption": "Own kitchen, bathroom, laundry and entrance",
+          "notes": "back to the kitchen to close the loop. Held still at 0.20, not panned: the pan reached 0.46 and picked Mike up at the end of it, and this crop is clean of him"
         },
         {
           "number": 12,
           "source": "20:03 - 20:06.2",
-          "vo": "Two bedrooms at the end of the hall.",
+          "vo": "And two bedrooms at the end of the hall.",
           "caption": "Two bedrooms off the hall",
-          "notes": "the empty hallway. The only clean stretch left, 20:03 to 20:06.2, after that Mike stands centre frame to the end of the episode"
+          "notes": "the empty hallway. The only clean stretch left, after 20:06.2 Mike stands centre frame to the end of the episode"
         }
       ],
-      "full_vo": "We just finished turning this whole basement into a self contained apartment. Look how the countertop runs right into the window. So you get all that extra space behind the sink. The kitchen cabinets and the countertop match the ones we did upstairs. Different backsplash, and it is a proper kitchen down here, dishwasher and all. The bathroom uses the same tile as the bathrooms upstairs. The tub is new, and it is a deep one. With a stone mosaic band running through it. And behind this door, a stackable washer and dryer. So they do their own laundry down here. Own kitchen, own bathroom, own laundry, own entrance. Two bedrooms at the end of the hall.",
+      "full_vo": "This basement is a full apartment now. Look how the countertop runs right into the window. So you get that extra space behind the sink. The cabinets and counter match the ones upstairs. A proper kitchen, dishwasher and all. The bathroom uses the same tile we put in the bathrooms upstairs. The tub is new, and it is a nice deep one. With a stone mosaic band running the whole way through it. And behind this door, a stackable washer and dryer. So whoever is living down here does their own laundry. Its own kitchen, its own bathroom, its own laundry, and its own entrance. And two bedrooms at the end of the hall.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend the finished apartment. Plain delivery, no announcer push.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "19:24 - 19:28",
