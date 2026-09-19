@@ -59,7 +59,7 @@
           "source": "17:34 - 17:40",
           "vo": "Two bathrooms done, and the homeowner designed both of them herself.",
           "caption": "She designed both bathrooms herself",
-          "notes": "master bath, the hammered copper tub with its black filler and the new window. Scenes 1 and 2 are ONE take",
+          "notes": "the copper tub corner. The camera is locked off here, so the crop pans from the window down onto the tub and its filler, otherwise eight seconds pass with nothing moving. Mike's hand crosses at crop 0.68, so the whole move stays between 0.70 and 0.84. Scenes 1 and 2 are ONE take",
           "caption_zone": "hook"
         },
         {
@@ -75,7 +75,7 @@
           "source": "12:41 - 12:48",
           "vo": "The French doors came from the family room downstairs, repainted and put back up here.",
           "caption": "French doors repurposed from downstairs",
-          "notes": "the French doors, the copper tub visible through the glass. Mike is off frame left at this crop",
+          "notes": "the French doors with the copper tub beyond the glass. Locked off again, so the crop pans onto the doors. Mike is off frame left the whole time at these crops",
           "transition": "whoosh"
         },
         {
@@ -87,46 +87,48 @@
         },
         {
           "number": 5,
-          "source": "14:08 - 14:11.5",
+          "source": "14:11 - 14:14.3",
           "vo": "My tile guy had to work off her drawings to set it.",
           "caption": "The tile setter worked off her drawings",
-          "notes": "master shower, swings onto the black rain head and hand held"
+          "notes": "master shower, opens on the black rain head and hand held and travels to the quartz bench. Scenes 5 and 6 are ONE take"
         },
         {
           "number": 6,
-          "source": "14:15 - 14:21",
+          "source": "14:14.3 - 14:18.5",
           "vo": "The bench top is quartz, and the controls are all black.",
           "caption": "Quartz bench, black controls",
-          "notes": "pans off the black controls onto the quartz bench seat"
+          "notes": "same take as scene 5, the move lands on the bench",
+          "continues_previous": true
         },
         {
           "number": 7,
-          "source": "12:03 - 12:08",
+          "source": "12:03 - 12:07.5",
           "vo": "In the main bath, a Euro door, a rain head and a hand held.",
           "caption": "Main bath: Euro door, rain head, hand held",
-          "notes": "main bath shower, patterned tile. Scenes 7 and 8 are ONE take"
+          "notes": "main bath shower, patterned tile. Scenes 7, 8 and 9 are ONE take, no cuts"
         },
         {
           "number": 8,
-          "source": "12:08 - 12:13",
-          "vo": "Her pattern again on the walls.",
-          "caption": "Her pattern again on the walls",
-          "notes": "same take as scene 7",
+          "source": "12:07.5 - 12:10",
+          "vo": "And a honeycomb tile floor.",
+          "caption": "Honeycomb tile floor",
+          "notes": "same take, the camera is over the honeycomb floor at this point",
           "continues_previous": true
         },
         {
           "number": 9,
-          "source": "12:20.4 - 12:23.0",
-          "vo": "And a honeycomb tile floor.",
-          "caption": "Honeycomb tile floor",
-          "notes": "the honeycomb floor, framed hard left so Mike stays out. The take runs onto the bedroom carpet after 12:23, so it has to end before then"
+          "source": "12:10 - 12:12.6",
+          "vo": "Her pattern again on the walls.",
+          "caption": "Her pattern again on the walls",
+          "notes": "same take, back up onto the patterned tile walls. Cutting away here and coming back for the floor put the bedroom carpet on screen under the floor line, so the three lines run over one unbroken move instead",
+          "continues_previous": true
         },
         {
           "number": 10,
           "source": "15:31 - 15:35",
           "vo": "The sliding glass door is now a double casement window.",
           "caption": "Sliding door out, double casement in",
-          "notes": "slides off the vanity and settles on the new casement window. Mike walks into this take at 15:36, so the clip must end before then"
+          "notes": "the new casement window. The camera is panning right through this take, so the crop has to track left to hold the window. Mike walks in at 15:36, so the clip ends before then"
         },
         {
           "number": 11,
@@ -143,17 +145,18 @@
           "notes": "main bath vanity, clean. The sign off is spoken over this and the location audio is muted"
         }
       ],
-      "full_vo": "Two bathrooms done, and the homeowner designed both of them herself. That tub is hammered copper, with a freestanding filler beside it. The French doors came from the family room downstairs, repainted and put back up here.\n\nThe shower tile is her pattern, two sizes, and every row mapped out. My tile guy had to work off her drawings to set it. The bench top is quartz, and the controls are all black.\n\nIn the main bath, a Euro door, a rain head and a hand held. Her pattern again on the walls. And a honeycomb tile floor. The sliding glass door is now a double casement window.\n\nShe picked the mirrors, the sconces, the light fixtures, all of it. Her design, from the drawings to the last tile.",
+      "full_vo": "Two bathrooms done, and the homeowner designed both of them herself. That tub is hammered copper, with a freestanding filler beside it. The French doors came from the family room downstairs, repainted and put back up here.\n\nThe shower tile is her pattern, two sizes, and every row mapped out. My tile guy had to work off her drawings to set it. The bench top is quartz, and the controls are all black.\n\nIn the main bath, a Euro door, a rain head and a hand held. And a honeycomb tile floor. Her pattern again on the walls. The sliding glass door is now a double casement window.\n\nShe picked the mirrors, the sconces, the light fixtures, all of it. Her design, from the drawings to the last tile.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend the finished rooms, and genuinely pleased to hand the credit to the homeowner.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
-      "cta_source": "17:55 - 18:00",
-      "cta_crop": 0.78,
+      "cta_source": "12:53 - 12:57",
+      "cta_crop": 0.68,
       "cta": {
         "primary": "Follow for more before and afters",
         "alt": "Would you design your own bathroom?",
         "pinned": "Full two bathroom transformation here: [full video link]"
       },
-      "shot_notes": "Almost every wide of the master bath has Mike in it. The clean footage is the tub and window corner at 17:32 to 18:02 held right of frame, the French doors at 12:39 to 12:53 held right, the master shower pan at 13:48 to 14:21, the main bath at 11:52 to 11:56 and 12:00 to 12:25, the vanity pan at 13:02 to 13:08 and the vanity and window at 15:31 to 15:35. Everything in this Short comes from those."
+      "shot_notes": "Almost every wide of the master bath has Mike in it. The clean footage is the tub and window corner at 17:32 to 18:02 held right of frame, the French doors at 12:39 to 12:53 held right, the master shower pan at 13:48 to 14:21, the main bath at 11:52 to 11:56 and 12:00 to 12:25, the vanity pan at 13:02 to 13:08 and the vanity and window at 15:31 to 15:35. Everything in this Short comes from those.",
+      "cta_frame_note": "Not the 17:34 tub wide. That is the hook, and using it again made the first and last frame of the Short read as the same picture. 12:53 is the same room from the other side, looking through the French doors once Mike has opened them, and the camera is still pushing in."
     }
   ]
 }
