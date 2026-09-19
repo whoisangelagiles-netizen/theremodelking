@@ -1,0 +1,159 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Two Bathroom Remodel, The Copper House",
+  "date": "September 2026",
+  "work_id": "copper-house",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#bathroomremodel",
+    "#masterbathroom",
+    "#copperbathtub",
+    "#remodeling"
+  ],
+  "assessment": "Two bathrooms in one episode and an angle the others have not had: the homeowner designed the whole thing herself in SketchUp, picked every finish and ordered all of it, down to the tile layout her tile setter had to work from. That is the Short. The hammered copper tub is the signature image and it names the house. The reveal runs 11:32 to 15:48 plus a clean master bath wide at 17:34 to 18:00, so there is enough for one Short with a little spare. The walk in shower draft story at 14:16 to 15:16, where she tried it without a door and froze, is a genuinely good second Short on its own and is left out of this one for room.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 11:30",
+      "reason": "before, demo and progress. The reveal starts at 11:32"
+    },
+    {
+      "range": "13:18 - 13:35",
+      "reason": "the 'Jess: I couldn't resist!' caption is burned into frame, and it is a person in the tub rather than the work"
+    },
+    {
+      "range": "15:48 - 17:30",
+      "reason": "the cracked window admission and the outside roofing, neither is reveal footage"
+    },
+    {
+      "range": "18:03 - 20:30",
+      "reason": "the before and after montage with labels burned into frame, then the Project Statistics slide"
+    }
+  ],
+  "project_context": {
+    "summary": "Two bathrooms in an older house. The master was expanded and got a hammered copper freestanding tub, French doors repurposed from the family room downstairs, a shower tiled to the homeowner's own random pattern in two tile sizes, a quartz bench top and a marble topped shower vent, and a sliding glass door replaced with a double casement window. The main bath was rearranged around the existing vanity, with a Euro door shower, a rain head and hand held, and a honeycomb tile floor.",
+    "segment_choice": "One Short, cut from 11:32 to 15:48 and the clean master bath wide at 17:34. No before footage, no progress footage, and nothing from the labelled comparison montage after 18:03.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every frame is a finished bathroom.",
+      "The homeowner designed it, and the Short says so. That is the hook."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "The Homeowner Designed This Whole Bathroom Herself",
+      "source_range": "11:52 - 17:58",
+      "target_runtime": "55 seconds",
+      "primary_goal": "Show two finished bathrooms and credit the homeowner's design throughout",
+      "seo_titles": [
+        "The Homeowner Designed This Whole Bathroom Herself",
+        "She Drew It In SketchUp And We Built It",
+        "A Hammered Copper Tub And A Tile Pattern She Mapped Out",
+        "Two Bathroom Remodel In An Older House"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "17:34 - 17:40",
+          "vo": "Two bathrooms done, and the homeowner designed both of them herself.",
+          "caption": "She designed both bathrooms herself",
+          "notes": "master bath, the hammered copper tub with its black filler and the new window. Scenes 1 and 2 are ONE take",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "17:40 - 17:46",
+          "vo": "That tub is hammered copper, with a freestanding filler beside it.",
+          "caption": "Hammered copper, freestanding filler",
+          "notes": "same take as scene 1",
+          "continues_previous": true
+        },
+        {
+          "number": 3,
+          "source": "12:41 - 12:48",
+          "vo": "The French doors came from the family room downstairs, repainted and put back up here.",
+          "caption": "French doors repurposed from downstairs",
+          "notes": "the French doors, the copper tub visible through the glass. Mike is off frame left at this crop",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "13:49.5 - 13:55.5",
+          "vo": "The shower tile is her pattern, two sizes, and every row mapped out.",
+          "caption": "Her tile pattern, two sizes",
+          "notes": "master shower, holds on the mosaic floor and the two tile sizes at the curb"
+        },
+        {
+          "number": 5,
+          "source": "14:08 - 14:11.5",
+          "vo": "My tile guy had to work off her drawings to set it.",
+          "caption": "The tile setter worked off her drawings",
+          "notes": "master shower, swings onto the black rain head and hand held"
+        },
+        {
+          "number": 6,
+          "source": "14:15 - 14:21",
+          "vo": "The bench top is quartz, and the controls are all black.",
+          "caption": "Quartz bench, black controls",
+          "notes": "pans off the black controls onto the quartz bench seat"
+        },
+        {
+          "number": 7,
+          "source": "12:03 - 12:08",
+          "vo": "In the main bath, a Euro door, a rain head and a hand held.",
+          "caption": "Main bath: Euro door, rain head, hand held",
+          "notes": "main bath shower, patterned tile. Scenes 7 and 8 are ONE take"
+        },
+        {
+          "number": 8,
+          "source": "12:08 - 12:13",
+          "vo": "Her pattern again on the walls.",
+          "caption": "Her pattern again on the walls",
+          "notes": "same take as scene 7",
+          "continues_previous": true
+        },
+        {
+          "number": 9,
+          "source": "12:20.4 - 12:23.0",
+          "vo": "And a honeycomb tile floor.",
+          "caption": "Honeycomb tile floor",
+          "notes": "the honeycomb floor, framed hard left so Mike stays out. The take runs onto the bedroom carpet after 12:23, so it has to end before then"
+        },
+        {
+          "number": 10,
+          "source": "15:31 - 15:35",
+          "vo": "The sliding glass door is now a double casement window.",
+          "caption": "Sliding door out, double casement in",
+          "notes": "slides off the vanity and settles on the new casement window. Mike walks into this take at 15:36, so the clip must end before then"
+        },
+        {
+          "number": 11,
+          "source": "13:02 - 13:06",
+          "vo": "She picked the mirrors, the sconces, the light fixtures, all of it.",
+          "caption": "Mirrors, sconces, fixtures, all hers",
+          "notes": "starts on the vanity and its black faucet, tracks the oval mirror and sconces"
+        },
+        {
+          "number": 12,
+          "source": "11:51.8 - 11:55.2",
+          "vo": "Her design, from the drawings to the last tile.",
+          "caption": "Her design, drawings to last tile",
+          "notes": "main bath vanity, clean. The sign off is spoken over this and the location audio is muted"
+        }
+      ],
+      "full_vo": "Two bathrooms done, and the homeowner designed both of them herself. That tub is hammered copper, with a freestanding filler beside it. The French doors came from the family room downstairs, repainted and put back up here.\n\nThe shower tile is her pattern, two sizes, and every row mapped out. My tile guy had to work off her drawings to set it. The bench top is quartz, and the controls are all black.\n\nIn the main bath, a Euro door, a rain head and a hand held. Her pattern again on the walls. And a honeycomb tile floor. The sliding glass door is now a double casement window.\n\nShe picked the mirrors, the sconces, the light fixtures, all of it. Her design, from the drawings to the last tile.",
+      "voice_direction": "Warm and unhurried, a contractor showing a friend the finished rooms, and genuinely pleased to hand the credit to the homeowner.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "17:55 - 18:00",
+      "cta_crop": 0.78,
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you design your own bathroom?",
+        "pinned": "Full two bathroom transformation here: [full video link]"
+      },
+      "shot_notes": "Almost every wide of the master bath has Mike in it. The clean footage is the tub and window corner at 17:32 to 18:02 held right of frame, the French doors at 12:39 to 12:53 held right, the master shower pan at 13:48 to 14:21, the main bath at 11:52 to 11:56 and 12:00 to 12:25, the vanity pan at 13:02 to 13:08 and the vanity and window at 15:31 to 15:35. Everything in this Short comes from those."
+    }
+  ]
+}
