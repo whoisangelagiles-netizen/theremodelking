@@ -62,12 +62,12 @@
           "source": "14:19.3 - 14:22.5",
           "vo": "We bought this house to flip it, and the basement was not part of the plan.",
           "caption": "The basement wasn't part of the plan",
-          "notes": "the wet bar wide. Mike is still at the left edge until 14:19.3 and crosses the frame between 14:27 and 14:29, so nothing can pan through the middle of this take. Scenes 1 and 2 are ONE take",
+          "notes": "the wet bar wide. Mike is at the left edge until 14:19.3 and crosses the frame between 14:27 and 14:29, so nothing can pan through the middle of this take. Scenes 1 and 2 are ONE take",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "14:22 - 14:26",
+          "source": "14:22.5 - 14:26",
           "vo": "Then the people buying it asked us to finish it too.",
           "caption": "Then the buyers asked us to finish it",
           "notes": "same take as scene 1",
@@ -75,78 +75,77 @@
         },
         {
           "number": 3,
-          "source": "14:29 - 14:33",
-          "vo": "This is one of the nicest wet bars we have ever built.",
-          "caption": "One of the nicest bars we've built",
-          "notes": "the bar sink, taps and glassware, held hard left. This is a separate take from the hook on purpose: chained on, it ran the hook straight through the point where Mike crosses the frame",
+          "source": "14:29 - 14:34",
+          "vo": "One of the nicest wet bars we have ever built, and the island even rolls.",
+          "caption": "The island even rolls",
+          "notes": "the bar sink, taps and glassware, held hard left, which is where he is not once he has crossed",
           "transition": "whoosh"
         },
         {
           "number": 4,
-          "source": "14:36.5 - 14:40.5",
-          "vo": "And the island rolls. You can push it right out of the way.",
-          "caption": "The island rolls",
-          "notes": "the granite island slab in the foreground with the bar behind. He reaches in from the right through this take, so the crop sits at the far left edge"
-        },
-        {
-          "number": 5,
-          "source": "19:07.5 - 19:11.5",
-          "vo": "Wine cooler, under cabinet lights, and a counter I keep staring at.",
-          "caption": "Wine cooler, under cabinet lights",
-          "notes": "the wine cooler end of the bar from the sign off take, held hard right. His hand is in the bottom left corner until 19:07"
-        },
-        {
-          "number": 6,
-          "source": "14:49 - 14:53",
-          "vo": "His office sits right behind it, with the furniture built to fit.",
+          "source": "14:49 - 14:54",
+          "vo": "His office is right behind it, with the furniture built to fit.",
           "caption": "His office, furniture built to fit",
           "notes": "the office, the linear fireplace and the window, held left so the frame reads as the room"
         },
         {
-          "number": 7,
-          "source": "15:08 - 15:13",
+          "number": 5,
+          "source": "15:16 - 15:21",
           "vo": "Then the family room, lit the way I light everything, because nobody wants a dark room.",
           "caption": "Nobody wants a dark room",
-          "notes": "the family room, held left"
+          "notes": "the media wall, the tables and the rug. Framed centre so the room reads, not the wall behind it"
         },
         {
-          "number": 8,
+          "number": 6,
           "source": "15:34 - 15:38",
           "vo": "Built ins at the foot of the stairs.",
           "caption": "Built ins at the foot of the stairs",
-          "notes": "the cabinetry, framed on the doors and shelf structure"
+          "notes": "the cabinetry"
+        },
+        {
+          "number": 7,
+          "source": "16:44.5 - 16:48",
+          "vo": "There is a bedroom down here as well.",
+          "caption": "A bedroom down here as well",
+          "notes": "the basement bedroom. Mike is in the doorway until 16:44, so the take starts after he clears it"
+        },
+        {
+          "number": 8,
+          "source": "17:17.5 - 17:21.5",
+          "vo": "A walk in closet off the hallway.",
+          "caption": "A walk in closet",
+          "notes": "the closet, hanging space and shoe racks. The camera is still on the hallway wall before 17:17.5"
         },
         {
           "number": 9,
-          "source": "15:59.5 - 16:04",
-          "vo": "The bathroom down here has a vessel sink, with green running right through the stone.",
-          "caption": "Vessel sink, green through the stone",
-          "notes": "the green veined counter travelling onto the vessel basin. Mike shows up in the mirror from 16:04.5"
+          "source": "17:31.5 - 17:35.5",
+          "vo": "And they put a gym in at the end.",
+          "caption": "And a gym at the end",
+          "notes": "the gym, held hard left. Mike works the centre of this take"
         },
         {
           "number": 10,
-          "source": "16:14 - 16:19",
-          "vo": "And then there is this. A steam shower.",
-          "caption": "A steam shower",
-          "notes": "the slab walls. Scenes 10 and 11 are ONE take"
+          "source": "16:00.3 - 16:04.5",
+          "vo": "The bathroom has a vessel sink, with green running right through the stone.",
+          "caption": "Vessel sink, green through the stone",
+          "notes": "the green veined counter travelling onto the vessel basin. His hand is in the top of frame until 16:00.3 and he shows up in the mirror from 16:04.5"
         },
         {
           "number": 11,
-          "source": "16:19 - 16:24",
-          "vo": "Slab walls, a bench inside, and a niche for everything.",
-          "caption": "Slab walls, bench, niche",
-          "notes": "same take as scene 10. The digital control is outside this crop, so the line names the niche, which is on screen",
-          "continues_previous": true
+          "source": "16:14 - 16:21",
+          "vo": "And then there is this. A steam shower, lined in slab, with a bench inside.",
+          "caption": "A steam shower, lined in slab",
+          "notes": "the steam shower. One shot now, not three, because three crops of the same slab read as one picture held too long"
         },
         {
           "number": 12,
-          "source": "16:29 - 16:33",
-          "vo": "All of that in a basement that was never on the list.",
+          "source": "19:07.5 - 19:11.5",
+          "vo": "Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
           "caption": "A basement that was never on the list",
-          "notes": "the shower heads against the slab. The sign off is spoken over this and the location audio is muted"
+          "notes": "the wine cooler end of the bar from the sign off take, held hard right. A different camera and a different framing from the hook. The sign off is spoken over this and the location audio is muted"
         }
       ],
-      "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. This is one of the nicest wet bars we have ever built.\n\nAnd the island rolls. You can push it right out of the way. Wine cooler, under cabinet lights, and a counter I keep staring at. His office sits right behind it, with the furniture built to fit.\n\nThen the family room, lit the way I light everything, because nobody wants a dark room. Built ins at the foot of the stairs. The bathroom down here has a vessel sink, with green running right through the stone.\n\nAnd then there is this. A steam shower. Slab walls, a bench inside, and a niche for everything. All of that in a basement that was never on the list.",
+      "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. One of the nicest wet bars we have ever built, and the island even rolls.\n\nHis office is right behind it, with the furniture built to fit. Then the family room, lit the way I light everything, because nobody wants a dark room. Built ins at the foot of the stairs.\n\nThere is a bedroom down here as well. A walk in closet off the hallway. And they put a gym in at the end.\n\nThe bathroom has a vessel sink, with green running right through the stone. And then there is this. A steam shower, lined in slab, with a bench inside. Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
       "voice_direction": "Warm and unhurried, a contractor who is quietly pleased that the part nobody asked for turned out to be the best part of the house.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "14:53 - 14:58",
@@ -156,7 +155,8 @@
         "primary": "Follow for more before and afters",
         "alt": "Would you put a steam shower in your basement?",
         "pinned": "Full flip and basement here: [full video link]"
-      }
+      },
+      "shot_notes": "The first cut leaned on the bar for five of twelve shots and the steam shower for three, which read as the same picture over and over. This one uses the bar three times and then nine different spaces. Clean windows: the bar wide at 14:19 to 14:26, the bar sink at 14:29 to 14:34 held left, the office at 14:49 to 14:55 held left, the family room at 15:14 to 15:23, the built ins at 15:34 to 15:38, the vessel sink at 15:59 to 16:04, the steam shower at 16:12 to 16:34, the bedroom at 16:44 to 16:49, the closet at 17:14 to 17:22, the gym at 17:30 to 17:40 held hard left, and the sign off at the bar at 19:00 to 19:22, clean at 0.22 and at 0.80 either side of him."
     }
   ]
 }
