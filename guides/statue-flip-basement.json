@@ -1,0 +1,162 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Inside Our Most Dramatic Flip Yet, From Dated to Dream Home in 4 Weeks",
+  "date": "October 2026",
+  "work_id": "dramatic-flip",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#houseflip",
+    "#basementfinishing",
+    "#wetbar",
+    "#steamshower",
+    "#remodeling"
+  ],
+  "assessment": "King bought this one as a fix and flip, in the same development as the cottage flip and on the same floor plan. The upstairs is a solid flip tour on its own. The Short is the basement, because of what Mike says at 18:37: they bought it to fix and sell, and the people buying it then asked them to finish the basement as well. So the best part of the house was never part of the job. The basement has a wet bar Mike calls one of the nicest they have ever done, an island on wheels, and a steam shower lined in slab that he says makes you feel like you are in the clouds. Finished basement footage runs 14:00 to 17:45, plus the sign off at the bar from 18:50 to 19:28, which is usable at left and right crops where Mike is out of frame.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 9:55",
+      "reason": "before, demo and progress"
+    },
+    {
+      "range": "17:45 - 18:50",
+      "reason": "the garage. Good footage but a different Short"
+    },
+    {
+      "range": "19:30 - 19:48",
+      "reason": "the Project Statistics slide"
+    },
+    {
+      "range": "19:48 - 20:00",
+      "reason": "the King Construction outro card"
+    }
+  ],
+  "project_context": {
+    "summary": "A fix and flip the buyers bought mid project, then asked King to finish the basement too. The basement has a wet bar in stained wood with glass front uppers, under cabinet lighting, a stacked stone backsplash, a wine cooler and a heavily veined granite top, and the island in front of it rolls so it can be pushed out of the way. Behind the bar sits his office with custom built furniture and a linear fireplace, then the family room, then built ins at the foot of the stairs. The basement bathroom has a vessel sink on a green veined counter and a steam shower lined in slab with a bench, a niche and a digital control outside the glass.",
+    "segment_choice": "One Short, cut from 14:19 to 16:34 plus two right hand crops of the sign off at 19:06 and 19:14. Nothing from the upstairs tour and nothing from the garage.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "The hook is that the basement was never part of the job. Mike says it at 18:37.",
+      "The upstairs has a Short of its own in it: they kept the kitchen boxes and replaced only the doors and drawer faces, then painted, and the master vanity has a drawer at the bottom where a top drawer cannot go. Left out of this one for room.",
+      "The family keep a large collection on open shelves down here. Frame the cabinetry and the room, not the collection."
+    ]
+  },
+  "shot_notes": "Mike works the centre of the bar through the whole basement segment, so the clean windows are left and right crops. The ones found by scanning: the bar wide at 14:19 to 14:31, the bar sink and glassware at 14:31 to 14:39 held left, the office at 14:49 to 14:55 held left, the family room at 15:08 to 15:13 held left, the built ins at 15:34 to 15:38, the vessel sink at 16:00 to 16:05, the steam shower at 16:12 to 16:34, and the sign off at the bar at 19:00 to 19:22, which is clean at crop 0.22 and at 0.76 either side of him.",
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "The Best Part Of This Flip Was Never Part Of The Job",
+      "source_range": "14:19 - 19:19",
+      "target_runtime": "55 seconds",
+      "primary_goal": "Lead on the basement not being part of the flip, then tour the bar and the steam shower",
+      "seo_titles": [
+        "The Best Part Of This Flip Was Never Part Of The Job",
+        "The Buyers Asked Us To Finish The Basement Too",
+        "A Wet Bar With An Island On Wheels",
+        "This Basement Has A Steam Shower In It"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "14:19.3 - 14:22.5",
+          "vo": "We bought this house to flip it, and the basement was not part of the plan.",
+          "caption": "The basement wasn't part of the plan",
+          "notes": "the wet bar wide. Mike is still at the left edge until 14:19.3 and crosses the frame between 14:27 and 14:29, so nothing can pan through the middle of this take. Scenes 1 and 2 are ONE take",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "14:22 - 14:26",
+          "vo": "Then the people buying it asked us to finish it too.",
+          "caption": "Then the buyers asked us to finish it",
+          "notes": "same take as scene 1",
+          "continues_previous": true
+        },
+        {
+          "number": 3,
+          "source": "14:29 - 14:33",
+          "vo": "This is one of the nicest wet bars we have ever built.",
+          "caption": "One of the nicest bars we've built",
+          "notes": "the bar sink, taps and glassware, held hard left. This is a separate take from the hook on purpose: chained on, it ran the hook straight through the point where Mike crosses the frame",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "14:36.5 - 14:40.5",
+          "vo": "And the island rolls. You can push it right out of the way.",
+          "caption": "The island rolls",
+          "notes": "the granite island slab in the foreground with the bar behind. He reaches in from the right through this take, so the crop sits at the far left edge"
+        },
+        {
+          "number": 5,
+          "source": "19:07.5 - 19:11.5",
+          "vo": "Wine cooler, under cabinet lights, and a counter I keep staring at.",
+          "caption": "Wine cooler, under cabinet lights",
+          "notes": "the wine cooler end of the bar from the sign off take, held hard right. His hand is in the bottom left corner until 19:07"
+        },
+        {
+          "number": 6,
+          "source": "14:49 - 14:53",
+          "vo": "His office sits right behind it, with the furniture built to fit.",
+          "caption": "His office, furniture built to fit",
+          "notes": "the office, the linear fireplace and the window, held left so the frame reads as the room"
+        },
+        {
+          "number": 7,
+          "source": "15:08 - 15:13",
+          "vo": "Then the family room, lit the way I light everything, because nobody wants a dark room.",
+          "caption": "Nobody wants a dark room",
+          "notes": "the family room, held left"
+        },
+        {
+          "number": 8,
+          "source": "15:34 - 15:38",
+          "vo": "Built ins at the foot of the stairs.",
+          "caption": "Built ins at the foot of the stairs",
+          "notes": "the cabinetry, framed on the doors and shelf structure"
+        },
+        {
+          "number": 9,
+          "source": "15:59.5 - 16:04",
+          "vo": "The bathroom down here has a vessel sink, with green running right through the stone.",
+          "caption": "Vessel sink, green through the stone",
+          "notes": "the green veined counter travelling onto the vessel basin. Mike shows up in the mirror from 16:04.5"
+        },
+        {
+          "number": 10,
+          "source": "16:14 - 16:19",
+          "vo": "And then there is this. A steam shower.",
+          "caption": "A steam shower",
+          "notes": "the slab walls. Scenes 10 and 11 are ONE take"
+        },
+        {
+          "number": 11,
+          "source": "16:19 - 16:24",
+          "vo": "Slab walls, a bench inside, and a niche for everything.",
+          "caption": "Slab walls, bench, niche",
+          "notes": "same take as scene 10. The digital control is outside this crop, so the line names the niche, which is on screen",
+          "continues_previous": true
+        },
+        {
+          "number": 12,
+          "source": "16:29 - 16:33",
+          "vo": "All of that in a basement that was never on the list.",
+          "caption": "A basement that was never on the list",
+          "notes": "the shower heads against the slab. The sign off is spoken over this and the location audio is muted"
+        }
+      ],
+      "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. This is one of the nicest wet bars we have ever built.\n\nAnd the island rolls. You can push it right out of the way. Wine cooler, under cabinet lights, and a counter I keep staring at. His office sits right behind it, with the furniture built to fit.\n\nThen the family room, lit the way I light everything, because nobody wants a dark room. Built ins at the foot of the stairs. The bathroom down here has a vessel sink, with green running right through the stone.\n\nAnd then there is this. A steam shower. Slab walls, a bench inside, and a niche for everything. All of that in a basement that was never on the list.",
+      "voice_direction": "Warm and unhurried, a contractor who is quietly pleased that the part nobody asked for turned out to be the best part of the house.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "14:53 - 14:58",
+      "cta_crop": 0.26,
+      "cta_frame_note": "The office end of the basement, held left. Every crop of the bar either catches Mike's shoulder or reads as the same picture as the hook, which is the bar, so the end card moves to a different room.",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you put a steam shower in your basement?",
+        "pinned": "Full flip and basement here: [full video link]"
+      }
+    }
+  ]
+}
