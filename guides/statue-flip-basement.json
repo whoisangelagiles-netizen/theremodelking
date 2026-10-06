@@ -64,7 +64,11 @@
           "caption": "The basement wasn't part of the plan",
           "notes": "the wet bar wide. Mike is at the left edge until 14:19.3 and crosses the frame between 14:27 and 14:29, so nothing can pan through the middle of this take. Scenes 1 and 2 are ONE take",
           "caption_zone": "hook",
-          "view": 0.6
+          "view": 0.6,
+          "fb_pan": {
+            "from": 0.48,
+            "to": 0.84
+          }
         },
         {
           "number": 2,
@@ -81,7 +85,11 @@
           "caption": "The island even rolls",
           "notes": "the bar sink, taps and glassware, held hard left, which is where he is not once he has crossed At any view wider than the old full bleed crop Mike is inside the window by the end of this take, so the pan runs left and the view sits at 0.40 to finish clear of him.",
           "transition": "whoosh",
-          "view": 0.4
+          "view": 0.4,
+          "fb_pan": {
+            "from": 0.14,
+            "to": 0.3
+          }
         },
         {
           "number": 4,
@@ -89,7 +97,11 @@
           "vo": "His office is right behind it, with the furniture built to fit.",
           "caption": "His office, furniture built to fit",
           "notes": "the office, the linear fireplace and the window, held left so the frame reads as the room",
-          "view": 0.8
+          "view": 0.8,
+          "fb_pan": {
+            "from": 0.18,
+            "to": 0.78
+          }
         },
         {
           "number": 5,
@@ -97,7 +109,11 @@
           "vo": "Then the family room, lit the way I light everything, because nobody wants a dark room.",
           "caption": "Nobody wants a dark room",
           "notes": "the media wall, the tables and the rug. Framed centre so the room reads, not the wall behind it",
-          "view": 0.8
+          "view": 0.8,
+          "fb_pan": {
+            "from": 0.2,
+            "to": 0.78
+          }
         },
         {
           "number": 6,
@@ -105,7 +121,11 @@
           "vo": "A whole wall of built ins, with cupboards underneath.",
           "caption": "A whole wall of built ins",
           "notes": "the built in wall, open shelving above and cupboard doors below, one of which he opens at 15:36. Mike's own words at 15:31 are 'built-ins right here at the bottom of the stairs', but the staircase is never shown anywhere in the basement segment, so a caption about stairs reads as wrong over a hallway cabinet wall. The line describes what is in frame instead.",
-          "view": 0.45
+          "view": 0.45,
+          "fb_pan": {
+            "from": 0.2,
+            "to": 0.46
+          }
         },
         {
           "number": 7,
@@ -113,7 +133,11 @@
           "vo": "There is a bedroom down here as well.",
           "caption": "A bedroom down here as well",
           "notes": "the basement bedroom. Mike is in the doorway until 16:44, so the take starts after he clears it",
-          "view": 0.8
+          "view": 0.8,
+          "fb_pan": {
+            "from": 0.22,
+            "to": 0.72
+          }
         },
         {
           "number": 8,
@@ -121,7 +145,11 @@
           "vo": "A walk in closet off the hallway.",
           "caption": "A walk in closet",
           "notes": "the closet, hanging space and shoe racks. The camera is still on the hallway wall before 17:17.5",
-          "view": 0.45
+          "view": 0.45,
+          "fb_pan": {
+            "from": 0.36,
+            "to": 0.58
+          }
         },
         {
           "number": 9,
@@ -129,7 +157,11 @@
           "vo": "And they put a gym in at the end.",
           "caption": "And a gym at the end",
           "notes": "the gym, held hard left. Mike works the centre of this take",
-          "view": 0.45
+          "view": 0.45,
+          "fb_pan": {
+            "from": 0.14,
+            "to": 0.22
+          }
         },
         {
           "number": 10,
@@ -137,7 +169,11 @@
           "vo": "The bathroom has a vessel sink, with green running right through the stone.",
           "caption": "Vessel sink, green through the stone",
           "notes": "the green veined counter travelling onto the vessel basin. His hand is in the top of frame until 16:00.3 and he shows up in the mirror from 16:04.5",
-          "view": 0.6
+          "view": 0.6,
+          "fb_pan": {
+            "from": 0.3,
+            "to": 0.78
+          }
         },
         {
           "number": 11,
@@ -145,7 +181,11 @@
           "vo": "And then there is this. A steam shower, lined in slab, with a bench inside.",
           "caption": "A steam shower, lined in slab",
           "notes": "the steam shower. One shot now, not three, because three crops of the same slab read as one picture held too long",
-          "view": 0.8
+          "view": 0.8,
+          "fb_pan": {
+            "from": 0.2,
+            "to": 0.76
+          }
         },
         {
           "number": 12,
@@ -153,7 +193,11 @@
           "vo": "Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
           "caption": "A basement that was never on the list",
           "notes": "the wine cooler end of the bar from the sign off take, held hard right. A different camera and a different framing from the hook. The sign off is spoken over this and the location audio is muted",
-          "view": 0.45
+          "view": 0.45,
+          "fb_pan": {
+            "from": 0.74,
+            "to": 0.86
+          }
         }
       ],
       "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. One of the nicest wet bars we have ever built, and the island even rolls.\n\nHis office is right behind it, with the furniture built to fit. Then the family room, lit the way I light everything, because nobody wants a dark room. A whole wall of built ins, with cupboards underneath.\n\nThere is a bedroom down here as well. A walk in closet off the hallway. And they put a gym in at the end.\n\nThe bathroom has a vessel sink, with green running right through the stone. And then there is this. A steam shower, lined in slab, with a bench inside. Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
@@ -169,7 +213,9 @@
       },
       "shot_notes": "The first cut leaned on the bar for five of twelve shots and the steam shower for three, which read as the same picture over and over. This one uses the bar three times and then nine different spaces. Clean windows: the bar wide at 14:19 to 14:26, the bar sink at 14:29 to 14:34 held left, the office at 14:49 to 14:55 held left, the family room at 15:14 to 15:23, the built ins at 15:34 to 15:38, the vessel sink at 15:59 to 16:04, the steam shower at 16:12 to 16:34, the bedroom at 16:44 to 16:49, the closet at 17:14 to 17:22, the gym at 17:30 to 17:40 held hard left, and the sign off at the bar at 19:00 to 19:22, clean at 0.22 and at 0.80 either side of him.",
       "cta_view": 0.8,
-      "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number."
+      "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number.",
+      "fb_cta_crop": 0.3,
+      "full_bleed_note": "A second cut built with --full-bleed --variant fullbleed. Every shot fills the canvas, and the perspective comes from the move: fb_pan sweeps each window across the clean part of its take, wide rooms travelling half the frame, Mike's side of a take left alone. The two cuts share the script, the VO and the takes, and differ only in framing."
     }
   ]
 }

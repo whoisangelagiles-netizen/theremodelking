@@ -59,6 +59,13 @@ FPS = 30
 # the picture pulls back. 0 means full bleed, the old behaviour.
 VIEW_BLUR = 30
 VIEW_DIM = -0.16
+
+# A second cut of the same Short that fills the canvas edge to edge, no fill
+# bands, and gets its perspective from the move instead: every shot carries
+# its own sweep across the clean part of the frame (fb_pan in edits.json), so
+# the viewer sees the room over the length of the shot. Set from --full-bleed.
+FULL_BLEED = False
+PARTS_NAME = "parts"
 CTA_SECONDS = 3.0
 # End card geometry, measured off the reference Short: a stack of rotated
 # stickers alternating white and green, then the handle pill under it.
@@ -754,6 +761,12 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
         if entry.get("view") is not None:
             scene.view = float(entry.get("view") or 0.0)
         pan = entry.get("pan")
+        if FULL_BLEED:
+            scene.view = 0.0
+            if entry.get("fb_crop_x") is not None:
+                scene.crop_x = float(entry["fb_crop_x"])
+            if entry.get("fb_pan"):
+                pan = entry["fb_pan"]
         if pan and pan.get("from") is not None and pan.get("to") is not None:
             scene.pan = {"from": float(pan["from"]), "to": float(pan["to"])}
             scene.crop_x = float(pan["from"])
@@ -2250,7 +2263,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
 
     # Each Short of an episode gets its own parts directory. They used to share
     # one, so building Short 2 wiped Short 1's clips out from under it.
-    parts = work / f"short{index}" / "parts"
+    parts = work / f"short{index}" / PARTS_NAME
     if parts.exists():
         shutil.rmtree(parts)
     parts.mkdir(parents=True)
@@ -2321,7 +2334,9 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         cta_start = parse_range(short["cta_source"])[0]
     # The end card is its own shot and often wants its own framing, because the
     # footage under it is rarely the same footage as the last scene.
-    cta_view = float(short.get("cta_view") or scenes[-1].view or 0.0)
+    cta_view = 0.0 if FULL_BLEED else float(short.get("cta_view") or scenes[-1].view or 0.0)
+    if FULL_BLEED and short.get("fb_cta_crop") is not None:
+        short = dict(short, cta_crop=short["fb_cta_crop"])
     if short.get("cta_crop") is not None:
         cta_crop = float(short["cta_crop"])
     cta_hold = sign_off["hold"] if sign_off else CTA_SECONDS
@@ -2367,7 +2382,7 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
     stage("Stage 6, contact sheet")
     from PIL import Image, ImageDraw, ImageFont
 
-    shots = work / f"short{index}" / "parts" / "sheet"
+    shots = work / f"short{index}" / PARTS_NAME / "sheet"
     shots.mkdir(parents=True, exist_ok=True)
     total = media_duration(final)
 
@@ -2573,6 +2588,11 @@ def main() -> None:
                         help="cookies.txt for yt-dlp, defaults to cookies.txt at the repo root")
     parser.add_argument("--redownload", action="store_true")
     parser.add_argument("--revoice", action="store_true", help="resynthesize the VO")
+    parser.add_argument("--full-bleed", action="store_true",
+                        help="fill the canvas on every shot and take the framing from fb_pan / "
+                             "fb_crop_x in edits.json instead of view")
+    parser.add_argument("--variant", default=None,
+                        help="suffix for a second cut of the same Short, its own parts dir and outputs")
     args = parser.parse_args()
 
     load_dotenv()
@@ -2601,6 +2621,11 @@ def main() -> None:
     guide_path = stage_guide(args.url, video_id, args.guide, True, cookies)
     guide, short = load_short(guide_path, args.number)
     slug = slugify(guide.get("episode") or guide_path.stem)
+    global FULL_BLEED, PARTS_NAME
+    FULL_BLEED = bool(args.full_bleed)
+    if args.variant:
+        slug = f"{slug}-{slugify(args.variant)}"
+        PARTS_NAME = f"parts-{slugify(args.variant)}"
     scenes = scenes_from_short(short)
 
     source = stage_download(args.url, work, args.redownload, args.source, cookies)
