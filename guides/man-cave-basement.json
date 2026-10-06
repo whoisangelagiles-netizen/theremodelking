@@ -67,7 +67,8 @@
           "vo": "This basement was nothing but studs and concrete.",
           "caption": "Nothing but studs and concrete",
           "notes": "the bar room with the lit river running away from camera, crop panning left along it. Mike's hand is resting on the bar at the right of this take, and it lands on the opening frame at anything above crop 0.34, so the whole move stays between 0.20 and 0.30. Scenes 1 and 2 are ONE take",
-          "caption_zone": "hook"
+          "caption_zone": "hook",
+          "view": 0.6
         },
         {
           "number": 2,
@@ -83,35 +84,40 @@
           "vo": "Live edge walnut with a blue resin river.",
           "caption": "Live edge walnut, resin river",
           "notes": "the close on the river with the LEDs showing through. Mike's hand is in frame until 11:16.3 and he leans back in at 11:19.5, so the clean window is under three seconds and the line is cut to fit it",
-          "transition": "whoosh"
+          "transition": "whoosh",
+          "view": 0.6
         },
         {
           "number": 4,
           "source": "10:38 - 10:44",
           "vo": "Navy cabinets behind it, stone counters, and a veined stone backsplash.",
           "caption": "Navy cabinets, stone counters",
-          "notes": "the run behind the bar, gooseneck faucet and the backsplash. Held hard left, Mike is off frame right"
+          "notes": "the run behind the bar, gooseneck faucet and the backsplash. Held hard left, Mike is off frame right",
+          "view": 0.45
         },
         {
           "number": 5,
           "source": "9:53 - 9:58",
           "vo": "The yellow shelves are the accent, and they carry through the whole room.",
           "caption": "Yellow shelves are the accent",
-          "notes": "the yellow floating shelf against the full backsplash slab. The camera tracks right, so the crop tracks left to hold the shelf"
+          "notes": "the yellow floating shelf against the full backsplash slab. The camera tracks right, so the crop tracks left to hold the shelf",
+          "view": 0.8
         },
         {
           "number": 6,
           "source": "10:00 - 10:05",
           "vo": "Glass front uppers, lit inside, with the glassware already in.",
           "caption": "Glass front uppers, lit inside",
-          "notes": "the far end of the bar, glass fronted navy uppers glowing. Held right, Mike is off frame left"
+          "notes": "the far end of the bar, glass fronted navy uppers glowing. Held right, Mike is off frame left",
+          "view": 0.45
         },
         {
           "number": 7,
           "source": "8:31 - 8:34",
           "vo": "Across the room, the television wall.",
           "caption": "Across the room, the TV wall",
-          "notes": "the television wall, held on the yellow open shelving end. The screen is off, so a centre crop is a black rectangle for seven seconds. Scenes 7 and 8 are ONE take"
+          "notes": "the television wall, held on the yellow open shelving end. The screen is off, so a centre crop is a black rectangle for seven seconds. Scenes 7 and 8 are ONE take",
+          "view": 0.6
         },
         {
           "number": 8,
@@ -126,14 +132,16 @@
           "source": "12:45.5 - 12:50",
           "vo": "There is a second sitting area back here with its own TV and media shelf.",
           "caption": "Second sitting area, its own TV",
-          "notes": "the second sitting area from the doorway, the TV and the floating media shelf. Mike stands at the far left of this take, so the crop sits right of him and drifts further right"
+          "notes": "the second sitting area from the doorway, the TV and the floating media shelf. Mike stands at the far left of this take, so the crop sits right of him and drifts further right",
+          "view": 0.45
         },
         {
           "number": 10,
           "source": "12:14 - 12:16.8",
           "vo": "And there is a full bathroom down here too.",
           "caption": "A full bathroom down here too",
-          "notes": "the shower, from the head down to the tub. Scenes 10 and 11 are ONE take. The vanity and its gold round mirror are the better picture but there is no clean look at them anywhere: Mike is in the doorway at 12:05, at the vanity from 12:07, and back across it by 12:22.7"
+          "notes": "the shower, from the head down to the tub. Scenes 10 and 11 are ONE take. The vanity and its gold round mirror are the better picture but there is no clean look at them anywhere: Mike is in the doorway at 12:05, at the vanity from 12:07, and back across it by 12:22.7",
+          "view": 0.6
         },
         {
           "number": 11,
@@ -148,7 +156,8 @@
           "source": "13:22 - 13:28",
           "vo": "All of that in a basement that started out as bare framing and a concrete floor.",
           "caption": "All of it from bare framing",
-          "notes": "the far end of the bar, navy uppers and the fridge with the river running along the bottom of frame. The sign off is spoken over this and the location audio is muted"
+          "notes": "the far end of the bar, navy uppers and the fridge with the river running along the bottom of frame. The sign off is spoken over this and the location audio is muted",
+          "view": 0.45
         }
       ],
       "full_vo": "This basement was nothing but studs and concrete. Now it is a man cave with a bar that lights up. Live edge walnut with a blue resin river.\n\nNavy cabinets behind it, stone counters, and a veined stone backsplash. The yellow shelves are the accent, and they carry through the whole room. Glass front uppers, lit inside, with the glassware already in.\n\nAcross the room, the television wall. More navy underneath, with a walnut top that matches the bar. There is a second sitting area back here with its own TV and media shelf.\n\nAnd there is a full bathroom down here too. Tiled shower, glass corner shelves. All of that in a basement that started out as bare framing and a concrete floor.",
@@ -161,7 +170,9 @@
         "primary": "Follow for more before and afters",
         "alt": "Would you put a glowing bar in your basement?",
         "pinned": "Full basement build here: [full video link]"
-      }
+      },
+      "cta_view": 0.45,
+      "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number."
     }
   ]
 }

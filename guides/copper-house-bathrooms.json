@@ -60,7 +60,8 @@
           "vo": "Two bathrooms done, and the homeowner designed both of them herself.",
           "caption": "She designed both bathrooms herself",
           "notes": "the copper tub corner. The camera is locked off here, so the crop pans from the window down onto the tub and its filler, otherwise eight seconds pass with nothing moving. Mike's hand crosses at crop 0.68, so the whole move stays between 0.70 and 0.84. Scenes 1 and 2 are ONE take",
-          "caption_zone": "hook"
+          "caption_zone": "hook",
+          "view": 0.4
         },
         {
           "number": 2,
@@ -76,21 +77,24 @@
           "vo": "The French doors came from the family room downstairs, repainted and put back up here.",
           "caption": "French doors repurposed from downstairs",
           "notes": "the French doors with the copper tub beyond the glass. Locked off again, so the crop pans onto the doors. Mike is off frame left the whole time at these crops",
-          "transition": "whoosh"
+          "transition": "whoosh",
+          "view": 0.45
         },
         {
           "number": 4,
           "source": "13:49.5 - 13:55.5",
           "vo": "The shower tile is her pattern, two sizes, and every row mapped out.",
           "caption": "Her tile pattern, two sizes",
-          "notes": "master shower, holds on the mosaic floor and the two tile sizes at the curb"
+          "notes": "master shower, holds on the mosaic floor and the two tile sizes at the curb",
+          "view": 0.8
         },
         {
           "number": 5,
           "source": "14:11 - 14:14.3",
           "vo": "My tile guy had to work off her drawings to set it.",
           "caption": "The tile setter worked off her drawings",
-          "notes": "master shower, opens on the black rain head and hand held and travels to the quartz bench. Scenes 5 and 6 are ONE take"
+          "notes": "master shower, opens on the black rain head and hand held and travels to the quartz bench. Scenes 5 and 6 are ONE take",
+          "view": 0.6
         },
         {
           "number": 6,
@@ -105,7 +109,8 @@
           "source": "12:03 - 12:07.5",
           "vo": "In the main bath, a Euro door, a rain head and a hand held.",
           "caption": "Main bath: Euro door, rain head, hand held",
-          "notes": "main bath shower, patterned tile. Scenes 7, 8 and 9 are ONE take, no cuts"
+          "notes": "main bath shower, patterned tile. Scenes 7, 8 and 9 are ONE take, no cuts",
+          "view": 0.8
         },
         {
           "number": 8,
@@ -128,21 +133,24 @@
           "source": "15:31 - 15:35",
           "vo": "The sliding glass door is now a double casement window.",
           "caption": "Sliding door out, double casement in",
-          "notes": "the new casement window. The camera is panning right through this take, so the crop has to track left to hold the window. Mike walks in at 15:36, so the clip ends before then"
+          "notes": "the new casement window. The camera is panning right through this take, so the crop has to track left to hold the window. Mike walks in at 15:36, so the clip ends before then",
+          "view": 0.6
         },
         {
           "number": 11,
           "source": "13:02 - 13:06",
           "vo": "She picked the mirrors, the sconces, the light fixtures, all of it.",
           "caption": "Mirrors, sconces, fixtures, all hers",
-          "notes": "starts on the vanity and its black faucet, tracks the oval mirror and sconces"
+          "notes": "starts on the vanity and its black faucet, tracks the oval mirror and sconces",
+          "view": 0.8
         },
         {
           "number": 12,
           "source": "11:51.8 - 11:55.2",
           "vo": "Her design, from the drawings to the last tile.",
           "caption": "Her design, drawings to last tile",
-          "notes": "main bath vanity, clean. The sign off is spoken over this and the location audio is muted"
+          "notes": "main bath vanity, clean. The sign off is spoken over this and the location audio is muted",
+          "view": 0.45
         }
       ],
       "full_vo": "Two bathrooms done, and the homeowner designed both of them herself. That tub is hammered copper, with a freestanding filler beside it. The French doors came from the family room downstairs, repainted and put back up here.\n\nThe shower tile is her pattern, two sizes, and every row mapped out. My tile guy had to work off her drawings to set it. The bench top is quartz, and the controls are all black.\n\nIn the main bath, a Euro door, a rain head and a hand held. And a honeycomb tile floor. Her pattern again on the walls. The sliding glass door is now a double casement window.\n\nShe picked the mirrors, the sconces, the light fixtures, all of it. Her design, from the drawings to the last tile.",
@@ -156,7 +164,9 @@
         "pinned": "Full two bathroom transformation here: [full video link]"
       },
       "shot_notes": "Almost every wide of the master bath has Mike in it. The clean footage is the tub and window corner at 17:32 to 18:02 held right of frame, the French doors at 12:39 to 12:53 held right, the master shower pan at 13:48 to 14:21, the main bath at 11:52 to 11:56 and 12:00 to 12:25, the vanity pan at 13:02 to 13:08 and the vanity and window at 15:31 to 15:35. Everything in this Short comes from those.",
-      "cta_frame_note": "Not the 17:34 tub wide. That is the hook, and using it again made the first and last frame of the Short read as the same picture. 12:53 is the same room from the other side, looking through the French doors once Mike has opened them, and the camera is still pushing in."
+      "cta_frame_note": "Not the 17:34 tub wide. That is the hook, and using it again made the first and last frame of the Short read as the same picture. 12:53 is the same room from the other side, looking through the French doors once Mike has opened them, and the camera is still pushing in.",
+      "cta_view": 0.45,
+      "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number."
     }
   ]
 }

@@ -50,6 +50,15 @@ BRAND_GREEN = (14, 147, 70)
 EMPHASIS_GREEN = (46, 214, 116)   # brand green lifted so it reads over dark footage
 W, H = 1080, 1920
 FPS = 30
+
+# Framing width. A 9:16 window cut from a 16:9 frame is 31.6 percent of the
+# picture blown up 1.78 times, which is why every full bleed shot reads as a
+# close up with no room around it. view is the share of the source width a
+# shot shows. Anything above the full bleed share is scaled to the canvas width
+# and sits on a blurred, darkened copy of itself, so the frame stays full while
+# the picture pulls back. 0 means full bleed, the old behaviour.
+VIEW_BLUR = 30
+VIEW_DIM = -0.16
 CTA_SECONDS = 3.0
 # End card geometry, measured off the reference Short: a stack of rotated
 # stickers alternating white and green, then the handle pill under it.
@@ -260,6 +269,7 @@ class Scene:
     crop_x: float = 0.5
     crop_y: float = 0.5
     zoom: float = 1.0
+    view: float = 0.0
     continues_previous: bool = False
     source_label: str = ""
     face: dict | None = None
@@ -328,6 +338,7 @@ def scenes_from_short(short: dict) -> list[Scene]:
             overlay=raw.get("overlay"),
             transition=raw.get("transition"),
             source_label=raw.get("source", ""),
+            view=float(raw.get("view") or 0.0),
         ))
     if not scenes:
         die("this Short has no scenes in the guide JSON")
@@ -622,6 +633,7 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
             "crop_y is the vertical centre, only meaningful above zoom 1.0. Drop it to "
             "0.65 for something low in frame like a vanity or a toilet, raise it for a "
             "niche or a shower head.",
+            "view is the share of the source width the shot shows. 0 is full bleed, which is only 31.6 percent of a 16:9 frame blown up 1.78 times, so it reads as a close up. Set it per shot to the widest framing that still reads, 0.45 to 1.0. Anything wider than full bleed sits on a blurred copy of itself. Run scripts/frame_views.py to see every shot at several widths before choosing.",
             "punch_in is OFF and stays OFF. Framing is chosen, not animated.",
             "Never use the same footage twice, in this Short or the others from this "
             "episode. If two consecutive lines want the same shot, do not cut between "
@@ -655,6 +667,7 @@ def edit_skeleton(scenes: list[Scene], video_id: str, index: int, frames_dir: Pa
                 "crop_x": 0.5,
                 "crop_y": 0.5,
                 "zoom": 1.0,
+                "view": 0.0,
                 "pan": {"from": None, "to": None},
                 "punch_in": None,
                 "annotations": wanted_annotations(scene.notes),
@@ -738,6 +751,8 @@ def apply_edits(scenes: list[Scene], edits: dict) -> None:
         scene.crop_x = float(entry.get("crop_x", 0.5) or 0.5)
         scene.crop_y = float(entry.get("crop_y", 0.5) or 0.5)
         scene.zoom = max(1.0, float(entry.get("zoom", 1.0) or 1.0))
+        if entry.get("view") is not None:
+            scene.view = float(entry.get("view") or 0.0)
         pan = entry.get("pan")
         if pan and pan.get("from") is not None and pan.get("to") is not None:
             scene.pan = {"from": float(pan["from"]), "to": float(pan["to"])}
@@ -1330,6 +1345,51 @@ def crop_window(src_w: int, src_h: int, crop_x: float, zoom: float = 1.0,
     return crop_w, crop_h, x0, y0
 
 
+def full_bleed_view(src_w: int, src_h: int) -> float:
+    """The share of the source width a full bleed 9:16 window shows."""
+    return min(1.0, (src_h * 9 / 16) / src_w)
+
+
+def view_geometry(src_w: int, src_h: int, view: float) -> tuple[int, int]:
+    """(crop width in source pixels, picture height on the canvas) for a view."""
+    view = max(full_bleed_view(src_w, src_h), min(1.0, float(view)))
+    crop_w = min(src_w, int(round(view * src_w)))
+    crop_w -= crop_w % 2
+    fg_h = min(H, int(round(W * src_h / crop_w)))
+    fg_h -= fg_h % 2
+    return crop_w, fg_h
+
+
+def uses_wide_view(src_w: int, src_h: int, view: float) -> bool:
+    return float(view or 0.0) > full_bleed_view(src_w, src_h) + 0.005
+
+
+def wide_base_chain(src_w: int, src_h: int, view: float, crop_x: float,
+                    x_expr: str | None = None) -> tuple[list[str], int]:
+    """The [base] stream for a shot wider than full bleed.
+
+    The picture is cropped to the view share at full height, scaled to the
+    canvas width, and laid over a blurred, darkened copy of itself that covers
+    the canvas. With x_expr the window slides across the scaled source, same as
+    the full bleed pan, and the backdrop slides with it.
+    """
+    crop_w, fg_h = view_geometry(src_w, src_h, view)
+    if x_expr is not None:
+        scaled_w = int(round(W * src_w / crop_w))
+        scaled_w -= scaled_w % 2
+        head = (f"[0:v]scale={scaled_w}:-2:flags=lanczos,"
+                f"crop={W}:ih:x='{x_expr}':y=0,split[fg][bg]")
+    else:
+        x0 = max(0, min(src_w - crop_w, int(round(crop_x * src_w - crop_w / 2))))
+        head = (f"[0:v]crop={crop_w}:{src_h}:{x0}:0,split[fgraw][bg];"
+                f"[fgraw]scale={W}:-2:flags=lanczos[fg]")
+    chain = [head,
+             f"[bg]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
+             f"boxblur={VIEW_BLUR}:3,eq=brightness={VIEW_DIM}[bgb]",
+             f"[bgb][fg]overlay=0:(H-h)/2,setsar=1,fps={FPS}[base]"]
+    return chain, fg_h
+
+
 def to_frame(sx: float, sy: float, src_w: int, src_h: int, window) -> tuple[float, float]:
     """Source normalized coordinates into final 1080x1920 pixel coordinates."""
     crop_w, crop_h, x0, y0 = window
@@ -1820,11 +1880,21 @@ def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_aud
         start, end = scene.pan["from"], scene.pan["to"]
         centre = f"({start:.4f}+({end - start:.4f})*{ease})"
         x_expr = f"max(0\,min(iw-{W}\,{centre}*iw-{W // 2}))"
-        chain = [f"[0:v]scale=-2:{H}:flags=lanczos,"
-                 f"crop={W}:{H}:x='{x_expr}':y=0,setsar=1,fps={FPS}[base]"]
+        if uses_wide_view(src_w, src_h, scene.view):
+            chain, fg_h = wide_base_chain(src_w, src_h, scene.view, scene.crop_x, x_expr)
+            say(f"scene {scene.number}: view {scene.view:.2f} of the frame, picture "
+                f"{W}x{fg_h} on a blurred fill")
+        else:
+            chain = [f"[0:v]scale=-2:{H}:flags=lanczos,"
+                     f"crop={W}:{H}:x='{x_expr}':y=0,setsar=1,fps={FPS}[base]"]
     else:
-        chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},"
-                 f"scale={W}:{H}:flags=lanczos,setsar=1,fps={FPS}[base]"]
+        if uses_wide_view(src_w, src_h, scene.view):
+            chain, fg_h = wide_base_chain(src_w, src_h, scene.view, scene.crop_x)
+            say(f"scene {scene.number}: view {scene.view:.2f} of the frame, picture "
+                f"{W}x{fg_h} on a blurred fill")
+        else:
+            chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},"
+                     f"scale={W}:{H}:flags=lanczos,setsar=1,fps={FPS}[base]"]
     label = "base"
 
     if ann_index is not None:
@@ -1939,7 +2009,8 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
                parts: Path, watermark: Path | None, destination: Path,
                source: Path, start: float, src_w: int, src_h: int,
                crop_x: float = 0.5, zoom: float = 1.0,
-               animation: Path | None = None, hold: float | None = None) -> float:
+               animation: Path | None = None, hold: float | None = None,
+               view: float = 0.0) -> float:
     """The end card plays over live footage, not over a black card.
 
     The reference Short holds the last reveal shot and lays the sticker stack on
@@ -1957,10 +2028,15 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
         overlay = ["-loop", "1", "-t", f"{seconds}", "-i", str(png)]
         cta_filter = "[base][1:v]overlay=0:0[withcta]"
 
-    crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, crop_x, zoom, 0.5)
-    chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos,"
-             f"setsar=1,fps={FPS}[base]",
-             cta_filter]
+    if uses_wide_view(src_w, src_h, view):
+        chain, fg_h = wide_base_chain(src_w, src_h, view, crop_x)
+        say(f"end card: view {view:.2f} of the frame, picture {W}x{fg_h} on a blurred fill")
+        chain.append(cta_filter)
+    else:
+        crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, crop_x, zoom, 0.5)
+        chain = [f"[0:v]crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos,"
+                 f"setsar=1,fps={FPS}[base]",
+                 cta_filter]
     inputs = ["-ss", f"{start:.3f}", "-t", f"{seconds}", "-i", str(source), *overlay]
     if watermark:
         inputs += ["-loop", "1", "-t", f"{seconds}", "-i", str(watermark)]
@@ -2200,7 +2276,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                          vo=lead.vo, caption=lead.caption, notes=lead.notes,
                          caption_zone=lead.caption_zone, overlay=lead.overlay,
                          transition=lead.transition, crop_x=lead.crop_x,
-                         crop_y=lead.crop_y, zoom=lead.zoom, face=lead.face,
+                         crop_y=lead.crop_y, zoom=lead.zoom, view=lead.view, face=lead.face,
                          annotations=[a for m in members for a in m.annotations],
                          source_label=lead.source_label)
             if lead.pan or members[-1].pan:
@@ -2245,6 +2321,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         cta_start = parse_range(short["cta_source"])[0]
     # The end card is its own shot and often wants its own framing, because the
     # footage under it is rarely the same footage as the last scene.
+    cta_view = float(short.get("cta_view") or scenes[-1].view or 0.0)
     if short.get("cta_crop") is not None:
         cta_crop = float(short["cta_crop"])
     cta_hold = sign_off["hold"] if sign_off else CTA_SECONDS
@@ -2258,7 +2335,8 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
     else:
         cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
                                  parts, watermark, cta_clip, source, cta_start,
-                                 src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold)
+                                 src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold,
+                                 cta_view)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"

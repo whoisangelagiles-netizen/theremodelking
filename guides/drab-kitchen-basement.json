@@ -70,7 +70,8 @@
           "vo": "This basement kitchen was so cold they left two cupboard doors open all winter.",
           "caption": "Two cupboard doors open all winter",
           "notes": "the finished kitchen wide, black farmhouse sink, alder run, backsplash and the rug. The 11:28 take is the better wide but the camera swings off it within two seconds, so the hook sits here. Scenes 1 and 2 are ONE take",
-          "caption_zone": "hook"
+          "caption_zone": "hook",
+          "view": 0.8
         },
         {
           "number": 2,
@@ -86,33 +87,37 @@
           "vo": "We tore out the old lighted ceiling and picked up about a foot of height.",
           "caption": "Lighted ceiling out, a foot gained",
           "notes": "the island and the raised ceiling with the new cans running back into the family room, held hard right of Mike",
-          "transition": "whoosh"
+          "transition": "whoosh",
+          "view": 0.45
         },
         {
           "number": 4,
           "source": "11:36 - 11:41",
           "vo": "Then we put a window in over the sink that was never there before.",
           "caption": "A new window over the sink",
-          "notes": "the new window, the faucet and the granite, nobody in frame"
+          "notes": "the new window, the faucet and the granite, nobody in frame",
+          "view": 0.6
         },
         {
           "number": 5,
           "source": "11:52 - 11:56",
           "vo": "The cabinets are alder, built by the family's own cabinet maker.",
           "caption": "Alder, by the family's cabinet maker",
-          "notes": "the upper cabinets and the backsplash under them, held left"
+          "notes": "the upper cabinets and the backsplash under them, held left",
+          "view": 0.6
         },
         {
           "number": 6,
-          "source": "11:42 - 11:46",
+          "source": "11:39.3 - 11:43.5",
           "vo": "That backsplash runs all the way up and around.",
           "caption": "The backsplash runs up and around",
-          "notes": "the backsplash close. Scenes 6 and 7 are ONE take"
+          "notes": "the backsplash close, running right along the wall. Mike bends into the spice rack in the middle of this frame from 11:48, and at any view wider than the old crop no window avoids him, so the take moves earlier and ends before he gets there. Scenes 6 and 7 are ONE take",
+          "view": 0.4
         },
         {
           "number": 7,
-          "source": "11:46 - 11:50",
-          "vo": "It looks beveled, but it isn't, and it runs about twice what a normal one costs.",
+          "source": "11:43.5 - 11:48.2",
+          "vo": "It looks beveled, but it isn't, and it costs about double a normal one.",
           "caption": "Looks beveled. It isn't.",
           "notes": "same take as scene 6",
           "continues_previous": true
@@ -122,38 +127,43 @@
           "source": "13:03.2 - 13:06.2",
           "vo": "Black farmhouse sink, and the faucet hides its own pull down.",
           "caption": "The pull down hides itself",
-          "notes": "the faucet close, held left of Mike's hand"
+          "notes": "the faucet close, held left of Mike's hand",
+          "view": 0.45
         },
         {
           "number": 9,
           "source": "11:56.8 - 11:59.8",
           "vo": "The microwave sits behind a door that lifts up out of the way.",
           "caption": "Microwave behind a lift up door",
-          "notes": "the microwave cabinet with its door up. A hand comes in at 11:59.8, so the clip ends before then"
+          "notes": "the microwave cabinet with its door up. A hand comes in at 11:59.8, so the clip ends before then",
+          "view": 0.45
         },
         {
           "number": 10,
           "source": "12:08 - 12:12",
           "vo": "The island has a cooktop with a separate oven underneath.",
           "caption": "Cooktop, separate oven below",
-          "notes": "the island, held right of Mike"
+          "notes": "the island, held right of Mike",
+          "view": 0.45
         },
         {
           "number": 11,
           "source": "13:20 - 13:25",
           "vo": "Tile floor, can lights right through, and the family room opens off the back.",
           "caption": "The family room opens off the back",
-          "notes": "the family room, the console and the built in entertainment wall. Mike walks back into this take at 13:26"
+          "notes": "the family room, the console and the built in entertainment wall. Mike walks back into this take at 13:26",
+          "view": 0.8
         },
         {
           "number": 12,
           "source": "11:28 - 11:31",
           "vo": "From a dark basement kitchen to this.",
           "caption": "From dark basement kitchen to this",
-          "notes": "back to the 11:28 wide for three seconds, which is all of it that holds before the camera swings. The sign off is spoken over this and the location audio is muted"
+          "notes": "back to the 11:28 wide for three seconds, which is all of it that holds before the camera swings. The sign off is spoken over this and the location audio is muted",
+          "view": 0.45
         }
       ],
-      "full_vo": "This basement kitchen was so cold they left two cupboard doors open all winter. Just to keep the pipes in the outside wall from freezing. We tore out the old lighted ceiling and picked up about a foot of height.\n\nThen we put a window in over the sink that was never there before. The cabinets are alder, built by the family's own cabinet maker. That backsplash runs all the way up and around.\n\nIt looks beveled, but it isn't, and it runs about twice what a normal one costs. Black farmhouse sink, and the faucet hides its own pull down. The microwave sits behind a door that lifts up out of the way.\n\nThe island has a cooktop with a separate oven underneath. Tile floor, can lights right through, and the family room opens off the back. From a dark basement kitchen to this.",
+      "full_vo": "This basement kitchen was so cold they left two cupboard doors open all winter. Just to keep the pipes in the outside wall from freezing. We tore out the old lighted ceiling and picked up about a foot of height.\n\nThen we put a window in over the sink that was never there before. The cabinets are alder, built by the family's own cabinet maker. That backsplash runs all the way up and around.\n\nIt looks beveled, but it isn't, and it costs about double a normal one. Black farmhouse sink, and the faucet hides its own pull down. The microwave sits behind a door that lifts up out of the way.\n\nThe island has a cooktop with a separate oven underneath. Tile floor, can lights right through, and the family room opens off the back. From a dark basement kitchen to this.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend a room he is pleased with, and enjoying the cupboard door detail.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "12:03.5 - 12:07.5",
@@ -163,7 +173,9 @@
         "primary": "Follow for more before and afters",
         "alt": "Would you pay double for a backsplash?",
         "pinned": "Full basement kitchen transformation here: [full video link]"
-      }
+      },
+      "cta_view": 0.45,
+      "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number."
     }
   ]
 }
