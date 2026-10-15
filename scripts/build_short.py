@@ -1731,18 +1731,19 @@ def sign_off_line(short: dict, guide: dict | None) -> str:
     return CTA_TAP_VO.format(title=title) if title else CTA_VO_DEFAULT
 
 
-def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
-    """One hand drawn arrow pointing down: a big open loop at the top, a wavy
-    run down out of it, and a stroke that thickens toward a swept head. The
-    reference is a marker drawing, so the line is built from dots whose radius
-    grows along the path. White over a black halo so it reads on any footage.
+ARROW_DRAW_SECONDS = 0.9    # the stroke draws itself on over this long
+ARROW_BOB_SECONDS = 1.2     # then one soft bounce toward the pill, repeating
+ARROW_BOB_PX = 18
+
+
+def hand_arrow_geometry(cx: int, top: int, bottom: int) -> dict:
+    """The path of the hand drawn arrow: a big open loop at the top, a wavy run
+    down out of it, and a solid swept head pointing straight down. Returned as
+    dense points plus the head polygon, so it can be painted whole or part way.
     """
     import math
-    from PIL import ImageDraw
-    pen = ImageDraw.Draw(canvas)
     head_len, tail = 74.0, 30.0
     span = bottom - top - head_len - tail
-    # loop: a prolate cycloid run vertically, started where the loop begins
     a, b = span * 0.064, span * 0.185
     t0, t1 = 0.45 * math.pi, 2.55 * math.pi
     loop = []
@@ -1751,7 +1752,6 @@ def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
         x = cx + b * (math.cos(th) - math.cos(t0)) + b * 0.35
         y = top + a * (th - t0) - b * (math.sin(th) - math.sin(t0))
         loop.append((x, y))
-    # wave: leave the loop heading down and left, swing right, finish straight down
     x_end, y_end = loop[-1]
     dx = -b * math.sin(t1)
     dy = a - b * math.cos(t1)
@@ -1760,18 +1760,12 @@ def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
     wave_h = max(60.0, bottom - head_len - tail - y_end)
     omega = 1.5 * math.pi / wave_h
     sign = 1 if slope >= 0 else -1
-    wave = []
-    for i in range(1, 81):
-        t = wave_h * i / 80
-        x = x_end + sign * amp * math.sin(omega * t)
-        wave.append((x, y_end + t))
-    # re-centre the whole stroke so the head lands on cx
+    wave = [(x_end + sign * amp * math.sin(omega * wave_h * i / 80), y_end + wave_h * i / 80)
+            for i in range(1, 81)]
     shift = cx - wave[-1][0]
     path = [(x + shift, y) for x, y in loop + wave]
     base = (cx, path[-1][1] + tail)
     path.append(base)
-
-    # densify, then draw as tapered dots: halo pass, then white pass
     dense = []
     for (x0, y0), (x1, y1) in zip(path, path[1:]):
         seg = max(1, int(math.hypot(x1 - x0, y1 - y0) / 2))
@@ -1779,29 +1773,74 @@ def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
             f = k / seg
             dense.append((x0 + (x1 - x0) * f, y0 + (y1 - y0) * f))
     dense.append(path[-1])
-    n = len(dense)
-    for colour, halo in (((0, 0, 0, 255), 4.0), ((255, 255, 255, 255), 0.0)):
-        for i, (x, y) in enumerate(dense):
-            r = (4.5 + 10.0 * (i / n)) + halo
-            pen.ellipse([x - r, y - r, x + r, y + r], fill=colour)
-    # the head: a swept arrowhead with barbs raked back, pointing straight down
-    # a solid head: barbs raked back above the junction, a shallow notch where
-    # the stroke enters, so it reads as a marker drawn head rather than a chevron
     tip = (cx, base[1] + head_len)
     lx, rx = cx - head_len * 0.60, cx + head_len * 0.60
     barb_y = base[1] - head_len * 0.06
     notch = (cx, base[1] + head_len * 0.16)
-    poly = [tip, (lx, barb_y), notch, (rx, barb_y)]
+    return {"dense": dense, "head": [tip, (lx, barb_y), notch, (rx, barb_y)],
+            "notch": notch, "cx": cx}
+
+
+def paint_hand_arrow(canvas, geom: dict, reveal: float = 1.0, dy: float = 0.0,
+                     head_scale: float = 1.0) -> None:
+    """Paint the arrow, white over a black halo. reveal under 1 draws the stroke
+    only that far along and leaves the head off, which is the draw on."""
+    from PIL import ImageDraw
+    pen = ImageDraw.Draw(canvas)
+    dense = geom["dense"]
+    n = len(dense)
+    shown = dense[:max(2, int(n * max(0.0, min(1.0, reveal))))]
+    for colour, halo in (((0, 0, 0, 255), 4.0), ((255, 255, 255, 255), 0.0)):
+        for i, (x, y) in enumerate(shown):
+            r = (4.5 + 10.0 * (i / n)) + halo
+            pen.ellipse([x - r, y + dy - r, x + r, y + dy + r], fill=colour)
+    if reveal < 1.0:
+        return
+    cx, notch = geom["cx"], geom["notch"]
+    poly = [((x - cx) * head_scale + cx, (y - notch[1]) * head_scale + notch[1] + dy)
+            for x, y in geom["head"]]
     for colour, grow in (((0, 0, 0, 255), 5.0), ((255, 255, 255, 255), 0.0)):
         if grow:
-            ex = [((x - cx) * (1 + grow / 30) + cx, (y - notch[1]) * (1 + grow / 30) + notch[1]) for x, y in poly]
+            ex = [((x - cx) * (1 + grow / 30) + cx, (y - notch[1] - dy) * (1 + grow / 30) + notch[1] + dy)
+                  for x, y in poly]
             pen.polygon(ex, fill=colour, outline=colour, width=int(grow))
         else:
             pen.polygon(poly, fill=colour)
 
 
+def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
+    paint_hand_arrow(canvas, hand_arrow_geometry(cx, top, bottom))
+
+
+def render_arrow_frames(parts: Path, cx: int, top: int, bottom: int, seconds: float) -> Path:
+    """One PNG per frame of the arrow on its own: it draws itself on, the head
+    pops, then it bobs toward the pill for the rest of the card."""
+    import math
+    from PIL import Image
+    folder = parts / "arrow"
+    if folder.exists():
+        shutil.rmtree(folder)
+    folder.mkdir(parents=True)
+    geom = hand_arrow_geometry(cx, top, bottom)
+    frames = int(math.ceil(seconds * FPS)) + 2
+    for f in range(frames):
+        t = f / FPS
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        if t < ARROW_DRAW_SECONDS:
+            u = t / ARROW_DRAW_SECONDS
+            paint_hand_arrow(canvas, geom, reveal=u * u * (3 - 2 * u))
+        else:
+            since = t - ARROW_DRAW_SECONDS
+            pop = max(0.0, 0.15 - since) / 0.15          # 1 -> 0 over the first 0.15s
+            head_scale = 1.0 + 0.35 * pop
+            bob = ARROW_BOB_PX * (1 - math.cos(2 * math.pi * since / ARROW_BOB_SECONDS)) / 2
+            paint_hand_arrow(canvas, geom, reveal=1.0, dy=bob, head_scale=head_scale)
+        canvas.save(folder / f"{f:04d}.png")
+    return folder
+
+
 def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | None,
-                      body_font: str | None, path: Path) -> Path:
+                      body_font: str | None, path: Path, arrow: bool = True) -> tuple:
     """The end card that points at the linked long video.
 
     Question as the sticker stack, then the exact video title in a white pill
@@ -1880,9 +1919,11 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
 
     # one hand drawn arrow from under the card straight down to where the link
     # pill sits. Shorts draws it just above the channel row, the bottom fifth.
-    draw_hand_arrow(canvas, W // 2, y + 26, int(H * 0.84))
+    arrow_top, arrow_bottom = y + 26, int(H * 0.84)
+    if arrow:
+        draw_hand_arrow(canvas, W // 2, arrow_top, arrow_bottom)
     canvas.save(path)
-    return path
+    return path, arrow_top, arrow_bottom
 
 
 def draw_cta_stickers(text: str, handle: str, display_font: str | None,
@@ -2216,13 +2257,21 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
         overlay = ["-i", str(animation)]
         cta_filter = "[base][1:v]overlay=0:0:shortest=0[withcta]"
     else:
+        arrow_dir = None
         if title:
-            png = draw_cta_tap_card(CTA_QUESTION, title, CTA_TAP_FOOT, display_font,
-                                    body_font, parts / "cta.png")
+            png, a_top, a_bottom = draw_cta_tap_card(CTA_QUESTION, title, CTA_TAP_FOOT, display_font,
+                                                     body_font, parts / "cta.png", arrow=False)
+            arrow_dir = render_arrow_frames(parts, W // 2, a_top, a_bottom, seconds)
+            say(f"end card: arrow draws on over {ARROW_DRAW_SECONDS}s, then bobs every "
+                f"{ARROW_BOB_SECONDS}s")
         else:
             png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
         overlay = ["-loop", "1", "-t", f"{seconds}", "-i", str(png)]
         cta_filter = "[base][1:v]overlay=0:0[withcta]"
+        if arrow_dir is not None:
+            overlay += ["-framerate", str(FPS), "-i", str(arrow_dir / "%04d.png")]
+            cta_filter = ("[base][1:v]overlay=0:0[card];"
+                          "[card][2:v]overlay=0:0:eof_action=repeat[withcta]")
 
     if uses_wide_view(src_w, src_h, view):
         chain, fg_h = wide_base_chain(src_w, src_h, view, crop_x)
@@ -2234,12 +2283,15 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
                  f"setsar=1,fps={FPS}[base]",
                  cta_filter]
     inputs = ["-ss", f"{start:.3f}", "-t", f"{seconds}", "-i", str(source), *overlay]
+    # overlay inputs sit at 1.. ; the watermark and the silence come after them
+    next_index = 1 + sum(1 for token in overlay if token == "-i")
     if watermark:
         inputs += ["-loop", "1", "-t", f"{seconds}", "-i", str(watermark)]
-        chain.append("[withcta][2:v]overlay=0:0[v]")
+        chain.append(f"[withcta][{next_index}:v]overlay=0:0[v]")
+        next_index += 1
     else:
         chain.append("[withcta]copy[v]")
-    silence = 3 if watermark else 2
+    silence = next_index
     inputs += ["-f", "lavfi", "-t", f"{seconds}", "-i", "anullsrc=r=48000:cl=stereo"]
     run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", *inputs,
          "-filter_complex", ";".join(chain), "-map", "[v]", "-map", f"{silence}:a",
