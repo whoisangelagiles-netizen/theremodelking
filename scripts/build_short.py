@@ -79,8 +79,10 @@ CTA_HANDLE = "@theremodelking"
 CTA_DEFAULT = "Follow\nfor more\nbefore\nand afters"
 # The sign off now points at the linked long video. {title} is the exact YouTube
 # title, because that is what the viewer reads on the link pill under the Short.
-CTA_QUESTION = "Want to see what\nthis whole\nremodel cost?"
-CTA_TAP_VO = "Want to see what this whole remodel cost? Tap {title} at the bottom of your screen."
+CTA_QUESTION = "Want to find out\nthe project cost &\nwatch the full\ntransformation?"
+CTA_QUESTION_SIZE = 92
+CTA_TAP_VO = ("Want to find out the project cost and watch the full transformation? "
+              "Tap {title} at the bottom of your screen.")
 CTA_TAP_FOOT = "at the bottom of your screen"
 COVER_SIZE = 72
 COVER_WRAP = 0.82
@@ -1729,38 +1731,39 @@ def sign_off_line(short: dict, guide: dict | None) -> str:
     return CTA_TAP_VO.format(title=title) if title else CTA_VO_DEFAULT
 
 
-def draw_curly_arrow(canvas, start: tuple, end: tuple, bend: float, width: int = 14) -> None:
-    """A hand drawn looking arrow: an S curve from start to end with a head at the end.
-
-    Drawn black first and white over it so it holds over any footage, same as the
-    caption stroke.
+def draw_loop_arrow(canvas, cx: int, top: int, bottom: int, loops: int = 2,
+                    mirror: bool = False, width: int = 18) -> None:
+    """A loop de loop arrow pointing straight down: a prolate cycloid run
+    vertically, so the line curls back on itself once per loop on the way down,
+    then a straight tail into the head. White over black so it holds on footage.
     """
+    import math
     from PIL import ImageDraw
     pen = ImageDraw.Draw(canvas)
-    (x0, y0), (x1, y1) = start, end
-    c1 = (x0 + bend, y0 + (y1 - y0) * 0.30)
-    c2 = (x1 - bend, y0 + (y1 - y0) * 0.70)
+    head_len = width * 3.4
+    tail = 70
+    span = bottom - top - tail - head_len
+    period = max(90.0, span / loops)           # vertical height of one loop
+    a = period / (2 * math.pi)                 # advance per radian
+    b = a * 2.5                                # b > a is what makes it loop; 2.5 keeps the loops open and round
+    sign = -1 if mirror else 1
     points = []
-    for i in range(41):
-        t = i / 40
-        u = 1 - t
-        x = u ** 3 * x0 + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t ** 3 * x1
-        y = u ** 3 * y0 + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t ** 3 * y1
+    steps = 48 * loops
+    for i in range(steps + 1):
+        theta = 2 * math.pi * loops * i / steps
+        y = top + a * theta - b * math.sin(theta) + b * 0.0
+        x = cx + sign * b * (math.cos(theta) - 1)
         points.append((x, y))
-    # head along the final tangent
-    tx, ty = points[-1][0] - points[-4][0], points[-1][1] - points[-4][1]
-    norm = max((tx * tx + ty * ty) ** 0.5, 1e-6)
-    tx, ty = tx / norm, ty / norm
-    nx, ny = -ty, tx
-    head_len, head_w = width * 3.2, width * 2.3
-    tip = (x1 + tx * head_len * 0.5, y1 + ty * head_len * 0.5)
-    base = (tip[0] - tx * head_len, tip[1] - ty * head_len)
-    left = (base[0] + nx * head_w, base[1] + ny * head_w)
-    right = (base[0] - nx * head_w, base[1] - ny * head_w)
-    for colour, extra in (((0, 0, 0, 255), 8), ((255, 255, 255, 255), 0)):
+    end_y = points[-1][1]
+    points.append((cx, end_y + tail))
+    tip = (cx, end_y + tail + head_len)
+    head_w = width * 2.4
+    left = (cx - head_w, end_y + tail)
+    right = (cx + head_w, end_y + tail)
+    for colour, extra in (((0, 0, 0, 255), 9), ((255, 255, 255, 255), 0)):
         pen.line(points, fill=colour, width=width + extra, joint="curve")
-        pen.ellipse([x0 - (width + extra) / 2, y0 - (width + extra) / 2,
-                     x0 + (width + extra) / 2, y0 + (width + extra) / 2], fill=colour)
+        r = (width + extra) / 2
+        pen.ellipse([points[0][0] - r, points[0][1] - r, points[0][0] + r, points[0][1] + r], fill=colour)
         if extra:
             pen.polygon([tip, left, right], fill=colour, outline=colour, width=extra)
         else:
@@ -1779,11 +1782,11 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
 
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     probe = ImageDraw.Draw(canvas)
-    font = (ImageFont.truetype(display_font, CTA_FONT_SIZE) if display_font
-            else ImageFont.load_default(CTA_FONT_SIZE))
-    small = (ImageFont.truetype(display_font, 64) if display_font
-             else ImageFont.load_default(64))
-    tfont = (ImageFont.truetype(body_font, 40) if body_font else ImageFont.load_default(40))
+    font = (ImageFont.truetype(display_font, CTA_QUESTION_SIZE) if display_font
+            else ImageFont.load_default(CTA_QUESTION_SIZE))
+    small = (ImageFont.truetype(display_font, 60) if display_font
+             else ImageFont.load_default(60))
+    tfont = (ImageFont.truetype(body_font, 38) if body_font else ImageFont.load_default(38))
     green, white = CAPTION_GREEN + (255,), (255, 255, 255, 255)
 
     def sticker(line, fnt, fill, ink, pad_y=CTA_PAD_Y):
@@ -1832,25 +1835,25 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
 
     overlap = 6
     stack_h = sum(pl.height for pl in plates) - overlap * (len(plates) - 1)
-    total = stack_h + 34 + tap.height + 14 + pill.height + 18 + foot_plate.height
-    y = int(H * 0.40 - total / 2)
+    total = stack_h + 30 + tap.height + 12 + pill.height + 16 + foot_plate.height
+    y = int(H * 0.34 - total / 2)
     for pl in plates:
         canvas.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
         y += pl.height - overlap
-    y += 34
+    y += 30
     canvas.alpha_composite(tap, (int(W / 2 - tap.width / 2), y))
-    y += tap.height + 14
+    y += tap.height + 12
     canvas.alpha_composite(pill, (int(W / 2 - pill.width / 2), y))
-    y += pill.height + 18
+    y += pill.height + 16
     canvas.alpha_composite(foot_plate, (int(W / 2 - foot_plate.width / 2), y))
     y += foot_plate.height
 
-    # two curly arrows from under the card down to where the link pill sits.
-    # Shorts draws it just above the channel row, roughly the bottom fifth.
-    top = y + 40
-    bottom = int(H * 0.80)
-    draw_curly_arrow(canvas, (int(W * 0.33), top), (int(W * 0.40), bottom), bend=-130, width=19)
-    draw_curly_arrow(canvas, (int(W * 0.67), top), (int(W * 0.60), bottom), bend=130, width=19)
+    # two loop de loop arrows from under the card straight down to where the
+    # link pill sits. Shorts draws it just above the channel row, the bottom fifth.
+    top = y + 30
+    bottom = int(H * 0.83)
+    draw_loop_arrow(canvas, int(W * 0.33), top, bottom, loops=2, mirror=False)
+    draw_loop_arrow(canvas, int(W * 0.67), top, bottom, loops=2, mirror=True)
     canvas.save(path)
     return path
 
