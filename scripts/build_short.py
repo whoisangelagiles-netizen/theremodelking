@@ -1731,43 +1731,73 @@ def sign_off_line(short: dict, guide: dict | None) -> str:
     return CTA_TAP_VO.format(title=title) if title else CTA_VO_DEFAULT
 
 
-def draw_loop_arrow(canvas, cx: int, top: int, bottom: int, loops: int = 2,
-                    mirror: bool = False, width: int = 18) -> None:
-    """A loop de loop arrow pointing straight down: a prolate cycloid run
-    vertically, so the line curls back on itself once per loop on the way down,
-    then a straight tail into the head. White over black so it holds on footage.
+def draw_hand_arrow(canvas, cx: int, top: int, bottom: int) -> None:
+    """One hand drawn arrow pointing down: a big open loop at the top, a wavy
+    run down out of it, and a stroke that thickens toward a swept head. The
+    reference is a marker drawing, so the line is built from dots whose radius
+    grows along the path. White over a black halo so it reads on any footage.
     """
     import math
     from PIL import ImageDraw
     pen = ImageDraw.Draw(canvas)
-    head_len = width * 3.4
-    tail = 70
-    span = bottom - top - tail - head_len
-    period = max(90.0, span / loops)           # vertical height of one loop
-    a = period / (2 * math.pi)                 # advance per radian
-    b = a * 2.5                                # b > a is what makes it loop; 2.5 keeps the loops open and round
-    sign = -1 if mirror else 1
-    points = []
-    steps = 48 * loops
-    for i in range(steps + 1):
-        theta = 2 * math.pi * loops * i / steps
-        y = top + a * theta - b * math.sin(theta) + b * 0.0
-        x = cx + sign * b * (math.cos(theta) - 1)
-        points.append((x, y))
-    end_y = points[-1][1]
-    points.append((cx, end_y + tail))
-    tip = (cx, end_y + tail + head_len)
-    head_w = width * 2.4
-    left = (cx - head_w, end_y + tail)
-    right = (cx + head_w, end_y + tail)
-    for colour, extra in (((0, 0, 0, 255), 9), ((255, 255, 255, 255), 0)):
-        pen.line(points, fill=colour, width=width + extra, joint="curve")
-        r = (width + extra) / 2
-        pen.ellipse([points[0][0] - r, points[0][1] - r, points[0][0] + r, points[0][1] + r], fill=colour)
-        if extra:
-            pen.polygon([tip, left, right], fill=colour, outline=colour, width=extra)
+    head_len, tail = 74.0, 30.0
+    span = bottom - top - head_len - tail
+    # loop: a prolate cycloid run vertically, started where the loop begins
+    a, b = span * 0.064, span * 0.185
+    t0, t1 = 0.45 * math.pi, 2.55 * math.pi
+    loop = []
+    for i in range(121):
+        th = t0 + (t1 - t0) * i / 120
+        x = cx + b * (math.cos(th) - math.cos(t0)) + b * 0.35
+        y = top + a * (th - t0) - b * (math.sin(th) - math.sin(t0))
+        loop.append((x, y))
+    # wave: leave the loop heading down and left, swing right, finish straight down
+    x_end, y_end = loop[-1]
+    dx = -b * math.sin(t1)
+    dy = a - b * math.cos(t1)
+    slope = dx / max(dy, 1e-6)
+    amp = span * 0.11
+    wave_h = max(60.0, bottom - head_len - tail - y_end)
+    omega = 1.5 * math.pi / wave_h
+    sign = 1 if slope >= 0 else -1
+    wave = []
+    for i in range(1, 81):
+        t = wave_h * i / 80
+        x = x_end + sign * amp * math.sin(omega * t)
+        wave.append((x, y_end + t))
+    # re-centre the whole stroke so the head lands on cx
+    shift = cx - wave[-1][0]
+    path = [(x + shift, y) for x, y in loop + wave]
+    base = (cx, path[-1][1] + tail)
+    path.append(base)
+
+    # densify, then draw as tapered dots: halo pass, then white pass
+    dense = []
+    for (x0, y0), (x1, y1) in zip(path, path[1:]):
+        seg = max(1, int(math.hypot(x1 - x0, y1 - y0) / 2))
+        for k in range(seg):
+            f = k / seg
+            dense.append((x0 + (x1 - x0) * f, y0 + (y1 - y0) * f))
+    dense.append(path[-1])
+    n = len(dense)
+    for colour, halo in (((0, 0, 0, 255), 4.0), ((255, 255, 255, 255), 0.0)):
+        for i, (x, y) in enumerate(dense):
+            r = (4.5 + 10.0 * (i / n)) + halo
+            pen.ellipse([x - r, y - r, x + r, y + r], fill=colour)
+    # the head: a swept arrowhead with barbs raked back, pointing straight down
+    # a solid head: barbs raked back above the junction, a shallow notch where
+    # the stroke enters, so it reads as a marker drawn head rather than a chevron
+    tip = (cx, base[1] + head_len)
+    lx, rx = cx - head_len * 0.60, cx + head_len * 0.60
+    barb_y = base[1] - head_len * 0.06
+    notch = (cx, base[1] + head_len * 0.16)
+    poly = [tip, (lx, barb_y), notch, (rx, barb_y)]
+    for colour, grow in (((0, 0, 0, 255), 5.0), ((255, 255, 255, 255), 0.0)):
+        if grow:
+            ex = [((x - cx) * (1 + grow / 30) + cx, (y - notch[1]) * (1 + grow / 30) + notch[1]) for x, y in poly]
+            pen.polygon(ex, fill=colour, outline=colour, width=int(grow))
         else:
-            pen.polygon([tip, left, right], fill=colour)
+            pen.polygon(poly, fill=colour)
 
 
 def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | None,
@@ -1836,7 +1866,7 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
     overlap = 6
     stack_h = sum(pl.height for pl in plates) - overlap * (len(plates) - 1)
     total = stack_h + 30 + tap.height + 12 + pill.height + 16 + foot_plate.height
-    y = int(H * 0.34 - total / 2)
+    y = int(H * 0.31 - total / 2)
     for pl in plates:
         canvas.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
         y += pl.height - overlap
@@ -1848,12 +1878,9 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
     canvas.alpha_composite(foot_plate, (int(W / 2 - foot_plate.width / 2), y))
     y += foot_plate.height
 
-    # two loop de loop arrows from under the card straight down to where the
-    # link pill sits. Shorts draws it just above the channel row, the bottom fifth.
-    top = y + 30
-    bottom = int(H * 0.83)
-    draw_loop_arrow(canvas, int(W * 0.33), top, bottom, loops=2, mirror=False)
-    draw_loop_arrow(canvas, int(W * 0.67), top, bottom, loops=2, mirror=True)
+    # one hand drawn arrow from under the card straight down to where the link
+    # pill sits. Shorts draws it just above the channel row, the bottom fifth.
+    draw_hand_arrow(canvas, W // 2, y + 26, int(H * 0.84))
     canvas.save(path)
     return path
 
