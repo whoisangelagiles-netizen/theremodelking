@@ -3,7 +3,7 @@
   "episode": "Inside Our Most Dramatic Flip Yet, From Dated to Dream Home in 4 Weeks",
   "date": "October 2026",
   "work_id": "dramatic-flip",
-  "video_url": "[add full video link]",
+  "video_url": "https://www.youtube.com/watch?v=5fvj0o7_zHU",
   "handle": "@theremodelking",
   "prepared_for": "Editor / Content Team",
   "hashtags": [
@@ -106,7 +106,7 @@
         {
           "number": 5,
           "source": "15:16 - 15:21",
-          "vo": "Then the family room, lit the way I light everything, because nobody wants a dark room.",
+          "vo": "Wine cooler, and under cabinet lights.",
           "caption": "Nobody wants a dark room",
           "notes": "the media wall, the tables and the rug. Framed centre so the room reads, not the wall behind it",
           "view": 0.8,
@@ -130,7 +130,7 @@
         {
           "number": 7,
           "source": "16:44.5 - 16:48",
-          "vo": "There is a bedroom down here as well.",
+          "vo": "Then the family room, lit the way I light everything.",
           "caption": "A bedroom down here as well",
           "notes": "the basement bedroom. Mike is in the doorway until 16:44, so the take starts after he clears it",
           "view": 0.8,
@@ -190,7 +190,7 @@
         {
           "number": 12,
           "source": "19:07.5 - 19:11.5",
-          "vo": "Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
+          "vo": "All of it in a basement that was never on the list.",
           "caption": "A basement that was never on the list",
           "notes": "the wine cooler end of the bar from the sign off take, held hard right. A different camera and a different framing from the hook. The sign off is spoken over this and the location audio is muted",
           "view": 0.45,
@@ -200,22 +200,28 @@
           }
         }
       ],
-      "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. One of the nicest wet bars we have ever built, and the island even rolls.\n\nHis office is right behind it, with the furniture built to fit. Then the family room, lit the way I light everything, because nobody wants a dark room. A whole wall of built ins, with cupboards underneath.\n\nThere is a bedroom down here as well. A walk in closet off the hallway. And they put a gym in at the end.\n\nThe bathroom has a vessel sink, with green running right through the stone. And then there is this. A steam shower, lined in slab, with a bench inside. Wine cooler, under cabinet lights, and all of it in a basement that was never on the list.",
+      "full_vo": "We bought this house to flip it, and the basement was not part of the plan. Then the people buying it asked us to finish it too. One of the nicest wet bars we have ever built, and the island even rolls.\n\nHis office is right behind it, with the furniture built to fit. Wine cooler, and under cabinet lights. A whole wall of built ins, with cupboards underneath.\n\nThen the family room, lit the way I light everything. A walk in closet off the hallway. And they put a gym in at the end.\n\nThe bathroom has a vessel sink, with green running right through the stone. And then there is this. A steam shower, lined in slab, with a bench inside. All of it in a basement that was never on the list.",
       "voice_direction": "Warm and unhurried, a contractor who is quietly pleased that the part nobody asked for turned out to be the best part of the house.",
-      "cta_frame": "Follow\nfor more\nbefore\nand afters",
-      "cta_source": "14:53 - 14:58",
+      "cta_frame": "tap the title",
+      "cta_source": "16:21 - 16:30",
       "cta_crop": 0.26,
-      "cta_frame_note": "The office end of the basement, held left. Every crop of the bar either catches Mike's shoulder or reads as the same picture as the hook, which is the bar, so the end card moves to a different room.",
+      "cta_frame_note": "the steam shower slab, clean from 16:12 to 16:34, under the question of what it all cost. Nine seconds of clean picture, which the spoken title needs",
       "cta": {
-        "primary": "Follow for more before and afters",
-        "alt": "Would you put a steam shower in your basement?",
-        "pinned": "Full flip and basement here: [full video link]"
+        "primary": "Want to see what this whole remodel cost? Tap the video title at the bottom of your screen.",
+        "linked_video": "Inside Our Most Dramatic Flip Yet: From Dated to Dream Home in 4 Weeks",
+        "upload_note": "Link the long video on this Short so the title pill shows under it. The end card and the spoken line name that exact title."
       },
       "shot_notes": "The first cut leaned on the bar for five of twelve shots and the steam shower for three, which read as the same picture over and over. This one uses the bar three times and then nine different spaces. Clean windows: the bar wide at 14:19 to 14:26, the bar sink at 14:29 to 14:34 held left, the office at 14:49 to 14:55 held left, the family room at 15:14 to 15:23, the built ins at 15:34 to 15:38, the vessel sink at 15:59 to 16:04, the steam shower at 16:12 to 16:34, the bedroom at 16:44 to 16:49, the closet at 17:14 to 17:22, the gym at 17:30 to 17:40 held hard left, and the sign off at the bar at 19:00 to 19:22, clean at 0.22 and at 0.80 either side of him.",
       "cta_view": 0.8,
       "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number.",
-      "fb_cta_crop": 0.3,
-      "full_bleed_note": "A second cut built with --full-bleed --variant fullbleed. Every shot fills the canvas, and the perspective comes from the move: fb_pan sweeps each window across the clean part of its take, wide rooms travelling half the frame, Mike's side of a take left alone. The two cuts share the script, the VO and the takes, and differ only in framing."
+      "fb_cta_crop": 0.4,
+      "full_bleed_note": "A second cut built with --full-bleed --variant fullbleed. Every shot fills the canvas, and the perspective comes from the move: fb_pan sweeps each window across the clean part of its take, wide rooms travelling half the frame, Mike's side of a take left alone. The two cuts share the script, the VO and the takes, and differ only in framing.",
+      "cover_hook": "See the basement that was never part of the flip",
+      "format_note": "Full frame is the default now, Mike's pick: every shot fills the canvas and gets its perspective from the per shot sweep in fb_pan. --wide-view rebuilds the blurred band look if it is ever wanted.",
+      "cover_source": "14:21.5",
+      "cover_crop": 0.56,
+      "runtime_note": "The spoken sign off now carries the full long video title, about eight seconds, so the body is trimmed to keep the whole Short near sixty. Built with --line-gap 0.36."
     }
-  ]
+  ],
+  "video_title": "Inside Our Most Dramatic Flip Yet: From Dated to Dream Home in 4 Weeks"
 }

@@ -64,7 +64,7 @@ VIEW_DIM = -0.16
 # bands, and gets its perspective from the move instead: every shot carries
 # its own sweep across the clean part of the frame (fb_pan in edits.json), so
 # the viewer sees the room over the length of the shot. Set from --full-bleed.
-FULL_BLEED = False
+FULL_BLEED = True   # Mike's pick. --wide-view brings back the blurred fill bands.
 PARTS_NAME = "parts"
 CTA_SECONDS = 3.0
 # End card geometry, measured off the reference Short: a stack of rotated
@@ -77,6 +77,13 @@ CTA_TILTS = (-1.6, 1.4, -1.2, 1.8, -1.0)
 CTA_HANDLE = "@theremodelking"
 # One beat per sticker. Newlines in the guide's cta_frame are honoured as written.
 CTA_DEFAULT = "Follow\nfor more\nbefore\nand afters"
+# The sign off now points at the linked long video. {title} is the exact YouTube
+# title, because that is what the viewer reads on the link pill under the Short.
+CTA_QUESTION = "Want to see what\nthis whole\nremodel cost?"
+CTA_TAP_VO = "Want to see what this whole remodel cost? Tap {title} at the bottom of your screen."
+CTA_TAP_FOOT = "at the bottom of your screen"
+COVER_SIZE = 72
+COVER_WRAP = 0.82
 # The channel's own Shorts end on this line spoken, not just drawn. It is the
 # last line of every read unless the guide overrides it with cta_vo.
 CTA_VO_DEFAULT = "Follow for more before and afters."
@@ -1157,6 +1164,7 @@ def splice_pauses(master: Path, spans: list[tuple[float, float]], gaps: list[flo
 
 
 def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: bool,
+             guide: dict | None,
              force: bool, voice_id: str | None, model_id: str, gap: float,
              settings: dict | None = None,
              supplied: Path | None = None) -> tuple[list[dict] | None, Path | None]:
@@ -1183,7 +1191,7 @@ def stage_vo(short: dict, scenes: list[Scene], work: Path, index: int, skip: boo
         die("no per scene VO lines in the guide, nothing to synthesize")
     # The sign off is spoken, not just drawn, and it is rendered inside the same
     # take so it carries the same voice and the same pause before it.
-    sign_off_text = " ".join((short.get("cta_vo") or CTA_VO_DEFAULT).split())
+    sign_off_text = " ".join(sign_off_line(short, guide).split())
     texts.append(respell_for_voice(sign_off_text))
 
     if skip:
@@ -1706,6 +1714,147 @@ def subtitle_block_height(phrases, font_path: str | None, size: int) -> float:
     return tallest
 
 
+def video_title(guide: dict | None, short: dict | None = None) -> str:
+    """The exact long video title, as YouTube shows it on the link pill."""
+    raw = ((short or {}).get("video_title") or (guide or {}).get("video_title")
+           or (guide or {}).get("episode") or "")
+    return " ".join(str(raw).split())
+
+
+def sign_off_line(short: dict, guide: dict | None) -> str:
+    """Spoken sign off. An explicit cta_vo wins; otherwise the tap line with the title in it."""
+    if short.get("cta_vo"):
+        return str(short["cta_vo"])
+    title = video_title(guide, short)
+    return CTA_TAP_VO.format(title=title) if title else CTA_VO_DEFAULT
+
+
+def draw_curly_arrow(canvas, start: tuple, end: tuple, bend: float, width: int = 14) -> None:
+    """A hand drawn looking arrow: an S curve from start to end with a head at the end.
+
+    Drawn black first and white over it so it holds over any footage, same as the
+    caption stroke.
+    """
+    from PIL import ImageDraw
+    pen = ImageDraw.Draw(canvas)
+    (x0, y0), (x1, y1) = start, end
+    c1 = (x0 + bend, y0 + (y1 - y0) * 0.30)
+    c2 = (x1 - bend, y0 + (y1 - y0) * 0.70)
+    points = []
+    for i in range(41):
+        t = i / 40
+        u = 1 - t
+        x = u ** 3 * x0 + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t ** 3 * x1
+        y = u ** 3 * y0 + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t ** 3 * y1
+        points.append((x, y))
+    # head along the final tangent
+    tx, ty = points[-1][0] - points[-4][0], points[-1][1] - points[-4][1]
+    norm = max((tx * tx + ty * ty) ** 0.5, 1e-6)
+    tx, ty = tx / norm, ty / norm
+    nx, ny = -ty, tx
+    head_len, head_w = width * 3.2, width * 2.3
+    tip = (x1 + tx * head_len * 0.5, y1 + ty * head_len * 0.5)
+    base = (tip[0] - tx * head_len, tip[1] - ty * head_len)
+    left = (base[0] + nx * head_w, base[1] + ny * head_w)
+    right = (base[0] - nx * head_w, base[1] - ny * head_w)
+    for colour, extra in (((0, 0, 0, 255), 8), ((255, 255, 255, 255), 0)):
+        pen.line(points, fill=colour, width=width + extra, joint="curve")
+        pen.ellipse([x0 - (width + extra) / 2, y0 - (width + extra) / 2,
+                     x0 + (width + extra) / 2, y0 + (width + extra) / 2], fill=colour)
+        if extra:
+            pen.polygon([tip, left, right], fill=colour, outline=colour, width=extra)
+        else:
+            pen.polygon([tip, left, right], fill=colour)
+
+
+def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | None,
+                      body_font: str | None, path: Path) -> Path:
+    """The end card that points at the linked long video.
+
+    Question as the sticker stack, then the exact video title in a white pill
+    that reads like the link YouTube draws under a Short, the foot line, and two
+    curly arrows down toward where that link sits on screen.
+    """
+    from PIL import Image, ImageDraw, ImageFont
+
+    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    probe = ImageDraw.Draw(canvas)
+    font = (ImageFont.truetype(display_font, CTA_FONT_SIZE) if display_font
+            else ImageFont.load_default(CTA_FONT_SIZE))
+    small = (ImageFont.truetype(display_font, 64) if display_font
+             else ImageFont.load_default(64))
+    tfont = (ImageFont.truetype(body_font, 40) if body_font else ImageFont.load_default(40))
+    green, white = CAPTION_GREEN + (255,), (255, 255, 255, 255)
+
+    def sticker(line, fnt, fill, ink, pad_y=CTA_PAD_Y):
+        ascent, descent = fnt.getmetrics()
+        cap = ascent - descent // 2
+        box_w = int(probe.textlength(line, font=fnt) + CTA_PAD_X * 2)
+        box_h = cap + pad_y * 2
+        plate = Image.new("RGBA", (box_w, box_h), (0, 0, 0, 0))
+        pen = ImageDraw.Draw(plate)
+        pen.rounded_rectangle([0, 0, box_w - 1, box_h - 1], radius=16, fill=fill)
+        pen.text((CTA_PAD_X, pad_y - descent // 2), line, font=fnt, fill=ink)
+        return plate
+
+    plates = []
+    lines = [part.strip() for part in question.strip().upper().split("\n") if part.strip()]
+    for row, line in enumerate(lines):
+        fill = white if row % 2 == 0 else green
+        ink = green if row % 2 == 0 else white
+        plates.append(sticker(line, font, fill, ink).rotate(
+            CTA_TILTS[row % len(CTA_TILTS)], expand=True, resample=Image.BICUBIC))
+
+    tap = sticker("TAP", small, green, white, pad_y=10)
+
+    # the title pill: play glyph, then the title wrapped like the link pill wraps it
+    tlines = wrap_caption(title, tfont, int(W * 0.66), probe)[:3]
+    ta, td = tfont.getmetrics()
+    line_h = ta + td + 4
+    icon = 44
+    pill_pad_x, pill_pad_y = 28, 22
+    text_w = max(probe.textlength(line, font=tfont) for line in tlines)
+    pill_w = int(text_w + icon + 18 + pill_pad_x * 2)
+    pill_h = int(line_h * len(tlines) + pill_pad_y * 2)
+    pill = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
+    pen = ImageDraw.Draw(pill)
+    pen.rounded_rectangle([0, 0, pill_w - 1, pill_h - 1], radius=26, fill=white,
+                          outline=(0, 0, 0, 255), width=3)
+    cx, cy = pill_pad_x + icon / 2, pill_h / 2
+    pen.ellipse([cx - icon / 2, cy - icon / 2, cx + icon / 2, cy + icon / 2], fill=green)
+    pen.polygon([(cx - 7, cy - 11), (cx - 7, cy + 11), (cx + 12, cy)], fill=white)
+    ty = pill_pad_y
+    for line in tlines:
+        pen.text((pill_pad_x + icon + 18, ty), line, font=tfont, fill=green)
+        ty += line_h
+
+    foot_plate = sticker(foot.upper(), small, green, white, pad_y=10)
+
+    overlap = 6
+    stack_h = sum(pl.height for pl in plates) - overlap * (len(plates) - 1)
+    total = stack_h + 34 + tap.height + 14 + pill.height + 18 + foot_plate.height
+    y = int(H * 0.40 - total / 2)
+    for pl in plates:
+        canvas.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
+        y += pl.height - overlap
+    y += 34
+    canvas.alpha_composite(tap, (int(W / 2 - tap.width / 2), y))
+    y += tap.height + 14
+    canvas.alpha_composite(pill, (int(W / 2 - pill.width / 2), y))
+    y += pill.height + 18
+    canvas.alpha_composite(foot_plate, (int(W / 2 - foot_plate.width / 2), y))
+    y += foot_plate.height
+
+    # two curly arrows from under the card down to where the link pill sits.
+    # Shorts draws it just above the channel row, roughly the bottom fifth.
+    top = y + 40
+    bottom = int(H * 0.80)
+    draw_curly_arrow(canvas, (int(W * 0.33), top), (int(W * 0.40), bottom), bend=-130, width=19)
+    draw_curly_arrow(canvas, (int(W * 0.67), top), (int(W * 0.60), bottom), bend=130, width=19)
+    canvas.save(path)
+    return path
+
+
 def draw_cta_stickers(text: str, handle: str, display_font: str | None,
                       body_font: str | None, path: Path) -> Path:
     """The end card, drawn as a transparent plate to lay over live footage.
@@ -2023,7 +2172,7 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
                source: Path, start: float, src_w: int, src_h: int,
                crop_x: float = 0.5, zoom: float = 1.0,
                animation: Path | None = None, hold: float | None = None,
-               view: float = 0.0) -> float:
+               view: float = 0.0, title: str | None = None) -> float:
     """The end card plays over live footage, not over a black card.
 
     The reference Short holds the last reveal shot and lays the sticker stack on
@@ -2037,7 +2186,11 @@ def render_cta(text: str, handle: str, display_font: str | None, body_font: str 
         overlay = ["-i", str(animation)]
         cta_filter = "[base][1:v]overlay=0:0:shortest=0[withcta]"
     else:
-        png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
+        if title:
+            png = draw_cta_tap_card(CTA_QUESTION, title, CTA_TAP_FOOT, display_font,
+                                    body_font, parts / "cta.png")
+        else:
+            png = draw_cta_stickers(text, handle, display_font, body_font, parts / "cta.png")
         overlay = ["-loop", "1", "-t", f"{seconds}", "-i", str(png)]
         cta_filter = "[base][1:v]overlay=0:0[withcta]"
 
@@ -2351,7 +2504,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
                                  parts, watermark, cta_clip, source, cta_start,
                                  src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold,
-                                 cta_view)
+                                 cta_view, None if short.get("cta_vo") else video_title(guide, short))
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"
@@ -2440,7 +2593,82 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
 DEFAULT_HASHTAGS = ["#homeremodel", "#remodeling", "#renovation", "#contractor"]
 
 
+def render_cover(final: Path, short: dict, guide: dict, destination: Path,
+                 starts: list[float], source: Path | None = None) -> Path:
+    """The custom cover: a clean frame from the finished Short with the hook on it.
+
+    cover_at is a time in the FINISHED Short (so it is already framed), cover_hook
+    the line. Big white type with the caption stroke on green plates, stacked in
+    the upper third where the feed grid shows it and the Shorts chrome does not.
+    """
+    from PIL import Image, ImageDraw, ImageFont
+
+    hook = " ".join(str(short.get("cover_hook") or short.get("working_title") or "").split())
+    grab = destination.with_suffix(".frame.jpg")
+    if short.get("cover_source") and source is not None:
+        # A clean frame straight from the episode, framed full bleed at cover_crop.
+        # Grabbing from the finished Short put a burned in caption on the cover.
+        raw = str(short["cover_source"]).strip()
+        if "-" in raw:
+            at = parse_range(raw)[0]
+        else:
+            # a single MM:SS(.s) stamp, which is what a cover wants
+            at = 0.0
+            for part in raw.split(":"):
+                at = at * 60 + float(part)
+        src_w = int(probe(source, "v:0", "stream=width"))
+        src_h = int(probe(source, "v:0", "stream=height"))
+        crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, float(short.get("cover_crop", 0.5)), 1.0, 0.5)
+        run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{at:.2f}",
+             "-i", str(source), "-frames:v", "1",
+             "-vf", f"crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos",
+             "-q:v", "2", str(grab)])
+        where = f"episode {short['cover_source']} crop {float(short.get('cover_crop', 0.5)):.2f}"
+    else:
+        at = float(short.get("cover_at") or min(1.2, max(0.4, (starts[1] if len(starts) > 1 else 2.0) / 2)))
+        run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{at:.2f}",
+             "-i", str(final), "-frames:v", "1", "-q:v", "2", str(grab)])
+        where = f"finished Short at {at:.1f}s"
+    frame = Image.open(grab).convert("RGBA").resize((W, H))
+    grab.unlink(missing_ok=True)
+
+    # a soft dark gradient behind the type so it reads on a bright room
+    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    pen = ImageDraw.Draw(shade)
+    for row in range(int(H * 0.55)):
+        alpha = int(150 * max(0.0, 1 - row / (H * 0.55)) ** 1.4)
+        pen.line([(0, row), (W, row)], fill=(0, 0, 0, alpha))
+    frame.alpha_composite(shade)
+
+    font_path = next((str(c) for c in FONT_CANDIDATES if Path(c).exists()), None)
+    font = ImageFont.truetype(font_path, COVER_SIZE) if font_path else ImageFont.load_default(COVER_SIZE)
+    pen = ImageDraw.Draw(frame)
+    lines = wrap_caption(hook.upper(), font, int(W * COVER_WRAP), pen)[:4]
+    ascent, descent = font.getmetrics()
+    line_h = ascent + descent
+    pad_x, pad_y, gap = 22, 10, 12
+    plates = []
+    for line in lines:
+        tw = int(pen.textlength(line, font=font))
+        plate = Image.new("RGBA", (tw + pad_x * 2 + CAPTION_STROKE * 2, line_h + pad_y * 2), (0, 0, 0, 0))
+        d = ImageDraw.Draw(plate)
+        d.rounded_rectangle([0, 0, plate.width - 1, plate.height - 1], radius=14,
+                            fill=CAPTION_GREEN + (255,))
+        d.text((pad_x + CAPTION_STROKE, pad_y), line, font=font, fill=(255, 255, 255, 255),
+               stroke_width=CAPTION_STROKE, stroke_fill=(0, 0, 0, 255))
+        plates.append(plate)
+    total = sum(pl.height for pl in plates) + gap * (len(plates) - 1)
+    y = int(H * 0.30 - total / 2)
+    for pl in plates:
+        frame.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
+        y += pl.height + gap
+    frame.convert("RGB").save(destination, quality=92)
+    say(f"cover: {destination.relative_to(REPO_ROOT)}, {where}, hook: {hook}")
+    return destination
+
+
 def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
+                       source: Path | None,
                        slug: str, starts: list[float]) -> tuple[Path, Path]:
     """Everything the publishing checklist asks for, next to the video."""
     stage("Stage 7, publish pack and thumbnail")
@@ -2462,12 +2690,8 @@ def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
         say("  that is close to the 30MB chat limit, drop SHARE_BITRATE if it "
             "needs to go over chat")
 
-    thumb = OUTPUT / f"{slug}-short-{index}-thumbnail.jpg"
-    grab_at = min(1.2, max(0.4, (starts[1] if len(starts) > 1 else 2.0) / 2))
-    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-         "-ss", f"{grab_at:.2f}", "-i", str(final),
-         "-frames:v", "1", "-q:v", "2", str(thumb)])
-    say(f"thumbnail: {thumb.relative_to(REPO_ROOT)}, first frame style, grabbed at {grab_at:.1f}s")
+    thumb = OUTPUT / f"{slug}-short-{index}-COVER.jpg"
+    render_cover(final, short, guide, thumb, starts, source)
 
     titles = short.get("seo_titles") or [short.get("working_title", "")]
     cta = short.get("cta", {})
@@ -2589,8 +2813,9 @@ def main() -> None:
     parser.add_argument("--redownload", action="store_true")
     parser.add_argument("--revoice", action="store_true", help="resynthesize the VO")
     parser.add_argument("--full-bleed", action="store_true",
-                        help="fill the canvas on every shot and take the framing from fb_pan / "
-                             "fb_crop_x in edits.json instead of view")
+                        help="(default) fill the canvas on every shot, framing from fb_pan / fb_crop_x")
+    parser.add_argument("--wide-view", action="store_true",
+                        help="the other look: each shot at its view width on a blurred fill")
     parser.add_argument("--variant", default=None,
                         help="suffix for a second cut of the same Short, its own parts dir and outputs")
     args = parser.parse_args()
@@ -2622,7 +2847,7 @@ def main() -> None:
     guide, short = load_short(guide_path, args.number)
     slug = slugify(guide.get("episode") or guide_path.stem)
     global FULL_BLEED, PARTS_NAME
-    FULL_BLEED = bool(args.full_bleed)
+    FULL_BLEED = not args.wide_view
     if args.variant:
         slug = f"{slug}-{slugify(args.variant)}"
         PARTS_NAME = f"parts-{slugify(args.variant)}"
@@ -2638,7 +2863,7 @@ def main() -> None:
     voice_settings = {"stability": args.stability, "style": args.style,
                       "similarity": args.similarity}
     voice_settings.update(guide.get("voice_settings") or {})
-    vo_lines, vo_master, sign_off = stage_vo(short, scenes, work, args.number, args.skip_vo,
+    vo_lines, vo_master, sign_off = stage_vo(short, scenes, work, args.number, args.skip_vo, guide,
                                              args.revoice, args.voice_id, args.model_id,
                                              args.line_gap, voice_settings, args.vo)
 
@@ -2672,7 +2897,7 @@ def main() -> None:
                                    slug, font_path, music, watermark, args.captions,
                                    args.location_audio, display_font, vo_master, sign_off)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
-    pack, thumb = stage_publish_pack(final, guide, short, args.number, slug, starts)
+    pack, thumb = stage_publish_pack(final, guide, short, args.number, source, slug, starts)
 
     print("\nDone.")
     publish = OUTPUT / f"{slug}-short-{args.number}-PUBLISH.mp4"

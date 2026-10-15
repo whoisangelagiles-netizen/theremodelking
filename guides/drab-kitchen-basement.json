@@ -3,7 +3,7 @@
   "episode": "From Drab to Fab, Revamping a Dark Kitchen into a Gorgeous Cooking Space",
   "date": "October 2026",
   "work_id": "drab-kitchen",
-  "video_url": "[add full video link]",
+  "video_url": "https://www.youtube.com/watch?v=75ywchE2BIc",
   "handle": "@theremodelking",
   "prepared_for": "Editor / Content Team",
   "hashtags": [
@@ -88,7 +88,7 @@
         {
           "number": 3,
           "source": "12:12 - 12:17",
-          "vo": "We tore out the old lighted ceiling and picked up about a foot of height.",
+          "vo": "We tore out the lighted ceiling and picked up a foot of height.",
           "caption": "Lighted ceiling out, a foot gained",
           "notes": "the island and the raised ceiling with the new cans running back into the family room, held hard right of Mike",
           "transition": "whoosh",
@@ -137,7 +137,7 @@
         {
           "number": 7,
           "source": "11:43.5 - 11:48.2",
-          "vo": "It looks beveled, but it isn't, and it costs about double a normal one.",
+          "vo": "It looks beveled, but it isn't, and it costs about double.",
           "caption": "Looks beveled. It isn't.",
           "notes": "same take as scene 6",
           "continues_previous": true
@@ -181,7 +181,7 @@
         {
           "number": 11,
           "source": "13:20 - 13:25",
-          "vo": "Tile floor, can lights right through, and the family room opens off the back.",
+          "vo": "Tile floor, can lights, and the family room off the back.",
           "caption": "The family room opens off the back",
           "notes": "the family room, the console and the built in entertainment wall. Mike walks back into this take at 13:26",
           "view": 0.8,
@@ -203,21 +203,27 @@
           }
         }
       ],
-      "full_vo": "This basement kitchen was so cold they left two cupboard doors open all winter. Just to keep the pipes in the outside wall from freezing. We tore out the old lighted ceiling and picked up about a foot of height.\n\nThen we put a window in over the sink that was never there before. The cabinets are alder, built by the family's own cabinet maker. That backsplash runs all the way up and around.\n\nIt looks beveled, but it isn't, and it costs about double a normal one. Black farmhouse sink, and the faucet hides its own pull down. The microwave sits behind a door that lifts up out of the way.\n\nThe island has a cooktop with a separate oven underneath. Tile floor, can lights right through, and the family room opens off the back. From a dark basement kitchen to this.",
+      "full_vo": "This basement kitchen was so cold they left two cupboard doors open all winter. Just to keep the pipes in the outside wall from freezing. We tore out the lighted ceiling and picked up a foot of height.\n\nThen we put a window in over the sink that was never there before. The cabinets are alder, built by the family's own cabinet maker. That backsplash runs all the way up and around.\n\nIt looks beveled, but it isn't, and it costs about double. Black farmhouse sink, and the faucet hides its own pull down. The microwave sits behind a door that lifts up out of the way.\n\nThe island has a cooktop with a separate oven underneath. Tile floor, can lights, and the family room off the back. From a dark basement kitchen to this.",
       "voice_direction": "Warm and unhurried, a contractor showing a friend a room he is pleased with, and enjoying the cupboard door detail.",
-      "cta_frame": "Follow\nfor more\nbefore\nand afters",
-      "cta_source": "12:03.5 - 12:07.5",
+      "cta_frame": "tap the title",
+      "cta_source": "12:03.5 - 12:12",
       "cta_crop": 0.84,
-      "cta_frame_note": "The island cooktop and wall oven with the family room beyond. The 11:33 cabinet face sat two seconds after the closing shot in the same camera swing, which would have made the first and last picture of the Short read the same. This is a different part of the room.",
+      "cta_frame_note": "the island cooktop and the family room beyond, clean from 12:03.5 to 12:13 held hard right. Nine seconds, which the spoken title needs",
       "cta": {
-        "primary": "Follow for more before and afters",
-        "alt": "Would you pay double for a backsplash?",
-        "pinned": "Full basement kitchen transformation here: [full video link]"
+        "primary": "Want to see what this whole remodel cost? Tap the video title at the bottom of your screen.",
+        "linked_video": "From Drab to Fab:  Revamping a Dark Kitchen into a Gorgeous Cooking Space",
+        "upload_note": "Link the long video on this Short so the title pill shows under it. The end card and the spoken line name that exact title."
       },
       "cta_view": 0.45,
       "framing_note": "view is the share of the source width each shot shows. Full bleed is 31.6 percent of a 16:9 frame blown up 1.78 times, and Mike flagged it twice as zoomed in with no perspective. Each shot carries the widest view that still reads and still keeps Mike a figure in the room rather than the subject; the tight crops were what kept him out, so wide rooms without him go to 0.80, bar and vanity runs with him at the edge sit at 0.45 to 0.60. Chosen off scripts/frame_views.py, not a flat number.",
-      "fb_cta_crop": 0.76,
-      "full_bleed_note": "A second cut built with --full-bleed --variant fullbleed. Every shot fills the canvas, and the perspective comes from the move: fb_pan sweeps each window across the clean part of its take, wide rooms travelling half the frame, Mike's side of a take left alone. The two cuts share the script, the VO and the takes, and differ only in framing."
+      "fb_cta_crop": 0.84,
+      "full_bleed_note": "A second cut built with --full-bleed --variant fullbleed. Every shot fills the canvas, and the perspective comes from the move: fb_pan sweeps each window across the clean part of its take, wide rooms travelling half the frame, Mike's side of a take left alone. The two cuts share the script, the VO and the takes, and differ only in framing.",
+      "cover_hook": "See how a freezing basement kitchen turned into this",
+      "format_note": "Full frame is the default now, Mike's pick: every shot fills the canvas and gets its perspective from the per shot sweep in fb_pan. --wide-view rebuilds the blurred band look if it is ever wanted.",
+      "cover_source": "12:51",
+      "cover_crop": 0.6,
+      "runtime_note": "The spoken sign off now carries the full long video title, about eight seconds, so the body is trimmed to keep the whole Short near sixty. Built with --line-gap 0.36."
     }
-  ]
+  ],
+  "video_title": "From Drab to Fab:  Revamping a Dark Kitchen into a Gorgeous Cooking Space"
 }
