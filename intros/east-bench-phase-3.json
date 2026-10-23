@@ -1,0 +1,42 @@
+{
+  "slug": "east-bench-phase-3",
+  "project": "East Bench House Phase 3",
+  "scope": "Master Suite & Laundry Room",
+  "drive_folder": "https://drive.google.com/drive/folders/1n8CbI8G5WKf4yOyVazHnVK9BcMQTAB1b",
+  "body": "Bateman Phase 3 Body Video.mp4, 1920x1080, 30 fps",
+  "media_root": "work/east-bench-phase-3",
+  "lines": [
+    {
+      "vo": "We took this master bath and laundry room down to the studs.",
+      "shots": [
+        {"type": "wipe", "before": "pre/07.jpg", "after": "final/IMG_2249.JPG", "weight": 2.0,
+         "notes": "double vanity, the closest angle match in the set"},
+        {"type": "split", "before": "pre/06.jpg", "after": "final/IMG_2248.JPG",
+         "notes": "old tile shower against the new one"},
+        {"type": "split", "before": "pre/09.jpg", "after": "final/IMG_2251.JPG",
+         "notes": "toilet room, same doorway angle"}
+      ]
+    },
+    {
+      "vo": "Now the shower works like a car wash, and the laundry room took over the old closet.",
+      "shots": [
+        {"type": "clip", "media": {"src": "final/IMG-0896.mov", "at": "4:59.4"}, "weight": 0.75,
+         "notes": "LED rain head lit, clean frame before Mike steps under it"},
+        {"type": "split", "before": "pre/01.jpg",
+         "after": {"src": "final/IMG-0896.mov", "at": "2:01"}, "weight": 1.25,
+         "notes": "laundry before, and the empty pan across the new laundry room"}
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {"title": ["WHAT IT COST", "HOW LONG IT TOOK"], "kicker": "STAY TO THE END",
+               "delay": 1.2},
+      "shots": [
+        {"type": "clip", "media": {"src": "final/IMG-0896.mov", "at": "4:19"}, "weight": 0.9,
+         "notes": "barn door slides open on the finished bath"},
+        {"type": "clip", "media": {"src": "final/IMG-0896.mov", "at": "6:10"}, "weight": 1.3,
+         "notes": "fountain wall and vanity, under the tease card"}
+      ]
+    }
+  ]
+}
