@@ -1,0 +1,55 @@
+{
+  "slug": "east-bench-phase-3",
+  "project": "East Bench House Phase 3",
+  "drive_file": "https://drive.google.com/file/d/1GqlH36_kTEzsAuz_Jchc-z-rZ07mFFOp/view",
+  "body_name": "Bateman Phase 3 Body Video.mp4",
+  "body_file": "work/east-bench-phase-3/body/body.mp4",
+  "already_in_the_body": [
+    "0:00 to 0:09 Phase 2 and How Much? titles, nothing lands before 0:09.6",
+    "dip to black transitions at 8:21, 13:18, 16:21, 20:09, 23:33 and 29:11, no flash goes on any of them",
+    "35:39 Subscribe animation, bottom left, so there is no subscribe pill",
+    "36:00 to the end, the stats slides, untouched"
+  ],
+  "touches": [
+    {"kind": "chapter", "at": "0:09.6", "text": "The before", "kicker": "Step 01",
+     "notes": "after the opener titles clear"},
+
+    {"kind": "flash", "at": "4:14.35", "notes": "the finger snap cut, the only hard cut between days in the first half"},
+    {"kind": "chapter", "at": "4:14.6", "text": "Demo done", "kicker": "Step 02"},
+
+    {"kind": "pill", "at": "8:03.0", "text": "ZipWall link in the description", "corner": "bottom-right",
+     "notes": "Mike: there's gonna be a link in the bottom of this video for the ZipWall"},
+
+    {"kind": "chapter", "at": "8:22.0", "text": "Framing and rough in", "kicker": "Step 03",
+     "notes": "Mike: we're all ready for sheetrock"},
+
+    {"kind": "chapter", "at": "16:22.4", "text": "Drywall and waterproofing", "kicker": "Step 04"},
+
+    {"kind": "chapter", "at": "20:10.0", "text": "Heated floor wire", "kicker": "Step 05"},
+
+    {"kind": "flash", "at": "21:27.3", "notes": "hard cut into the tile day"},
+    {"kind": "chapter", "at": "21:27.6", "text": "Setting tile", "kicker": "Step 06"},
+
+    {"kind": "chapter", "at": "23:34.4", "text": "How we heat a tile floor", "kicker": "Step 07",
+     "notes": "Mike: I wanna show you how to do a heated tile floor"},
+
+    {"kind": "chapter", "at": "29:12.0", "text": "The reveal", "kicker": "Step 08"},
+
+    {"kind": "inset", "at": "30:27.0", "before": "0:26.0", "corner": "top-left",
+     "notes": "old laundry room while Mike stands right of the new sink"},
+    {"kind": "pill", "at": "30:46.6", "text": "Ironing board link in the description",
+     "notes": "Mike: we have one on our Home Depot storefront, link below"},
+    {"kind": "label", "at": "31:06.5", "text": "Built in ironing board", "corner": "top-left",
+     "notes": "board drops at 31:07, it fills the bottom of the frame"},
+
+    {"kind": "inset", "at": "32:41.0", "before": "2:41.0", "corner": "top-left",
+     "notes": "old tile shower and its odd head, over the new valve wall, no Mike in frame"},
+    {"kind": "label", "at": "32:59.5", "text": "Wraparound niche with LED"},
+    {"kind": "label", "at": "33:09.5", "text": "LED rain head", "notes": "colour change on the remote"},
+    {"kind": "label", "at": "33:31.5", "text": "Jetted tub", "corner": "top-right",
+     "notes": "Mike stands left, the window is clear"},
+    {"kind": "label", "at": "33:57.5", "text": "Integrated sinks"},
+    {"kind": "label", "at": "34:07.5", "text": "Outlets and USB in the drawers"},
+    {"kind": "label", "at": "34:19.5", "text": "Fountain water feature"}
+  ]
+}
