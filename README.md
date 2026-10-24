@@ -229,11 +229,12 @@ footer.
 | --- | --- |
 | `transcripts/` | Fetched transcript JSON, one per video id |
 | `guides/` | Guide content JSON, one per episode |
+| `finishes/` | Finishing pass specs for long bodies, one per episode |
 | `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
 | `work/` | Source video, then per Short keyframes, edit decisions, VO lines, and scene clips under `work/[video_id]/short[n]/`. Gitignored, safe to delete |
-| `output/` | Finished PDFs, Shorts, and contact sheets |
+| `output/` | Finished PDFs, Shorts, contact sheets, and long body finishing packages |
 | `assets/fonts/` | Montserrat ExtraBold for captions, Anton for the end card, both committed so a fresh container renders identically |
-| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py` |
+| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py`, `finish_body.py` |
 
 ## Requirements
 
@@ -252,3 +253,25 @@ packages have to be installed before the pipeline can run. Paste
 `scripts/setup_session.sh` into the **Setup script** box in the cloud
 environment dialog at claude.ai/code, the same dialog that holds the
 environment variables. Then every new session comes up ready to build.
+
+## Long video finishing touches, separate from Shorts and the intro
+
+**Trigger:** share the edited body video and ask for final touches.
+
+The editor cuts the long body. This pass lays a light set of branded graphics
+over it: a chapter label per filming day, a few feature callouts in the reveal,
+before insets from the body's own walkthrough, link pills where Mike mentions a
+link, and a flash only on hard cuts between days. The body is never re-cut, so
+the edit, the audio, the editor's own titles and dips, and the stats slides stay
+exactly as delivered.
+
+```bash
+python scripts/finish_body.py finishes/[slug].json           # overlays, timeline, review reel
+python scripts/finish_body.py finishes/[slug].json --full    # also burn it all into the body
+```
+
+Output is `output/[slug]-finish-package.zip`, one alpha `.mov` per touch plus an
+FCP 7 XML that Premiere and Resolve import with the body on V1 and the touches
+above it, a markers CSV, and a review reel and contact sheet.
+
+Lives in `.claude/skills/long-video-finish/SKILL.md`.
