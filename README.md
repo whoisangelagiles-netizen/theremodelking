@@ -254,6 +254,30 @@ packages have to be installed before the pipeline can run. Paste
 environment dialog at claude.ai/code, the same dialog that holds the
 environment variables. Then every new session comes up ready to build.
 
+## Long video intros, separate from Shorts
+
+**Trigger:**
+
+> build the long intro for [Drive project folder]
+
+A 10 to 15 second cold open, 1920x1080, that goes in front of the long video
+body: before and after wipes and splits from the project photos, a short
+overview of the transformation in Mike's ElevenLabs voice, and a tease card for
+the project cost and completion time that never shows the numbers. The stats
+slides at the end of the body pay it off.
+
+```bash
+python scripts/fetch_drive.py work/[slug] pre/01.jpg=<id> ...      # assets from Drive
+python scripts/fetch_drive.py --audio work/[slug]/[slug]-body/audio.m4a <body id>
+python scripts/build_intro.py intros/[slug].json
+```
+
+The spec lives in `intros/[slug].json`, the finished file in
+`output/[slug]-intro.mp4`. It shares only the voice and caption helpers with
+`build_short.py` and changes nothing in the Shorts process.
+
+Lives in `.claude/skills/long-video-intro/SKILL.md`.
+
 ## Long video finishing touches, separate from Shorts and the intro
 
 **Trigger:** share the edited body video and ask for final touches.
