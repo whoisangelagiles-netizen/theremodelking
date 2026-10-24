@@ -23,9 +23,6 @@ The body is several gigabytes. Download it once into `work/[slug]/body/body.mp4`
 
 ```bash
 python scripts/fetch_drive.py work/[slug] body/body.mp4=<body file id>
-# or, if fetch_drive.py is not on this branch:
-curl -sS -L --fail --retry 4 -o work/[slug]/body/body.mp4 \
-  "https://drive.usercontent.google.com/download?id=<id>&export=download&confirm=t"
 ```
 
 Probe it. The overlays are 1920x1080 at 30 fps, say so if the body is not.
