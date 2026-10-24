@@ -229,11 +229,12 @@ footer.
 | --- | --- |
 | `transcripts/` | Fetched transcript JSON, one per video id |
 | `guides/` | Guide content JSON, one per episode |
+| `finishes/` | Finishing pass specs for long bodies, one per episode |
 | `assets/` | Branded overlays and sound you upload, see `assets/README.md` |
 | `work/` | Source video, then per Short keyframes, edit decisions, VO lines, and scene clips under `work/[video_id]/short[n]/`. Gitignored, safe to delete |
-| `output/` | Finished PDFs, Shorts, and contact sheets |
+| `output/` | Finished PDFs, Shorts, contact sheets, and long body finishing packages |
 | `assets/fonts/` | Montserrat ExtraBold for captions, Anton for the end card, both committed so a fresh container renders identically |
-| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py` |
+| `scripts/` | `fetch_transcript.py`, `render_guide.py`, `build_short.py`, `check_setup.py`, `finish_body.py` |
 
 ## Requirements
 
