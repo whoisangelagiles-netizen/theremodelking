@@ -2699,7 +2699,7 @@ def thumb_lines(words: list[str], font, pen, limit: int) -> list[str] | None:
     """
     if len(words) < 3:
         return [" ".join(words)] if pen.textlength(" ".join(words), font=font) <= limit else None
-    best, best_score = None, None
+    best, best_score, stepped, stepped_score = None, None, None, None
     for i in range(1, len(words) - 1):
         for j in range(i + 1, len(words)):
             lines = [" ".join(words[:i]), " ".join(words[i:j]), " ".join(words[j:])]
@@ -2711,7 +2711,14 @@ def thumb_lines(words: list[str], font, pen, limit: int) -> list[str] | None:
             score = rise * 4 + abs((w1 - w2) - (w2 - w3)) + (w1 - w3) * 0.25
             if best_score is None or score < best_score:
                 best, best_score = lines, score
-    return best
+            if not rise and (stepped_score is None or score < stepped_score):
+                stepped, stepped_score = lines, score
+    return stepped or best
+
+
+def steps_down(lines: list[str], font, pen) -> bool:
+    widths = [pen.textlength(line, font=font) for line in lines]
+    return all(upper >= lower for upper, lower in zip(widths, widths[1:]))
 
 
 def render_cover(final: Path, short: dict, guide: dict, destination: Path,
@@ -2761,13 +2768,24 @@ def render_cover(final: Path, short: dict, guide: dict, destination: Path,
     font_path = next((str(c) for c in FONT_CANDIDATES if Path(c).exists()), None)
     pen = ImageDraw.Draw(frame)
     words = hook.upper().split()
-    size, lines = THUMB_SIZE, None
+    # Shrink until a split steps down, widest on top. A split with a wider line
+    # under a narrower one is only taken when no size gets the shape.
+    size, lines, fallback = THUMB_SIZE, None, None
     while size >= 48:
         font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
         lines = thumb_lines(words, font, pen, THUMB_MAX_W - THUMB_PAD_X * 2)
-        if lines:
+        if lines and fallback is None:
+            fallback = (size, lines)
+        if lines and steps_down(lines, font, pen):
             break
+        lines = None
         size -= 3
+    if not lines and fallback:
+        size, lines = fallback
+        font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
+        say("cover: no split of this hook steps down, shorten cover_hook")
+    if size != THUMB_SIZE:
+        say(f"cover: hook set at {size}px to keep the stepped shape, a shorter hook keeps 71px")
     if not lines:
         lines = wrap_caption(hook.upper(), font, THUMB_MAX_W - THUMB_PAD_X * 2, pen)[:3]
         say("cover: hook too long for three pills, shorten cover_hook")

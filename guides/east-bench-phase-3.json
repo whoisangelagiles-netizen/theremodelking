@@ -1,0 +1,268 @@
+{
+  "channel": "The Remodel King",
+  "episode": "East Bench House Phase 3, Master Suite and Laundry Room",
+  "date": "October 2026",
+  "work_id": "bateman-phase-3",
+  "video_title": "East Bench House Phase 3",
+  "video_title_note": "PLACEHOLDER. Replace with the long video's exact YouTube title before publishing, then rebuild; the VO resynthesizes on its own.",
+  "video_url": "",
+  "drive_file": "https://drive.google.com/file/d/1GqlH36_kTEzsAuz_Jchc-z-rZ07mFFOp/view",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#masterbathroom",
+    "#bathroomremodel",
+    "#showerdesign",
+    "#laundryroom",
+    "#remodeling"
+  ],
+  "assessment": "Phase three of the East Bench House: the master suite and the laundry room. A strong showcase episode, weak for problem and solution beyond one beat: the homeowners never used the old tub because it was uncomfortable, and the old shower head sat in an odd spot. The finished master bath carries the Short. Mike calls the shower a car wash, with nozzles, hand sprays, shower heads and an LED rain head that changes colour from a remote, plus a wrap around lit niche. Then a deep jetted tub with air bubbles and a hand spray, sinks made from the countertop material, outlets and USB ports in the back of the drawers, and a fountain wall that is a mirror when the water is off. The laundry took over the old walk in closet and has a built in ironing board. Mike is in most of the reveal, so every shot is cropped to the feature with him at the edge or out.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:10",
+      "reason": "Phase 2 and How Much? titles burned in"
+    },
+    {
+      "range": "28:55 - 29:10",
+      "reason": "Mike quotes the heated floor price"
+    },
+    {
+      "range": "35:19 - 36:00",
+      "reason": "burned in HIT LIKE, COMMENT BELOW and SUBSCRIBE graphics and the sign off"
+    },
+    {
+      "range": "36:00 - 36:30",
+      "reason": "Project Statistics slides, the cost"
+    }
+  ],
+  "opportunities": [
+    {
+      "angle": "Reveal tour of the master bath, the car wash shower",
+      "timestamps": "32:23 - 34:31",
+      "clip_length": "55 seconds",
+      "why": "Mike's own line, the shower works like a car wash, is the hook, and the bath has eight named features in two minutes of footage.",
+      "titles": [
+        "See How a Cramped Shower Became a Car Wash"
+      ],
+      "hook": "See how a cramped shower became a car wash",
+      "captions": [
+        "Nozzles, hand sprays, rain head",
+        "The rain head changes colour"
+      ],
+      "cta": "Tap the full episode title, end card"
+    },
+    {
+      "angle": "Built in ironing board laundry room",
+      "timestamps": "30:16 - 31:43",
+      "clip_length": "30 seconds",
+      "why": "Good product angle with a Home Depot storefront link, but one feature only. Left as a line in this Short.",
+      "titles": [
+        "This Laundry Room Has a Built In Ironing Board"
+      ],
+      "hook": "",
+      "captions": [],
+      "cta": "Storefront link"
+    },
+    {
+      "angle": "How a heated tile floor goes in",
+      "timestamps": "23:33 - 29:10",
+      "clip_length": "45 seconds",
+      "why": "A how to, but it is all progress footage and ends on a price Mike quotes on camera. Not a reveal tour.",
+      "titles": [],
+      "hook": "",
+      "captions": [],
+      "cta": ""
+    }
+  ],
+  "project_context": {
+    "summary": "The third phase of the East Bench House: the master bedroom got new flooring, lights, trim and a new walk in storage closet, the master bath was taken to the studs and rebuilt with a bigger shower, a new tub and a new vanity, and the old walk in closet became an expanded laundry room with a linen closet.",
+    "segment_choice": "One Short, the master bath reveal from 32:23 to 34:31, one before beat of the old shower at 2:38, and the ironing board at 31:06. The end card plays over the fountain wall at 35:02, before the burned in graphics start.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Mike is in most reveal frames. Crop to the feature, him at the edge.",
+      "The mirror reflections are blurred in the source from 33:47 to 34:17, that is fine."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "See How a Cramped Shower Became a Car Wash",
+      "source_range": "32:23 - 35:14",
+      "target_runtime": "57 seconds",
+      "primary_goal": "Hook on the car wash shower, tour the master bath feature by feature, tap through to the full episode for the cost",
+      "seo_titles": [
+        "See How a Cramped Shower Became a Car Wash",
+        "Master Bathroom Remodel With a Car Wash Shower",
+        "A Fountain Wall That Turns Into a Mirror"
+      ],
+      "voice_direction": "Warm and unhurried, a contractor quietly proud of a bathroom he knows is over the top.",
+      "cta_frame": "tap the title",
+      "cta_source": "35:05 - 35:17",
+      "cta_crop": 0.32,
+      "cta_frame_note": "fountain wall and sconce, Mike settled right of it from 35:04.5. Clean until HIT LIKE at 35:20",
+      "cta": {
+        "primary": "Want to find out the project cost & watch the full transformation? Tap the video title at the bottom of your screen.",
+        "linked_video": "",
+        "upload_note": "Link the long video on this Short so the title pill shows under it."
+      },
+      "cover_hook": "See how a cramped shower became a car wash",
+      "cover_source": "32:44.5",
+      "cover_crop": 0.62,
+      "yt_title": "See How a Cramped Shower Became a Car Wash | Master Bathroom Remodel Before and After",
+      "yt_description": {
+        "hook": "This master shower used to be cramped, with the shower head in a weird spot. Now it works like a car wash.",
+        "project": "This is phase three of the East Bench House, the master suite and the laundry room. We took the master bath down to the studs and rebuilt the shower wider and longer, put in a new tub and a new vanity, and turned the old walk in closet into a bigger laundry room.",
+        "features": "The shower has nozzles, hand sprays, shower heads and a big LED rain head that changes color from a remote, with a wrap around lit niche. The deep jetted tub has air bubbles and a hand spray. The sinks are made out of the countertop material, there are outlets and USB ports in the back of the drawers, and the fountain wall turns into a mirror when the water is off.",
+        "subject": "master bathroom"
+      },
+      "scenes": [
+        {
+          "number": 1,
+          "source": "33:49.4 - 33:52.8",
+          "vo": "This master bath went from a cramped shower to a car wash.",
+          "caption": "From cramped to a car wash",
+          "notes": "vanity, sconces and the fountain wall, the camera pans clear of Mike. Establishes the room",
+          "caption_zone": "hook",
+          "fb_crop_x": 0.45,
+          "face": {
+            "x": 0.9,
+            "y": 0.3,
+            "w": 0.1,
+            "h": 0.25
+          },
+          "fb_pan": {
+            "from": 0.42,
+            "to": 0.8
+          }
+        },
+        {
+          "number": 2,
+          "source": "2:39.6 - 2:42.0",
+          "vo": "The old shower head sat in a weird spot.",
+          "caption": "The old shower",
+          "notes": "before, the travertine shower and its head. Mike enters right at 2:41.5",
+          "fb_crop_x": 0.4,
+          "face": null
+        },
+        {
+          "number": 3,
+          "source": "32:26 - 32:31",
+          "vo": "So we tore it all out, and rebuilt the shower wider and longer.",
+          "caption": "Rebuilt wider and longer",
+          "notes": "the barn door slides open on the finished bath",
+          "transition": "whoosh",
+          "fb_crop_x": 0.42,
+          "face": {
+            "x": 0.49,
+            "y": 0.18,
+            "w": 0.09,
+            "h": 0.17
+          }
+        },
+        {
+          "number": 4,
+          "source": "32:43 - 32:48",
+          "vo": "Nozzles, hand sprays, shower heads, and a huge rain head.",
+          "caption": "Nozzles and hand sprays",
+          "notes": "inside the shower, the jets and the rain head, clean",
+          "fb_crop_x": 0.52,
+          "face": null
+        },
+        {
+          "number": 5,
+          "source": "33:00 - 33:05",
+          "vo": "A wrap around niche with LED lights built right into it.",
+          "caption": "Wrap around lit niche",
+          "notes": "the herringbone niche lit, clean",
+          "fb_crop_x": 0.55,
+          "face": null
+        },
+        {
+          "number": 6,
+          "source": "33:12 - 33:19",
+          "vo": "And the rain head lights up in whatever color you want.",
+          "caption": "Any color you want",
+          "notes": "rain head cycling colours, Mike's cap at the bottom edge",
+          "fb_crop_x": 0.55,
+          "face": {
+            "x": 0.28,
+            "y": 0.88,
+            "w": 0.1,
+            "h": 0.12
+          }
+        },
+        {
+          "number": 7,
+          "source": "33:31 - 33:37",
+          "vo": "They never used the old tub, so now it is a deep jetted tub with air bubbles.",
+          "caption": "Deep jetted tub",
+          "notes": "tub under the shutters, Mike left, crop right",
+          "fb_crop_x": 0.64,
+          "face": {
+            "x": 0.18,
+            "y": 0.0,
+            "w": 0.25,
+            "h": 0.38
+          }
+        },
+        {
+          "number": 8,
+          "source": "33:56 - 34:01",
+          "vo": "Sinks made right out of the countertop material.",
+          "caption": "Integrated sinks",
+          "notes": "vanity top, Mike right, crop left",
+          "fb_crop_x": 0.3,
+          "face": {
+            "x": 0.5,
+            "y": 0.18,
+            "w": 0.16,
+            "h": 0.26
+          }
+        },
+        {
+          "number": 9,
+          "source": "34:07 - 34:12",
+          "vo": "Outlets and USB ports in the back of the drawers.",
+          "caption": "USB in the drawers",
+          "notes": "the drawer open with the outlet, his hands on it",
+          "fb_crop_x": 0.52,
+          "face": {
+            "x": 0.7,
+            "y": 0.0,
+            "w": 0.24,
+            "h": 0.28
+          }
+        },
+        {
+          "number": 10,
+          "source": "34:20 - 34:26",
+          "vo": "And a fountain wall that turns into a mirror when the water is off.",
+          "caption": "A fountain wall",
+          "notes": "fountain and sconces, Mike right of it, crop left",
+          "fb_crop_x": 0.37,
+          "face": {
+            "x": 0.52,
+            "y": 0.22,
+            "w": 0.14,
+            "h": 0.22
+          }
+        },
+        {
+          "number": 11,
+          "source": "31:06 - 31:12",
+          "vo": "The old closet became a laundry room, with a built in ironing board.",
+          "caption": "Built in ironing board",
+          "notes": "the ironing board drops out of the wall cabinet",
+          "fb_crop_x": 0.66,
+          "face": {
+            "x": 0.46,
+            "y": 0.25,
+            "w": 0.14,
+            "h": 0.2
+          }
+        }
+      ],
+      "fb_cta_crop": 0.32
+    }
+  ]
+}
