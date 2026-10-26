@@ -220,7 +220,14 @@
       "format_note": "Full frame is the default now, Mike's pick: every shot fills the canvas and gets its perspective from the per shot sweep in fb_pan. --wide-view rebuilds the blurred band look if it is ever wanted.",
       "cover_source": "14:21.5",
       "cover_crop": 0.56,
-      "runtime_note": "The spoken sign off now carries the full long video title, about eight seconds, so the body is trimmed to keep the whole Short near sixty. Built with --line-gap 0.36."
+      "runtime_note": "The spoken sign off now carries the full long video title, about eight seconds, so the body is trimmed to keep the whole Short near sixty. Built with --line-gap 0.36.",
+      "yt_title": "See the Basement That Was Never Part of the Flip | Dated House to Dream Home in 4 Weeks",
+      "yt_description": {
+        "hook": "This basement was never supposed to be part of the flip. The buyers saw what we were doing upstairs and asked us to finish it too.",
+        "project": "We bought this house as a fix and flip, in the same development as our cottage flip, and spent about four weeks taking it from dated to dream home. Then the people buying it asked us to keep going downstairs, and the basement turned into the best part of the house.",
+        "features": "The wet bar has stained wood cabinets with glass front uppers, under cabinet lighting, a stacked stone backsplash, a wine cooler and a heavily veined granite top, and the island in front of it rolls out of the way. Behind it there is an office with built in furniture and a linear fireplace. The basement bathroom has a vessel sink on a green veined counter and a steam shower lined in slab with a bench, a niche and a digital control.",
+        "subject": "basement"
+      }
     }
   ],
   "video_title": "Inside Our Most Dramatic Flip Yet: From Dated to Dream Home in 4 Weeks"

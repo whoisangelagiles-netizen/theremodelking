@@ -18,9 +18,9 @@ descriptions, or hashtags unless you ask. Ends with a one line offer of an A/B
 alternate, same cut, entirely reworded narration.
 
 The format is a **reveal tour**: the transformation in one sentence, who it was
-for, the turn, then six to ten named features one per line. Plain prose, 145 to
-175 words, 50 to 60 seconds. The end card carries the call to action, not the
-narration.
+for, the turn, then six to ten named features one per line. Plain prose, 115 to
+130 words of body, which with the 11.7 second tap end card lands at 50 to 60
+seconds. The end card carries the call to action.
 
 Lives in `.claude/skills/remodel-king-shorts/SKILL.md`.
 
@@ -142,8 +142,9 @@ Finished files:
 output/[slug]-short-[n]-PUBLISH.mp4          THIS IS THE ONE TO UPLOAD
 output/[slug]-short-[n]-FINAL.mp4            CRF 18 master, archive quality
 output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
-output/[slug]-short-[n]-thumbnail.jpg        first frame style
-output/[slug]-short-[n]-publish.md           SEO titles, description, pinned comment, hashtags
+output/[slug]-short-[n]-THUMBNAIL.jpg        hook on three green pills over a clean finished frame
+output/[slug]-short-[n]-title-description.md the ONE copy-paste YouTube title and description
+output/[slug]-short-[n]-publish.md           pinned comment, hashtags, checklist
 ```
 
 **`output/` is gitignored and a cloud container gets reclaimed**, so nothing in
@@ -208,10 +209,11 @@ stops whisper installing itself.
 | Captions | The spoken words, four to six at a time, timed from ElevenLabs character timestamps. White Montserrat ExtraBold at 48px with a 2px black stroke, on a solid green plate `#16A34A`, 10px side padding, 57px line pitch, wrapping at 0.72 of frame width so a card never runs past two lines. The plate's bottom edge is pinned at 0.746 of frame height so it never moves between cards. All of it measured off the channel's own Shorts. Lifts clear of Mike's face when he is in the band. `--captions labels` switches to the guide's summary captions |
 | Watermark | The logo from `assets/` top right of every scene and the CTA frame, soft shadow, sized to its native pixels, locked to the corner while the picture pans |
 | Overlays | Optional branded ProRes 4444 alpha `.mov` from `assets/overlays/`, composited per named scene |
-| Sign off | The read always ends on "Follow for more before and afters", spoken, not just drawn. It is rendered inside the same take as the rest of the narration and plays over the end card, which runs as long as the line does. Override per episode with `cta_vo` in the guide |
+| Sign off | The read always ends on the tap line, "Want to find out the project cost and watch the full transformation? Tap [exact episode title] at the bottom of your screen", built from `video_title`. It is rendered inside the same take as the rest of the narration and plays over the end card |
 | Audio | Mike's VO only. The original location audio is MUTED, `--location-audio 0.03` brings back the old low bed. Impact on frame one, whoosh at the problem to solution shift, optional music bed at 6 percent, limited at 0.95, padded to the picture |
 | Fit | Scene out-points stretch or tighten so the picture and the narration land together |
-| End | 3 seconds of live footage carrying a stack of tilted stickers, alternating white and green, plus the handle in a pill. Never a black card. `cta_frame` in the guide takes one line per sticker |
+| End | The approved "Tap the full episode" card, hard cut in for the last 11.7 seconds over live reveal footage: the question in four pills, TAP, a chip with the exact episode title, AT THE BOTTOM OF YOUR SCREEN, and the looped arrow down to the related video link. Spec in `.claude/skills/shorts-production-guide/end-card-and-thumbnail.md` |
+| Thumbnail | `cover_hook` on three green pills stepping down in width over a clean frame of the finished space (`cover_source`, `cover_crop`), measured off the approved cover |
 
 See `assets/README.md` for the exact files to upload and what happens when one
 is missing. Nothing in `assets/` is required, a missing file is skipped with a

@@ -29,7 +29,9 @@ def fetch(destination: Path, file_id: str) -> None:
     partial = destination.with_name(destination.name + ".part")
     subprocess.run(["curl", "-sS", "-L", "--fail", "--retry", "4", "-o", str(partial),
                     URL.format(id=file_id)], check=True)
-    if partial.read_bytes()[:15].lower().startswith(b"<!doctype html"):
+    with partial.open("rb") as head:
+        sniff = head.read(15)
+    if sniff.lower().startswith(b"<!doctype html"):
         partial.unlink()
         sys.exit(f"{destination.name}: Drive sent a web page, not the file. Share it as "
                  "anyone with the link and try again.")

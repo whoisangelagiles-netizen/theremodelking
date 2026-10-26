@@ -45,7 +45,9 @@ work, so the delivery does not have to push.
 
 - **Plain prose.** No ALL CAPS emphasis markers, no stacked exclamation points,
   no rhetorical questions. The old spec asked for those. Mike does not want them.
-- 145 to 175 words, which lands at 50 to 60 seconds.
+- 115 to 130 words of body. The build adds the spoken tap line and an 11.7
+  second end card after it, and the whole Short has to land at 50 to 60 seconds.
+  135 words came out at 62.
 - First person for the work, "we tore out", "we turned". Third person for the
   homeowner, "they love", "she found".
 - Every fact from the transcript. Never invent a material, a brand, or a number.
@@ -92,8 +94,10 @@ template.
 
 Captions are the spoken words, four to six at a time, white Montserrat ExtraBold
 on a solid green plate sitting on a fixed baseline in the lower third. The end
-card is a stack of tilted stickers over live footage, "Follow / for more /
-before / and afters", with the handle in a pill underneath. `scripts/build_short.py`
+card is the approved "Tap the full episode" card for the last 11.7 seconds,
+pointing at the linked long video by its exact title, and the read ends on the
+matching spoken tap line. See
+`.claude/skills/shorts-production-guide/end-card-and-thumbnail.md`. `scripts/build_short.py`
 draws all of it. Do not describe caption styling in the edit map.
 
 ## Then what
