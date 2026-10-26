@@ -143,7 +143,8 @@ output/[slug]-short-[n]-PUBLISH.mp4          THIS IS THE ONE TO UPLOAD
 output/[slug]-short-[n]-FINAL.mp4            CRF 18 master, archive quality
 output/[slug]-short-[n]-contact-sheet.jpg    one frame per scene, eyeball it without downloading
 output/[slug]-short-[n]-THUMBNAIL.jpg        hook on three green pills over a clean finished frame
-output/[slug]-short-[n]-publish.md           SEO titles, description, pinned comment, hashtags
+output/[slug]-short-[n]-title-description.md the ONE copy-paste YouTube title and description
+output/[slug]-short-[n]-publish.md           pinned comment, hashtags, checklist
 ```
 
 **`output/` is gitignored and a cloud container gets reclaimed**, so nothing in

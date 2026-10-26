@@ -39,7 +39,8 @@ here. Read that skill first if it is not already loaded. In particular:
 - The end card and the thumbnail are locked to approved references. Read
   `end-card-and-thumbnail.md` in this folder before the first build of a
   session. Every guide needs `video_title` (the full episode's EXACT YouTube
-  title), `video_url`, `cover_hook`, `cover_source` and `cover_crop`.
+  title), `video_url`, `cover_hook`, `cover_source` and `cover_crop`, plus
+  `yt_title` and `yt_description` per `title-and-description.md`.
 - The narration is one render with a 0.26s pause spliced in at each line
   boundary, so budget for it: thirteen lines is 3.4 seconds of pause and the
   end card holds for the last 11.7 seconds. Body narration plus that end card
@@ -349,7 +350,11 @@ Per Short, in `output/`:
 - `[slug]-short-[n]-THUMBNAIL.jpg`, the approved cover style, see
   `end-card-and-thumbnail.md`. Look at it before sending: clean finished room,
   no people, three pills stepping down
-- `[slug]-short-[n]-publish.md`, SEO titles, description with the full video
-  link, pinned comment, hashtags, and the publishing checklist
+- `[slug]-short-[n]-title-description.md`, the ONE copy-paste title and
+  description block, see `title-and-description.md`. Fill `yt_title` and
+  `yt_description` in the guide before the build, and send this block with the
+  Short
+- `[slug]-short-[n]-publish.md`, pinned comment, hashtags, and the publishing
+  checklist
 
 That covers every line of the publishing checklist except the act of uploading.

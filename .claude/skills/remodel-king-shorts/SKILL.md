@@ -94,8 +94,10 @@ template.
 
 Captions are the spoken words, four to six at a time, white Montserrat ExtraBold
 on a solid green plate sitting on a fixed baseline in the lower third. The end
-card is a stack of tilted stickers over live footage, "Follow / for more /
-before / and afters", with the handle in a pill underneath. `scripts/build_short.py`
+card is the approved "Tap the full episode" card for the last 11.7 seconds,
+pointing at the linked long video by its exact title, and the read ends on the
+matching spoken tap line. See
+`.claude/skills/shorts-production-guide/end-card-and-thumbnail.md`. `scripts/build_short.py`
 draws all of it. Do not describe caption styling in the edit map.
 
 ## Then what

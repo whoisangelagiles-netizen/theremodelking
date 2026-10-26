@@ -2859,6 +2859,13 @@ def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
     pack = OUTPUT / f"{slug}-short-{index}-publish.md"
     pack.write_text("\n".join(lines) + "\n", encoding="utf-8")
     say(f"publish pack: {pack.relative_to(REPO_ROOT)}")
+
+    # The copy-paste title and description, built and rule checked by its own script
+    from title_description import write_block
+    block, issues = write_block(guide, short, slug, index)
+    say(f"title and description: {block.relative_to(REPO_ROOT)}")
+    for issue in issues:
+        say(f"  FIX: {issue}")
     return pack, thumb
 
 
