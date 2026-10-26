@@ -37,14 +37,14 @@
   ],
   "opportunities": [
     {
-      "angle": "Reveal tour of the master bath, the car wash shower",
-      "timestamps": "32:23 - 34:31",
+      "angle": "Reveal tour of the whole master suite, laundry to bath",
+      "timestamps": "30:27 - 34:26",
       "clip_length": "55 seconds",
       "why": "Mike's own line, the shower works like a car wash, is the hook, and the bath has eight named features in two minutes of footage.",
       "titles": [
-        "See How a Cramped Shower Became a Car Wash"
+        "See How a Dated Master Suite Became This"
       ],
-      "hook": "See how a cramped shower became a car wash",
+      "hook": "See how a dated master suite became this",
       "captions": [
         "Nozzles, hand sprays, rain head",
         "The rain head changes colour"
@@ -76,7 +76,7 @@
   ],
   "project_context": {
     "summary": "The third phase of the East Bench House: the master bedroom got new flooring, lights, trim and a new walk in storage closet, the master bath was taken to the studs and rebuilt with a bigger shower, a new tub and a new vanity, and the old walk in closet became an expanded laundry room with a linen closet.",
-    "segment_choice": "One Short, the master bath reveal from 32:23 to 34:31, one before beat of the old shower at 2:38, and the ironing board at 31:06. The end card plays over the fountain wall at 35:02, before the burned in graphics start.",
+    "segment_choice": "One Short touring the suite in Mike's walking order: the laundry at 30:27 and 31:06, the bedroom at 31:53, the barn door at 32:26, then the master bath from 32:43 to 34:26. The end card plays over the fountain wall at 35:05, before the burned in graphics start. The hallway and the new storage closet are left out because Mike fills the frame in both.",
     "publish_order": "Single Short per episode.",
     "notes": [
       "Mike is in most reveal frames. Crop to the feature, him at the edge.",
@@ -86,14 +86,14 @@
   "shorts": [
     {
       "angle": "Reveal tour",
-      "working_title": "See How a Cramped Shower Became a Car Wash",
-      "source_range": "32:23 - 35:14",
+      "working_title": "See How a Dated Master Suite Became This",
+      "source_range": "30:27 - 35:17",
       "target_runtime": "57 seconds",
-      "primary_goal": "Hook on the car wash shower, tour the master bath feature by feature, tap through to the full episode for the cost",
+      "primary_goal": "Tour the whole master suite in Mike's walking order, laundry, bedroom, then the bath as the payoff, and tap through for the cost",
       "seo_titles": [
-        "See How a Cramped Shower Became a Car Wash",
-        "Master Bathroom Remodel With a Car Wash Shower",
-        "A Fountain Wall That Turns Into a Mirror"
+        "See How a Dated Master Suite Became This",
+        "Master Suite and Laundry Room Remodel Before and After",
+        "This Shower Works Like a Car Wash"
       ],
       "voice_direction": "Warm and unhurried, a contractor quietly proud of a bathroom he knows is over the top.",
       "cta_frame": "tap the title",
@@ -105,25 +105,24 @@
         "linked_video": "",
         "upload_note": "Link the long video on this Short so the title pill shows under it."
       },
-      "cover_hook": "See how a cramped shower became a car wash",
-      "cover_source": "32:44.5",
-      "cover_crop": 0.62,
-      "yt_title": "See How a Cramped Shower Became a Car Wash | Master Bathroom Remodel Before and After",
+      "cover_hook": "See how a dated master suite became this",
+      "cover_source": "33:49.8",
+      "cover_crop": 0.4,
+      "yt_title": "See How a Dated Master Suite Became This | Master Bedroom, Bathroom and Laundry Room Remodel",
       "yt_description": {
-        "hook": "This master shower used to be cramped, with the shower head in a weird spot. Now it works like a car wash.",
-        "project": "This is phase three of the East Bench House, the master suite and the laundry room. We took the master bath down to the studs and rebuilt the shower wider and longer, put in a new tub and a new vanity, and turned the old walk in closet into a bigger laundry room.",
-        "features": "The shower has nozzles, hand sprays, shower heads and a big LED rain head that changes color from a remote, with a wrap around lit niche. The deep jetted tub has air bubbles and a hand spray. The sinks are made out of the countertop material, there are outlets and USB ports in the back of the drawers, and the fountain wall turns into a mirror when the water is off.",
-        "subject": "master bathroom"
+        "hook": "This dated master suite got taken down to the studs. Now it has a laundry room, a refreshed bedroom, and a bathroom with a shower that works like a car wash.",
+        "project": "This is phase three of the East Bench House, the master suite and the laundry room. The old walk in closet became a bigger laundry room, the bedroom got new flooring, lights and trim, and the master bath was rebuilt with a wider, longer shower, a new tub and a new vanity.",
+        "features": "The laundry room has a sink, extra deep cabinets and an ironing board that folds out of the wall. A barn door opens on the bath, where the shower has nozzles, hand sprays and an LED rain head that changes color, with a wrap around lit niche. There is a deep jetted tub, sinks made out of the countertop material, and a fountain wall that turns into a mirror when the water is off.",
+        "subject": "master suite"
       },
       "scenes": [
         {
           "number": 1,
           "source": "33:49.4 - 33:52.8",
-          "vo": "This master bath went from a cramped shower to a car wash.",
-          "caption": "From cramped to a car wash",
-          "notes": "vanity, sconces and the fountain wall, the camera pans clear of Mike. Establishes the room",
-          "caption_zone": "hook",
-          "fb_crop_x": 0.45,
+          "vo": "We took this master bath and laundry room down to the studs.",
+          "caption": "Down to the studs",
+          "notes": "vanity, mirror and the fountain wall, the window tracks the camera swing onto the fountain",
+          "fb_crop_x": 0.42,
           "face": {
             "x": 0.9,
             "y": 0.3,
@@ -133,56 +132,90 @@
           "fb_pan": {
             "from": 0.42,
             "to": 0.8
-          }
+          },
+          "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "2:39.6 - 2:42.0",
-          "vo": "The old shower head sat in a weird spot.",
-          "caption": "The old shower",
-          "notes": "before, the travertine shower and its head. Mike enters right at 2:41.5",
-          "fb_crop_x": 0.4,
-          "face": null
+          "source": "30:27.5 - 30:32",
+          "vo": "The old closet is now a laundry room with deep cabinets.",
+          "caption": "A new laundry room",
+          "notes": "laundry sink and cabinets, Mike outside the window to the right",
+          "fb_crop_x": 0.32,
+          "face": {
+            "x": 0.55,
+            "y": 0.05,
+            "w": 0.12,
+            "h": 0.22
+          }
         },
         {
           "number": 3,
+          "source": "31:06 - 31:12",
+          "vo": "Plus an ironing board that folds right out of the wall.",
+          "caption": "Built in ironing board",
+          "notes": "ironing board drops out of the wall cabinet, Mike at the left edge",
+          "fb_crop_x": 0.66,
+          "face": {
+            "x": 0.46,
+            "y": 0.25,
+            "w": 0.14,
+            "h": 0.2
+          }
+        },
+        {
+          "number": 4,
+          "source": "31:53 - 31:59",
+          "vo": "The bedroom got new flooring, new lights, and all new trim.",
+          "caption": "New floors, lights and trim",
+          "notes": "bedroom wide, window, fan and the new floor, Mike outside the window to the left",
+          "fb_crop_x": 0.66,
+          "face": {
+            "x": 0.37,
+            "y": 0.24,
+            "w": 0.1,
+            "h": 0.13
+          }
+        },
+        {
+          "number": 5,
           "source": "32:26 - 32:31",
-          "vo": "So we tore it all out, and rebuilt the shower wider and longer.",
-          "caption": "Rebuilt wider and longer",
-          "notes": "the barn door slides open on the finished bath",
-          "transition": "whoosh",
+          "vo": "Then the real reveal, behind a new barn door.",
+          "caption": "The real reveal",
+          "notes": "the barn door slides open on the bath, Mike at the right edge",
           "fb_crop_x": 0.42,
           "face": {
             "x": 0.49,
             "y": 0.18,
             "w": 0.09,
             "h": 0.17
-          }
+          },
+          "transition": "whoosh"
         },
         {
-          "number": 4,
+          "number": 6,
           "source": "32:43 - 32:48",
-          "vo": "Nozzles, hand sprays, shower heads, and a huge rain head.",
-          "caption": "Nozzles and hand sprays",
-          "notes": "inside the shower, the jets and the rain head, clean",
+          "vo": "The shower works like a car wash, nozzles, hand sprays and a rain head.",
+          "caption": "Works like a car wash",
+          "notes": "rain head, shower head and the jet column",
           "fb_crop_x": 0.52,
           "face": null
         },
         {
-          "number": 5,
+          "number": 7,
           "source": "33:00 - 33:05",
           "vo": "A wrap around niche with LED lights built right into it.",
           "caption": "Wrap around lit niche",
-          "notes": "the herringbone niche lit, clean",
+          "notes": "herringbone niche lit",
           "fb_crop_x": 0.55,
           "face": null
         },
         {
-          "number": 6,
+          "number": 8,
           "source": "33:12 - 33:19",
           "vo": "And the rain head lights up in whatever color you want.",
           "caption": "Any color you want",
-          "notes": "rain head cycling colours, Mike's cap at the bottom edge",
+          "notes": "rain head cycling colours, his cap at the bottom edge at the end",
           "fb_crop_x": 0.55,
           "face": {
             "x": 0.28,
@@ -192,11 +225,11 @@
           }
         },
         {
-          "number": 7,
+          "number": 9,
           "source": "33:31 - 33:37",
-          "vo": "They never used the old tub, so now it is a deep jetted tub with air bubbles.",
+          "vo": "They never used the old tub, so now it is a deep jetted tub.",
           "caption": "Deep jetted tub",
-          "notes": "tub under the shutters, Mike left, crop right",
+          "notes": "tub under the shutters, Mike outside the window to the left",
           "fb_crop_x": 0.64,
           "face": {
             "x": 0.18,
@@ -206,11 +239,11 @@
           }
         },
         {
-          "number": 8,
+          "number": 10,
           "source": "33:56 - 34:01",
           "vo": "Sinks made right out of the countertop material.",
           "caption": "Integrated sinks",
-          "notes": "vanity top, Mike right, crop left",
+          "notes": "integrated sink in the counter, Mike outside right",
           "fb_crop_x": 0.3,
           "face": {
             "x": 0.5,
@@ -220,45 +253,17 @@
           }
         },
         {
-          "number": 9,
-          "source": "34:07 - 34:12",
-          "vo": "Outlets and USB ports in the back of the drawers.",
-          "caption": "USB in the drawers",
-          "notes": "the drawer open with the outlet, his hands on it",
-          "fb_crop_x": 0.52,
-          "face": {
-            "x": 0.7,
-            "y": 0.0,
-            "w": 0.24,
-            "h": 0.28
-          }
-        },
-        {
-          "number": 10,
+          "number": 11,
           "source": "34:20 - 34:26",
           "vo": "And a fountain wall that turns into a mirror when the water is off.",
           "caption": "A fountain wall",
-          "notes": "fountain and sconces, Mike right of it, crop left",
+          "notes": "fountain and sconce, Mike at the right edge",
           "fb_crop_x": 0.37,
           "face": {
             "x": 0.52,
             "y": 0.22,
             "w": 0.14,
             "h": 0.22
-          }
-        },
-        {
-          "number": 11,
-          "source": "31:06 - 31:12",
-          "vo": "The old closet became a laundry room, with a built in ironing board.",
-          "caption": "Built in ironing board",
-          "notes": "the ironing board drops out of the wall cabinet",
-          "fb_crop_x": 0.66,
-          "face": {
-            "x": 0.46,
-            "y": 0.25,
-            "w": 0.14,
-            "h": 0.2
           }
         }
       ],
