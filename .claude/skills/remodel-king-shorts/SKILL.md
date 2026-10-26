@@ -45,7 +45,9 @@ work, so the delivery does not have to push.
 
 - **Plain prose.** No ALL CAPS emphasis markers, no stacked exclamation points,
   no rhetorical questions. The old spec asked for those. Mike does not want them.
-- 145 to 175 words, which lands at 50 to 60 seconds.
+- 115 to 130 words of body. The build adds the spoken tap line and an 11.7
+  second end card after it, and the whole Short has to land at 50 to 60 seconds.
+  135 words came out at 62.
 - First person for the work, "we tore out", "we turned". Third person for the
   homeowner, "they love", "she found".
 - Every fact from the transcript. Never invent a material, a brand, or a number.

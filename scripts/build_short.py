@@ -84,8 +84,23 @@ CTA_QUESTION_SIZE = 92
 CTA_TAP_VO = ("Want to find out the project cost and watch the full transformation? "
               "Tap {title} at the bottom of your screen.")
 CTA_TAP_FOOT = "at the bottom of your screen"
-COVER_SIZE = 72
-COVER_WRAP = 0.82
+# The approved end card holds for the last 11.7 seconds of the Short, hard cut in,
+# footage playing under it. The sign off VO decides the length when it runs
+# longer; a shorter one is held out to this so every Short ends the same way.
+END_CARD_SECONDS = 11.7
+# The cover, measured off the approved "freezing basement kitchen" thumbnail:
+# three green pills stepping down in width, white Montserrat ExtraBold with a
+# thin black edge, the block starting at y 400. Its green is a touch brighter
+# than the caption plate, match the thumbnail, not the captions.
+THUMB_GREEN = (22, 163, 73)
+THUMB_SIZE = 71           # measured: the spec's 75 runs 5 percent wide
+THUMB_STROKE = 3
+THUMB_PILL_H = 109
+THUMB_PAD_X = 24          # past the outlined text
+THUMB_GAP = 12
+THUMB_RADIUS = 10
+THUMB_TOP = 400
+THUMB_MAX_W = 960
 # The channel's own Shorts end on this line spoken, not just drawn. It is the
 # last line of every read unless the guide overrides it with cta_vo.
 CTA_VO_DEFAULT = "Follow for more before and afters."
@@ -2574,7 +2589,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         short = dict(short, cta_crop=short["fb_cta_crop"])
     if short.get("cta_crop") is not None:
         cta_crop = float(short["cta_crop"])
-    cta_hold = sign_off["hold"] if sign_off else CTA_SECONDS
+    cta_hold = max(sign_off["hold"] if sign_off else CTA_SECONDS, END_CARD_SECONDS)
     if cta_start + cta_hold > source_seconds:
         cta_start = max(0.0, source_seconds - cta_hold)
     cta_clip = parts / "cta.mp4"
@@ -2675,83 +2690,108 @@ def stage_contact_sheet(final: Path, scenes: list[Scene], starts: list[float],
 DEFAULT_HASHTAGS = ["#homeremodel", "#remodeling", "#renovation", "#contractor"]
 
 
-def render_cover(final: Path, short: dict, guide: dict, destination: Path,
-                 starts: list[float], source: Path | None = None) -> Path:
-    """The custom cover: a clean frame from the finished Short with the hook on it.
+def thumb_lines(words: list[str], font, pen, limit: int) -> list[str] | None:
+    """Break the hook into three lines whose widths step down, widest on top.
 
-    cover_at is a time in the FINISHED Short (so it is already framed), cover_hook
-    the line. Big white type with the caption stroke on green plates, stacked in
-    the upper third where the feed grid shows it and the Shorts chrome does not.
+    Tries every split and keeps the one whose steps are most even, the way the
+    approved cover reads: SEE HOW A FREEZING / BASEMENT KITCHEN / TURNED INTO THIS.
+    None when no split fits the width, so the caller can drop a size.
+    """
+    if len(words) < 3:
+        return [" ".join(words)] if pen.textlength(" ".join(words), font=font) <= limit else None
+    best, best_score = None, None
+    for i in range(1, len(words) - 1):
+        for j in range(i + 1, len(words)):
+            lines = [" ".join(words[:i]), " ".join(words[i:j]), " ".join(words[j:])]
+            w1, w2, w3 = (pen.textlength(line, font=font) for line in lines)
+            if w1 > limit:
+                continue
+            # a line wider than the one above it breaks the stepped shape
+            rise = max(0.0, w2 - w1) + max(0.0, w3 - w2)
+            score = rise * 4 + abs((w1 - w2) - (w2 - w3)) + (w1 - w3) * 0.25
+            if best_score is None or score < best_score:
+                best, best_score = lines, score
+    return best
+
+
+def render_cover(final: Path, short: dict, guide: dict, destination: Path,
+                 starts: list[float], source: Path | None = None,
+                 scenes: list[Scene] | None = None) -> Path:
+    """The thumbnail: one clean full frame of the finished space, the hook on it.
+
+    Measured off the approved "freezing basement kitchen" cover. cover_source is
+    a stamp in the EPISODE, framed at cover_crop, and it must be a finished
+    reveal with nobody in it. No logo, no gradient, no end card, nothing else on
+    the frame. Without cover_source it falls back to the hook scene's own
+    footage, which is a finished room by rule, never to the finished Short,
+    because that has captions burned into it.
     """
     from PIL import Image, ImageDraw, ImageFont
 
     hook = " ".join(str(short.get("cover_hook") or short.get("working_title") or "").split())
     grab = destination.with_suffix(".frame.jpg")
-    if short.get("cover_source") and source is not None:
-        # A clean frame straight from the episode, framed full bleed at cover_crop.
-        # Grabbing from the finished Short put a burned in caption on the cover.
-        raw = str(short["cover_source"]).strip()
-        if "-" in raw:
-            at = parse_range(raw)[0]
+    if source is not None and (short.get("cover_source") or scenes):
+        if short.get("cover_source"):
+            raw = str(short["cover_source"]).strip()
+            at = parse_range(raw)[0] if "-" in raw else to_seconds(raw)
+            crop = float(short.get("cover_crop", 0.5))
+            where = f"episode {raw} crop {crop:.2f}"
         else:
-            # a single MM:SS(.s) stamp, which is what a cover wants
-            at = 0.0
-            for part in raw.split(":"):
-                at = at * 60 + float(part)
+            hook_scene = scenes[0]
+            at = hook_scene.start + min(1.0, hook_scene.duration / 2)
+            crop = hook_scene.crop_x
+            where = (f"hook scene at {stamp(at)} crop {crop:.2f}, set cover_source to the "
+                     "best clean frame of the finished space")
         src_w = int(probe(source, "v:0", "stream=width"))
         src_h = int(probe(source, "v:0", "stream=height"))
-        crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, float(short.get("cover_crop", 0.5)), 1.0, 0.5)
+        crop_w, crop_h, x0, y0 = crop_window(src_w, src_h, crop, 1.0, 0.5)
         run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{at:.2f}",
              "-i", str(source), "-frames:v", "1",
              "-vf", f"crop={crop_w}:{crop_h}:{x0}:{y0},scale={W}:{H}:flags=lanczos",
              "-q:v", "2", str(grab)])
-        where = f"episode {short['cover_source']} crop {float(short.get('cover_crop', 0.5)):.2f}"
     else:
-        at = float(short.get("cover_at") or min(1.2, max(0.4, (starts[1] if len(starts) > 1 else 2.0) / 2)))
+        at = float(short.get("cover_at") or 0.0)
         run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{at:.2f}",
              "-i", str(final), "-frames:v", "1", "-q:v", "2", str(grab)])
-        where = f"finished Short at {at:.1f}s"
+        where = (f"finished Short at {at:.1f}s, WARNING it carries burned in captions, "
+                 "set cover_source")
     frame = Image.open(grab).convert("RGBA").resize((W, H))
     grab.unlink(missing_ok=True)
 
-    # a soft dark gradient behind the type so it reads on a bright room
-    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    pen = ImageDraw.Draw(shade)
-    for row in range(int(H * 0.55)):
-        alpha = int(150 * max(0.0, 1 - row / (H * 0.55)) ** 1.4)
-        pen.line([(0, row), (W, row)], fill=(0, 0, 0, alpha))
-    frame.alpha_composite(shade)
-
     font_path = next((str(c) for c in FONT_CANDIDATES if Path(c).exists()), None)
-    font = ImageFont.truetype(font_path, COVER_SIZE) if font_path else ImageFont.load_default(COVER_SIZE)
     pen = ImageDraw.Draw(frame)
-    lines = wrap_caption(hook.upper(), font, int(W * COVER_WRAP), pen)[:4]
-    ascent, descent = font.getmetrics()
-    line_h = ascent + descent
-    pad_x, pad_y, gap = 22, 10, 12
-    plates = []
+    words = hook.upper().split()
+    size, lines = THUMB_SIZE, None
+    while size >= 48:
+        font = ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default(size)
+        lines = thumb_lines(words, font, pen, THUMB_MAX_W - THUMB_PAD_X * 2)
+        if lines:
+            break
+        size -= 3
+    if not lines:
+        lines = wrap_caption(hook.upper(), font, THUMB_MAX_W - THUMB_PAD_X * 2, pen)[:3]
+        say("cover: hook too long for three pills, shorten cover_hook")
+    y = THUMB_TOP
     for line in lines:
-        tw = int(pen.textlength(line, font=font))
-        plate = Image.new("RGBA", (tw + pad_x * 2 + CAPTION_STROKE * 2, line_h + pad_y * 2), (0, 0, 0, 0))
-        d = ImageDraw.Draw(plate)
-        d.rounded_rectangle([0, 0, plate.width - 1, plate.height - 1], radius=14,
-                            fill=CAPTION_GREEN + (255,))
-        d.text((pad_x + CAPTION_STROKE, pad_y), line, font=font, fill=(255, 255, 255, 255),
-               stroke_width=CAPTION_STROKE, stroke_fill=(0, 0, 0, 255))
-        plates.append(plate)
-    total = sum(pl.height for pl in plates) + gap * (len(plates) - 1)
-    y = int(H * 0.30 - total / 2)
-    for pl in plates:
-        frame.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
-        y += pl.height + gap
+        box = pen.textbbox((0, 0), line, font=font, stroke_width=THUMB_STROKE)
+        tw = box[2] - box[0]
+        left = int(round(W / 2 - tw / 2 - THUMB_PAD_X))
+        right = int(round(W / 2 + tw / 2 + THUMB_PAD_X))
+        pen.rounded_rectangle([left, y, right, y + THUMB_PILL_H - 1], radius=THUMB_RADIUS,
+                              fill=THUMB_GREEN + (255,))
+        pen.text((W / 2, y + THUMB_PILL_H / 2), line, font=font, anchor="mm",
+                 fill=(255, 255, 255, 255), stroke_width=THUMB_STROKE,
+                 stroke_fill=(0, 0, 0, 255))
+        y += THUMB_PILL_H + THUMB_GAP
     frame.convert("RGB").save(destination, quality=92)
-    say(f"cover: {destination.relative_to(REPO_ROOT)}, {where}, hook: {hook}")
+    say(f"thumbnail: {destination.relative_to(REPO_ROOT)}, {where}, hook: {hook}")
     return destination
 
 
 def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
                        source: Path | None,
-                       slug: str, starts: list[float]) -> tuple[Path, Path]:
+                       slug: str, starts: list[float],
+                       scenes: list[Scene] | None = None) -> tuple[Path, Path]:
     """Everything the publishing checklist asks for, next to the video."""
     stage("Stage 7, publish pack and thumbnail")
 
@@ -2772,8 +2812,8 @@ def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
         say("  that is close to the 30MB chat limit, drop SHARE_BITRATE if it "
             "needs to go over chat")
 
-    thumb = OUTPUT / f"{slug}-short-{index}-COVER.jpg"
-    render_cover(final, short, guide, thumb, starts, source)
+    thumb = OUTPUT / f"{slug}-short-{index}-THUMBNAIL.jpg"
+    render_cover(final, short, guide, thumb, starts, source, scenes)
 
     titles = short.get("seo_titles") or [short.get("working_title", "")]
     cta = short.get("cta", {})
@@ -2979,7 +3019,7 @@ def main() -> None:
                                    slug, font_path, music, watermark, args.captions,
                                    args.location_audio, display_font, vo_master, sign_off)
     sheet = stage_contact_sheet(final, scenes, starts, work, slug, args.number, font_path)
-    pack, thumb = stage_publish_pack(final, guide, short, args.number, source, slug, starts)
+    pack, thumb = stage_publish_pack(final, guide, short, args.number, source, slug, starts, scenes)
 
     print("\nDone.")
     publish = OUTPUT / f"{slug}-short-{args.number}-PUBLISH.mp4"
