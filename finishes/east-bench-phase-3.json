@@ -10,6 +10,9 @@
     "35:39 Subscribe animation, bottom left, so there is no subscribe pill",
     "36:00 to the end, the stats slides, untouched"
   ],
+  "edits_since": [
+    "the heated floor how to segment, 23:33.7 to 29:11.2 in the original upload, was cut after this pass. Every time here is against the original upload, so every touch after 23:33 sits earlier in the new edit, by about 5:37.5 if the cut ran from dip to dip"
+  ],
   "touches": [
     {"kind": "chapter", "at": "0:09.6", "text": "The before", "kicker": "Step 01",
      "notes": "after the opener titles clear"},
@@ -30,10 +33,8 @@
     {"kind": "flash", "at": "21:27.3", "notes": "hard cut into the tile day"},
     {"kind": "chapter", "at": "21:27.6", "text": "Setting tile", "kicker": "Step 06"},
 
-    {"kind": "chapter", "at": "23:34.4", "text": "How we heat a tile floor", "kicker": "Step 07",
-     "notes": "Mike: I wanna show you how to do a heated tile floor"},
-
-    {"kind": "chapter", "at": "29:12.0", "text": "The reveal", "kicker": "Step 08"},
+    {"kind": "chapter", "at": "29:12.0", "text": "The reveal", "kicker": "Step 07",
+     "notes": "was Step 08 until the heated floor how to segment came out of the edit"},
 
     {"kind": "inset", "at": "30:27.0", "before": "0:26.0", "corner": "top-left",
      "notes": "old laundry room while Mike stands right of the new sink"},
