@@ -48,7 +48,7 @@ Probe it. The overlays are 1920x1080 at 30 fps, say so if the body is not.
 
 | Kind | Fields | Use |
 | --- | --- | --- |
-| `chapter` | `text`, `kicker` | One per filming day, a beat after the picture returns from the dip. The editor's own title look: green bar, white Montserrat, green kicker ("Step 03") |
+| `chapter` | `text`, `kicker` | One per filming day, a beat after the picture returns from the dip. The editor's own title look: green bar, white Montserrat, no kicker by default. Never number them: Mike revises the body after this pass, and one cut segment throws every later number off. A kicker, when used, names the room ("Master bath"), never a step |
 | `label` | `text`, `corner` | A feature name on the green plate, the AFTER label look. Only features Mike names, only while they are on screen |
 | `inset` | `before`, `corner`, `width`, `focus` | A still from the body's own before walkthrough, white frame, BEFORE plate, over the same room finished. Two or three per video at most |
 | `pill` | `text`, `corner`, `arrow` | White pill with a down arrow, when Mike says there is a link in the description |
