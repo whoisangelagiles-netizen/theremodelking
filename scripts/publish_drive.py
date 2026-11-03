@@ -6,10 +6,11 @@
 
 Layout, under the parent folder named in the spec (Mike Hewitt by default):
 
-    [YouTube title of the long video]/
+    [Episode working name, e.g. Heated Floor]/
         Long Video (Manual Upload)/        the intro and the text touches package, the
                                            finished long video goes here by hand
-        Long Video Title and Description   Google Doc
+        Long Video Title and Description   Google Doc, stage 2
+        [slug]-long-thumbnail.jpg          stage 2
         Short/
             [slug]-short.mp4
             [slug]-short-thumbnail.jpg
@@ -175,20 +176,29 @@ def doc_html(title: str, block: dict) -> str:
 
 
 def package(spec_path: Path) -> None:
+    """Stage 1 files the pieces and the Short. Stage 2, once long.title and
+    long.description exist (written from the final long video), adds the long
+    Doc and the long thumbnail. Whatever the spec carries is filed."""
     spec = json.loads(spec_path.read_text())
     slug = spec["slug"]
-    long_, short = spec["long"], spec["short"]
-    for path in [*long_.get("pieces", []), short["video"], short["thumbnail"]]:
+    long_, short = spec.get("long", {}), spec["short"]
+    paths = [*long_.get("pieces", []), short["video"], short["thumbnail"]]
+    if long_.get("thumbnail"):
+        paths.append(long_["thumbnail"])
+    for path in paths:
         if not (REPO_ROOT / path).exists():
             sys.exit(f"missing {path}, build it before packaging")
 
     drive = Drive()
     parent = spec.get("parent_folder_id", DEFAULT_PARENT)
-    episode = drive.folder(parent, long_["title"])
+    episode = drive.folder(parent, spec["episode"])
     manual = drive.folder(episode, "Long Video (Manual Upload)")
     for piece in long_.get("pieces", []):
         drive.upload(manual, REPO_ROOT / piece)
-    drive.doc(episode, "Long Video Title and Description", doc_html("Long video", long_))
+    if long_.get("title") and long_.get("description"):
+        drive.doc(episode, "Long Video Title and Description", doc_html("Long video", long_))
+    if long_.get("thumbnail"):
+        drive.upload(episode, REPO_ROOT / long_["thumbnail"], f"{slug}-long-thumbnail.jpg")
 
     short_folder = drive.folder(episode, "Short")
     drive.upload(short_folder, REPO_ROOT / short["video"], f"{slug}-short.mp4")

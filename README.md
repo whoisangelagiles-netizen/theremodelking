@@ -302,17 +302,23 @@ Lives in `.claude/skills/long-video-finish/SKILL.md`.
 
 ## Posting to YouTube, the whole SOP
 
-**Trigger:**
+Two stages, both filed on Drive under Mike Hewitt in a folder named with the
+episode's working name ("Heated Floor").
+
+**Stage 1 trigger:**
 
 > Let's process this long video to be posted into youtube
 
-plus the body video's Drive link. It runs the intro, the text touches, one
-Short and the titles and descriptions, then files it all on Drive under Mike
-Hewitt in a folder named with the long video's YouTube title:
-`Long Video (Manual Upload)/` with the intro and the touches package, the long
-video's title and description Doc, and a `Short/` folder with the Short, its
-thumbnail and its own Doc. The finished long video is assembled by the editor
-and uploaded there by hand.
+plus the body video's Drive link. Builds the intro, the text touches and one
+Short, then files `Long Video (Manual Upload)/` with the intro and the touches
+package, and a `Short/` folder with the Short, its thumbnail and its title and
+description Doc. The editor assembles the long video and the user uploads it
+into the manual upload folder.
+
+**Stage 2 trigger:** the Drive link of that final long video. Its title,
+description and chapters are written from the final cut's own transcript, and
+the long thumbnail is made in the channel's green plate look
+(`scripts/long_thumbnail.py`).
 
 ```bash
 python scripts/publish_drive.py publish/[slug].json
