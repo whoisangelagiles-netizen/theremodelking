@@ -310,9 +310,9 @@ episode's working name ("Heated Floor").
 > Let's process this long video to be posted into youtube
 
 plus the body video's Drive link. Builds the intro, the text touches and one
-Short, then files `Long Video (Manual Upload)/` with the intro and the touches
-package, and a `Short/` folder with the Short, its thumbnail and its title and
-description Doc. The editor assembles the long video and the user uploads it
+Short, then makes `Long Video (Manual Upload)/` for the intro, the touches
+package and later the final, and a `Short/` folder with the Short's title and
+description Doc, where the Short and its thumbnail go. The editor assembles the long video and the user uploads it
 into the manual upload folder.
 
 **Stage 2 trigger:** the Drive link of that final long video. Its title,
@@ -320,11 +320,7 @@ description and chapters are written from the final cut's own transcript, and
 the long thumbnail is made in the channel's green plate look
 (`scripts/long_thumbnail.py`).
 
-```bash
-python scripts/publish_drive.py publish/[slug].json
-```
-
-Needs `GOOGLE_DRIVE_CLIENT_ID`, `GOOGLE_DRIVE_CLIENT_SECRET` and
-`GOOGLE_DRIVE_REFRESH_TOKEN`, set up once, see the skill.
+Claude makes the folders and the title and description Docs through the Drive
+connector. Every video and image file is uploaded by hand.
 
 Lives in `.claude/skills/youtube-publish-package/SKILL.md`.

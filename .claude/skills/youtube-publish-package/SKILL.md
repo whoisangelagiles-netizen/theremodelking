@@ -1,6 +1,6 @@
 ---
 name: youtube-publish-package
-description: The end to end SOP that turns one long Remodel King body video into everything needed to post it on YouTube, filed on Google Drive in the house layout, in two stages. Stage 1, triggered by "Let's process this long video to be posted into youtube" plus the body link, builds the intro, the text touches and one Short, and files the episode folder under Mike Hewitt with the pieces and the Short subfolder (Short, thumbnail, title and description Doc). Stage 2, triggered when the user sends the Drive link of the FINAL long video they uploaded, writes the long video's title, description and real chapters from that final cut and makes the long thumbnail in the channel's green plate look. Use for either trigger, or whenever the user asks for the whole YouTube process, the package, the YouTube folder, or the long video's title, description or thumbnail.
+description: The end to end SOP that turns one long Remodel King body video into everything needed to post it on YouTube, filed on Google Drive in the house layout, in two stages. Stage 1, triggered by "Let's process this long video to be posted into youtube" plus the body link, builds the intro, the text touches and one Short, and files the episode folder under Mike Hewitt with the pieces and the Short subfolder (Short, thumbnail, title and description Doc). Claude makes the folders and Docs, the user uploads the video and image files. Stage 2, triggered when the user sends the Drive link of the FINAL long video they uploaded, writes the long video's title, description and real chapters from that final cut and makes the long thumbnail in the channel's green plate look. Use for either trigger, or whenever the user asks for the whole YouTube process, the package, the YouTube folder, or the long video's title, description or thumbnail.
 ---
 
 # YouTube Publish Package, the SOP
@@ -15,7 +15,9 @@ from the FINAL cut, and that only exists after the editor assembles it.
 
 ## The Drive layout, every episode
 
-Under the parent folder **Mike Hewitt** (`1ouQYxq3BO-bshx7H5a-VUL9QzPL_ulGj`):
+Claude makes the folders and the Docs. The user uploads every video and image
+file by hand, there is no upload sign in to maintain. Under the parent folder
+**Mike Hewitt** (`1ouQYxq3BO-bshx7H5a-VUL9QzPL_ulGj`):
 
 ```
 [Episode working name]/                  e.g. "Heated Floor", never the YouTube title
@@ -76,16 +78,23 @@ The Short's cover from the build is its thumbnail.
 
 ### 4. File it
 
-Write `publish/[slug].json` (see `publish/heated-floor.json`) with `episode`,
-`slug`, `long.pieces` (intro and finish package) and the `short` block, then:
+With the Google Drive connector, using the exact names in the layout above:
+the episode folder under Mike Hewitt, `Long Video (Manual Upload)` and `Short`
+inside it (`create_file`, folder mime type), and the `Short Title and
+Description` Doc inside `Short` (`create_file` with `textContent` as HTML and
+`contentMimeType` `text/html`, so it converts to a Google Doc; read it back once
+to check). Reuse a folder or Doc that already exists by that name rather than
+making a second one.
 
-```bash
-python scripts/publish_drive.py publish/[slug].json
-```
+The user uploads every video and image file by hand, so send them all with
+SendUserFile and say where each one goes:
 
-Hand off: the Drive folder link, the files again with SendUserFile (`output/`
-does not survive the session), the weak spots first. Tell the user stage 2
-starts when they send the final long video's link.
+- `[slug]-intro.mp4` and `[slug]-finish-package.zip` into Long Video (Manual Upload)
+- the Short's `PUBLISH.mp4` and its `COVER.jpg` into Short
+
+`output/` does not survive the session, so the files in chat are the only copy.
+Lead with the weak spots, then the folder link. Tell the user stage 2 starts
+when they send the final long video's link.
 
 ## Stage 2
 
@@ -137,47 +146,6 @@ channel does: "Basement finish", "Master bathroom remodel".
 
 ### 5. File it
 
-Add `title`, `alternates`, `description`, `notes` and `thumbnail` to `long` in
-the publish spec and rerun the same command. It writes the Doc and uploads the
-thumbnail into the existing folder.
-
-## If the upload credentials are missing
-
-The script stops on `GOOGLE_DRIVE_CLIENT_ID is not set`. Do not stop the job.
-Make the folders and Docs with the Google Drive connector (`create_file`,
-folder mime type for folders, `textContent` as HTML for the Docs so they
-convert), using the exact names above, and send the video and image files with
-SendUserFile. Tell the user what is waiting on the setup.
-
-## Setup, once, for the uploads
-
-The Drive connector cannot carry a video, so the script signs in as the user
-with an OAuth refresh token. Three values, kept out of the repo:
-`GOOGLE_DRIVE_CLIENT_ID`, `GOOGLE_DRIVE_CLIENT_SECRET`,
-`GOOGLE_DRIVE_REFRESH_TOKEN`. Everything below happens in a browser, so Claude in
-Chrome can drive it when it is connected; the user still signs in and clicks
-Allow themselves.
-
-1. Google Cloud Console, project angela-giles, APIs and Services, **enable the
-   Google Drive API**.
-2. **OAuth consent screen** (Google Auth Platform): External, add
-   whoisangelagiles@gmail.com as a user, then **Publish app** so the status
-   reads **In production**. Left in Testing, Google kills the refresh token after
-   7 days. An unverified app is fine for your own account.
-3. **Clients, Create client**, type **Web application**, authorized redirect URI
-   `https://developers.google.com/oauthplayground`. Copy the client ID and
-   secret.
-4. Open `https://developers.google.com/oauthplayground`, gear icon, tick **Use
-   your own OAuth credentials**, paste the ID and secret. In step 1 enter the
-   scope `https://www.googleapis.com/auth/drive`, Authorize APIs, sign in as
-   whoisangelagiles@gmail.com, Allow. In step 2, **Exchange authorization code
-   for tokens** and copy the **refresh token**.
-5. Paste the three values into the cloud environment's environment variables,
-   the same box that holds the ElevenLabs key. New sessions pick them up.
-
-`python scripts/publish_drive.py auth` does steps 4 and 5 from a terminal instead,
-with a Desktop app client, for anyone who prefers that.
-
-The service account claude-sheets@angela-giles.iam.gserviceaccount.com is not
-used: service accounts have no Drive storage of their own, so they cannot upload
-into a My Drive folder.
+Write the `Long Video Title and Description` Doc into the episode folder with the
+connector, the same way as the Short's, rewriting any draft of that name. Send
+the thumbnail with SendUserFile for the user to upload into the episode folder.
