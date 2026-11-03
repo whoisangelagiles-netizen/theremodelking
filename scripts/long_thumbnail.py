@@ -28,11 +28,14 @@ from PIL import Image, ImageDraw, ImageFont
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FONT = REPO_ROOT / "assets" / "fonts" / "Montserrat-ExtraBold.ttf"
 W, H = 1280, 720
-GREEN = (22, 163, 74)
-BAND = 0.075          # top and bottom band, share of the height
-PLATE_CENTRE = 0.60   # the plate sits a little below the middle
-PLATE_WIDTH = 0.50    # of the frame width
-SIZE = 46
+GREEN = (14, 147, 70)
+BAND = 0.085          # top and bottom band, share of the height
+PLATE_CENTRE = 0.65   # the plate sits below the middle
+PLATE_X = 0.528       # and a touch right of centre, as on the Master Suite thumbnail
+PLATE_WIDTH = 0.745   # of the frame width
+PLATE_HEIGHT = 0.34   # of the frame height
+SIZE = 72
+SHADOW = (6, 70, 34)  # the dark green drop under each letter
 
 
 def to_seconds(stamp: str) -> float:
@@ -84,17 +87,18 @@ def render(image: Image.Image, label: str) -> Image.Image:
     plate_w = round(W * PLATE_WIDTH)
     lines = wrap(label.upper(), font, plate_w - 60, draw)
     pitch = round(SIZE * 1.25)
-    plate_h = pitch * len(lines) + 40
-    x0 = (W - plate_w) // 2
+    plate_h = max(round(H * PLATE_HEIGHT), pitch * len(lines) + 40)
+    x0 = round(W * PLATE_X - plate_w / 2)
     y0 = round(H * PLATE_CENTRE - plate_h / 2)
     draw.rectangle([x0, y0, x0 + plate_w, y0 + plate_h], fill=GREEN)
-    y = y0 + 20
+    y = y0 + (plate_h - pitch * len(lines)) / 2
     for line in lines:
         width = draw.textlength(line, font=font)
-        x = (W - width) / 2
-        draw.text((x, y), line, font=font, fill="white")
-        underline = y + SIZE + 4
-        draw.rectangle([x, underline, x + width, underline + 3], fill="white")
+        x = x0 + (plate_w - width) / 2
+        underline = y + SIZE + 6
+        for dx, colour in ((4, SHADOW), (0, "white")):
+            draw.text((x + dx, y + dx), line, font=font, fill=colour)
+            draw.rectangle([x + dx, underline + dx, x + width + dx, underline + 4 + dx], fill=colour)
         y += pitch
     return canvas
 
