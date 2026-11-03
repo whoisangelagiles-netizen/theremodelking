@@ -299,3 +299,28 @@ FCP 7 XML that Premiere and Resolve import with the body on V1 and the touches
 above it, a markers CSV, and a review reel and contact sheet.
 
 Lives in `.claude/skills/long-video-finish/SKILL.md`.
+
+## Posting to YouTube, the whole SOP
+
+Two stages, both filed on Drive under Mike Hewitt in a folder named with the
+episode's working name ("Heated Floor").
+
+**Stage 1 trigger:**
+
+> Let's process this long video to be posted into youtube
+
+plus the body video's Drive link. Builds the intro, the text touches and one
+Short, then makes `Long Video (Manual Upload)/` for the intro, the touches
+package and later the final, and a `Short/` folder with the Short's title and
+description Doc, where the Short and its thumbnail go. The editor assembles the long video and the user uploads it
+into the manual upload folder.
+
+**Stage 2 trigger:** the Drive link of that final long video. Its title,
+description and chapters are written from the final cut's own transcript, and
+the long thumbnail is made in the channel's green plate look
+(`scripts/long_thumbnail.py`).
+
+Claude makes the folders and the title and description Docs through the Drive
+connector. Every video and image file is uploaded by hand.
+
+Lives in `.claude/skills/youtube-publish-package/SKILL.md`.

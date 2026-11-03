@@ -1,0 +1,81 @@
+{
+  "slug": "heated-floor",
+  "project": "East Bench House, Heated Tile Floor",
+  "scope": "Master bath heated floor, how it goes in",
+  "drive_folder": "https://drive.google.com/file/d/15Nd6tZRySxwlVLkA6xGWFqyzpOdjvQ5o/view",
+  "body": "Heated Floor Body.mp4, 1920x1080, 30 fps, 6:53. No stats slides, the price is spoken at 5:10 and 6:07",
+  "media_root": "work/heated-floor",
+  "lines": [
+    {
+      "vo": "This master bath is getting a heated tile floor, and I'll show you how it goes in.",
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "body/body.mp4",
+            "at": "1:29.4"
+          },
+          "weight": 1.2,
+          "notes": "empty orange Schluter mat with the heat wire leads, no Mike"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "body/body.mp4",
+            "at": "1:44.6"
+          },
+          "weight": 1.0,
+          "notes": "Mike holds up a sheet of the button mat"
+        }
+      ]
+    },
+    {
+      "vo": "Then we fire it up. It's set to eighty-five, and I can feel it through my feet.",
+      "shots": [
+        {
+          "type": "split",
+          "before": {
+            "src": "body/body.mp4",
+            "at": "4:52.5"
+          },
+          "after": {
+            "src": "body/body.mp4",
+            "at": "5:41"
+          },
+          "weight": 1.2,
+          "notes": "bare shower board against the finished shower and tile"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "body/body.mp4",
+            "at": "5:35.5"
+          },
+          "weight": 1.0,
+          "notes": "thermostat close up, 85 degrees"
+        }
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what a floor like this costs.",
+      "card": {
+        "title": [
+          "WHAT IT COSTS"
+        ],
+        "kicker": "STAY TO THE END",
+        "delay": 1.0
+      },
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "body/body.mp4",
+            "at": "5:44"
+          },
+          "weight": 1.0,
+          "notes": "finished shower and floor, blurred under the tease card"
+        }
+      ]
+    }
+  ]
+}

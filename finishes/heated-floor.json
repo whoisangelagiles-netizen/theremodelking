@@ -1,0 +1,31 @@
+{
+  "slug": "heated-floor",
+  "project": "East Bench House, Heated Tile Floor",
+  "drive_file": "https://drive.google.com/file/d/15Nd6tZRySxwlVLkA6xGWFqyzpOdjvQ5o/view",
+  "body_name": "Heated Floor Body.mp4",
+  "body_file": "work/heated-floor/body/body.mp4",
+  "already_in_the_body": [
+    "no dips to black, two hard cuts between days at 1:15.37 and 5:29.27",
+    "5:35 to 5:38 the editor's own thermostat close up, left as is",
+    "6:28 to 6:36 Subscribe and like animation, bottom left, nothing lands there",
+    "no stats slides, Mike speaks the price at 5:10 and 6:07"
+  ],
+  "touches": [
+    {"kind": "chapter", "at": "0:14.6", "text": "Prepping a tile floor",
+     "notes": "Mike: this room is gonna be the new laundry room"},
+
+    {"kind": "flash", "at": "1:15.37", "notes": "hard cut from the laundry room to the master bath"},
+    {"kind": "chapter", "at": "1:15.7", "text": "The heated floor mat"},
+    {"kind": "label", "at": "1:29.6", "text": "Schluter heat mat",
+     "notes": "Mike spells Schluter, the mat fills the frame, no face"},
+
+    {"kind": "label", "at": "4:07.5", "text": "Run a continuity test", "corner": "bottom-left",
+     "notes": "Mike stands centre right, orange floor bottom left"},
+
+    {"kind": "flash", "at": "5:29.27", "notes": "hard cut into the finished bath"},
+    {"kind": "chapter", "at": "5:29.6", "text": "Finished and heated"},
+
+    {"kind": "inset", "at": "5:44.0", "before": "4:56.0", "corner": "top-left",
+     "notes": "bare shower board over the finished shower, Mike stands centre"}
+  ]
+}
