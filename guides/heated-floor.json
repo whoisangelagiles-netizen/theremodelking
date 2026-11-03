@@ -1,0 +1,160 @@
+{
+ "channel": "The Remodel King",
+ "episode": "Heated Floor",
+ "video_title": "How We Install a Heated Tile Floor, and What It Really Costs",
+ "date": "November 2026",
+ "work_id": "heated-floor",
+ "video_url": "work/heated-floor/source.mp4",
+ "handle": "@theremodelking",
+ "prepared_for": "Editor / Content Team",
+ "hashtags": [
+  "#heatedfloors",
+  "#bathroomremodel",
+  "#tileinstall",
+  "#schluter",
+  "#remodeling"
+ ],
+ "assessment": "A how to, not a transformation. The body is the heated floor segment of the East Bench House master bath, 6:53 long, almost all of it shot on the orange Schluter mat with the bath still bare. Finished footage is only 5:29 to 6:28, and most of that is Mike standing at the shower door. So this Short is a process Short, how the floor goes in, opened and closed on the finished bath. A reveal tour would run out of rooms by the third line.",
+ "avoid_ranges": [
+  {
+   "range": "0:00 - 1:15",
+   "reason": "the laundry room lath and thinset, a different topic"
+  },
+  {
+   "range": "3:16 - 3:26",
+   "reason": "Mike prices the box of wire"
+  },
+  {
+   "range": "5:05 - 5:29",
+   "reason": "Mike gives the price"
+  },
+  {
+   "range": "6:00 - 6:14",
+   "reason": "Mike gives the price again"
+  },
+  {
+   "range": "6:25 - 6:53",
+   "reason": "subscribe and like graphics burned in, and the outro"
+  }
+ ],
+ "project_context": {
+  "summary": "Phase three of the East Bench House. The master bath floor is covered wall to wall in Schluter's button mat, the wire only runs where people stand, in front of the toilet, the vanity and the tub, and it runs on a programmable thermostat. Mike sets it to 85 and feels it through his socks.",
+  "segment_choice": "One Short from 1:29 to 5:58, process in the middle, the finished bath at both ends.",
+  "publish_order": "Single Short per episode.",
+  "notes": [
+   "Never name the price in the Short, the long video carries it."
+  ]
+ },
+ "shorts": [
+  {
+   "angle": "Process",
+   "working_title": "How A Heated Tile Floor Goes In",
+   "source_range": "1:29 - 5:58",
+   "target_runtime": "50 seconds",
+   "primary_goal": "Show the mat, the wire, the map and the test, then pay it off on the thermostat",
+   "seo_titles": [
+    "How A Heated Tile Floor Goes In",
+    "Heated Bathroom Floor Install, Step By Step",
+    "Where To Put Heated Floor Wire In A Bathroom",
+    "The Test You Must Do Before Tiling A Heated Floor"
+   ],
+   "scenes": [
+    {
+     "number": 1,
+     "source": "5:46 - 5:50",
+     "vo": "This master bath has a heated tile floor, and here's how it goes in.",
+     "caption": "Here's how a heated floor goes in",
+     "caption_zone": "hook",
+     "notes": "finished bath at the shower door, shower and body jets left of Mike"
+    },
+    {
+     "number": 2,
+     "source": "1:29.4 - 1:33",
+     "vo": "First, the whole floor gets covered in a Schluter mat made for heated floors.",
+     "caption": "Schluter heated floor mat",
+     "transition": "whoosh",
+     "notes": "empty orange mat with the wire leads, no Mike"
+    },
+    {
+     "number": 3,
+     "source": "1:47 - 1:51",
+     "vo": "All these little buttons hold the heating wire in place.",
+     "caption": "The buttons hold the wire",
+     "notes": "Mike holds up a sheet of mat, frame the mat"
+    },
+    {
+     "number": 4,
+     "source": "2:00 - 2:05",
+     "vo": "The wire snaps in, and you run it wherever you want heat.",
+     "caption": "Snap the wire in",
+     "notes": "hand on the old wire in the mat"
+    },
+    {
+     "number": 5,
+     "source": "2:17 - 2:22",
+     "vo": "I drew a map for my tile guy, and every yellow area gets heated.",
+     "caption": "Yellow means heated",
+     "notes": "the drawing on the wall"
+    },
+    {
+     "number": 6,
+     "source": "2:22 - 2:29",
+     "vo": "In front of the toilet, the vanity, and where you step out of the tub.",
+     "caption": "Toilet, vanity, tub",
+     "notes": "the drawing, Mike points",
+     "continues_previous": true
+    },
+    {
+     "number": 7,
+     "source": "2:51 - 2:55",
+     "vo": "Then thinset goes over the wire, and the tile sets right on top.",
+     "caption": "Wire, thinset, tile",
+     "notes": "the box with the picture of how it works"
+    },
+    {
+     "number": 8,
+     "source": "3:53 - 3:56.5",
+     "vo": "Before any tile goes down, test the wire for continuity.",
+     "caption": "Test it before tile",
+     "notes": "the bare mat wide, Mike walks out right"
+    },
+    {
+     "number": 9,
+     "source": "3:56.5 - 4:00",
+     "vo": "Miss a break, and you find out after the tile is down.",
+     "caption": "Find breaks before tile",
+     "notes": "same take as scene 8, held left of Mike",
+     "continues_previous": true
+    },
+    {
+     "number": 10,
+     "source": "5:35.6 - 5:38.6",
+     "vo": "I turned it up to eighty-five.",
+     "caption": "Set to 85",
+     "notes": "thermostat close up"
+    },
+    {
+     "number": 11,
+     "source": "5:54 - 5:58",
+     "vo": "It's programmable, so the floor is warm before they're even out of bed.",
+     "caption": "Warm before they wake up",
+     "notes": "finished bath, tile wall, floor and toilet right of Mike"
+    }
+   ],
+   "full_vo": "This master bath has a heated tile floor, and here's how it goes in. First, the whole floor gets covered in a Schluter mat made for heated floors. All these little buttons hold the heating wire in place. The wire snaps in, and you run it wherever you want heat. I drew a map for my tile guy, and every yellow area gets heated. In front of the toilet, the vanity, and where you step out of the tub. Then thinset goes over the wire, and the tile sets right on top. Before any tile goes down, test the wire for continuity. Miss a break, and you find out after the tile is down. I turned it up to eighty-five. It's programmable, so the floor is warm before they're even out of bed.",
+   "voice_direction": "Warm and practical, a contractor showing a friend the trick to a job he has done a hundred times.",
+   "cta_frame": "tap the title",
+   "cta_source": "6:16 - 6:21",
+   "cta_crop": 0.86,
+   "cta": {
+    "primary": "Want to see what a heated floor like this costs? Tap the video title at the bottom of your screen.",
+    "linked_video": "How We Install a Heated Tile Floor, and What It Really Costs",
+    "upload_note": "Link the long video on this Short so the title pill shows under it."
+   },
+   "cover_hook": "How a heated tile floor goes in",
+   "cover_source": "1:30.5",
+   "cover_crop": 0.5,
+   "fb_cta_crop": 0.86
+  }
+ ]
+}

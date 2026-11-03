@@ -1,0 +1,7555 @@
+{
+  "video_id": "heated-floor-body",
+  "source": "elevenlabs-speech-to-text",
+  "language": "eng",
+  "media": "work/heated-floor/heated-floor-body/audio.m4a",
+  "duration": 413.06,
+  "line_count": 126,
+  "lines": [
+    {
+      "index": 0,
+      "start": 0.02,
+      "end": 3.98,
+      "timestamp": "0:00",
+      "range": "0:00 - 0:03",
+      "text": "Okay, I wanna show you about how to do a heated tile floor."
+    },
+    {
+      "index": 1,
+      "start": 4.1,
+      "end": 6.04,
+      "timestamp": "0:04",
+      "range": "0:04 - 0:06",
+      "text": "That's what this video's gonna be about."
+    },
+    {
+      "index": 2,
+      "start": 6.66,
+      "end": 8.38,
+      "timestamp": "0:06",
+      "range": "0:06 - 0:08",
+      "text": "This is a, a project that we're doing."
+    },
+    {
+      "index": 3,
+      "start": 8.38,
+      "end": 13.02,
+      "timestamp": "0:08",
+      "range": "0:08 - 0:13",
+      "text": "This is phase two of the East Bench House, but I kinda wanted to show you how to do a heated"
+    },
+    {
+      "index": 4,
+      "start": 13.24,
+      "end": 13.88,
+      "timestamp": "0:13",
+      "range": "0:13 - 0:13",
+      "text": "tile floor."
+    },
+    {
+      "index": 5,
+      "start": 14.6,
+      "end": 18.86,
+      "timestamp": "0:14",
+      "range": "0:14 - 0:18",
+      "text": "This room is gonna be the new laundry room, and this is typically how we prep a floor."
+    },
+    {
+      "index": 6,
+      "start": 19.42,
+      "end": 24.12,
+      "timestamp": "0:19",
+      "range": "0:19 - 0:24",
+      "text": "You can see we put this wire mesh down, we staple it down, and then we fill it with a product"
+    },
+    {
+      "index": 7,
+      "start": 24.18,
+      "end": 27.3,
+      "timestamp": "0:24",
+      "range": "0:24 - 0:27",
+      "text": "called thin sest- thinset, which is this stuff right here."
+    },
+    {
+      "index": 8,
+      "start": 27.34,
+      "end": 28.42,
+      "timestamp": "0:27",
+      "range": "0:27 - 0:28",
+      "text": "This is Keriflex."
+    },
+    {
+      "index": 9,
+      "start": 28.96,
+      "end": 29.76,
+      "timestamp": "0:28",
+      "range": "0:28 - 0:29",
+      "text": "It's a thinset."
+    },
+    {
+      "index": 10,
+      "start": 30.16,
+      "end": 35.14,
+      "timestamp": "0:30",
+      "range": "0:30 - 0:35",
+      "text": "And you fill that in with the, in the mesh, and it stiffens the floor up,"
+    },
+    {
+      "index": 11,
+      "start": 35.92,
+      "end": 40.36,
+      "timestamp": "0:35",
+      "range": "0:35 - 0:40",
+      "text": "makes the floor stiffer, which is what you need for tile, and then also it gives you a really"
+    },
+    {
+      "index": 12,
+      "start": 40.42,
+      "end": 43.84,
+      "timestamp": "0:40",
+      "range": "0:40 - 0:43",
+      "text": "good bonding surface for the tile as we lay it."
+    },
+    {
+      "index": 13,
+      "start": 44.7,
+      "end": 48.52,
+      "timestamp": "0:44",
+      "range": "0:44 - 0:48",
+      "text": "Um, normally we'd do the whole room, but the washer and dryer, we just took it out of here."
+    },
+    {
+      "index": 14,
+      "start": 49.0,
+      "end": 51.34,
+      "timestamp": "0:49",
+      "range": "0:49 - 0:51",
+      "text": "So this is the stuff that we use to put down."
+    },
+    {
+      "index": 15,
+      "start": 52.48,
+      "end": 53.46,
+      "timestamp": "0:52",
+      "range": "0:52 - 0:53",
+      "text": "Available at Home Depot."
+    },
+    {
+      "index": 16,
+      "start": 53.5,
+      "end": 58.94,
+      "timestamp": "0:53",
+      "range": "0:53 - 0:58",
+      "text": "It's a lath product, and it's about two and a half, uh, 27 inches by 8 feet long."
+    },
+    {
+      "index": 17,
+      "start": 59.7,
+      "end": 62.28,
+      "timestamp": "0:59",
+      "range": "0:59 - 1:02",
+      "text": "I think each one of these is about 18 square feet."
+    },
+    {
+      "index": 18,
+      "start": 62.64,
+      "end": 65.34,
+      "timestamp": "1:02",
+      "range": "1:02 - 1:05",
+      "text": "How I remember that, I have no idea."
+    },
+    {
+      "index": 19,
+      "start": 65.38,
+      "end": 66.44,
+      "timestamp": "1:05",
+      "range": "1:05 - 1:06",
+      "text": "But I kinda wanted to show you"
+    },
+    {
+      "index": 20,
+      "start": 67.34,
+      "end": 69.32,
+      "timestamp": "1:07",
+      "range": "1:07 - 1:09",
+      "text": "this is how we typically do a tile floor."
+    },
+    {
+      "index": 21,
+      "start": 70.12,
+      "end": 73.82,
+      "timestamp": "1:10",
+      "range": "1:10 - 1:13",
+      "text": "Now, let me take you over and show you the master bathroom, which is gonna have the heated"
+    },
+    {
+      "index": 22,
+      "start": 73.86,
+      "end": 75.06,
+      "timestamp": "1:13",
+      "range": "1:13 - 1:15",
+      "text": "floor, and show you how we do that."
+    },
+    {
+      "index": 23,
+      "start": 75.84,
+      "end": 81.26,
+      "timestamp": "1:15",
+      "range": "1:15 - 1:21",
+      "text": "Okay, now we're in the master bathroom of phase three of the East Bench House."
+    },
+    {
+      "index": 24,
+      "start": 81.84,
+      "end": 88.8,
+      "timestamp": "1:21",
+      "range": "1:21 - 1:28",
+      "text": "And so you can see I'm standing on this almost looks like a bubble packing type floor."
+    },
+    {
+      "index": 25,
+      "start": 89.52,
+      "end": 98.3,
+      "timestamp": "1:29",
+      "range": "1:29 - 1:38",
+      "text": "This is a Schluter product, S-C-H-L-U-T-E-R, available almost any tile supply place."
+    },
+    {
+      "index": 26,
+      "start": 99.28,
+      "end": 100.64,
+      "timestamp": "1:39",
+      "range": "1:39 - 1:40",
+      "text": "Um, and this is designed"
+    },
+    {
+      "index": 27,
+      "start": 101.74,
+      "end": 103.3,
+      "timestamp": "1:41",
+      "range": "1:41 - 1:43",
+      "text": "for heated floor systems."
+    },
+    {
+      "index": 28,
+      "start": 103.76,
+      "end": 106.7,
+      "timestamp": "1:43",
+      "range": "1:43 - 1:46",
+      "text": "This is the product that we use when we're doing a heated floor."
+    },
+    {
+      "index": 29,
+      "start": 107.12,
+      "end": 112.36,
+      "timestamp": "1:47",
+      "range": "1:47 - 1:52",
+      "text": "And you can see all these little buttons or knobs that are in here, and that's for the wire"
+    },
+    {
+      "index": 30,
+      "start": 112.42,
+      "end": 116.74,
+      "timestamp": "1:52",
+      "range": "1:52 - 1:56",
+      "text": "that creates the heat to go through and go in and around these knobs."
+    },
+    {
+      "index": 31,
+      "start": 117.14,
+      "end": 118.04,
+      "timestamp": "1:57",
+      "range": "1:57 - 1:58",
+      "text": "If you look down here,"
+    },
+    {
+      "index": 32,
+      "start": 118.98,
+      "end": 122.56,
+      "timestamp": "1:58",
+      "range": "1:58 - 2:02",
+      "text": "this is-- They used to have a heated floor system, so this is, this is some of the leftover"
+    },
+    {
+      "index": 33,
+      "start": 122.62,
+      "end": 129.4,
+      "timestamp": "2:02",
+      "range": "2:02 - 2:09",
+      "text": "wire, but you can see it just snaps in here, and you kinda run it around back and forth into"
+    },
+    {
+      "index": 34,
+      "start": 129.44,
+      "end": 130.94,
+      "timestamp": "2:09",
+      "range": "2:09 - 2:10",
+      "text": "the pattern of what you want,"
+    },
+    {
+      "index": 35,
+      "start": 131.74,
+      "end": 133.28,
+      "timestamp": "2:11",
+      "range": "2:11 - 2:13",
+      "text": "the areas of the floor you want heated."
+    },
+    {
+      "index": 36,
+      "start": 134.14,
+      "end": 137.76,
+      "timestamp": "2:14",
+      "range": "2:14 - 2:17",
+      "text": "I also, right here, I did a drawing for my tile guy,"
+    },
+    {
+      "index": 37,
+      "start": 138.68,
+      "end": 142.18,
+      "timestamp": "2:18",
+      "range": "2:18 - 2:22",
+      "text": "and all the yellow areas are the areas that I want heated."
+    },
+    {
+      "index": 38,
+      "start": 142.64,
+      "end": 148.28,
+      "timestamp": "2:22",
+      "range": "2:22 - 2:28",
+      "text": "So in front of the toilet, the vanity is here, so in front of the vanity, and then the tub"
+    },
+    {
+      "index": 39,
+      "start": 148.78,
+      "end": 149.12,
+      "timestamp": "2:28",
+      "range": "2:28 - 2:29",
+      "text": "right here."
+    },
+    {
+      "index": 40,
+      "start": 149.22,
+      "end": 153.84,
+      "timestamp": "2:29",
+      "range": "2:29 - 2:33",
+      "text": "So when you get out of the tub and come walk into the bathroom out of the shower, all this"
+    },
+    {
+      "index": 41,
+      "start": 153.9,
+      "end": 154.74,
+      "timestamp": "2:33",
+      "range": "2:33 - 2:34",
+      "text": "is gonna be heated."
+    },
+    {
+      "index": 42,
+      "start": 154.82,
+      "end": 158.48,
+      "timestamp": "2:34",
+      "range": "2:34 - 2:38",
+      "text": "We don't need to heat that area because probably nobody's ever gonna be standing there, and"
+    },
+    {
+      "index": 43,
+      "start": 158.52,
+      "end": 160.74,
+      "timestamp": "2:38",
+      "range": "2:38 - 2:40",
+      "text": "we don't need to heat the area behind the toilet either."
+    },
+    {
+      "index": 44,
+      "start": 161.2,
+      "end": 162.46,
+      "timestamp": "2:41",
+      "range": "2:41 - 2:42",
+      "text": "But a lot of this is heated."
+    },
+    {
+      "index": 45,
+      "start": 162.66,
+      "end": 164.74,
+      "timestamp": "2:42",
+      "range": "2:42 - 2:44",
+      "text": "And so I also wanted to show you"
+    },
+    {
+      "index": 46,
+      "start": 165.84,
+      "end": 166.76,
+      "timestamp": "2:45",
+      "range": "2:45 - 2:46",
+      "text": "this box right here"
+    },
+    {
+      "index": 47,
+      "start": 167.98,
+      "end": 168.8,
+      "timestamp": "2:47",
+      "range": "2:47 - 2:48",
+      "text": "is the wire"
+    },
+    {
+      "index": 48,
+      "start": 169.74,
+      "end": 170.56,
+      "timestamp": "2:49",
+      "range": "2:49 - 2:50",
+      "text": "that we're gonna use."
+    },
+    {
+      "index": 49,
+      "start": 170.8,
+      "end": 174.0,
+      "timestamp": "2:50",
+      "range": "2:50 - 2:54",
+      "text": "And if you look at this picture right here, it can kinda show you how this all works."
+    },
+    {
+      "index": 50,
+      "start": 174.52,
+      "end": 178.92,
+      "timestamp": "2:54",
+      "range": "2:54 - 2:58",
+      "text": "So you put the wire in first, then you put the thinset down, and then you set your tile."
+    },
+    {
+      "index": 51,
+      "start": 180.08,
+      "end": 182.36,
+      "timestamp": "3:00",
+      "range": "3:00 - 3:02",
+      "text": "Um, this box is a--"
+    },
+    {
+      "index": 52,
+      "start": 183.98,
+      "end": 187.26,
+      "timestamp": "3:03",
+      "range": "3:03 - 3:07",
+      "text": "I think this is about a 300 square foot box."
+    },
+    {
+      "index": 53,
+      "start": 189.48,
+      "end": 193.18,
+      "timestamp": "3:09",
+      "range": "3:09 - 3:13",
+      "text": "And so it's got the connectors, it's got instructions,"
+    },
+    {
+      "index": 54,
+      "start": 193.9,
+      "end": 196.48,
+      "timestamp": "3:13",
+      "range": "3:13 - 3:16",
+      "text": "and, and then this is the wire that goes in there."
+    },
+    {
+      "index": 55,
+      "start": 196.84,
+      "end": 197.52,
+      "timestamp": "3:16",
+      "range": "3:16 - 3:17",
+      "text": "And, um,"
+    },
+    {
+      "index": 56,
+      "start": 198.5,
+      "end": 202.3,
+      "timestamp": "3:18",
+      "range": "3:18 - 3:22",
+      "text": "just, you know, this box of stuff is, is only about 1,000 bucks."
+    },
+    {
+      "index": 57,
+      "start": 202.46,
+      "end": 203.12,
+      "timestamp": "3:22",
+      "range": "3:22 - 3:23",
+      "text": "Isn't that crazy?"
+    },
+    {
+      "index": 58,
+      "start": 203.16,
+      "end": 204.88,
+      "timestamp": "3:23",
+      "range": "3:23 - 3:24",
+      "text": "This little box, $1,000."
+    },
+    {
+      "index": 59,
+      "start": 205.62,
+      "end": 205.74,
+      "timestamp": "3:25",
+      "range": "3:25 - 3:25",
+      "text": "Um,"
+    },
+    {
+      "index": 60,
+      "start": 206.46,
+      "end": 211.3,
+      "timestamp": "3:26",
+      "range": "3:26 - 3:31",
+      "text": "and then on top of that, doesn't include the thermostat, so we're gonna be putting a programmable"
+    },
+    {
+      "index": 61,
+      "start": 211.8,
+      "end": 214.78,
+      "timestamp": "3:31",
+      "range": "3:31 - 3:34",
+      "text": "electronic thermostat, and that is gonna go right here."
+    },
+    {
+      "index": 62,
+      "start": 214.84,
+      "end": 217.96,
+      "timestamp": "3:34",
+      "range": "3:34 - 3:37",
+      "text": "This is the old thermostat, 'cause they used to have a heated floor system"
+    },
+    {
+      "index": 63,
+      "start": 218.72,
+      "end": 219.0,
+      "timestamp": "3:38",
+      "range": "3:38 - 3:39",
+      "text": "here."
+    },
+    {
+      "index": 64,
+      "start": 219.8,
+      "end": 220.0,
+      "timestamp": "3:39",
+      "range": "3:39 - 3:40",
+      "text": "But"
+    },
+    {
+      "index": 65,
+      "start": 221.18,
+      "end": 225.48,
+      "timestamp": "3:41",
+      "range": "3:41 - 3:45",
+      "text": "if you decide you don't like the tile or you wanna remodel the bathroom, there's no way of"
+    },
+    {
+      "index": 66,
+      "start": 225.56,
+      "end": 227.66,
+      "timestamp": "3:45",
+      "range": "3:45 - 3:47",
+      "text": "saving the heated floor you already had."
+    },
+    {
+      "index": 67,
+      "start": 228.26,
+      "end": 230.68,
+      "timestamp": "3:48",
+      "range": "3:48 - 3:50",
+      "text": "And so anyways, so this is what we're doing."
+    },
+    {
+      "index": 68,
+      "start": 230.74,
+      "end": 231.8,
+      "timestamp": "3:50",
+      "range": "3:50 - 3:51",
+      "text": "So you can see this mat."
+    },
+    {
+      "index": 69,
+      "start": 232.3,
+      "end": 236.36,
+      "timestamp": "3:52",
+      "range": "3:52 - 3:56",
+      "text": "The whole floor is covered with the mat, but when they do the wire, they'll just do the wire"
+    },
+    {
+      "index": 70,
+      "start": 236.44,
+      "end": 238.62,
+      "timestamp": "3:56",
+      "range": "3:56 - 3:58",
+      "text": "in the areas where we want it heated."
+    },
+    {
+      "index": 71,
+      "start": 239.16,
+      "end": 240.82,
+      "timestamp": "3:59",
+      "range": "3:59 - 4:00",
+      "text": "And then they'll put the tile on top of it."
+    },
+    {
+      "index": 72,
+      "start": 240.94,
+      "end": 241.08,
+      "timestamp": "4:00",
+      "range": "4:00 - 4:01",
+      "text": "So"
+    },
+    {
+      "index": 73,
+      "start": 241.88,
+      "end": 245.44,
+      "timestamp": "4:01",
+      "range": "4:01 - 4:05",
+      "text": "I'll try and shoot a video when the tile guy's done laying the wire so you can take a look"
+    },
+    {
+      "index": 74,
+      "start": 245.48,
+      "end": 245.88,
+      "timestamp": "4:05",
+      "range": "4:05 - 4:05",
+      "text": "at that."
+    },
+    {
+      "index": 75,
+      "start": 246.3,
+      "end": 249.92,
+      "timestamp": "4:06",
+      "range": "4:06 - 4:09",
+      "text": "And one thing you have to be careful of if you're doing this is after you lay all that wire,"
+    },
+    {
+      "index": 76,
+      "start": 250.84,
+      "end": 255.16,
+      "timestamp": "4:10",
+      "range": "4:10 - 4:15",
+      "text": "you need to do what's called a continuity test, and there's a little device you can get at"
+    },
+    {
+      "index": 77,
+      "start": 255.22,
+      "end": 258.14,
+      "timestamp": "4:15",
+      "range": "4:15 - 4:18",
+      "text": "Home Depot or your electrician'll have it, um,"
+    },
+    {
+      "index": 78,
+      "start": 258.88,
+      "end": 263.88,
+      "timestamp": "4:18",
+      "range": "4:18 - 4:23",
+      "text": "that you can attach to both of the, the two ends of the wire and make sure there's no breaks"
+    },
+    {
+      "index": 79,
+      "start": 263.92,
+      "end": 266.56,
+      "timestamp": "4:23",
+      "range": "4:23 - 4:26",
+      "text": "in it, that c- continuity or con, um,"
+    },
+    {
+      "index": 80,
+      "start": 267.74,
+      "end": 272.12,
+      "timestamp": "4:27",
+      "range": "4:27 - 4:32",
+      "text": "current goes through all of that wire so there's not a break in it somewhere, 'cause it'd be"
+    },
+    {
+      "index": 81,
+      "start": 272.18,
+      "end": 277.0,
+      "timestamp": "4:32",
+      "range": "4:32 - 4:37",
+      "text": "terrible if you got it all laid, put the tile down and went to hook it up and there was a break"
+    },
+    {
+      "index": 82,
+      "start": 277.44,
+      "end": 277.8,
+      "timestamp": "4:37",
+      "range": "4:37 - 4:37",
+      "text": "in the wire."
+    },
+    {
+      "index": 83,
+      "start": 277.92,
+      "end": 280.72,
+      "timestamp": "4:37",
+      "range": "4:37 - 4:40",
+      "text": "'Cause sometimes maybe if it got kinked or something it might break."
+    },
+    {
+      "index": 84,
+      "start": 281.34,
+      "end": 282.34,
+      "timestamp": "4:41",
+      "range": "4:41 - 4:42",
+      "text": "And so, um,"
+    },
+    {
+      "index": 85,
+      "start": 283.82,
+      "end": 285.22,
+      "timestamp": "4:43",
+      "range": "4:43 - 4:45",
+      "text": "this can be a beautiful bathroom."
+    },
+    {
+      "index": 86,
+      "start": 285.28,
+      "end": 288.18,
+      "timestamp": "4:45",
+      "range": "4:45 - 4:48",
+      "text": "It's gonna be probably one of the nicer bathrooms that we've done."
+    },
+    {
+      "index": 87,
+      "start": 288.66,
+      "end": 290.98,
+      "timestamp": "4:48",
+      "range": "4:48 - 4:50",
+      "text": "I'll just have you s- take a sneak peek over here."
+    },
+    {
+      "index": 88,
+      "start": 291.64,
+      "end": 292.88,
+      "timestamp": "4:51",
+      "range": "4:51 - 4:52",
+      "text": "Look at that for the shower."
+    },
+    {
+      "index": 89,
+      "start": 294.0,
+      "end": 295.28,
+      "timestamp": "4:54",
+      "range": "4:54 - 4:55",
+      "text": "That's gonna be a car wash."
+    },
+    {
+      "index": 90,
+      "start": 295.54,
+      "end": 297.02,
+      "timestamp": "4:55",
+      "range": "4:55 - 4:57",
+      "text": "Um, uh, excuse me, a body wash."
+    },
+    {
+      "index": 91,
+      "start": 299.0,
+      "end": 300.54,
+      "timestamp": "4:59",
+      "range": "4:59 - 5:00",
+      "text": "So anyways, this is, uh--"
+    },
+    {
+      "index": 92,
+      "start": 301.8,
+      "end": 305.02,
+      "timestamp": "5:01",
+      "range": "5:01 - 5:05",
+      "text": "I will, I'll show you a few more segments about what"
+    },
+    {
+      "index": 93,
+      "start": 305.72,
+      "end": 307.1,
+      "timestamp": "5:05",
+      "range": "5:05 - 5:07",
+      "text": "it takes to do this,"
+    },
+    {
+      "index": 94,
+      "start": 307.94,
+      "end": 309.32,
+      "timestamp": "5:07",
+      "range": "5:07 - 5:09",
+      "text": "and then when we're all done,"
+    },
+    {
+      "index": 95,
+      "start": 310.1,
+      "end": 314.38,
+      "timestamp": "5:10",
+      "range": "5:10 - 5:14",
+      "text": "usually for a room this size you're probably looking, um, about $4,500 or so,"
+    },
+    {
+      "index": 96,
+      "start": 315.5,
+      "end": 319.94,
+      "timestamp": "5:15",
+      "range": "5:15 - 5:19",
+      "text": "just for all of the labor and the materials and the electrical and everything."
+    },
+    {
+      "index": 97,
+      "start": 319.96,
+      "end": 323.56,
+      "timestamp": "5:19",
+      "range": "5:19 - 5:23",
+      "text": "It's about 4,500 bucks to do a big heated floor like this."
+    },
+    {
+      "index": 98,
+      "start": 323.86,
+      "end": 328.98,
+      "timestamp": "5:23",
+      "range": "5:23 - 5:28",
+      "text": "A smaller one in a more normal sized bathroom might be half that or less."
+    },
+    {
+      "index": 99,
+      "start": 329.68,
+      "end": 330.92,
+      "timestamp": "5:29",
+      "range": "5:29 - 5:30",
+      "text": "So we're standing on the floor."
+    },
+    {
+      "index": 100,
+      "start": 331.38,
+      "end": 335.36,
+      "timestamp": "5:31",
+      "range": "5:31 - 5:35",
+      "text": "Come in here for a second and you can see I turned it up to 85,"
+    },
+    {
+      "index": 101,
+      "start": 336.66,
+      "end": 337.92,
+      "timestamp": "5:36",
+      "range": "5:36 - 5:37",
+      "text": "and I took my shoes off,"
+    },
+    {
+      "index": 102,
+      "start": 339.54,
+      "end": 341.42,
+      "timestamp": "5:39",
+      "range": "5:39 - 5:41",
+      "text": "and I can feel it through my feet."
+    },
+    {
+      "index": 103,
+      "start": 342.64,
+      "end": 347.5,
+      "timestamp": "5:42",
+      "range": "5:42 - 5:47",
+      "text": "And it's programmed to come on at particular times so that when they get out of bed in the"
+    },
+    {
+      "index": 104,
+      "start": 347.54,
+      "end": 350.22,
+      "timestamp": "5:47",
+      "range": "5:47 - 5:50",
+      "text": "morning to get ready or whatever, the floor is heated."
+    },
+    {
+      "index": 105,
+      "start": 351.26,
+      "end": 353.6,
+      "timestamp": "5:51",
+      "range": "5:51 - 5:53",
+      "text": "It's, you know, it's quiet, doesn't make any noise."
+    },
+    {
+      "index": 106,
+      "start": 353.66,
+      "end": 355.5,
+      "timestamp": "5:53",
+      "range": "5:53 - 5:55",
+      "text": "It's got electronic thermostat."
+    },
+    {
+      "index": 107,
+      "start": 356.0,
+      "end": 356.9,
+      "timestamp": "5:56",
+      "range": "5:56 - 5:56",
+      "text": "It's awesome."
+    },
+    {
+      "index": 108,
+      "start": 357.36,
+      "end": 360.2,
+      "timestamp": "5:57",
+      "range": "5:57 - 6:00",
+      "text": "So if you've thought about doing it, you should do it."
+    },
+    {
+      "index": 109,
+      "start": 361.14,
+      "end": 363.5,
+      "timestamp": "6:01",
+      "range": "6:01 - 6:03",
+      "text": "And, um, again, the, the cost"
+    },
+    {
+      "index": 110,
+      "start": 364.46,
+      "end": 365.92,
+      "timestamp": "6:04",
+      "range": "6:04 - 6:05",
+      "text": "depends on the size of the bathroom."
+    },
+    {
+      "index": 111,
+      "start": 365.98,
+      "end": 367.04,
+      "timestamp": "6:05",
+      "range": "6:05 - 6:07",
+      "text": "This is a big bathroom,"
+    },
+    {
+      "index": 112,
+      "start": 367.82,
+      "end": 373.98,
+      "timestamp": "6:07",
+      "range": "6:07 - 6:13",
+      "text": "and our co- all, our costs all in on it was about, uh, or what we charged was about $4,500."
+    },
+    {
+      "index": 113,
+      "start": 374.26,
+      "end": 374.66,
+      "timestamp": "6:14",
+      "range": "6:14 - 6:14",
+      "text": "And so,"
+    },
+    {
+      "index": 114,
+      "start": 375.5,
+      "end": 381.9,
+      "timestamp": "6:15",
+      "range": "6:15 - 6:21",
+      "text": "you know, my wife is very jealous of this client of ours, 'cause she would love to have a heated"
+    },
+    {
+      "index": 115,
+      "start": 381.96,
+      "end": 382.2,
+      "timestamp": "6:21",
+      "range": "6:21 - 6:22",
+      "text": "floor."
+    },
+    {
+      "index": 116,
+      "start": 382.8,
+      "end": 384.78,
+      "timestamp": "6:22",
+      "range": "6:22 - 6:24",
+      "text": "Maybe I'll have to take care of that one of these days."
+    },
+    {
+      "index": 117,
+      "start": 385.54,
+      "end": 386.72,
+      "timestamp": "6:25",
+      "range": "6:25 - 6:26",
+      "text": "Hey, thanks again for watching."
+    },
+    {
+      "index": 118,
+      "start": 387.6,
+      "end": 388.38,
+      "timestamp": "6:27",
+      "range": "6:27 - 6:28",
+      "text": "We appreciate it."
+    },
+    {
+      "index": 119,
+      "start": 388.84,
+      "end": 391.66,
+      "timestamp": "6:28",
+      "range": "6:28 - 6:31",
+      "text": "If you haven't subscribed to our channel yet, please do so."
+    },
+    {
+      "index": 120,
+      "start": 391.8,
+      "end": 396.22,
+      "timestamp": "6:31",
+      "range": "6:31 - 6:36",
+      "text": "Hit that little bell and we'll be able to notify you every time we post a new video."
+    },
+    {
+      "index": 121,
+      "start": 396.78,
+      "end": 398.66,
+      "timestamp": "6:36",
+      "range": "6:36 - 6:38",
+      "text": "Hit the like button if you like what you saw."
+    },
+    {
+      "index": 122,
+      "start": 399.1,
+      "end": 403.32,
+      "timestamp": "6:39",
+      "range": "6:39 - 6:43",
+      "text": "And then also, if you have any questions about heated floors or doing heated floors or the"
+    },
+    {
+      "index": 123,
+      "start": 403.78,
+      "end": 405.84,
+      "timestamp": "6:43",
+      "range": "6:43 - 6:45",
+      "text": "materials that we use or things like that,"
+    },
+    {
+      "index": 124,
+      "start": 406.56,
+      "end": 409.06,
+      "timestamp": "6:46",
+      "range": "6:46 - 6:49",
+      "text": "please don't hesitate to drop a note in the comments."
+    },
+    {
+      "index": 125,
+      "start": 409.42,
+      "end": 413.06,
+      "timestamp": "6:49",
+      "range": "6:49 - 6:53",
+      "text": "And also let us know what you think of this bathroom, 'cause I think it's pretty dang awesome."
+    }
+  ],
+  "words": [
+    {
+      "text": "Okay,",
+      "start": 0.02,
+      "end": 0.18
+    },
+    {
+      "text": "I",
+      "start": 0.3,
+      "end": 0.34
+    },
+    {
+      "text": "wanna",
+      "start": 0.38,
+      "end": 0.58
+    },
+    {
+      "text": "show",
+      "start": 0.66,
+      "end": 0.88
+    },
+    {
+      "text": "you",
+      "start": 1.02,
+      "end": 1.3
+    },
+    {
+      "text": "about",
+      "start": 1.4,
+      "end": 1.8
+    },
+    {
+      "text": "how",
+      "start": 1.88,
+      "end": 2.32
+    },
+    {
+      "text": "to",
+      "start": 2.38,
+      "end": 2.48
+    },
+    {
+      "text": "do",
+      "start": 2.52,
+      "end": 2.68
+    },
+    {
+      "text": "a",
+      "start": 2.76,
+      "end": 2.8
+    },
+    {
+      "text": "heated",
+      "start": 2.86,
+      "end": 3.14
+    },
+    {
+      "text": "tile",
+      "start": 3.22,
+      "end": 3.48
+    },
+    {
+      "text": "floor.",
+      "start": 3.66,
+      "end": 3.98
+    },
+    {
+      "text": "That's",
+      "start": 4.1,
+      "end": 4.28
+    },
+    {
+      "text": "what",
+      "start": 4.32,
+      "end": 4.46
+    },
+    {
+      "text": "this",
+      "start": 4.52,
+      "end": 4.72
+    },
+    {
+      "text": "video's",
+      "start": 4.76,
+      "end": 5.18
+    },
+    {
+      "text": "gonna",
+      "start": 5.22,
+      "end": 5.4
+    },
+    {
+      "text": "be",
+      "start": 5.44,
+      "end": 5.52
+    },
+    {
+      "text": "about.",
+      "start": 5.58,
+      "end": 6.04
+    },
+    {
+      "text": "This",
+      "start": 6.66,
+      "end": 6.8
+    },
+    {
+      "text": "is",
+      "start": 6.88,
+      "end": 7.0
+    },
+    {
+      "text": "a,",
+      "start": 7.1,
+      "end": 7.12
+    },
+    {
+      "text": "a",
+      "start": 7.32,
+      "end": 7.34
+    },
+    {
+      "text": "project",
+      "start": 7.44,
+      "end": 7.86
+    },
+    {
+      "text": "that",
+      "start": 7.9,
+      "end": 7.98
+    },
+    {
+      "text": "we're",
+      "start": 8.0,
+      "end": 8.1
+    },
+    {
+      "text": "doing.",
+      "start": 8.16,
+      "end": 8.38
+    },
+    {
+      "text": "This",
+      "start": 8.38,
+      "end": 8.46
+    },
+    {
+      "text": "is",
+      "start": 8.5,
+      "end": 8.6
+    },
+    {
+      "text": "phase",
+      "start": 8.64,
+      "end": 8.92
+    },
+    {
+      "text": "two",
+      "start": 8.96,
+      "end": 9.06
+    },
+    {
+      "text": "of",
+      "start": 9.1,
+      "end": 9.16
+    },
+    {
+      "text": "the",
+      "start": 9.22,
+      "end": 9.28
+    },
+    {
+      "text": "East",
+      "start": 9.32,
+      "end": 9.48
+    },
+    {
+      "text": "Bench",
+      "start": 9.58,
+      "end": 9.8
+    },
+    {
+      "text": "House,",
+      "start": 9.88,
+      "end": 10.24
+    },
+    {
+      "text": "but",
+      "start": 10.36,
+      "end": 10.54
+    },
+    {
+      "text": "I",
+      "start": 11.02,
+      "end": 11.06
+    },
+    {
+      "text": "kinda",
+      "start": 11.12,
+      "end": 11.28
+    },
+    {
+      "text": "wanted",
+      "start": 11.32,
+      "end": 11.44
+    },
+    {
+      "text": "to",
+      "start": 11.46,
+      "end": 11.54
+    },
+    {
+      "text": "show",
+      "start": 11.58,
+      "end": 11.72
+    },
+    {
+      "text": "you",
+      "start": 11.78,
+      "end": 11.86
+    },
+    {
+      "text": "how",
+      "start": 12.22,
+      "end": 12.3
+    },
+    {
+      "text": "to",
+      "start": 12.34,
+      "end": 12.42
+    },
+    {
+      "text": "do",
+      "start": 12.46,
+      "end": 12.52
+    },
+    {
+      "text": "a",
+      "start": 12.58,
+      "end": 12.62
+    },
+    {
+      "text": "heated",
+      "start": 12.68,
+      "end": 13.02
+    },
+    {
+      "text": "tile",
+      "start": 13.24,
+      "end": 13.52
+    },
+    {
+      "text": "floor.",
+      "start": 13.6,
+      "end": 13.88
+    },
+    {
+      "text": "This",
+      "start": 14.6,
+      "end": 14.78
+    },
+    {
+      "text": "room",
+      "start": 14.84,
+      "end": 14.94
+    },
+    {
+      "text": "is",
+      "start": 14.98,
+      "end": 15.08
+    },
+    {
+      "text": "gonna",
+      "start": 15.12,
+      "end": 15.28
+    },
+    {
+      "text": "be",
+      "start": 15.32,
+      "end": 15.4
+    },
+    {
+      "text": "the",
+      "start": 15.46,
+      "end": 15.54
+    },
+    {
+      "text": "new",
+      "start": 15.58,
+      "end": 15.74
+    },
+    {
+      "text": "laundry",
+      "start": 15.8,
+      "end": 16.2
+    },
+    {
+      "text": "room,",
+      "start": 16.26,
+      "end": 16.44
+    },
+    {
+      "text": "and",
+      "start": 16.54,
+      "end": 16.62
+    },
+    {
+      "text": "this",
+      "start": 16.68,
+      "end": 16.82
+    },
+    {
+      "text": "is",
+      "start": 16.88,
+      "end": 17.0
+    },
+    {
+      "text": "typically",
+      "start": 17.06,
+      "end": 17.64
+    },
+    {
+      "text": "how",
+      "start": 17.72,
+      "end": 17.92
+    },
+    {
+      "text": "we",
+      "start": 17.98,
+      "end": 18.1
+    },
+    {
+      "text": "prep",
+      "start": 18.16,
+      "end": 18.36
+    },
+    {
+      "text": "a",
+      "start": 18.42,
+      "end": 18.46
+    },
+    {
+      "text": "floor.",
+      "start": 18.54,
+      "end": 18.86
+    },
+    {
+      "text": "You",
+      "start": 19.42,
+      "end": 19.48
+    },
+    {
+      "text": "can",
+      "start": 19.5,
+      "end": 19.62
+    },
+    {
+      "text": "see",
+      "start": 19.68,
+      "end": 19.8
+    },
+    {
+      "text": "we",
+      "start": 19.84,
+      "end": 19.94
+    },
+    {
+      "text": "put",
+      "start": 19.98,
+      "end": 20.12
+    },
+    {
+      "text": "this",
+      "start": 20.16,
+      "end": 20.34
+    },
+    {
+      "text": "wire",
+      "start": 20.4,
+      "end": 20.64
+    },
+    {
+      "text": "mesh",
+      "start": 20.7,
+      "end": 20.92
+    },
+    {
+      "text": "down,",
+      "start": 20.98,
+      "end": 21.22
+    },
+    {
+      "text": "we",
+      "start": 21.28,
+      "end": 21.38
+    },
+    {
+      "text": "staple",
+      "start": 21.44,
+      "end": 21.74
+    },
+    {
+      "text": "it",
+      "start": 21.8,
+      "end": 21.88
+    },
+    {
+      "text": "down,",
+      "start": 21.94,
+      "end": 22.22
+    },
+    {
+      "text": "and",
+      "start": 22.8,
+      "end": 22.88
+    },
+    {
+      "text": "then",
+      "start": 22.94,
+      "end": 23.06
+    },
+    {
+      "text": "we",
+      "start": 23.12,
+      "end": 23.2
+    },
+    {
+      "text": "fill",
+      "start": 23.24,
+      "end": 23.38
+    },
+    {
+      "text": "it",
+      "start": 23.42,
+      "end": 23.48
+    },
+    {
+      "text": "with",
+      "start": 23.52,
+      "end": 23.62
+    },
+    {
+      "text": "a",
+      "start": 23.66,
+      "end": 23.72
+    },
+    {
+      "text": "product",
+      "start": 23.76,
+      "end": 24.12
+    },
+    {
+      "text": "called",
+      "start": 24.18,
+      "end": 24.46
+    },
+    {
+      "text": "thin",
+      "start": 24.5,
+      "end": 24.66
+    },
+    {
+      "text": "sest-",
+      "start": 24.78,
+      "end": 25.08
+    },
+    {
+      "text": "thinset,",
+      "start": 25.44,
+      "end": 25.94
+    },
+    {
+      "text": "which",
+      "start": 26.28,
+      "end": 26.4
+    },
+    {
+      "text": "is",
+      "start": 26.46,
+      "end": 26.54
+    },
+    {
+      "text": "this",
+      "start": 26.6,
+      "end": 26.72
+    },
+    {
+      "text": "stuff",
+      "start": 26.76,
+      "end": 26.96
+    },
+    {
+      "text": "right",
+      "start": 27.0,
+      "end": 27.1
+    },
+    {
+      "text": "here.",
+      "start": 27.14,
+      "end": 27.3
+    },
+    {
+      "text": "This",
+      "start": 27.34,
+      "end": 27.44
+    },
+    {
+      "text": "is",
+      "start": 27.5,
+      "end": 27.62
+    },
+    {
+      "text": "Keriflex.",
+      "start": 27.7,
+      "end": 28.42
+    },
+    {
+      "text": "It's",
+      "start": 28.96,
+      "end": 29.06
+    },
+    {
+      "text": "a",
+      "start": 29.12,
+      "end": 29.16
+    },
+    {
+      "text": "thinset.",
+      "start": 29.22,
+      "end": 29.76
+    },
+    {
+      "text": "And",
+      "start": 30.16,
+      "end": 30.26
+    },
+    {
+      "text": "you",
+      "start": 30.32,
+      "end": 30.44
+    },
+    {
+      "text": "fill",
+      "start": 30.68,
+      "end": 30.86
+    },
+    {
+      "text": "that",
+      "start": 30.92,
+      "end": 31.08
+    },
+    {
+      "text": "in",
+      "start": 31.16,
+      "end": 31.26
+    },
+    {
+      "text": "with",
+      "start": 31.3,
+      "end": 31.44
+    },
+    {
+      "text": "the,",
+      "start": 31.5,
+      "end": 31.62
+    },
+    {
+      "text": "in",
+      "start": 32.22,
+      "end": 32.28
+    },
+    {
+      "text": "the",
+      "start": 32.32,
+      "end": 32.38
+    },
+    {
+      "text": "mesh,",
+      "start": 32.46,
+      "end": 32.74
+    },
+    {
+      "text": "and",
+      "start": 33.4,
+      "end": 33.46
+    },
+    {
+      "text": "it",
+      "start": 33.5,
+      "end": 33.62
+    },
+    {
+      "text": "stiffens",
+      "start": 33.74,
+      "end": 34.12
+    },
+    {
+      "text": "the",
+      "start": 34.24,
+      "end": 34.36
+    },
+    {
+      "text": "floor",
+      "start": 34.48,
+      "end": 34.82
+    },
+    {
+      "text": "up,",
+      "start": 34.94,
+      "end": 35.14
+    },
+    {
+      "text": "makes",
+      "start": 35.92,
+      "end": 36.1
+    },
+    {
+      "text": "the",
+      "start": 36.12,
+      "end": 36.2
+    },
+    {
+      "text": "floor",
+      "start": 36.26,
+      "end": 36.44
+    },
+    {
+      "text": "stiffer,",
+      "start": 36.54,
+      "end": 36.88
+    },
+    {
+      "text": "which",
+      "start": 37.04,
+      "end": 37.18
+    },
+    {
+      "text": "is",
+      "start": 37.24,
+      "end": 37.38
+    },
+    {
+      "text": "what",
+      "start": 37.44,
+      "end": 37.56
+    },
+    {
+      "text": "you",
+      "start": 37.66,
+      "end": 37.72
+    },
+    {
+      "text": "need",
+      "start": 37.76,
+      "end": 37.9
+    },
+    {
+      "text": "for",
+      "start": 37.94,
+      "end": 38.04
+    },
+    {
+      "text": "tile,",
+      "start": 38.1,
+      "end": 38.4
+    },
+    {
+      "text": "and",
+      "start": 38.92,
+      "end": 39.0
+    },
+    {
+      "text": "then",
+      "start": 39.04,
+      "end": 39.16
+    },
+    {
+      "text": "also",
+      "start": 39.38,
+      "end": 39.7
+    },
+    {
+      "text": "it",
+      "start": 39.76,
+      "end": 39.8
+    },
+    {
+      "text": "gives",
+      "start": 39.84,
+      "end": 40.0
+    },
+    {
+      "text": "you",
+      "start": 40.04,
+      "end": 40.08
+    },
+    {
+      "text": "a",
+      "start": 40.12,
+      "end": 40.16
+    },
+    {
+      "text": "really",
+      "start": 40.18,
+      "end": 40.36
+    },
+    {
+      "text": "good",
+      "start": 40.42,
+      "end": 40.6
+    },
+    {
+      "text": "bonding",
+      "start": 40.66,
+      "end": 41.18
+    },
+    {
+      "text": "surface",
+      "start": 41.28,
+      "end": 42.12
+    },
+    {
+      "text": "for",
+      "start": 42.16,
+      "end": 42.28
+    },
+    {
+      "text": "the",
+      "start": 42.32,
+      "end": 42.42
+    },
+    {
+      "text": "tile",
+      "start": 42.5,
+      "end": 42.9
+    },
+    {
+      "text": "as",
+      "start": 43.0,
+      "end": 43.12
+    },
+    {
+      "text": "we",
+      "start": 43.16,
+      "end": 43.26
+    },
+    {
+      "text": "lay",
+      "start": 43.36,
+      "end": 43.54
+    },
+    {
+      "text": "it.",
+      "start": 43.62,
+      "end": 43.84
+    },
+    {
+      "text": "Um,",
+      "start": 44.7,
+      "end": 44.9
+    },
+    {
+      "text": "normally",
+      "start": 45.48,
+      "end": 45.76
+    },
+    {
+      "text": "we'd",
+      "start": 45.78,
+      "end": 45.88
+    },
+    {
+      "text": "do",
+      "start": 45.9,
+      "end": 45.98
+    },
+    {
+      "text": "the",
+      "start": 46.02,
+      "end": 46.06
+    },
+    {
+      "text": "whole",
+      "start": 46.1,
+      "end": 46.26
+    },
+    {
+      "text": "room,",
+      "start": 46.34,
+      "end": 46.54
+    },
+    {
+      "text": "but",
+      "start": 46.6,
+      "end": 46.72
+    },
+    {
+      "text": "the",
+      "start": 46.78,
+      "end": 46.86
+    },
+    {
+      "text": "washer",
+      "start": 46.9,
+      "end": 47.14
+    },
+    {
+      "text": "and",
+      "start": 47.16,
+      "end": 47.22
+    },
+    {
+      "text": "dryer,",
+      "start": 47.24,
+      "end": 47.46
+    },
+    {
+      "text": "we",
+      "start": 47.52,
+      "end": 47.6
+    },
+    {
+      "text": "just",
+      "start": 47.66,
+      "end": 47.78
+    },
+    {
+      "text": "took",
+      "start": 47.82,
+      "end": 47.94
+    },
+    {
+      "text": "it",
+      "start": 47.98,
+      "end": 48.04
+    },
+    {
+      "text": "out",
+      "start": 48.12,
+      "end": 48.22
+    },
+    {
+      "text": "of",
+      "start": 48.26,
+      "end": 48.3
+    },
+    {
+      "text": "here.",
+      "start": 48.36,
+      "end": 48.52
+    },
+    {
+      "text": "So",
+      "start": 49.0,
+      "end": 49.1
+    },
+    {
+      "text": "this",
+      "start": 49.16,
+      "end": 49.28
+    },
+    {
+      "text": "is",
+      "start": 49.36,
+      "end": 49.46
+    },
+    {
+      "text": "the",
+      "start": 49.5,
+      "end": 49.6
+    },
+    {
+      "text": "stuff",
+      "start": 49.68,
+      "end": 49.86
+    },
+    {
+      "text": "that",
+      "start": 49.9,
+      "end": 50.0
+    },
+    {
+      "text": "we",
+      "start": 50.04,
+      "end": 50.16
+    },
+    {
+      "text": "use",
+      "start": 50.3,
+      "end": 50.58
+    },
+    {
+      "text": "to",
+      "start": 50.6,
+      "end": 50.68
+    },
+    {
+      "text": "put",
+      "start": 50.72,
+      "end": 50.88
+    },
+    {
+      "text": "down.",
+      "start": 50.94,
+      "end": 51.34
+    },
+    {
+      "text": "Available",
+      "start": 52.48,
+      "end": 52.8
+    },
+    {
+      "text": "at",
+      "start": 52.8,
+      "end": 52.88
+    },
+    {
+      "text": "Home",
+      "start": 52.92,
+      "end": 53.1
+    },
+    {
+      "text": "Depot.",
+      "start": 53.14,
+      "end": 53.46
+    },
+    {
+      "text": "It's",
+      "start": 53.5,
+      "end": 53.64
+    },
+    {
+      "text": "a",
+      "start": 53.7,
+      "end": 53.8
+    },
+    {
+      "text": "lath",
+      "start": 53.88,
+      "end": 54.6
+    },
+    {
+      "text": "product,",
+      "start": 54.66,
+      "end": 55.08
+    },
+    {
+      "text": "and",
+      "start": 55.16,
+      "end": 55.24
+    },
+    {
+      "text": "it's",
+      "start": 55.28,
+      "end": 55.4
+    },
+    {
+      "text": "about",
+      "start": 55.48,
+      "end": 55.7
+    },
+    {
+      "text": "two",
+      "start": 55.76,
+      "end": 55.86
+    },
+    {
+      "text": "and",
+      "start": 55.88,
+      "end": 55.96
+    },
+    {
+      "text": "a",
+      "start": 55.96,
+      "end": 55.98
+    },
+    {
+      "text": "half,",
+      "start": 56.04,
+      "end": 56.34
+    },
+    {
+      "text": "uh,",
+      "start": 57.04,
+      "end": 57.1
+    },
+    {
+      "text": "27",
+      "start": 57.34,
+      "end": 57.74
+    },
+    {
+      "text": "inches",
+      "start": 57.78,
+      "end": 58.06
+    },
+    {
+      "text": "by",
+      "start": 58.12,
+      "end": 58.2
+    },
+    {
+      "text": "8",
+      "start": 58.32,
+      "end": 58.34
+    },
+    {
+      "text": "feet",
+      "start": 58.4,
+      "end": 58.54
+    },
+    {
+      "text": "long.",
+      "start": 58.6,
+      "end": 58.94
+    },
+    {
+      "text": "I",
+      "start": 59.7,
+      "end": 59.74
+    },
+    {
+      "text": "think",
+      "start": 59.78,
+      "end": 59.94
+    },
+    {
+      "text": "each",
+      "start": 59.98,
+      "end": 60.14
+    },
+    {
+      "text": "one",
+      "start": 60.2,
+      "end": 60.28
+    },
+    {
+      "text": "of",
+      "start": 60.32,
+      "end": 60.36
+    },
+    {
+      "text": "these",
+      "start": 60.42,
+      "end": 60.56
+    },
+    {
+      "text": "is",
+      "start": 60.62,
+      "end": 60.68
+    },
+    {
+      "text": "about",
+      "start": 60.74,
+      "end": 61.22
+    },
+    {
+      "text": "18",
+      "start": 61.3,
+      "end": 61.66
+    },
+    {
+      "text": "square",
+      "start": 61.72,
+      "end": 61.98
+    },
+    {
+      "text": "feet.",
+      "start": 62.04,
+      "end": 62.28
+    },
+    {
+      "text": "How",
+      "start": 62.64,
+      "end": 62.76
+    },
+    {
+      "text": "I",
+      "start": 62.84,
+      "end": 62.86
+    },
+    {
+      "text": "remember",
+      "start": 63.0,
+      "end": 63.34
+    },
+    {
+      "text": "that,",
+      "start": 63.42,
+      "end": 63.6
+    },
+    {
+      "text": "I",
+      "start": 64.14,
+      "end": 64.18
+    },
+    {
+      "text": "have",
+      "start": 64.2,
+      "end": 64.319
+    },
+    {
+      "text": "no",
+      "start": 64.36,
+      "end": 64.459
+    },
+    {
+      "text": "idea.",
+      "start": 64.519,
+      "end": 65.34
+    },
+    {
+      "text": "But",
+      "start": 65.379,
+      "end": 65.459
+    },
+    {
+      "text": "I",
+      "start": 65.5,
+      "end": 65.54
+    },
+    {
+      "text": "kinda",
+      "start": 65.58,
+      "end": 65.76
+    },
+    {
+      "text": "wanted",
+      "start": 65.8,
+      "end": 65.92
+    },
+    {
+      "text": "to",
+      "start": 65.94,
+      "end": 66.0
+    },
+    {
+      "text": "show",
+      "start": 66.06,
+      "end": 66.26
+    },
+    {
+      "text": "you",
+      "start": 66.32,
+      "end": 66.44
+    },
+    {
+      "text": "this",
+      "start": 67.34,
+      "end": 67.46
+    },
+    {
+      "text": "is",
+      "start": 67.52,
+      "end": 67.58
+    },
+    {
+      "text": "how",
+      "start": 67.62,
+      "end": 67.74
+    },
+    {
+      "text": "we",
+      "start": 67.76,
+      "end": 67.86
+    },
+    {
+      "text": "typically",
+      "start": 67.92,
+      "end": 68.38
+    },
+    {
+      "text": "do",
+      "start": 68.44,
+      "end": 68.52
+    },
+    {
+      "text": "a",
+      "start": 68.58,
+      "end": 68.62
+    },
+    {
+      "text": "tile",
+      "start": 68.68,
+      "end": 68.96
+    },
+    {
+      "text": "floor.",
+      "start": 69.04,
+      "end": 69.32
+    },
+    {
+      "text": "Now,",
+      "start": 70.12,
+      "end": 70.38
+    },
+    {
+      "text": "let",
+      "start": 70.82,
+      "end": 70.88
+    },
+    {
+      "text": "me",
+      "start": 70.92,
+      "end": 70.98
+    },
+    {
+      "text": "take",
+      "start": 71.04,
+      "end": 71.2
+    },
+    {
+      "text": "you",
+      "start": 71.22,
+      "end": 71.28
+    },
+    {
+      "text": "over",
+      "start": 71.34,
+      "end": 71.54
+    },
+    {
+      "text": "and",
+      "start": 71.58,
+      "end": 71.68
+    },
+    {
+      "text": "show",
+      "start": 71.72,
+      "end": 71.84
+    },
+    {
+      "text": "you",
+      "start": 71.86,
+      "end": 71.92
+    },
+    {
+      "text": "the",
+      "start": 71.96,
+      "end": 72.02
+    },
+    {
+      "text": "master",
+      "start": 72.1,
+      "end": 72.46
+    },
+    {
+      "text": "bathroom,",
+      "start": 72.5,
+      "end": 72.82
+    },
+    {
+      "text": "which",
+      "start": 72.88,
+      "end": 73.0
+    },
+    {
+      "text": "is",
+      "start": 73.04,
+      "end": 73.14
+    },
+    {
+      "text": "gonna",
+      "start": 73.18,
+      "end": 73.28
+    },
+    {
+      "text": "have",
+      "start": 73.32,
+      "end": 73.44
+    },
+    {
+      "text": "the",
+      "start": 73.48,
+      "end": 73.54
+    },
+    {
+      "text": "heated",
+      "start": 73.58,
+      "end": 73.82
+    },
+    {
+      "text": "floor,",
+      "start": 73.86,
+      "end": 73.98
+    },
+    {
+      "text": "and",
+      "start": 74.02,
+      "end": 74.12
+    },
+    {
+      "text": "show",
+      "start": 74.16,
+      "end": 74.28
+    },
+    {
+      "text": "you",
+      "start": 74.3,
+      "end": 74.36
+    },
+    {
+      "text": "how",
+      "start": 74.38,
+      "end": 74.48
+    },
+    {
+      "text": "we",
+      "start": 74.52,
+      "end": 74.6
+    },
+    {
+      "text": "do",
+      "start": 74.64,
+      "end": 74.76
+    },
+    {
+      "text": "that.",
+      "start": 74.82,
+      "end": 75.06
+    },
+    {
+      "text": "Okay,",
+      "start": 75.84,
+      "end": 76.06
+    },
+    {
+      "text": "now",
+      "start": 76.24,
+      "end": 76.4
+    },
+    {
+      "text": "we're",
+      "start": 76.44,
+      "end": 76.52
+    },
+    {
+      "text": "in",
+      "start": 76.56,
+      "end": 76.6
+    },
+    {
+      "text": "the",
+      "start": 76.64,
+      "end": 76.68
+    },
+    {
+      "text": "master",
+      "start": 76.74,
+      "end": 77.12
+    },
+    {
+      "text": "bathroom",
+      "start": 77.46,
+      "end": 78.1
+    },
+    {
+      "text": "of",
+      "start": 78.22,
+      "end": 78.42
+    },
+    {
+      "text": "phase",
+      "start": 78.98,
+      "end": 79.44
+    },
+    {
+      "text": "three",
+      "start": 79.5,
+      "end": 80.06
+    },
+    {
+      "text": "of",
+      "start": 80.14,
+      "end": 80.22
+    },
+    {
+      "text": "the",
+      "start": 80.26,
+      "end": 80.32
+    },
+    {
+      "text": "East",
+      "start": 80.36,
+      "end": 80.5
+    },
+    {
+      "text": "Bench",
+      "start": 80.58,
+      "end": 80.8
+    },
+    {
+      "text": "House.",
+      "start": 80.86,
+      "end": 81.26
+    },
+    {
+      "text": "And",
+      "start": 81.84,
+      "end": 82.04
+    },
+    {
+      "text": "so",
+      "start": 82.12,
+      "end": 82.3
+    },
+    {
+      "text": "you",
+      "start": 82.78,
+      "end": 82.84
+    },
+    {
+      "text": "can",
+      "start": 82.88,
+      "end": 83.02
+    },
+    {
+      "text": "see",
+      "start": 83.1,
+      "end": 83.36
+    },
+    {
+      "text": "I'm",
+      "start": 83.44,
+      "end": 83.56
+    },
+    {
+      "text": "standing",
+      "start": 83.64,
+      "end": 84.1
+    },
+    {
+      "text": "on",
+      "start": 84.22,
+      "end": 84.5
+    },
+    {
+      "text": "this",
+      "start": 85.14,
+      "end": 85.46
+    },
+    {
+      "text": "almost",
+      "start": 85.56,
+      "end": 85.8
+    },
+    {
+      "text": "looks",
+      "start": 85.84,
+      "end": 86.0
+    },
+    {
+      "text": "like",
+      "start": 86.06,
+      "end": 86.18
+    },
+    {
+      "text": "a",
+      "start": 86.26,
+      "end": 86.32
+    },
+    {
+      "text": "bubble",
+      "start": 86.56,
+      "end": 86.88
+    },
+    {
+      "text": "packing",
+      "start": 87.54,
+      "end": 87.94
+    },
+    {
+      "text": "type",
+      "start": 88.0,
+      "end": 88.32
+    },
+    {
+      "text": "floor.",
+      "start": 88.4,
+      "end": 88.8
+    },
+    {
+      "text": "This",
+      "start": 89.52,
+      "end": 89.64
+    },
+    {
+      "text": "is",
+      "start": 89.7,
+      "end": 89.8
+    },
+    {
+      "text": "a",
+      "start": 89.86,
+      "end": 89.94
+    },
+    {
+      "text": "Schluter",
+      "start": 90.02,
+      "end": 90.82
+    },
+    {
+      "text": "product,",
+      "start": 90.9,
+      "end": 91.52
+    },
+    {
+      "text": "S-C-H-L-U-T-E-R,",
+      "start": 91.84,
+      "end": 95.18
+    },
+    {
+      "text": "available",
+      "start": 95.6,
+      "end": 96.02
+    },
+    {
+      "text": "almost",
+      "start": 96.1,
+      "end": 96.42
+    },
+    {
+      "text": "any",
+      "start": 96.5,
+      "end": 96.7
+    },
+    {
+      "text": "tile",
+      "start": 96.9,
+      "end": 97.14
+    },
+    {
+      "text": "supply",
+      "start": 97.2,
+      "end": 97.82
+    },
+    {
+      "text": "place.",
+      "start": 97.88,
+      "end": 98.3
+    },
+    {
+      "text": "Um,",
+      "start": 99.28,
+      "end": 99.38
+    },
+    {
+      "text": "and",
+      "start": 99.48,
+      "end": 99.58
+    },
+    {
+      "text": "this",
+      "start": 99.62,
+      "end": 99.78
+    },
+    {
+      "text": "is",
+      "start": 99.86,
+      "end": 99.96
+    },
+    {
+      "text": "designed",
+      "start": 100.02,
+      "end": 100.64
+    },
+    {
+      "text": "for",
+      "start": 101.74,
+      "end": 102.08
+    },
+    {
+      "text": "heated",
+      "start": 102.16,
+      "end": 102.42
+    },
+    {
+      "text": "floor",
+      "start": 102.48,
+      "end": 102.7
+    },
+    {
+      "text": "systems.",
+      "start": 102.76,
+      "end": 103.3
+    },
+    {
+      "text": "This",
+      "start": 103.76,
+      "end": 103.9
+    },
+    {
+      "text": "is",
+      "start": 103.96,
+      "end": 104.08
+    },
+    {
+      "text": "the",
+      "start": 104.12,
+      "end": 104.2
+    },
+    {
+      "text": "product",
+      "start": 104.24,
+      "end": 104.62
+    },
+    {
+      "text": "that",
+      "start": 104.66,
+      "end": 104.76
+    },
+    {
+      "text": "we",
+      "start": 104.82,
+      "end": 104.96
+    },
+    {
+      "text": "use",
+      "start": 105.1,
+      "end": 105.56
+    },
+    {
+      "text": "when",
+      "start": 105.6,
+      "end": 105.72
+    },
+    {
+      "text": "we're",
+      "start": 105.74,
+      "end": 105.86
+    },
+    {
+      "text": "doing",
+      "start": 105.9,
+      "end": 106.04
+    },
+    {
+      "text": "a",
+      "start": 106.06,
+      "end": 106.08
+    },
+    {
+      "text": "heated",
+      "start": 106.12,
+      "end": 106.36
+    },
+    {
+      "text": "floor.",
+      "start": 106.44,
+      "end": 106.7
+    },
+    {
+      "text": "And",
+      "start": 107.12,
+      "end": 107.2
+    },
+    {
+      "text": "you",
+      "start": 107.24,
+      "end": 107.32
+    },
+    {
+      "text": "can",
+      "start": 107.36,
+      "end": 107.48
+    },
+    {
+      "text": "see",
+      "start": 107.54,
+      "end": 107.62
+    },
+    {
+      "text": "all",
+      "start": 107.68,
+      "end": 107.74
+    },
+    {
+      "text": "these",
+      "start": 107.78,
+      "end": 107.94
+    },
+    {
+      "text": "little",
+      "start": 108.0,
+      "end": 108.16
+    },
+    {
+      "text": "buttons",
+      "start": 108.68,
+      "end": 109.06
+    },
+    {
+      "text": "or",
+      "start": 109.12,
+      "end": 109.24
+    },
+    {
+      "text": "knobs",
+      "start": 109.3,
+      "end": 109.84
+    },
+    {
+      "text": "that",
+      "start": 109.9,
+      "end": 110.0
+    },
+    {
+      "text": "are",
+      "start": 110.02,
+      "end": 110.1
+    },
+    {
+      "text": "in",
+      "start": 110.16,
+      "end": 110.28
+    },
+    {
+      "text": "here,",
+      "start": 110.34,
+      "end": 110.56
+    },
+    {
+      "text": "and",
+      "start": 111.06,
+      "end": 111.16
+    },
+    {
+      "text": "that's",
+      "start": 111.2,
+      "end": 111.42
+    },
+    {
+      "text": "for",
+      "start": 111.46,
+      "end": 111.56
+    },
+    {
+      "text": "the",
+      "start": 111.6,
+      "end": 111.66
+    },
+    {
+      "text": "wire",
+      "start": 111.86,
+      "end": 112.36
+    },
+    {
+      "text": "that",
+      "start": 112.42,
+      "end": 112.54
+    },
+    {
+      "text": "creates",
+      "start": 112.62,
+      "end": 113.02
+    },
+    {
+      "text": "the",
+      "start": 113.06,
+      "end": 113.14
+    },
+    {
+      "text": "heat",
+      "start": 113.2,
+      "end": 113.46
+    },
+    {
+      "text": "to",
+      "start": 113.52,
+      "end": 113.6
+    },
+    {
+      "text": "go",
+      "start": 113.66,
+      "end": 113.84
+    },
+    {
+      "text": "through",
+      "start": 113.9,
+      "end": 114.24
+    },
+    {
+      "text": "and",
+      "start": 114.3,
+      "end": 114.4
+    },
+    {
+      "text": "go",
+      "start": 114.44,
+      "end": 114.58
+    },
+    {
+      "text": "in",
+      "start": 114.64,
+      "end": 114.72
+    },
+    {
+      "text": "and",
+      "start": 114.76,
+      "end": 114.86
+    },
+    {
+      "text": "around",
+      "start": 114.94,
+      "end": 115.6
+    },
+    {
+      "text": "these",
+      "start": 116.14,
+      "end": 116.36
+    },
+    {
+      "text": "knobs.",
+      "start": 116.38,
+      "end": 116.74
+    },
+    {
+      "text": "If",
+      "start": 117.14,
+      "end": 117.2
+    },
+    {
+      "text": "you",
+      "start": 117.24,
+      "end": 117.3
+    },
+    {
+      "text": "look",
+      "start": 117.34,
+      "end": 117.48
+    },
+    {
+      "text": "down",
+      "start": 117.54,
+      "end": 117.74
+    },
+    {
+      "text": "here,",
+      "start": 117.8,
+      "end": 118.04
+    },
+    {
+      "text": "this",
+      "start": 118.98,
+      "end": 119.12
+    },
+    {
+      "text": "is--",
+      "start": 119.18,
+      "end": 119.28
+    },
+    {
+      "text": "They",
+      "start": 119.48,
+      "end": 119.58
+    },
+    {
+      "text": "used",
+      "start": 119.64,
+      "end": 119.76
+    },
+    {
+      "text": "to",
+      "start": 119.78,
+      "end": 119.88
+    },
+    {
+      "text": "have",
+      "start": 119.94,
+      "end": 120.1
+    },
+    {
+      "text": "a",
+      "start": 120.16,
+      "end": 120.18
+    },
+    {
+      "text": "heated",
+      "start": 120.22,
+      "end": 120.46
+    },
+    {
+      "text": "floor",
+      "start": 120.5,
+      "end": 120.68
+    },
+    {
+      "text": "system,",
+      "start": 120.74,
+      "end": 121.04
+    },
+    {
+      "text": "so",
+      "start": 121.1,
+      "end": 121.14
+    },
+    {
+      "text": "this",
+      "start": 121.18,
+      "end": 121.26
+    },
+    {
+      "text": "is,",
+      "start": 121.34,
+      "end": 121.5
+    },
+    {
+      "text": "this",
+      "start": 121.54,
+      "end": 121.64
+    },
+    {
+      "text": "is",
+      "start": 121.68,
+      "end": 121.76
+    },
+    {
+      "text": "some",
+      "start": 121.8,
+      "end": 121.9
+    },
+    {
+      "text": "of",
+      "start": 121.94,
+      "end": 121.98
+    },
+    {
+      "text": "the",
+      "start": 122.0,
+      "end": 122.08
+    },
+    {
+      "text": "leftover",
+      "start": 122.14,
+      "end": 122.56
+    },
+    {
+      "text": "wire,",
+      "start": 122.62,
+      "end": 122.82
+    },
+    {
+      "text": "but",
+      "start": 122.88,
+      "end": 122.98
+    },
+    {
+      "text": "you",
+      "start": 123.04,
+      "end": 123.1
+    },
+    {
+      "text": "can",
+      "start": 123.14,
+      "end": 123.28
+    },
+    {
+      "text": "see",
+      "start": 123.36,
+      "end": 123.58
+    },
+    {
+      "text": "it",
+      "start": 124.08,
+      "end": 124.14
+    },
+    {
+      "text": "just",
+      "start": 124.2,
+      "end": 124.44
+    },
+    {
+      "text": "snaps",
+      "start": 124.58,
+      "end": 125.26
+    },
+    {
+      "text": "in",
+      "start": 125.34,
+      "end": 125.42
+    },
+    {
+      "text": "here,",
+      "start": 125.48,
+      "end": 125.66
+    },
+    {
+      "text": "and",
+      "start": 126.3,
+      "end": 126.36
+    },
+    {
+      "text": "you",
+      "start": 126.4,
+      "end": 126.46
+    },
+    {
+      "text": "kinda",
+      "start": 126.5,
+      "end": 126.68
+    },
+    {
+      "text": "run",
+      "start": 126.72,
+      "end": 126.86
+    },
+    {
+      "text": "it",
+      "start": 126.92,
+      "end": 127.0
+    },
+    {
+      "text": "around",
+      "start": 127.06,
+      "end": 127.64
+    },
+    {
+      "text": "back",
+      "start": 127.72,
+      "end": 128.0
+    },
+    {
+      "text": "and",
+      "start": 128.039,
+      "end": 128.16
+    },
+    {
+      "text": "forth",
+      "start": 128.24,
+      "end": 128.62
+    },
+    {
+      "text": "into",
+      "start": 129.199,
+      "end": 129.4
+    },
+    {
+      "text": "the",
+      "start": 129.44,
+      "end": 129.5
+    },
+    {
+      "text": "pattern",
+      "start": 129.6,
+      "end": 130.199
+    },
+    {
+      "text": "of",
+      "start": 130.28,
+      "end": 130.34
+    },
+    {
+      "text": "what",
+      "start": 130.38,
+      "end": 130.5
+    },
+    {
+      "text": "you",
+      "start": 130.58,
+      "end": 130.68
+    },
+    {
+      "text": "want,",
+      "start": 130.74,
+      "end": 130.94
+    },
+    {
+      "text": "the",
+      "start": 131.74,
+      "end": 131.8
+    },
+    {
+      "text": "areas",
+      "start": 131.84,
+      "end": 132.08
+    },
+    {
+      "text": "of",
+      "start": 132.14,
+      "end": 132.18
+    },
+    {
+      "text": "the",
+      "start": 132.22,
+      "end": 132.3
+    },
+    {
+      "text": "floor",
+      "start": 132.36,
+      "end": 132.52
+    },
+    {
+      "text": "you",
+      "start": 132.58,
+      "end": 132.66
+    },
+    {
+      "text": "want",
+      "start": 132.7,
+      "end": 132.88
+    },
+    {
+      "text": "heated.",
+      "start": 132.94,
+      "end": 133.28
+    },
+    {
+      "text": "I",
+      "start": 134.14,
+      "end": 134.2
+    },
+    {
+      "text": "also,",
+      "start": 134.3,
+      "end": 134.7
+    },
+    {
+      "text": "right",
+      "start": 135.18,
+      "end": 135.36
+    },
+    {
+      "text": "here,",
+      "start": 135.44,
+      "end": 135.68
+    },
+    {
+      "text": "I",
+      "start": 136.22,
+      "end": 136.26
+    },
+    {
+      "text": "did",
+      "start": 136.3,
+      "end": 136.4
+    },
+    {
+      "text": "a",
+      "start": 136.46,
+      "end": 136.5
+    },
+    {
+      "text": "drawing",
+      "start": 136.54,
+      "end": 136.84
+    },
+    {
+      "text": "for",
+      "start": 136.9,
+      "end": 136.98
+    },
+    {
+      "text": "my",
+      "start": 137.04,
+      "end": 137.16
+    },
+    {
+      "text": "tile",
+      "start": 137.24,
+      "end": 137.48
+    },
+    {
+      "text": "guy,",
+      "start": 137.54,
+      "end": 137.76
+    },
+    {
+      "text": "and",
+      "start": 138.68,
+      "end": 138.8
+    },
+    {
+      "text": "all",
+      "start": 138.94,
+      "end": 139.24
+    },
+    {
+      "text": "the",
+      "start": 139.28,
+      "end": 139.38
+    },
+    {
+      "text": "yellow",
+      "start": 139.42,
+      "end": 139.76
+    },
+    {
+      "text": "areas",
+      "start": 139.86,
+      "end": 140.3
+    },
+    {
+      "text": "are",
+      "start": 140.42,
+      "end": 140.52
+    },
+    {
+      "text": "the",
+      "start": 140.54,
+      "end": 140.62
+    },
+    {
+      "text": "areas",
+      "start": 140.7,
+      "end": 141.0
+    },
+    {
+      "text": "that",
+      "start": 141.04,
+      "end": 141.14
+    },
+    {
+      "text": "I",
+      "start": 141.26,
+      "end": 141.32
+    },
+    {
+      "text": "want",
+      "start": 141.38,
+      "end": 141.72
+    },
+    {
+      "text": "heated.",
+      "start": 141.78,
+      "end": 142.18
+    },
+    {
+      "text": "So",
+      "start": 142.64,
+      "end": 142.74
+    },
+    {
+      "text": "in",
+      "start": 142.94,
+      "end": 143.04
+    },
+    {
+      "text": "front",
+      "start": 143.08,
+      "end": 143.22
+    },
+    {
+      "text": "of",
+      "start": 143.26,
+      "end": 143.3
+    },
+    {
+      "text": "the",
+      "start": 143.34,
+      "end": 143.42
+    },
+    {
+      "text": "toilet,",
+      "start": 143.48,
+      "end": 143.94
+    },
+    {
+      "text": "the",
+      "start": 144.62,
+      "end": 144.72
+    },
+    {
+      "text": "vanity",
+      "start": 144.78,
+      "end": 145.18
+    },
+    {
+      "text": "is",
+      "start": 145.22,
+      "end": 145.34
+    },
+    {
+      "text": "here,",
+      "start": 145.38,
+      "end": 145.56
+    },
+    {
+      "text": "so",
+      "start": 145.68,
+      "end": 145.76
+    },
+    {
+      "text": "in",
+      "start": 145.8,
+      "end": 145.88
+    },
+    {
+      "text": "front",
+      "start": 145.94,
+      "end": 146.1
+    },
+    {
+      "text": "of",
+      "start": 146.14,
+      "end": 146.18
+    },
+    {
+      "text": "the",
+      "start": 146.22,
+      "end": 146.32
+    },
+    {
+      "text": "vanity,",
+      "start": 146.38,
+      "end": 146.9
+    },
+    {
+      "text": "and",
+      "start": 147.54,
+      "end": 147.62
+    },
+    {
+      "text": "then",
+      "start": 147.64,
+      "end": 147.78
+    },
+    {
+      "text": "the",
+      "start": 147.82,
+      "end": 147.94
+    },
+    {
+      "text": "tub",
+      "start": 148.02,
+      "end": 148.28
+    },
+    {
+      "text": "right",
+      "start": 148.78,
+      "end": 148.92
+    },
+    {
+      "text": "here.",
+      "start": 148.96,
+      "end": 149.12
+    },
+    {
+      "text": "So",
+      "start": 149.22,
+      "end": 149.34
+    },
+    {
+      "text": "when",
+      "start": 149.94,
+      "end": 150.04
+    },
+    {
+      "text": "you",
+      "start": 150.06,
+      "end": 150.12
+    },
+    {
+      "text": "get",
+      "start": 150.16,
+      "end": 150.26
+    },
+    {
+      "text": "out",
+      "start": 150.32,
+      "end": 150.4
+    },
+    {
+      "text": "of",
+      "start": 150.4,
+      "end": 150.42
+    },
+    {
+      "text": "the",
+      "start": 150.46,
+      "end": 150.54
+    },
+    {
+      "text": "tub",
+      "start": 150.6,
+      "end": 150.94
+    },
+    {
+      "text": "and",
+      "start": 151.0,
+      "end": 151.12
+    },
+    {
+      "text": "come",
+      "start": 151.18,
+      "end": 151.34
+    },
+    {
+      "text": "walk",
+      "start": 151.4,
+      "end": 151.62
+    },
+    {
+      "text": "into",
+      "start": 151.66,
+      "end": 151.82
+    },
+    {
+      "text": "the",
+      "start": 151.86,
+      "end": 151.92
+    },
+    {
+      "text": "bathroom",
+      "start": 151.96,
+      "end": 152.4
+    },
+    {
+      "text": "out",
+      "start": 152.46,
+      "end": 152.54
+    },
+    {
+      "text": "of",
+      "start": 152.56,
+      "end": 152.62
+    },
+    {
+      "text": "the",
+      "start": 152.64,
+      "end": 152.72
+    },
+    {
+      "text": "shower,",
+      "start": 152.78,
+      "end": 153.06
+    },
+    {
+      "text": "all",
+      "start": 153.56,
+      "end": 153.66
+    },
+    {
+      "text": "this",
+      "start": 153.7,
+      "end": 153.84
+    },
+    {
+      "text": "is",
+      "start": 153.9,
+      "end": 154.0
+    },
+    {
+      "text": "gonna",
+      "start": 154.06,
+      "end": 154.24
+    },
+    {
+      "text": "be",
+      "start": 154.28,
+      "end": 154.38
+    },
+    {
+      "text": "heated.",
+      "start": 154.44,
+      "end": 154.74
+    },
+    {
+      "text": "We",
+      "start": 154.82,
+      "end": 154.88
+    },
+    {
+      "text": "don't",
+      "start": 154.92,
+      "end": 155.02
+    },
+    {
+      "text": "need",
+      "start": 155.06,
+      "end": 155.16
+    },
+    {
+      "text": "to",
+      "start": 155.2,
+      "end": 155.24
+    },
+    {
+      "text": "heat",
+      "start": 155.28,
+      "end": 155.42
+    },
+    {
+      "text": "that",
+      "start": 155.48,
+      "end": 155.64
+    },
+    {
+      "text": "area",
+      "start": 155.68,
+      "end": 155.9
+    },
+    {
+      "text": "because",
+      "start": 155.94,
+      "end": 156.1
+    },
+    {
+      "text": "probably",
+      "start": 156.14,
+      "end": 156.38
+    },
+    {
+      "text": "nobody's",
+      "start": 156.4,
+      "end": 156.66
+    },
+    {
+      "text": "ever",
+      "start": 156.72,
+      "end": 156.86
+    },
+    {
+      "text": "gonna",
+      "start": 156.88,
+      "end": 157.04
+    },
+    {
+      "text": "be",
+      "start": 157.06,
+      "end": 157.16
+    },
+    {
+      "text": "standing",
+      "start": 157.24,
+      "end": 157.64
+    },
+    {
+      "text": "there,",
+      "start": 157.66,
+      "end": 157.8
+    },
+    {
+      "text": "and",
+      "start": 158.4,
+      "end": 158.48
+    },
+    {
+      "text": "we",
+      "start": 158.52,
+      "end": 158.6
+    },
+    {
+      "text": "don't",
+      "start": 158.62,
+      "end": 158.76
+    },
+    {
+      "text": "need",
+      "start": 158.78,
+      "end": 158.9
+    },
+    {
+      "text": "to",
+      "start": 158.94,
+      "end": 158.98
+    },
+    {
+      "text": "heat",
+      "start": 159.0,
+      "end": 159.14
+    },
+    {
+      "text": "the",
+      "start": 159.18,
+      "end": 159.22
+    },
+    {
+      "text": "area",
+      "start": 159.26,
+      "end": 159.44
+    },
+    {
+      "text": "behind",
+      "start": 159.5,
+      "end": 159.72
+    },
+    {
+      "text": "the",
+      "start": 159.74,
+      "end": 159.82
+    },
+    {
+      "text": "toilet",
+      "start": 159.9,
+      "end": 160.32
+    },
+    {
+      "text": "either.",
+      "start": 160.42,
+      "end": 160.74
+    },
+    {
+      "text": "But",
+      "start": 161.2,
+      "end": 161.32
+    },
+    {
+      "text": "a",
+      "start": 161.4,
+      "end": 161.42
+    },
+    {
+      "text": "lot",
+      "start": 161.48,
+      "end": 161.62
+    },
+    {
+      "text": "of",
+      "start": 161.66,
+      "end": 161.72
+    },
+    {
+      "text": "this",
+      "start": 161.76,
+      "end": 161.88
+    },
+    {
+      "text": "is",
+      "start": 161.94,
+      "end": 162.04
+    },
+    {
+      "text": "heated.",
+      "start": 162.1,
+      "end": 162.46
+    },
+    {
+      "text": "And",
+      "start": 162.66,
+      "end": 162.78
+    },
+    {
+      "text": "so",
+      "start": 162.86,
+      "end": 163.02
+    },
+    {
+      "text": "I",
+      "start": 163.64,
+      "end": 163.68
+    },
+    {
+      "text": "also",
+      "start": 163.7,
+      "end": 163.94
+    },
+    {
+      "text": "wanted",
+      "start": 163.96,
+      "end": 164.12
+    },
+    {
+      "text": "to",
+      "start": 164.14,
+      "end": 164.22
+    },
+    {
+      "text": "show",
+      "start": 164.28,
+      "end": 164.54
+    },
+    {
+      "text": "you",
+      "start": 164.6,
+      "end": 164.74
+    },
+    {
+      "text": "this",
+      "start": 165.84,
+      "end": 166.0
+    },
+    {
+      "text": "box",
+      "start": 166.06,
+      "end": 166.32
+    },
+    {
+      "text": "right",
+      "start": 166.38,
+      "end": 166.5
+    },
+    {
+      "text": "here",
+      "start": 166.56,
+      "end": 166.76
+    },
+    {
+      "text": "is",
+      "start": 167.98,
+      "end": 168.14
+    },
+    {
+      "text": "the",
+      "start": 168.2,
+      "end": 168.32
+    },
+    {
+      "text": "wire",
+      "start": 168.38,
+      "end": 168.8
+    },
+    {
+      "text": "that",
+      "start": 169.74,
+      "end": 169.84
+    },
+    {
+      "text": "we're",
+      "start": 169.86,
+      "end": 169.96
+    },
+    {
+      "text": "gonna",
+      "start": 170.0,
+      "end": 170.22
+    },
+    {
+      "text": "use.",
+      "start": 170.32,
+      "end": 170.56
+    },
+    {
+      "text": "And",
+      "start": 170.8,
+      "end": 170.84
+    },
+    {
+      "text": "if",
+      "start": 170.88,
+      "end": 170.94
+    },
+    {
+      "text": "you",
+      "start": 170.98,
+      "end": 171.04
+    },
+    {
+      "text": "look",
+      "start": 171.06,
+      "end": 171.18
+    },
+    {
+      "text": "at",
+      "start": 171.22,
+      "end": 171.28
+    },
+    {
+      "text": "this",
+      "start": 171.34,
+      "end": 171.48
+    },
+    {
+      "text": "picture",
+      "start": 171.54,
+      "end": 171.78
+    },
+    {
+      "text": "right",
+      "start": 171.8,
+      "end": 171.92
+    },
+    {
+      "text": "here,",
+      "start": 171.96,
+      "end": 172.08
+    },
+    {
+      "text": "it",
+      "start": 172.1,
+      "end": 172.18
+    },
+    {
+      "text": "can",
+      "start": 172.22,
+      "end": 172.34
+    },
+    {
+      "text": "kinda",
+      "start": 172.4,
+      "end": 172.6
+    },
+    {
+      "text": "show",
+      "start": 172.66,
+      "end": 172.86
+    },
+    {
+      "text": "you",
+      "start": 172.92,
+      "end": 173.02
+    },
+    {
+      "text": "how",
+      "start": 173.08,
+      "end": 173.22
+    },
+    {
+      "text": "this",
+      "start": 173.26,
+      "end": 173.4
+    },
+    {
+      "text": "all",
+      "start": 173.48,
+      "end": 173.6
+    },
+    {
+      "text": "works.",
+      "start": 173.64,
+      "end": 174.0
+    },
+    {
+      "text": "So",
+      "start": 174.52,
+      "end": 174.6
+    },
+    {
+      "text": "you",
+      "start": 174.62,
+      "end": 174.68
+    },
+    {
+      "text": "put",
+      "start": 174.72,
+      "end": 174.82
+    },
+    {
+      "text": "the",
+      "start": 174.86,
+      "end": 174.92
+    },
+    {
+      "text": "wire",
+      "start": 174.96,
+      "end": 175.28
+    },
+    {
+      "text": "in",
+      "start": 175.32,
+      "end": 175.46
+    },
+    {
+      "text": "first,",
+      "start": 175.54,
+      "end": 175.9
+    },
+    {
+      "text": "then",
+      "start": 176.38,
+      "end": 176.5
+    },
+    {
+      "text": "you",
+      "start": 176.54,
+      "end": 176.6
+    },
+    {
+      "text": "put",
+      "start": 176.64,
+      "end": 176.76
+    },
+    {
+      "text": "the",
+      "start": 176.8,
+      "end": 176.9
+    },
+    {
+      "text": "thinset",
+      "start": 176.96,
+      "end": 177.38
+    },
+    {
+      "text": "down,",
+      "start": 177.46,
+      "end": 177.66
+    },
+    {
+      "text": "and",
+      "start": 177.72,
+      "end": 177.8
+    },
+    {
+      "text": "then",
+      "start": 177.82,
+      "end": 177.94
+    },
+    {
+      "text": "you",
+      "start": 177.98,
+      "end": 178.12
+    },
+    {
+      "text": "set",
+      "start": 178.18,
+      "end": 178.32
+    },
+    {
+      "text": "your",
+      "start": 178.36,
+      "end": 178.46
+    },
+    {
+      "text": "tile.",
+      "start": 178.52,
+      "end": 178.92
+    },
+    {
+      "text": "Um,",
+      "start": 180.08,
+      "end": 180.18
+    },
+    {
+      "text": "this",
+      "start": 180.8,
+      "end": 180.96
+    },
+    {
+      "text": "box",
+      "start": 181.34,
+      "end": 181.8
+    },
+    {
+      "text": "is",
+      "start": 181.9,
+      "end": 182.12
+    },
+    {
+      "text": "a--",
+      "start": 182.24,
+      "end": 182.36
+    },
+    {
+      "text": "I",
+      "start": 183.98,
+      "end": 184.0
+    },
+    {
+      "text": "think",
+      "start": 184.04,
+      "end": 184.2
+    },
+    {
+      "text": "this",
+      "start": 184.24,
+      "end": 184.36
+    },
+    {
+      "text": "is",
+      "start": 184.42,
+      "end": 184.52
+    },
+    {
+      "text": "about",
+      "start": 184.58,
+      "end": 184.82
+    },
+    {
+      "text": "a",
+      "start": 184.9,
+      "end": 184.98
+    },
+    {
+      "text": "300",
+      "start": 185.24,
+      "end": 185.68
+    },
+    {
+      "text": "square",
+      "start": 186.22,
+      "end": 186.48
+    },
+    {
+      "text": "foot",
+      "start": 186.54,
+      "end": 186.7
+    },
+    {
+      "text": "box.",
+      "start": 186.8,
+      "end": 187.26
+    },
+    {
+      "text": "And",
+      "start": 189.48,
+      "end": 189.58
+    },
+    {
+      "text": "so",
+      "start": 189.66,
+      "end": 189.82
+    },
+    {
+      "text": "it's",
+      "start": 190.18,
+      "end": 190.3
+    },
+    {
+      "text": "got",
+      "start": 190.36,
+      "end": 190.52
+    },
+    {
+      "text": "the",
+      "start": 190.56,
+      "end": 190.64
+    },
+    {
+      "text": "connectors,",
+      "start": 190.7,
+      "end": 191.5
+    },
+    {
+      "text": "it's",
+      "start": 192.18,
+      "end": 192.24
+    },
+    {
+      "text": "got",
+      "start": 192.28,
+      "end": 192.4
+    },
+    {
+      "text": "instructions,",
+      "start": 192.42,
+      "end": 193.18
+    },
+    {
+      "text": "and,",
+      "start": 193.9,
+      "end": 194.1
+    },
+    {
+      "text": "and",
+      "start": 194.24,
+      "end": 194.34
+    },
+    {
+      "text": "then",
+      "start": 194.4,
+      "end": 194.54
+    },
+    {
+      "text": "this",
+      "start": 194.6,
+      "end": 194.74
+    },
+    {
+      "text": "is",
+      "start": 194.8,
+      "end": 194.9
+    },
+    {
+      "text": "the",
+      "start": 194.96,
+      "end": 195.02
+    },
+    {
+      "text": "wire",
+      "start": 195.08,
+      "end": 195.62
+    },
+    {
+      "text": "that",
+      "start": 195.66,
+      "end": 195.76
+    },
+    {
+      "text": "goes",
+      "start": 195.82,
+      "end": 196.04
+    },
+    {
+      "text": "in",
+      "start": 196.1,
+      "end": 196.18
+    },
+    {
+      "text": "there.",
+      "start": 196.24,
+      "end": 196.48
+    },
+    {
+      "text": "And,",
+      "start": 196.84,
+      "end": 197.24
+    },
+    {
+      "text": "um,",
+      "start": 197.34,
+      "end": 197.52
+    },
+    {
+      "text": "just,",
+      "start": 198.5,
+      "end": 198.7
+    },
+    {
+      "text": "you",
+      "start": 198.74,
+      "end": 198.78
+    },
+    {
+      "text": "know,",
+      "start": 198.82,
+      "end": 198.9
+    },
+    {
+      "text": "this",
+      "start": 198.98,
+      "end": 199.16
+    },
+    {
+      "text": "box",
+      "start": 199.2,
+      "end": 199.48
+    },
+    {
+      "text": "of",
+      "start": 199.54,
+      "end": 199.66
+    },
+    {
+      "text": "stuff",
+      "start": 200.14,
+      "end": 200.34
+    },
+    {
+      "text": "is,",
+      "start": 200.4,
+      "end": 200.52
+    },
+    {
+      "text": "is",
+      "start": 200.92,
+      "end": 201.02
+    },
+    {
+      "text": "only",
+      "start": 201.08,
+      "end": 201.24
+    },
+    {
+      "text": "about",
+      "start": 201.28,
+      "end": 201.48
+    },
+    {
+      "text": "1,000",
+      "start": 201.5,
+      "end": 201.9
+    },
+    {
+      "text": "bucks.",
+      "start": 201.98,
+      "end": 202.3
+    },
+    {
+      "text": "Isn't",
+      "start": 202.46,
+      "end": 202.62
+    },
+    {
+      "text": "that",
+      "start": 202.64,
+      "end": 202.74
+    },
+    {
+      "text": "crazy?",
+      "start": 202.78,
+      "end": 203.12
+    },
+    {
+      "text": "This",
+      "start": 203.16,
+      "end": 203.3
+    },
+    {
+      "text": "little",
+      "start": 203.38,
+      "end": 203.52
+    },
+    {
+      "text": "box,",
+      "start": 203.58,
+      "end": 203.88
+    },
+    {
+      "text": "$1,000.",
+      "start": 203.98,
+      "end": 204.88
+    },
+    {
+      "text": "Um,",
+      "start": 205.62,
+      "end": 205.74
+    },
+    {
+      "text": "and",
+      "start": 206.46,
+      "end": 206.54
+    },
+    {
+      "text": "then",
+      "start": 206.58,
+      "end": 206.78
+    },
+    {
+      "text": "on",
+      "start": 206.86,
+      "end": 206.94
+    },
+    {
+      "text": "top",
+      "start": 207.0,
+      "end": 207.2
+    },
+    {
+      "text": "of",
+      "start": 207.24,
+      "end": 207.28
+    },
+    {
+      "text": "that,",
+      "start": 207.34,
+      "end": 207.52
+    },
+    {
+      "text": "doesn't",
+      "start": 207.82,
+      "end": 208.06
+    },
+    {
+      "text": "include",
+      "start": 208.12,
+      "end": 208.42
+    },
+    {
+      "text": "the",
+      "start": 208.46,
+      "end": 208.56
+    },
+    {
+      "text": "thermostat,",
+      "start": 208.64,
+      "end": 209.12
+    },
+    {
+      "text": "so",
+      "start": 209.24,
+      "end": 209.36
+    },
+    {
+      "text": "we're",
+      "start": 209.88,
+      "end": 209.98
+    },
+    {
+      "text": "gonna",
+      "start": 210.0,
+      "end": 210.1
+    },
+    {
+      "text": "be",
+      "start": 210.14,
+      "end": 210.2
+    },
+    {
+      "text": "putting",
+      "start": 210.24,
+      "end": 210.42
+    },
+    {
+      "text": "a",
+      "start": 210.46,
+      "end": 210.52
+    },
+    {
+      "text": "programmable",
+      "start": 210.58,
+      "end": 211.3
+    },
+    {
+      "text": "electronic",
+      "start": 211.8,
+      "end": 212.36
+    },
+    {
+      "text": "thermostat,",
+      "start": 212.4,
+      "end": 212.98
+    },
+    {
+      "text": "and",
+      "start": 213.62,
+      "end": 213.7
+    },
+    {
+      "text": "that",
+      "start": 213.76,
+      "end": 213.86
+    },
+    {
+      "text": "is",
+      "start": 214.04,
+      "end": 214.14
+    },
+    {
+      "text": "gonna",
+      "start": 214.18,
+      "end": 214.32
+    },
+    {
+      "text": "go",
+      "start": 214.36,
+      "end": 214.46
+    },
+    {
+      "text": "right",
+      "start": 214.5,
+      "end": 214.62
+    },
+    {
+      "text": "here.",
+      "start": 214.66,
+      "end": 214.78
+    },
+    {
+      "text": "This",
+      "start": 214.84,
+      "end": 214.94
+    },
+    {
+      "text": "is",
+      "start": 215.0,
+      "end": 215.06
+    },
+    {
+      "text": "the",
+      "start": 215.1,
+      "end": 215.16
+    },
+    {
+      "text": "old",
+      "start": 215.22,
+      "end": 215.34
+    },
+    {
+      "text": "thermostat,",
+      "start": 215.38,
+      "end": 215.8
+    },
+    {
+      "text": "'cause",
+      "start": 215.86,
+      "end": 215.98
+    },
+    {
+      "text": "they",
+      "start": 216.02,
+      "end": 216.14
+    },
+    {
+      "text": "used",
+      "start": 216.22,
+      "end": 216.36
+    },
+    {
+      "text": "to",
+      "start": 216.4,
+      "end": 216.48
+    },
+    {
+      "text": "have",
+      "start": 216.54,
+      "end": 216.76
+    },
+    {
+      "text": "a",
+      "start": 216.82,
+      "end": 216.86
+    },
+    {
+      "text": "heated",
+      "start": 216.92,
+      "end": 217.18
+    },
+    {
+      "text": "floor",
+      "start": 217.24,
+      "end": 217.48
+    },
+    {
+      "text": "system",
+      "start": 217.54,
+      "end": 217.96
+    },
+    {
+      "text": "here.",
+      "start": 218.72,
+      "end": 219.0
+    },
+    {
+      "text": "But",
+      "start": 219.8,
+      "end": 220.0
+    },
+    {
+      "text": "if",
+      "start": 221.18,
+      "end": 221.26
+    },
+    {
+      "text": "you",
+      "start": 221.3,
+      "end": 221.36
+    },
+    {
+      "text": "decide",
+      "start": 221.4,
+      "end": 221.72
+    },
+    {
+      "text": "you",
+      "start": 221.76,
+      "end": 221.8
+    },
+    {
+      "text": "don't",
+      "start": 221.84,
+      "end": 221.98
+    },
+    {
+      "text": "like",
+      "start": 222.02,
+      "end": 222.18
+    },
+    {
+      "text": "the",
+      "start": 222.22,
+      "end": 222.3
+    },
+    {
+      "text": "tile",
+      "start": 222.38,
+      "end": 222.74
+    },
+    {
+      "text": "or",
+      "start": 222.8,
+      "end": 222.88
+    },
+    {
+      "text": "you",
+      "start": 222.92,
+      "end": 223.0
+    },
+    {
+      "text": "wanna",
+      "start": 223.04,
+      "end": 223.22
+    },
+    {
+      "text": "remodel",
+      "start": 223.26,
+      "end": 223.66
+    },
+    {
+      "text": "the",
+      "start": 223.7,
+      "end": 223.8
+    },
+    {
+      "text": "bathroom,",
+      "start": 223.84,
+      "end": 224.3
+    },
+    {
+      "text": "there's",
+      "start": 224.8,
+      "end": 225.0
+    },
+    {
+      "text": "no",
+      "start": 225.04,
+      "end": 225.18
+    },
+    {
+      "text": "way",
+      "start": 225.22,
+      "end": 225.34
+    },
+    {
+      "text": "of",
+      "start": 225.4,
+      "end": 225.48
+    },
+    {
+      "text": "saving",
+      "start": 225.56,
+      "end": 225.84
+    },
+    {
+      "text": "the",
+      "start": 225.86,
+      "end": 225.9
+    },
+    {
+      "text": "heated",
+      "start": 225.94,
+      "end": 226.16
+    },
+    {
+      "text": "floor",
+      "start": 226.22,
+      "end": 226.68
+    },
+    {
+      "text": "you",
+      "start": 226.76,
+      "end": 226.82
+    },
+    {
+      "text": "already",
+      "start": 226.88,
+      "end": 227.2
+    },
+    {
+      "text": "had.",
+      "start": 227.26,
+      "end": 227.66
+    },
+    {
+      "text": "And",
+      "start": 228.26,
+      "end": 228.38
+    },
+    {
+      "text": "so",
+      "start": 228.46,
+      "end": 228.62
+    },
+    {
+      "text": "anyways,",
+      "start": 228.68,
+      "end": 229.04
+    },
+    {
+      "text": "so",
+      "start": 229.56,
+      "end": 229.66
+    },
+    {
+      "text": "this",
+      "start": 229.72,
+      "end": 229.84
+    },
+    {
+      "text": "is",
+      "start": 229.88,
+      "end": 229.98
+    },
+    {
+      "text": "what",
+      "start": 230.04,
+      "end": 230.3
+    },
+    {
+      "text": "we're",
+      "start": 230.34,
+      "end": 230.44
+    },
+    {
+      "text": "doing.",
+      "start": 230.48,
+      "end": 230.68
+    },
+    {
+      "text": "So",
+      "start": 230.74,
+      "end": 230.8
+    },
+    {
+      "text": "you",
+      "start": 230.84,
+      "end": 230.9
+    },
+    {
+      "text": "can",
+      "start": 230.92,
+      "end": 231.02
+    },
+    {
+      "text": "see",
+      "start": 231.08,
+      "end": 231.2
+    },
+    {
+      "text": "this",
+      "start": 231.24,
+      "end": 231.4
+    },
+    {
+      "text": "mat.",
+      "start": 231.48,
+      "end": 231.8
+    },
+    {
+      "text": "The",
+      "start": 232.3,
+      "end": 232.36
+    },
+    {
+      "text": "whole",
+      "start": 232.4,
+      "end": 232.58
+    },
+    {
+      "text": "floor",
+      "start": 232.64,
+      "end": 232.88
+    },
+    {
+      "text": "is",
+      "start": 232.92,
+      "end": 233.04
+    },
+    {
+      "text": "covered",
+      "start": 233.1,
+      "end": 233.3
+    },
+    {
+      "text": "with",
+      "start": 233.4,
+      "end": 233.5
+    },
+    {
+      "text": "the",
+      "start": 233.52,
+      "end": 233.58
+    },
+    {
+      "text": "mat,",
+      "start": 233.64,
+      "end": 233.82
+    },
+    {
+      "text": "but",
+      "start": 233.9,
+      "end": 233.98
+    },
+    {
+      "text": "when",
+      "start": 234.04,
+      "end": 234.16
+    },
+    {
+      "text": "they",
+      "start": 234.18,
+      "end": 234.3
+    },
+    {
+      "text": "do",
+      "start": 234.36,
+      "end": 234.46
+    },
+    {
+      "text": "the",
+      "start": 234.5,
+      "end": 234.58
+    },
+    {
+      "text": "wire,",
+      "start": 234.64,
+      "end": 234.94
+    },
+    {
+      "text": "they'll",
+      "start": 235.38,
+      "end": 235.54
+    },
+    {
+      "text": "just",
+      "start": 235.58,
+      "end": 235.72
+    },
+    {
+      "text": "do",
+      "start": 235.76,
+      "end": 235.86
+    },
+    {
+      "text": "the",
+      "start": 235.92,
+      "end": 235.98
+    },
+    {
+      "text": "wire",
+      "start": 236.04,
+      "end": 236.36
+    },
+    {
+      "text": "in",
+      "start": 236.44,
+      "end": 236.52
+    },
+    {
+      "text": "the",
+      "start": 236.56,
+      "end": 236.68
+    },
+    {
+      "text": "areas",
+      "start": 236.78,
+      "end": 237.18
+    },
+    {
+      "text": "where",
+      "start": 237.24,
+      "end": 237.44
+    },
+    {
+      "text": "we",
+      "start": 237.5,
+      "end": 237.62
+    },
+    {
+      "text": "want",
+      "start": 237.66,
+      "end": 237.82
+    },
+    {
+      "text": "it",
+      "start": 237.86,
+      "end": 237.98
+    },
+    {
+      "text": "heated.",
+      "start": 238.04,
+      "end": 238.62
+    },
+    {
+      "text": "And",
+      "start": 239.16,
+      "end": 239.26
+    },
+    {
+      "text": "then",
+      "start": 239.3,
+      "end": 239.44
+    },
+    {
+      "text": "they'll",
+      "start": 239.48,
+      "end": 239.6
+    },
+    {
+      "text": "put",
+      "start": 239.64,
+      "end": 239.76
+    },
+    {
+      "text": "the",
+      "start": 239.8,
+      "end": 239.88
+    },
+    {
+      "text": "tile",
+      "start": 239.94,
+      "end": 240.18
+    },
+    {
+      "text": "on",
+      "start": 240.24,
+      "end": 240.32
+    },
+    {
+      "text": "top",
+      "start": 240.38,
+      "end": 240.58
+    },
+    {
+      "text": "of",
+      "start": 240.64,
+      "end": 240.7
+    },
+    {
+      "text": "it.",
+      "start": 240.74,
+      "end": 240.82
+    },
+    {
+      "text": "So",
+      "start": 240.94,
+      "end": 241.08
+    },
+    {
+      "text": "I'll",
+      "start": 241.88,
+      "end": 241.96
+    },
+    {
+      "text": "try",
+      "start": 242.02,
+      "end": 242.12
+    },
+    {
+      "text": "and",
+      "start": 242.14,
+      "end": 242.22
+    },
+    {
+      "text": "shoot",
+      "start": 242.26,
+      "end": 242.4
+    },
+    {
+      "text": "a",
+      "start": 242.44,
+      "end": 242.48
+    },
+    {
+      "text": "video",
+      "start": 242.54,
+      "end": 242.86
+    },
+    {
+      "text": "when",
+      "start": 242.9,
+      "end": 243.0
+    },
+    {
+      "text": "the",
+      "start": 243.04,
+      "end": 243.14
+    },
+    {
+      "text": "tile",
+      "start": 243.18,
+      "end": 243.38
+    },
+    {
+      "text": "guy's",
+      "start": 243.46,
+      "end": 243.7
+    },
+    {
+      "text": "done",
+      "start": 243.74,
+      "end": 243.9
+    },
+    {
+      "text": "laying",
+      "start": 243.94,
+      "end": 244.14
+    },
+    {
+      "text": "the",
+      "start": 244.18,
+      "end": 244.24
+    },
+    {
+      "text": "wire",
+      "start": 244.3,
+      "end": 244.56
+    },
+    {
+      "text": "so",
+      "start": 244.66,
+      "end": 244.76
+    },
+    {
+      "text": "you",
+      "start": 244.8,
+      "end": 244.84
+    },
+    {
+      "text": "can",
+      "start": 244.88,
+      "end": 244.98
+    },
+    {
+      "text": "take",
+      "start": 245.02,
+      "end": 245.16
+    },
+    {
+      "text": "a",
+      "start": 245.22,
+      "end": 245.26
+    },
+    {
+      "text": "look",
+      "start": 245.3,
+      "end": 245.44
+    },
+    {
+      "text": "at",
+      "start": 245.48,
+      "end": 245.56
+    },
+    {
+      "text": "that.",
+      "start": 245.62,
+      "end": 245.88
+    },
+    {
+      "text": "And",
+      "start": 246.3,
+      "end": 246.36
+    },
+    {
+      "text": "one",
+      "start": 246.42,
+      "end": 246.5
+    },
+    {
+      "text": "thing",
+      "start": 246.54,
+      "end": 246.64
+    },
+    {
+      "text": "you",
+      "start": 246.68,
+      "end": 246.74
+    },
+    {
+      "text": "have",
+      "start": 246.78,
+      "end": 246.88
+    },
+    {
+      "text": "to",
+      "start": 246.92,
+      "end": 246.96
+    },
+    {
+      "text": "be",
+      "start": 247.0,
+      "end": 247.06
+    },
+    {
+      "text": "careful",
+      "start": 247.12,
+      "end": 247.4
+    },
+    {
+      "text": "of",
+      "start": 247.44,
+      "end": 247.52
+    },
+    {
+      "text": "if",
+      "start": 247.58,
+      "end": 247.68
+    },
+    {
+      "text": "you're",
+      "start": 247.72,
+      "end": 247.82
+    },
+    {
+      "text": "doing",
+      "start": 247.86,
+      "end": 248.08
+    },
+    {
+      "text": "this",
+      "start": 248.14,
+      "end": 248.36
+    },
+    {
+      "text": "is",
+      "start": 248.42,
+      "end": 248.58
+    },
+    {
+      "text": "after",
+      "start": 248.7,
+      "end": 248.88
+    },
+    {
+      "text": "you",
+      "start": 248.9,
+      "end": 248.96
+    },
+    {
+      "text": "lay",
+      "start": 249.02,
+      "end": 249.12
+    },
+    {
+      "text": "all",
+      "start": 249.18,
+      "end": 249.26
+    },
+    {
+      "text": "that",
+      "start": 249.32,
+      "end": 249.48
+    },
+    {
+      "text": "wire,",
+      "start": 249.54,
+      "end": 249.92
+    },
+    {
+      "text": "you",
+      "start": 250.84,
+      "end": 250.9
+    },
+    {
+      "text": "need",
+      "start": 250.94,
+      "end": 251.06
+    },
+    {
+      "text": "to",
+      "start": 251.08,
+      "end": 251.22
+    },
+    {
+      "text": "do",
+      "start": 251.26,
+      "end": 251.36
+    },
+    {
+      "text": "what's",
+      "start": 251.38,
+      "end": 251.54
+    },
+    {
+      "text": "called",
+      "start": 251.6,
+      "end": 251.78
+    },
+    {
+      "text": "a",
+      "start": 251.82,
+      "end": 251.86
+    },
+    {
+      "text": "continuity",
+      "start": 251.94,
+      "end": 252.48
+    },
+    {
+      "text": "test,",
+      "start": 252.6,
+      "end": 253.08
+    },
+    {
+      "text": "and",
+      "start": 253.7,
+      "end": 253.78
+    },
+    {
+      "text": "there's",
+      "start": 253.8,
+      "end": 253.96
+    },
+    {
+      "text": "a",
+      "start": 253.98,
+      "end": 254.0
+    },
+    {
+      "text": "little",
+      "start": 254.02,
+      "end": 254.18
+    },
+    {
+      "text": "device",
+      "start": 254.22,
+      "end": 254.56
+    },
+    {
+      "text": "you",
+      "start": 254.6,
+      "end": 254.68
+    },
+    {
+      "text": "can",
+      "start": 254.74,
+      "end": 254.86
+    },
+    {
+      "text": "get",
+      "start": 254.9,
+      "end": 255.02
+    },
+    {
+      "text": "at",
+      "start": 255.04,
+      "end": 255.16
+    },
+    {
+      "text": "Home",
+      "start": 255.22,
+      "end": 255.36
+    },
+    {
+      "text": "Depot",
+      "start": 255.42,
+      "end": 255.78
+    },
+    {
+      "text": "or",
+      "start": 255.84,
+      "end": 255.96
+    },
+    {
+      "text": "your",
+      "start": 256.44,
+      "end": 256.5
+    },
+    {
+      "text": "electrician'll",
+      "start": 256.54,
+      "end": 257.079
+    },
+    {
+      "text": "have",
+      "start": 257.14,
+      "end": 257.36
+    },
+    {
+      "text": "it,",
+      "start": 257.399,
+      "end": 257.54
+    },
+    {
+      "text": "um,",
+      "start": 257.94,
+      "end": 258.14
+    },
+    {
+      "text": "that",
+      "start": 258.88,
+      "end": 258.94
+    },
+    {
+      "text": "you",
+      "start": 258.98,
+      "end": 259.04
+    },
+    {
+      "text": "can",
+      "start": 259.079,
+      "end": 259.16
+    },
+    {
+      "text": "attach",
+      "start": 259.22,
+      "end": 259.64
+    },
+    {
+      "text": "to",
+      "start": 259.68,
+      "end": 259.8
+    },
+    {
+      "text": "both",
+      "start": 259.86,
+      "end": 260.079
+    },
+    {
+      "text": "of",
+      "start": 260.12,
+      "end": 260.18
+    },
+    {
+      "text": "the,",
+      "start": 260.22,
+      "end": 260.279
+    },
+    {
+      "text": "the",
+      "start": 260.54,
+      "end": 260.62
+    },
+    {
+      "text": "two",
+      "start": 260.76,
+      "end": 260.92
+    },
+    {
+      "text": "ends",
+      "start": 261.0,
+      "end": 261.279
+    },
+    {
+      "text": "of",
+      "start": 261.36,
+      "end": 261.42
+    },
+    {
+      "text": "the",
+      "start": 261.48,
+      "end": 261.54
+    },
+    {
+      "text": "wire",
+      "start": 261.6,
+      "end": 261.98
+    },
+    {
+      "text": "and",
+      "start": 262.66,
+      "end": 262.74
+    },
+    {
+      "text": "make",
+      "start": 262.78,
+      "end": 262.92
+    },
+    {
+      "text": "sure",
+      "start": 262.98,
+      "end": 263.12
+    },
+    {
+      "text": "there's",
+      "start": 263.14,
+      "end": 263.32
+    },
+    {
+      "text": "no",
+      "start": 263.36,
+      "end": 263.46
+    },
+    {
+      "text": "breaks",
+      "start": 263.56,
+      "end": 263.88
+    },
+    {
+      "text": "in",
+      "start": 263.92,
+      "end": 263.98
+    },
+    {
+      "text": "it,",
+      "start": 264.02,
+      "end": 264.08
+    },
+    {
+      "text": "that",
+      "start": 264.16,
+      "end": 264.3
+    },
+    {
+      "text": "c-",
+      "start": 264.66,
+      "end": 264.68
+    },
+    {
+      "text": "continuity",
+      "start": 264.94,
+      "end": 265.46
+    },
+    {
+      "text": "or",
+      "start": 265.5,
+      "end": 265.56
+    },
+    {
+      "text": "con,",
+      "start": 265.8,
+      "end": 266.16
+    },
+    {
+      "text": "um,",
+      "start": 266.4,
+      "end": 266.56
+    },
+    {
+      "text": "current",
+      "start": 267.74,
+      "end": 268.18
+    },
+    {
+      "text": "goes",
+      "start": 268.6,
+      "end": 268.9
+    },
+    {
+      "text": "through",
+      "start": 269.0,
+      "end": 269.54
+    },
+    {
+      "text": "all",
+      "start": 269.64,
+      "end": 269.76
+    },
+    {
+      "text": "of",
+      "start": 269.82,
+      "end": 269.9
+    },
+    {
+      "text": "that",
+      "start": 269.94,
+      "end": 270.12
+    },
+    {
+      "text": "wire",
+      "start": 270.16,
+      "end": 270.4
+    },
+    {
+      "text": "so",
+      "start": 270.48,
+      "end": 270.58
+    },
+    {
+      "text": "there's",
+      "start": 270.6,
+      "end": 270.74
+    },
+    {
+      "text": "not",
+      "start": 270.78,
+      "end": 270.88
+    },
+    {
+      "text": "a",
+      "start": 270.92,
+      "end": 270.98
+    },
+    {
+      "text": "break",
+      "start": 271.02,
+      "end": 271.24
+    },
+    {
+      "text": "in",
+      "start": 271.28,
+      "end": 271.34
+    },
+    {
+      "text": "it",
+      "start": 271.38,
+      "end": 271.46
+    },
+    {
+      "text": "somewhere,",
+      "start": 271.5,
+      "end": 271.72
+    },
+    {
+      "text": "'cause",
+      "start": 271.82,
+      "end": 271.96
+    },
+    {
+      "text": "it'd",
+      "start": 271.98,
+      "end": 272.02
+    },
+    {
+      "text": "be",
+      "start": 272.04,
+      "end": 272.12
+    },
+    {
+      "text": "terrible",
+      "start": 272.18,
+      "end": 272.58
+    },
+    {
+      "text": "if",
+      "start": 273.28,
+      "end": 273.36
+    },
+    {
+      "text": "you",
+      "start": 273.44,
+      "end": 273.54
+    },
+    {
+      "text": "got",
+      "start": 273.9,
+      "end": 274.02
+    },
+    {
+      "text": "it",
+      "start": 274.04,
+      "end": 274.1
+    },
+    {
+      "text": "all",
+      "start": 274.14,
+      "end": 274.26
+    },
+    {
+      "text": "laid,",
+      "start": 274.32,
+      "end": 274.54
+    },
+    {
+      "text": "put",
+      "start": 274.64,
+      "end": 274.76
+    },
+    {
+      "text": "the",
+      "start": 274.78,
+      "end": 274.86
+    },
+    {
+      "text": "tile",
+      "start": 274.9,
+      "end": 275.12
+    },
+    {
+      "text": "down",
+      "start": 275.2,
+      "end": 275.4
+    },
+    {
+      "text": "and",
+      "start": 275.44,
+      "end": 275.5
+    },
+    {
+      "text": "went",
+      "start": 275.52,
+      "end": 275.64
+    },
+    {
+      "text": "to",
+      "start": 275.66,
+      "end": 275.7
+    },
+    {
+      "text": "hook",
+      "start": 275.72,
+      "end": 275.86
+    },
+    {
+      "text": "it",
+      "start": 275.9,
+      "end": 275.96
+    },
+    {
+      "text": "up",
+      "start": 276.02,
+      "end": 276.14
+    },
+    {
+      "text": "and",
+      "start": 276.18,
+      "end": 276.24
+    },
+    {
+      "text": "there",
+      "start": 276.26,
+      "end": 276.36
+    },
+    {
+      "text": "was",
+      "start": 276.38,
+      "end": 276.48
+    },
+    {
+      "text": "a",
+      "start": 276.52,
+      "end": 276.56
+    },
+    {
+      "text": "break",
+      "start": 276.64,
+      "end": 277.0
+    },
+    {
+      "text": "in",
+      "start": 277.44,
+      "end": 277.5
+    },
+    {
+      "text": "the",
+      "start": 277.54,
+      "end": 277.6
+    },
+    {
+      "text": "wire.",
+      "start": 277.64,
+      "end": 277.8
+    },
+    {
+      "text": "'Cause",
+      "start": 277.92,
+      "end": 278.04
+    },
+    {
+      "text": "sometimes",
+      "start": 278.06,
+      "end": 278.46
+    },
+    {
+      "text": "maybe",
+      "start": 278.56,
+      "end": 278.76
+    },
+    {
+      "text": "if",
+      "start": 278.8,
+      "end": 278.86
+    },
+    {
+      "text": "it",
+      "start": 278.9,
+      "end": 278.96
+    },
+    {
+      "text": "got",
+      "start": 279.0,
+      "end": 279.18
+    },
+    {
+      "text": "kinked",
+      "start": 279.24,
+      "end": 279.48
+    },
+    {
+      "text": "or",
+      "start": 279.54,
+      "end": 279.62
+    },
+    {
+      "text": "something",
+      "start": 279.68,
+      "end": 279.94
+    },
+    {
+      "text": "it",
+      "start": 279.98,
+      "end": 280.06
+    },
+    {
+      "text": "might",
+      "start": 280.1,
+      "end": 280.28
+    },
+    {
+      "text": "break.",
+      "start": 280.34,
+      "end": 280.72
+    },
+    {
+      "text": "And",
+      "start": 281.34,
+      "end": 281.5
+    },
+    {
+      "text": "so,",
+      "start": 281.64,
+      "end": 281.86
+    },
+    {
+      "text": "um,",
+      "start": 282.12,
+      "end": 282.34
+    },
+    {
+      "text": "this",
+      "start": 283.82,
+      "end": 283.94
+    },
+    {
+      "text": "can",
+      "start": 283.98,
+      "end": 284.08
+    },
+    {
+      "text": "be",
+      "start": 284.12,
+      "end": 284.18
+    },
+    {
+      "text": "a",
+      "start": 284.22,
+      "end": 284.28
+    },
+    {
+      "text": "beautiful",
+      "start": 284.32,
+      "end": 284.66
+    },
+    {
+      "text": "bathroom.",
+      "start": 284.74,
+      "end": 285.22
+    },
+    {
+      "text": "It's",
+      "start": 285.28,
+      "end": 285.4
+    },
+    {
+      "text": "gonna",
+      "start": 285.44,
+      "end": 285.6
+    },
+    {
+      "text": "be",
+      "start": 285.64,
+      "end": 285.78
+    },
+    {
+      "text": "probably",
+      "start": 285.82,
+      "end": 286.34
+    },
+    {
+      "text": "one",
+      "start": 286.38,
+      "end": 286.46
+    },
+    {
+      "text": "of",
+      "start": 286.46,
+      "end": 286.5
+    },
+    {
+      "text": "the",
+      "start": 286.52,
+      "end": 286.58
+    },
+    {
+      "text": "nicer",
+      "start": 286.64,
+      "end": 286.94
+    },
+    {
+      "text": "bathrooms",
+      "start": 286.98,
+      "end": 287.38
+    },
+    {
+      "text": "that",
+      "start": 287.4,
+      "end": 287.52
+    },
+    {
+      "text": "we've",
+      "start": 287.58,
+      "end": 287.78
+    },
+    {
+      "text": "done.",
+      "start": 287.82,
+      "end": 288.18
+    },
+    {
+      "text": "I'll",
+      "start": 288.66,
+      "end": 288.74
+    },
+    {
+      "text": "just",
+      "start": 288.8,
+      "end": 288.92
+    },
+    {
+      "text": "have",
+      "start": 288.98,
+      "end": 289.12
+    },
+    {
+      "text": "you",
+      "start": 289.16,
+      "end": 289.22
+    },
+    {
+      "text": "s-",
+      "start": 289.56,
+      "end": 289.58
+    },
+    {
+      "text": "take",
+      "start": 289.62,
+      "end": 289.74
+    },
+    {
+      "text": "a",
+      "start": 289.8,
+      "end": 289.86
+    },
+    {
+      "text": "sneak",
+      "start": 289.92,
+      "end": 290.14
+    },
+    {
+      "text": "peek",
+      "start": 290.2,
+      "end": 290.38
+    },
+    {
+      "text": "over",
+      "start": 290.46,
+      "end": 290.64
+    },
+    {
+      "text": "here.",
+      "start": 290.7,
+      "end": 290.98
+    },
+    {
+      "text": "Look",
+      "start": 291.64,
+      "end": 291.76
+    },
+    {
+      "text": "at",
+      "start": 291.8,
+      "end": 291.94
+    },
+    {
+      "text": "that",
+      "start": 292.0,
+      "end": 292.22
+    },
+    {
+      "text": "for",
+      "start": 292.26,
+      "end": 292.36
+    },
+    {
+      "text": "the",
+      "start": 292.4,
+      "end": 292.48
+    },
+    {
+      "text": "shower.",
+      "start": 292.52,
+      "end": 292.88
+    },
+    {
+      "text": "That's",
+      "start": 294.0,
+      "end": 294.16
+    },
+    {
+      "text": "gonna",
+      "start": 294.2,
+      "end": 294.36
+    },
+    {
+      "text": "be",
+      "start": 294.4,
+      "end": 294.46
+    },
+    {
+      "text": "a",
+      "start": 294.5,
+      "end": 294.58
+    },
+    {
+      "text": "car",
+      "start": 294.66,
+      "end": 294.86
+    },
+    {
+      "text": "wash.",
+      "start": 294.94,
+      "end": 295.28
+    },
+    {
+      "text": "Um,",
+      "start": 295.54,
+      "end": 295.6
+    },
+    {
+      "text": "uh,",
+      "start": 295.68,
+      "end": 295.78
+    },
+    {
+      "text": "excuse",
+      "start": 295.86,
+      "end": 296.12
+    },
+    {
+      "text": "me,",
+      "start": 296.16,
+      "end": 296.2
+    },
+    {
+      "text": "a",
+      "start": 296.24,
+      "end": 296.32
+    },
+    {
+      "text": "body",
+      "start": 296.36,
+      "end": 296.62
+    },
+    {
+      "text": "wash.",
+      "start": 296.68,
+      "end": 297.02
+    },
+    {
+      "text": "So",
+      "start": 299.0,
+      "end": 299.16
+    },
+    {
+      "text": "anyways,",
+      "start": 299.56,
+      "end": 299.94
+    },
+    {
+      "text": "this",
+      "start": 300.0,
+      "end": 300.12
+    },
+    {
+      "text": "is,",
+      "start": 300.18,
+      "end": 300.34
+    },
+    {
+      "text": "uh--",
+      "start": 300.44,
+      "end": 300.54
+    },
+    {
+      "text": "I",
+      "start": 301.8,
+      "end": 301.84
+    },
+    {
+      "text": "will,",
+      "start": 301.88,
+      "end": 301.96
+    },
+    {
+      "text": "I'll",
+      "start": 302.12,
+      "end": 302.22
+    },
+    {
+      "text": "show",
+      "start": 302.6,
+      "end": 302.74
+    },
+    {
+      "text": "you",
+      "start": 302.8,
+      "end": 302.84
+    },
+    {
+      "text": "a",
+      "start": 302.84,
+      "end": 302.9
+    },
+    {
+      "text": "few",
+      "start": 302.92,
+      "end": 303.04
+    },
+    {
+      "text": "more",
+      "start": 303.08,
+      "end": 303.26
+    },
+    {
+      "text": "segments",
+      "start": 303.32,
+      "end": 303.72
+    },
+    {
+      "text": "about",
+      "start": 303.78,
+      "end": 304.04
+    },
+    {
+      "text": "what",
+      "start": 304.7,
+      "end": 305.02
+    },
+    {
+      "text": "it",
+      "start": 305.72,
+      "end": 305.82
+    },
+    {
+      "text": "takes",
+      "start": 305.88,
+      "end": 306.14
+    },
+    {
+      "text": "to",
+      "start": 306.2,
+      "end": 306.32
+    },
+    {
+      "text": "do",
+      "start": 306.38,
+      "end": 306.6
+    },
+    {
+      "text": "this,",
+      "start": 306.66,
+      "end": 307.1
+    },
+    {
+      "text": "and",
+      "start": 307.94,
+      "end": 308.14
+    },
+    {
+      "text": "then",
+      "start": 308.2,
+      "end": 308.32
+    },
+    {
+      "text": "when",
+      "start": 308.36,
+      "end": 308.46
+    },
+    {
+      "text": "we're",
+      "start": 308.5,
+      "end": 308.58
+    },
+    {
+      "text": "all",
+      "start": 308.64,
+      "end": 308.82
+    },
+    {
+      "text": "done,",
+      "start": 308.86,
+      "end": 309.32
+    },
+    {
+      "text": "usually",
+      "start": 310.1,
+      "end": 310.34
+    },
+    {
+      "text": "for",
+      "start": 310.38,
+      "end": 310.46
+    },
+    {
+      "text": "a",
+      "start": 310.5,
+      "end": 310.56
+    },
+    {
+      "text": "room",
+      "start": 310.6,
+      "end": 310.78
+    },
+    {
+      "text": "this",
+      "start": 310.84,
+      "end": 310.98
+    },
+    {
+      "text": "size",
+      "start": 311.02,
+      "end": 311.3
+    },
+    {
+      "text": "you're",
+      "start": 311.32,
+      "end": 311.42
+    },
+    {
+      "text": "probably",
+      "start": 311.46,
+      "end": 311.74
+    },
+    {
+      "text": "looking,",
+      "start": 311.78,
+      "end": 312.06
+    },
+    {
+      "text": "um,",
+      "start": 312.44,
+      "end": 312.56
+    },
+    {
+      "text": "about",
+      "start": 312.64,
+      "end": 312.82
+    },
+    {
+      "text": "$4,500",
+      "start": 312.88,
+      "end": 313.6
+    },
+    {
+      "text": "or",
+      "start": 314.02,
+      "end": 314.1
+    },
+    {
+      "text": "so,",
+      "start": 314.18,
+      "end": 314.38
+    },
+    {
+      "text": "just",
+      "start": 315.5,
+      "end": 315.62
+    },
+    {
+      "text": "for",
+      "start": 315.66,
+      "end": 315.76
+    },
+    {
+      "text": "all",
+      "start": 315.84,
+      "end": 315.96
+    },
+    {
+      "text": "of",
+      "start": 316.02,
+      "end": 316.1
+    },
+    {
+      "text": "the",
+      "start": 316.14,
+      "end": 316.24
+    },
+    {
+      "text": "labor",
+      "start": 316.38,
+      "end": 316.84
+    },
+    {
+      "text": "and",
+      "start": 316.92,
+      "end": 317.02
+    },
+    {
+      "text": "the",
+      "start": 317.06,
+      "end": 317.12
+    },
+    {
+      "text": "materials",
+      "start": 317.18,
+      "end": 318.04
+    },
+    {
+      "text": "and",
+      "start": 318.14,
+      "end": 318.28
+    },
+    {
+      "text": "the",
+      "start": 318.62,
+      "end": 318.68
+    },
+    {
+      "text": "electrical",
+      "start": 318.72,
+      "end": 319.36
+    },
+    {
+      "text": "and",
+      "start": 319.4,
+      "end": 319.48
+    },
+    {
+      "text": "everything.",
+      "start": 319.54,
+      "end": 319.94
+    },
+    {
+      "text": "It's",
+      "start": 319.96,
+      "end": 320.04
+    },
+    {
+      "text": "about",
+      "start": 320.12,
+      "end": 320.32
+    },
+    {
+      "text": "4,500",
+      "start": 320.46,
+      "end": 321.0
+    },
+    {
+      "text": "bucks",
+      "start": 321.04,
+      "end": 321.34
+    },
+    {
+      "text": "to",
+      "start": 321.98,
+      "end": 322.1
+    },
+    {
+      "text": "do",
+      "start": 322.16,
+      "end": 322.26
+    },
+    {
+      "text": "a",
+      "start": 322.36,
+      "end": 322.42
+    },
+    {
+      "text": "big",
+      "start": 322.48,
+      "end": 322.62
+    },
+    {
+      "text": "heated",
+      "start": 322.66,
+      "end": 322.86
+    },
+    {
+      "text": "floor",
+      "start": 322.94,
+      "end": 323.12
+    },
+    {
+      "text": "like",
+      "start": 323.18,
+      "end": 323.34
+    },
+    {
+      "text": "this.",
+      "start": 323.38,
+      "end": 323.56
+    },
+    {
+      "text": "A",
+      "start": 323.86,
+      "end": 323.98
+    },
+    {
+      "text": "smaller",
+      "start": 324.1,
+      "end": 324.38
+    },
+    {
+      "text": "one",
+      "start": 324.48,
+      "end": 324.62
+    },
+    {
+      "text": "in",
+      "start": 324.68,
+      "end": 324.78
+    },
+    {
+      "text": "a",
+      "start": 324.84,
+      "end": 324.88
+    },
+    {
+      "text": "more",
+      "start": 325.32,
+      "end": 325.44
+    },
+    {
+      "text": "normal",
+      "start": 325.48,
+      "end": 325.76
+    },
+    {
+      "text": "sized",
+      "start": 325.82,
+      "end": 326.08
+    },
+    {
+      "text": "bathroom",
+      "start": 326.12,
+      "end": 326.56
+    },
+    {
+      "text": "might",
+      "start": 326.92,
+      "end": 327.1
+    },
+    {
+      "text": "be",
+      "start": 327.14,
+      "end": 327.28
+    },
+    {
+      "text": "half",
+      "start": 327.9,
+      "end": 328.14
+    },
+    {
+      "text": "that",
+      "start": 328.18,
+      "end": 328.36
+    },
+    {
+      "text": "or",
+      "start": 328.4,
+      "end": 328.46
+    },
+    {
+      "text": "less.",
+      "start": 328.56,
+      "end": 328.98
+    },
+    {
+      "text": "So",
+      "start": 329.68,
+      "end": 329.78
+    },
+    {
+      "text": "we're",
+      "start": 329.8,
+      "end": 329.92
+    },
+    {
+      "text": "standing",
+      "start": 329.98,
+      "end": 330.34
+    },
+    {
+      "text": "on",
+      "start": 330.4,
+      "end": 330.5
+    },
+    {
+      "text": "the",
+      "start": 330.54,
+      "end": 330.62
+    },
+    {
+      "text": "floor.",
+      "start": 330.68,
+      "end": 330.92
+    },
+    {
+      "text": "Come",
+      "start": 331.38,
+      "end": 331.5
+    },
+    {
+      "text": "in",
+      "start": 331.52,
+      "end": 331.6
+    },
+    {
+      "text": "here",
+      "start": 331.64,
+      "end": 331.76
+    },
+    {
+      "text": "for",
+      "start": 331.8,
+      "end": 331.88
+    },
+    {
+      "text": "a",
+      "start": 331.9,
+      "end": 331.96
+    },
+    {
+      "text": "second",
+      "start": 332.02,
+      "end": 332.34
+    },
+    {
+      "text": "and",
+      "start": 332.4,
+      "end": 332.46
+    },
+    {
+      "text": "you",
+      "start": 332.52,
+      "end": 332.58
+    },
+    {
+      "text": "can",
+      "start": 332.62,
+      "end": 332.76
+    },
+    {
+      "text": "see",
+      "start": 332.86,
+      "end": 333.02
+    },
+    {
+      "text": "I",
+      "start": 333.5,
+      "end": 333.56
+    },
+    {
+      "text": "turned",
+      "start": 333.62,
+      "end": 333.8
+    },
+    {
+      "text": "it",
+      "start": 333.84,
+      "end": 333.92
+    },
+    {
+      "text": "up",
+      "start": 333.98,
+      "end": 334.1
+    },
+    {
+      "text": "to",
+      "start": 334.16,
+      "end": 334.26
+    },
+    {
+      "text": "85,",
+      "start": 334.66,
+      "end": 335.36
+    },
+    {
+      "text": "and",
+      "start": 336.66,
+      "end": 336.76
+    },
+    {
+      "text": "I",
+      "start": 336.82,
+      "end": 336.86
+    },
+    {
+      "text": "took",
+      "start": 336.9,
+      "end": 337.06
+    },
+    {
+      "text": "my",
+      "start": 337.1,
+      "end": 337.22
+    },
+    {
+      "text": "shoes",
+      "start": 337.26,
+      "end": 337.54
+    },
+    {
+      "text": "off,",
+      "start": 337.64,
+      "end": 337.92
+    },
+    {
+      "text": "and",
+      "start": 339.54,
+      "end": 339.78
+    },
+    {
+      "text": "I",
+      "start": 339.9,
+      "end": 339.96
+    },
+    {
+      "text": "can",
+      "start": 340.0,
+      "end": 340.14
+    },
+    {
+      "text": "feel",
+      "start": 340.2,
+      "end": 340.42
+    },
+    {
+      "text": "it",
+      "start": 340.46,
+      "end": 340.64
+    },
+    {
+      "text": "through",
+      "start": 340.68,
+      "end": 340.84
+    },
+    {
+      "text": "my",
+      "start": 340.9,
+      "end": 341.04
+    },
+    {
+      "text": "feet.",
+      "start": 341.1,
+      "end": 341.42
+    },
+    {
+      "text": "And",
+      "start": 342.64,
+      "end": 342.72
+    },
+    {
+      "text": "it's",
+      "start": 342.76,
+      "end": 342.96
+    },
+    {
+      "text": "programmed",
+      "start": 343.02,
+      "end": 343.52
+    },
+    {
+      "text": "to",
+      "start": 343.56,
+      "end": 343.64
+    },
+    {
+      "text": "come",
+      "start": 343.68,
+      "end": 343.84
+    },
+    {
+      "text": "on",
+      "start": 343.94,
+      "end": 344.16
+    },
+    {
+      "text": "at",
+      "start": 344.4,
+      "end": 344.5
+    },
+    {
+      "text": "particular",
+      "start": 344.62,
+      "end": 345.1
+    },
+    {
+      "text": "times",
+      "start": 345.2,
+      "end": 345.56
+    },
+    {
+      "text": "so",
+      "start": 345.64,
+      "end": 345.76
+    },
+    {
+      "text": "that",
+      "start": 345.82,
+      "end": 345.92
+    },
+    {
+      "text": "when",
+      "start": 345.94,
+      "end": 346.04
+    },
+    {
+      "text": "they",
+      "start": 346.08,
+      "end": 346.2
+    },
+    {
+      "text": "get",
+      "start": 346.24,
+      "end": 346.36
+    },
+    {
+      "text": "out",
+      "start": 346.42,
+      "end": 346.54
+    },
+    {
+      "text": "of",
+      "start": 346.56,
+      "end": 346.62
+    },
+    {
+      "text": "bed",
+      "start": 347.14,
+      "end": 347.3
+    },
+    {
+      "text": "in",
+      "start": 347.34,
+      "end": 347.4
+    },
+    {
+      "text": "the",
+      "start": 347.44,
+      "end": 347.5
+    },
+    {
+      "text": "morning",
+      "start": 347.54,
+      "end": 347.8
+    },
+    {
+      "text": "to",
+      "start": 347.84,
+      "end": 347.92
+    },
+    {
+      "text": "get",
+      "start": 347.94,
+      "end": 348.08
+    },
+    {
+      "text": "ready",
+      "start": 348.14,
+      "end": 348.42
+    },
+    {
+      "text": "or",
+      "start": 348.5,
+      "end": 348.6
+    },
+    {
+      "text": "whatever,",
+      "start": 348.62,
+      "end": 349.0
+    },
+    {
+      "text": "the",
+      "start": 349.12,
+      "end": 349.24
+    },
+    {
+      "text": "floor",
+      "start": 349.28,
+      "end": 349.5
+    },
+    {
+      "text": "is",
+      "start": 349.54,
+      "end": 349.68
+    },
+    {
+      "text": "heated.",
+      "start": 349.72,
+      "end": 350.22
+    },
+    {
+      "text": "It's,",
+      "start": 351.26,
+      "end": 351.34
+    },
+    {
+      "text": "you",
+      "start": 351.58,
+      "end": 351.62
+    },
+    {
+      "text": "know,",
+      "start": 351.64,
+      "end": 351.7
+    },
+    {
+      "text": "it's",
+      "start": 351.76,
+      "end": 351.9
+    },
+    {
+      "text": "quiet,",
+      "start": 351.98,
+      "end": 352.38
+    },
+    {
+      "text": "doesn't",
+      "start": 352.5,
+      "end": 352.7
+    },
+    {
+      "text": "make",
+      "start": 352.74,
+      "end": 352.88
+    },
+    {
+      "text": "any",
+      "start": 352.92,
+      "end": 353.08
+    },
+    {
+      "text": "noise.",
+      "start": 353.14,
+      "end": 353.6
+    },
+    {
+      "text": "It's",
+      "start": 353.66,
+      "end": 353.8
+    },
+    {
+      "text": "got",
+      "start": 353.84,
+      "end": 353.98
+    },
+    {
+      "text": "electronic",
+      "start": 354.02,
+      "end": 354.6
+    },
+    {
+      "text": "thermostat.",
+      "start": 354.66,
+      "end": 355.5
+    },
+    {
+      "text": "It's",
+      "start": 356.0,
+      "end": 356.14
+    },
+    {
+      "text": "awesome.",
+      "start": 356.44,
+      "end": 356.9
+    },
+    {
+      "text": "So",
+      "start": 357.36,
+      "end": 357.58
+    },
+    {
+      "text": "if",
+      "start": 357.66,
+      "end": 357.74
+    },
+    {
+      "text": "you've",
+      "start": 357.78,
+      "end": 357.88
+    },
+    {
+      "text": "thought",
+      "start": 357.9,
+      "end": 358.06
+    },
+    {
+      "text": "about",
+      "start": 358.14,
+      "end": 358.34
+    },
+    {
+      "text": "doing",
+      "start": 358.4,
+      "end": 358.62
+    },
+    {
+      "text": "it,",
+      "start": 358.68,
+      "end": 358.8
+    },
+    {
+      "text": "you",
+      "start": 359.5,
+      "end": 359.58
+    },
+    {
+      "text": "should",
+      "start": 359.64,
+      "end": 359.8
+    },
+    {
+      "text": "do",
+      "start": 359.86,
+      "end": 359.96
+    },
+    {
+      "text": "it.",
+      "start": 360.02,
+      "end": 360.2
+    },
+    {
+      "text": "And,",
+      "start": 361.14,
+      "end": 361.56
+    },
+    {
+      "text": "um,",
+      "start": 361.68,
+      "end": 361.88
+    },
+    {
+      "text": "again,",
+      "start": 362.24,
+      "end": 362.48
+    },
+    {
+      "text": "the,",
+      "start": 362.54,
+      "end": 362.64
+    },
+    {
+      "text": "the",
+      "start": 362.84,
+      "end": 362.94
+    },
+    {
+      "text": "cost",
+      "start": 363.02,
+      "end": 363.5
+    },
+    {
+      "text": "depends",
+      "start": 364.46,
+      "end": 364.76
+    },
+    {
+      "text": "on",
+      "start": 364.82,
+      "end": 364.88
+    },
+    {
+      "text": "the",
+      "start": 364.92,
+      "end": 364.98
+    },
+    {
+      "text": "size",
+      "start": 365.04,
+      "end": 365.3
+    },
+    {
+      "text": "of",
+      "start": 365.36,
+      "end": 365.4
+    },
+    {
+      "text": "the",
+      "start": 365.44,
+      "end": 365.5
+    },
+    {
+      "text": "bathroom.",
+      "start": 365.56,
+      "end": 365.92
+    },
+    {
+      "text": "This",
+      "start": 365.98,
+      "end": 366.1
+    },
+    {
+      "text": "is",
+      "start": 366.16,
+      "end": 366.24
+    },
+    {
+      "text": "a",
+      "start": 366.3,
+      "end": 366.36
+    },
+    {
+      "text": "big",
+      "start": 366.4,
+      "end": 366.56
+    },
+    {
+      "text": "bathroom,",
+      "start": 366.62,
+      "end": 367.04
+    },
+    {
+      "text": "and",
+      "start": 367.82,
+      "end": 367.94
+    },
+    {
+      "text": "our",
+      "start": 368.0,
+      "end": 368.16
+    },
+    {
+      "text": "co-",
+      "start": 368.2,
+      "end": 368.28
+    },
+    {
+      "text": "all,",
+      "start": 368.46,
+      "end": 368.56
+    },
+    {
+      "text": "our",
+      "start": 368.76,
+      "end": 368.9
+    },
+    {
+      "text": "costs",
+      "start": 368.96,
+      "end": 369.32
+    },
+    {
+      "text": "all",
+      "start": 369.4,
+      "end": 369.52
+    },
+    {
+      "text": "in",
+      "start": 369.6,
+      "end": 369.72
+    },
+    {
+      "text": "on",
+      "start": 369.78,
+      "end": 369.9
+    },
+    {
+      "text": "it",
+      "start": 369.94,
+      "end": 370.04
+    },
+    {
+      "text": "was",
+      "start": 370.1,
+      "end": 370.26
+    },
+    {
+      "text": "about,",
+      "start": 370.32,
+      "end": 370.64
+    },
+    {
+      "text": "uh,",
+      "start": 371.32,
+      "end": 371.4
+    },
+    {
+      "text": "or",
+      "start": 371.5,
+      "end": 371.6
+    },
+    {
+      "text": "what",
+      "start": 371.64,
+      "end": 371.76
+    },
+    {
+      "text": "we",
+      "start": 371.8,
+      "end": 371.9
+    },
+    {
+      "text": "charged",
+      "start": 371.96,
+      "end": 372.3
+    },
+    {
+      "text": "was",
+      "start": 372.34,
+      "end": 372.46
+    },
+    {
+      "text": "about",
+      "start": 372.54,
+      "end": 372.74
+    },
+    {
+      "text": "$4,500.",
+      "start": 372.76,
+      "end": 373.98
+    },
+    {
+      "text": "And",
+      "start": 374.26,
+      "end": 374.42
+    },
+    {
+      "text": "so,",
+      "start": 374.5,
+      "end": 374.66
+    },
+    {
+      "text": "you",
+      "start": 375.5,
+      "end": 375.54
+    },
+    {
+      "text": "know,",
+      "start": 375.58,
+      "end": 375.68
+    },
+    {
+      "text": "my",
+      "start": 376.36,
+      "end": 376.48
+    },
+    {
+      "text": "wife",
+      "start": 376.54,
+      "end": 376.86
+    },
+    {
+      "text": "is",
+      "start": 377.32,
+      "end": 377.4
+    },
+    {
+      "text": "very",
+      "start": 377.46,
+      "end": 377.66
+    },
+    {
+      "text": "jealous",
+      "start": 377.72,
+      "end": 378.24
+    },
+    {
+      "text": "of",
+      "start": 378.9,
+      "end": 379.0
+    },
+    {
+      "text": "this",
+      "start": 379.06,
+      "end": 379.24
+    },
+    {
+      "text": "client",
+      "start": 379.3,
+      "end": 379.6
+    },
+    {
+      "text": "of",
+      "start": 379.64,
+      "end": 379.72
+    },
+    {
+      "text": "ours,",
+      "start": 379.78,
+      "end": 380.06
+    },
+    {
+      "text": "'cause",
+      "start": 380.64,
+      "end": 380.8
+    },
+    {
+      "text": "she",
+      "start": 380.86,
+      "end": 380.96
+    },
+    {
+      "text": "would",
+      "start": 381.02,
+      "end": 381.14
+    },
+    {
+      "text": "love",
+      "start": 381.18,
+      "end": 381.34
+    },
+    {
+      "text": "to",
+      "start": 381.38,
+      "end": 381.42
+    },
+    {
+      "text": "have",
+      "start": 381.46,
+      "end": 381.56
+    },
+    {
+      "text": "a",
+      "start": 381.6,
+      "end": 381.62
+    },
+    {
+      "text": "heated",
+      "start": 381.66,
+      "end": 381.9
+    },
+    {
+      "text": "floor.",
+      "start": 381.96,
+      "end": 382.2
+    },
+    {
+      "text": "Maybe",
+      "start": 382.8,
+      "end": 383.0
+    },
+    {
+      "text": "I'll",
+      "start": 383.0,
+      "end": 383.04
+    },
+    {
+      "text": "have",
+      "start": 383.06,
+      "end": 383.2
+    },
+    {
+      "text": "to",
+      "start": 383.22,
+      "end": 383.3
+    },
+    {
+      "text": "take",
+      "start": 383.34,
+      "end": 383.48
+    },
+    {
+      "text": "care",
+      "start": 383.54,
+      "end": 383.66
+    },
+    {
+      "text": "of",
+      "start": 383.68,
+      "end": 383.74
+    },
+    {
+      "text": "that",
+      "start": 383.78,
+      "end": 383.9
+    },
+    {
+      "text": "one",
+      "start": 383.96,
+      "end": 384.04
+    },
+    {
+      "text": "of",
+      "start": 384.1,
+      "end": 384.16
+    },
+    {
+      "text": "these",
+      "start": 384.2,
+      "end": 384.38
+    },
+    {
+      "text": "days.",
+      "start": 384.46,
+      "end": 384.78
+    },
+    {
+      "text": "Hey,",
+      "start": 385.54,
+      "end": 385.62
+    },
+    {
+      "text": "thanks",
+      "start": 385.68,
+      "end": 385.86
+    },
+    {
+      "text": "again",
+      "start": 385.92,
+      "end": 386.1
+    },
+    {
+      "text": "for",
+      "start": 386.14,
+      "end": 386.24
+    },
+    {
+      "text": "watching.",
+      "start": 386.3,
+      "end": 386.72
+    },
+    {
+      "text": "We",
+      "start": 387.6,
+      "end": 387.66
+    },
+    {
+      "text": "appreciate",
+      "start": 387.68,
+      "end": 388.18
+    },
+    {
+      "text": "it.",
+      "start": 388.22,
+      "end": 388.38
+    },
+    {
+      "text": "If",
+      "start": 388.84,
+      "end": 388.88
+    },
+    {
+      "text": "you",
+      "start": 388.92,
+      "end": 388.96
+    },
+    {
+      "text": "haven't",
+      "start": 389.0,
+      "end": 389.2
+    },
+    {
+      "text": "subscribed",
+      "start": 389.24,
+      "end": 389.66
+    },
+    {
+      "text": "to",
+      "start": 389.68,
+      "end": 389.74
+    },
+    {
+      "text": "our",
+      "start": 389.76,
+      "end": 389.86
+    },
+    {
+      "text": "channel",
+      "start": 389.92,
+      "end": 390.2
+    },
+    {
+      "text": "yet,",
+      "start": 390.24,
+      "end": 390.4
+    },
+    {
+      "text": "please",
+      "start": 390.96,
+      "end": 391.2
+    },
+    {
+      "text": "do",
+      "start": 391.26,
+      "end": 391.4
+    },
+    {
+      "text": "so.",
+      "start": 391.46,
+      "end": 391.66
+    },
+    {
+      "text": "Hit",
+      "start": 391.8,
+      "end": 391.94
+    },
+    {
+      "text": "that",
+      "start": 392.0,
+      "end": 392.12
+    },
+    {
+      "text": "little",
+      "start": 392.16,
+      "end": 392.36
+    },
+    {
+      "text": "bell",
+      "start": 392.96,
+      "end": 393.22
+    },
+    {
+      "text": "and",
+      "start": 393.54,
+      "end": 393.66
+    },
+    {
+      "text": "we'll",
+      "start": 393.7,
+      "end": 393.84
+    },
+    {
+      "text": "be",
+      "start": 393.88,
+      "end": 393.96
+    },
+    {
+      "text": "able",
+      "start": 393.98,
+      "end": 394.04
+    },
+    {
+      "text": "to",
+      "start": 394.08,
+      "end": 394.16
+    },
+    {
+      "text": "notify",
+      "start": 394.2,
+      "end": 394.6
+    },
+    {
+      "text": "you",
+      "start": 394.62,
+      "end": 394.68
+    },
+    {
+      "text": "every",
+      "start": 394.74,
+      "end": 394.92
+    },
+    {
+      "text": "time",
+      "start": 394.96,
+      "end": 395.12
+    },
+    {
+      "text": "we",
+      "start": 395.16,
+      "end": 395.24
+    },
+    {
+      "text": "post",
+      "start": 395.28,
+      "end": 395.52
+    },
+    {
+      "text": "a",
+      "start": 395.58,
+      "end": 395.62
+    },
+    {
+      "text": "new",
+      "start": 395.66,
+      "end": 395.8
+    },
+    {
+      "text": "video.",
+      "start": 395.86,
+      "end": 396.22
+    },
+    {
+      "text": "Hit",
+      "start": 396.78,
+      "end": 396.92
+    },
+    {
+      "text": "the",
+      "start": 396.96,
+      "end": 397.04
+    },
+    {
+      "text": "like",
+      "start": 397.1,
+      "end": 397.3
+    },
+    {
+      "text": "button",
+      "start": 397.36,
+      "end": 397.56
+    },
+    {
+      "text": "if",
+      "start": 397.62,
+      "end": 397.7
+    },
+    {
+      "text": "you",
+      "start": 397.74,
+      "end": 397.8
+    },
+    {
+      "text": "like",
+      "start": 397.86,
+      "end": 398.02
+    },
+    {
+      "text": "what",
+      "start": 398.06,
+      "end": 398.16
+    },
+    {
+      "text": "you",
+      "start": 398.22,
+      "end": 398.34
+    },
+    {
+      "text": "saw.",
+      "start": 398.4,
+      "end": 398.66
+    },
+    {
+      "text": "And",
+      "start": 399.1,
+      "end": 399.22
+    },
+    {
+      "text": "then",
+      "start": 399.26,
+      "end": 399.46
+    },
+    {
+      "text": "also,",
+      "start": 399.56,
+      "end": 399.92
+    },
+    {
+      "text": "if",
+      "start": 400.12,
+      "end": 400.18
+    },
+    {
+      "text": "you",
+      "start": 400.22,
+      "end": 400.26
+    },
+    {
+      "text": "have",
+      "start": 400.3,
+      "end": 400.42
+    },
+    {
+      "text": "any",
+      "start": 400.44,
+      "end": 400.54
+    },
+    {
+      "text": "questions",
+      "start": 400.6,
+      "end": 400.98
+    },
+    {
+      "text": "about",
+      "start": 401.06,
+      "end": 401.28
+    },
+    {
+      "text": "heated",
+      "start": 401.32,
+      "end": 401.6
+    },
+    {
+      "text": "floors",
+      "start": 401.66,
+      "end": 402.08
+    },
+    {
+      "text": "or",
+      "start": 402.12,
+      "end": 402.22
+    },
+    {
+      "text": "doing",
+      "start": 402.28,
+      "end": 402.46
+    },
+    {
+      "text": "heated",
+      "start": 402.5,
+      "end": 402.7
+    },
+    {
+      "text": "floors",
+      "start": 402.76,
+      "end": 403.1
+    },
+    {
+      "text": "or",
+      "start": 403.14,
+      "end": 403.22
+    },
+    {
+      "text": "the",
+      "start": 403.26,
+      "end": 403.32
+    },
+    {
+      "text": "materials",
+      "start": 403.78,
+      "end": 404.36
+    },
+    {
+      "text": "that",
+      "start": 404.42,
+      "end": 404.5
+    },
+    {
+      "text": "we",
+      "start": 404.56,
+      "end": 404.68
+    },
+    {
+      "text": "use",
+      "start": 404.82,
+      "end": 405.08
+    },
+    {
+      "text": "or",
+      "start": 405.12,
+      "end": 405.2
+    },
+    {
+      "text": "things",
+      "start": 405.24,
+      "end": 405.48
+    },
+    {
+      "text": "like",
+      "start": 405.52,
+      "end": 405.66
+    },
+    {
+      "text": "that,",
+      "start": 405.72,
+      "end": 405.84
+    },
+    {
+      "text": "please",
+      "start": 406.56,
+      "end": 406.78
+    },
+    {
+      "text": "don't",
+      "start": 406.82,
+      "end": 406.98
+    },
+    {
+      "text": "hesitate",
+      "start": 407.04,
+      "end": 407.6
+    },
+    {
+      "text": "to",
+      "start": 407.64,
+      "end": 407.74
+    },
+    {
+      "text": "drop",
+      "start": 407.78,
+      "end": 408.02
+    },
+    {
+      "text": "a",
+      "start": 408.08,
+      "end": 408.12
+    },
+    {
+      "text": "note",
+      "start": 408.16,
+      "end": 408.34
+    },
+    {
+      "text": "in",
+      "start": 408.38,
+      "end": 408.44
+    },
+    {
+      "text": "the",
+      "start": 408.46,
+      "end": 408.54
+    },
+    {
+      "text": "comments.",
+      "start": 408.6,
+      "end": 409.06
+    },
+    {
+      "text": "And",
+      "start": 409.42,
+      "end": 409.5
+    },
+    {
+      "text": "also",
+      "start": 409.58,
+      "end": 409.82
+    },
+    {
+      "text": "let",
+      "start": 409.86,
+      "end": 409.96
+    },
+    {
+      "text": "us",
+      "start": 410.0,
+      "end": 410.12
+    },
+    {
+      "text": "know",
+      "start": 410.14,
+      "end": 410.26
+    },
+    {
+      "text": "what",
+      "start": 410.3,
+      "end": 410.38
+    },
+    {
+      "text": "you",
+      "start": 410.42,
+      "end": 410.5
+    },
+    {
+      "text": "think",
+      "start": 410.52,
+      "end": 410.68
+    },
+    {
+      "text": "of",
+      "start": 410.72,
+      "end": 410.76
+    },
+    {
+      "text": "this",
+      "start": 410.8,
+      "end": 410.96
+    },
+    {
+      "text": "bathroom,",
+      "start": 411.0,
+      "end": 411.34
+    },
+    {
+      "text": "'cause",
+      "start": 411.42,
+      "end": 411.6
+    },
+    {
+      "text": "I",
+      "start": 411.7,
+      "end": 411.72
+    },
+    {
+      "text": "think",
+      "start": 411.78,
+      "end": 411.92
+    },
+    {
+      "text": "it's",
+      "start": 411.98,
+      "end": 412.14
+    },
+    {
+      "text": "pretty",
+      "start": 412.18,
+      "end": 412.34
+    },
+    {
+      "text": "dang",
+      "start": 412.42,
+      "end": 412.64
+    },
+    {
+      "text": "awesome.",
+      "start": 412.7,
+      "end": 413.06
+    }
+  ]
+}
