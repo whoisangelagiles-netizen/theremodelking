@@ -74,7 +74,8 @@ Run each with its own skill, in order, and check each with your eyes:
 
 Then the **Short's copy**: title plus two alternates, a two paragraph
 description whose last line points to the long video, hashtags with #shorts.
-The Short's cover from the build is its thumbnail.
+The Short's thumbnail is a Canva project too, see **Thumbnails in Canva**. Put
+its Canva link at the top of the Short's Doc.
 
 ### 4. File it
 
@@ -127,25 +128,63 @@ fine, it tells the viewer where the payoff is without saying it.
   nudge to stay for the cost, the chapters, a comments ask, hashtags.
 - Plain prose, no ALL CAPS, no em dashes anywhere.
 
-### 4. Long thumbnail
+### 4. Long thumbnail, in Canva
 
-The channel's look, matched to the Basement Finish, Master Bathroom Remodel and
-Jack and Jill thumbnails: frame full bleed, green band top and bottom, a green
-plate a little below centre with a two to four word label in white underlined
-capitals.
+Every thumbnail, long and Short, is a Canva project, so the user can make small
+edits. See **Thumbnails in Canva** below for how. The long one follows the
+channel's look (the Master Suite & Laundry Room thumbnail is the reference):
+frame full bleed, thick green band top and bottom, a wide green plate below
+centre and a touch right, a two to four word label in big white underlined
+capitals with a dark green drop shadow.
 
-```bash
-python scripts/long_thumbnail.py work/[slug]/body/body.mp4 5:44 "Heated floor install" --out output/[slug]-long-thumbnail.jpg
-```
-
-Pick the frame by eye, from the body or the project photos: the finished room,
-nobody in it, nothing important behind the plate. Render two or three and show
-them. If the episode never shows the finished thing cleanly, say so and pick the
-most striking frame there is. The label names the project type the way the
-channel does: "Basement finish", "Master bathroom remodel".
+Pick the frame by eye, from the final, the body or the project photos: the
+finished room, nobody in it, nothing important behind the plate. Grab two or
+three candidates and show them before building. If the episode never shows the
+finished thing cleanly, say so and pick the most striking frame there is. The
+label names the project type the way the channel does: "Basement finish",
+"Master bathroom remodel".
 
 ### 5. File it
 
 Write the `Long Video Title and Description` Doc into the episode folder with the
-connector, the same way as the Short's, rewriting any draft of that name. Send
-the thumbnail with SendUserFile for the user to upload into the episode folder.
+connector, the same way as the Short's, rewriting any draft of that name. Put
+the Canva link for the long thumbnail at the top of the Doc. Send the exported
+JPG with SendUserFile for the user to upload into the episode folder.
+
+## Thumbnails in Canva, always
+
+Never build a thumbnail from scratch or with a script. Copy the master design
+and swap only the photo and the words, so every thumbnail keeps the font, the
+shadow and the sizes the user fixed by hand.
+
+| Master | Canva design id | Size |
+| --- | --- | --- |
+| Long video | `DAHZ4mDu5es` (Heated Floor) | 1280x720 |
+| Short | `DAHZ4i1lZz0` (Heated Floor) | 1080x1920 |
+
+Per thumbnail:
+
+1. Grab the frame clean, with nothing drawn on it: `ffmpeg -ss [time] -i [video]
+   -frames:v 1 -vf scale=1280:720` for the long one, and for the Short a 9:16
+   crop, `crop=ih*9/16:ih:(iw-ih*9/16)*[crop_x]:0,scale=1080:1920`.
+2. Upload it: `create-upload-url`, then POST the raw bytes with curl,
+   `Content-Type: application/octet-stream`. Keep the returned mediaId.
+3. `copy-design` the master. `read-design` the copy with `open_transaction`
+   and thumbnails to get the locator ids.
+4. `edit-design`: `update_title` to "[Episode] long thumbnail" or "[Episode]
+   Short thumbnail", `update_fill` on the page background with the new mediaId,
+   `replace_text` on the label. Keep the font, size and plate as they are; only
+   resize the plate if the words no longer fit.
+5. LOOK at the after thumbnail. Show it to the user and commit only on their OK.
+6. `export-design` as JPG, download it, send it with SendUserFile.
+
+The Short master copies the automatic cover's layout: full bleed 9:16 frame, the
+title on two stacked green plates, one line each, white heavy capitals, just above
+the upper third.
+
+The connector cannot set a font family or a text shadow. The masters carry the
+right font and shadow once the user has fixed them by hand, which is why every
+thumbnail starts from a copy and never from `create-design`.
+
+Never let Canva's generator pick the photo: it fills with stock images of other
+people's work. The photo is always a frame from Mike's own footage.
