@@ -298,7 +298,15 @@ def whisper_transcribe(video_id: str, url: str, model_size: str,
 
         print(f"Transcribing with faster-whisper ({model_size})...", file=sys.stderr)
         model = WhisperModel(model_size, device="auto", compute_type="int8")
-        segments, info = model.transcribe(str(audio), vad_filter=True,
+        # Decode with ffmpeg rather than letting faster-whisper open the file.
+        # Its decoder goes through PyAV, and a newer PyAV than it was written
+        # against refuses the arguments it passes, which killed transcription.
+        import numpy as np
+        pcm = subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-vn", "-ac", "1",
+                              "-ar", "16000", "-f", "s16le", "-"],
+                             capture_output=True, check=True).stdout
+        samples = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768.0
+        segments, info = model.transcribe(samples, vad_filter=True,
                                           word_timestamps=True)
         raw = []
         for seg in segments:

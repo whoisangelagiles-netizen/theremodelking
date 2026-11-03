@@ -31,14 +31,21 @@ here. Read that skill first if it is not already loaded. In particular:
 - First person, Mike's voice. Every fact comes from the transcript.
 - The read is warm and unhurried, a contractor showing a friend the finished
   room. The features carry it, the delivery does not push.
-- The read ALWAYS ends on the spoken sign off, "Follow for more before and
-  afters". Do not write it as a scene, the build appends it to the script by
-  itself and plays it over the end card. Override it with `cta_vo` on the Short
-  if an episode wants different words.
+- The read ALWAYS ends on the spoken tap line, "Want to find out the project
+  cost and watch the full transformation? Tap [exact episode title] at the bottom
+  of your screen." Do not write it as a scene, the build appends it from
+  `video_title` and plays it over the end card. Only set `cta_vo` if Mike asks
+  for different words, because it also switches the card back to the old one.
+- The end card and the thumbnail are locked to approved references. Read
+  `end-card-and-thumbnail.md` in this folder before the first build of a
+  session. Every guide needs `video_title` (the full episode's EXACT YouTube
+  title), `video_url`, `cover_hook`, `cover_source` and `cover_crop`, plus
+  `yt_title` and `yt_description` per `title-and-description.md`.
 - The narration is one render with a 0.26s pause spliced in at each line
   boundary, so budget for it: thirteen lines is 3.4 seconds of pause and the
-  sign off is another 3, which together is most of a beat. A 150 word script
-  lands near 54 seconds, not 50.
+  end card holds for the last 11.7 seconds. Body narration plus that end card
+  has to land between 50 and 60 seconds, so the body is about 40 to 48 seconds,
+  roughly 115 to 130 words. 135 words came out at 62 seconds.
 - Lines run 8 to 15 words. One line is one shot, so a 20 word line is a seven
   second hold on one frame, which is too long on a phone. Do NOT make every
   shot the same length either, the variation is what stops it feeling like a
@@ -167,7 +174,8 @@ One URL in, one Short out. The two Short funnel is retired.
 The format is in the `remodel-king-shorts` skill and it is not optional:
 transformation line, homeowner context, the turn, then six to ten named
 features one per line, and the end card carries the call to action. Plain prose,
-145 to 175 words, 50 to 60 seconds.
+115 to 130 words of body, plus the 11.7 second tap end card, 50 to 60 seconds in
+all. The approved Dramatic Flip Short ran 135 words and came out at 62 seconds.
 
 The user can override the count or the angle per episode. Honour the override.
 
@@ -233,8 +241,9 @@ Two guide level fields matter to the build as well:
   higher style make the delivery more animated. Leave it out to take the
   defaults, which are already tuned so the read does not sound flat.
 
-Set `cta_frame` on the Short for the end frame text, otherwise `cta.primary`
-is used.
+The end card is the approved "Tap the full episode" card, drawn from
+`video_title`. `cta_frame` only applies to the old sticker card that comes back
+when `cta_vo` is set.
 
 ## Step 7: build the finished Short
 
@@ -338,8 +347,14 @@ Per Short, in `output/`:
 
 - `[slug]-short-[n]-FINAL.mp4`, 1080x1920, publish ready
 - `[slug]-short-[n]-contact-sheet.jpg`, one frame per scene
-- `[slug]-short-[n]-thumbnail.jpg`, first frame style
-- `[slug]-short-[n]-publish.md`, SEO titles, description with the full video
-  link, pinned comment, hashtags, and the publishing checklist
+- `[slug]-short-[n]-THUMBNAIL.jpg`, the approved cover style, see
+  `end-card-and-thumbnail.md`. Look at it before sending: clean finished room,
+  no people, three pills stepping down
+- `[slug]-short-[n]-title-description.md`, the ONE copy-paste title and
+  description block, see `title-and-description.md`. Fill `yt_title` and
+  `yt_description` in the guide before the build, and send this block with the
+  Short
+- `[slug]-short-[n]-publish.md`, pinned comment, hashtags, and the publishing
+  checklist
 
 That covers every line of the publishing checklist except the act of uploading.
