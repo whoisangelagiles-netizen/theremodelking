@@ -299,3 +299,26 @@ FCP 7 XML that Premiere and Resolve import with the body on V1 and the touches
 above it, a markers CSV, and a review reel and contact sheet.
 
 Lives in `.claude/skills/long-video-finish/SKILL.md`.
+
+## Posting to YouTube, the whole SOP
+
+**Trigger:**
+
+> Let's process this long video to be posted into youtube
+
+plus the body video's Drive link. It runs the intro, the text touches, one
+Short and the titles and descriptions, then files it all on Drive under Mike
+Hewitt in a folder named with the long video's YouTube title:
+`Long Video (Manual Upload)/` with the intro and the touches package, the long
+video's title and description Doc, and a `Short/` folder with the Short, its
+thumbnail and its own Doc. The finished long video is assembled by the editor
+and uploaded there by hand.
+
+```bash
+python scripts/publish_drive.py publish/[slug].json
+```
+
+Needs `GOOGLE_DRIVE_CLIENT_ID`, `GOOGLE_DRIVE_CLIENT_SECRET` and
+`GOOGLE_DRIVE_REFRESH_TOKEN`, set up once, see the skill.
+
+Lives in `.claude/skills/youtube-publish-package/SKILL.md`.

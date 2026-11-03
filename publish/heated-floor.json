@@ -1,0 +1,34 @@
+{
+ "slug": "heated-floor",
+ "episode": "Heated Floor",
+ "parent_folder_id": "1ouQYxq3BO-bshx7H5a-VUL9QzPL_ulGj",
+ "long": {
+  "title": "How We Install a Heated Tile Floor, and What It Really Costs",
+  "alternates": [
+   "Heated Bathroom Floors: How They Go In and What They Cost",
+   "Is a Heated Bathroom Floor Worth It? Full Install Walkthrough"
+  ],
+  "description": "Thinking about a heated floor in your bathroom? In this one I walk you through exactly how we put one in on the master bath at the East Bench House.\n\nYou'll see the Schluter mat that goes down over the whole floor, how the heating wire snaps in, and why we only run it where people actually stand: in front of the toilet, the vanity, and where you step out of the tub. I'll also show you the one test you have to do before any tile goes down, so you don't find a break in the wire after the floor is finished.\n\nThen we fire it up on the programmable thermostat, and stick around to the end to hear what a floor like this really costs.\n\n0:00 Intro\n0:14 Prepping a tile floor\n1:29 The heated floor mat\n2:28 Where the heat goes\n3:01 The wire kit\n4:20 The continuity test\n5:24 What it costs\n5:43 Finished and heated\n\nQuestions about heated floors or the materials we use? Drop them in the comments, and tell us what you think of this bathroom.\n\n#heatedfloors #bathroomremodel #tileinstall #schluter #remodeling",
+  "notes": [
+   "Chapter times assume the 14 second intro sits in front of the body. Recheck them against the final edit.",
+   "The finished long video is uploaded to the Long Video (Manual Upload) folder by hand."
+  ],
+  "pieces": [
+   "output/heated-floor-intro.mp4",
+   "output/heated-floor-finish-package.zip"
+  ]
+ },
+ "short": {
+  "title": "How A Heated Tile Floor Goes In",
+  "alternates": [
+   "Heated Bathroom Floor Install, Step By Step",
+   "The Test You Must Do Before Tiling A Heated Floor"
+  ],
+  "description": "How a heated tile floor goes in, from the mat to the wire to the thermostat. We only heat the spots you actually stand on, and we test the wire before a single tile goes down.\n\nWant to know what it cost? Tap the title below to watch the full video.\n\n#heatedfloors #bathroomremodel #tileinstall #shorts",
+  "notes": [
+   "Link the long video on this Short so the title pill shows under it, the end card tells viewers to tap it."
+  ],
+  "video": "output/heated-floor-short-1-PUBLISH.mp4",
+  "thumbnail": "output/heated-floor-short-1-COVER.jpg"
+ }
+}
