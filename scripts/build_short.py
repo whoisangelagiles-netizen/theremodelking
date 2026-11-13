@@ -289,6 +289,7 @@ class Scene:
     continues_previous: bool = False
     source_label: str = ""
     face: dict | None = None
+    image: str | None = None
 
     @property
     def duration(self) -> float:
@@ -355,6 +356,7 @@ def scenes_from_short(short: dict) -> list[Scene]:
             transition=raw.get("transition"),
             source_label=raw.get("source", ""),
             view=float(raw.get("view") or 0.0),
+            image=raw.get("image") or None,
         ))
     if not scenes:
         die("this Short has no scenes in the guide JSON")
@@ -2001,6 +2003,25 @@ def draw_cta_stickers(text: str, handle: str, display_font: str | None,
 # stage 5: assembly
 # --------------------------------------------------------------------------
 
+def still_clip(image: Path, seconds: float, destination: Path) -> tuple[Path, int, int]:
+    """Turn a photo into a 9:16 clip that drifts slowly from the floor up the
+    wall. The photo is scaled to cover the frame with a little headroom so the
+    move never shows an edge."""
+    if not image.exists():
+        die(f"still photo not found: {image}")
+    frames = max(1, int(round(seconds * 30)))
+    tall = int(H * 1.10)
+    chain = (f"scale={W}:{tall}:force_original_aspect_ratio=increase,"
+             f"crop={W}:{tall},"
+             f"crop={W}:{H}:0:'({tall - H})*(1-n/{max(frames - 1, 1)})',"
+             f"setsar=1,fps=30,format=yuv420p")
+    run(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-loop", "1",
+         "-framerate", "30", "-t", f"{seconds + 0.2:.2f}", "-i", str(image),
+         "-vf", chain, "-c:v", "libx264", "-crf", "16", "-preset", "medium",
+         str(destination)])
+    return destination, W, H
+
+
 def render_scene(scene: Scene, source: Path, src_w: int, src_h: int, src_has_audio: bool,
                  parts: Path, font_path: str | None, watermark: Path | None,
                  destination: Path, phrases: list[dict] | None = None,
@@ -2548,9 +2569,25 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
                                     "end": phrase["end"] + offset})
             offset += member.duration
 
-        render_scene(held, source, src_w, src_h, src_audio, parts, font_path,
-                     watermark, clip, phrases or None, caption_mode,
-                     cards if len(members) > 1 else None)
+        if lead.image:
+            # A still photo carries this shot, usually a finished room the footage
+            # never shows. It becomes a clip of exactly this length with a slow
+            # move up the frame, then renders like any other shot so the captions
+            # and watermark land the same way.
+            still, still_w, still_h = still_clip(REPO_ROOT / lead.image, held.duration,
+                                                 parts / f"still{held.number:02d}.mp4")
+            say(f"scene {held.number}: still photo {lead.image}")
+            framed = Scene(number=held.number, start=0.0, end=held.duration, vo=held.vo,
+                           caption=held.caption, notes=held.notes,
+                           caption_zone=held.caption_zone, overlay=held.overlay,
+                           transition=held.transition, source_label=lead.image)
+            render_scene(framed, still, still_w, still_h, False, parts, font_path,
+                         watermark, clip, phrases or None, caption_mode,
+                         cards if len(members) > 1 else None)
+        else:
+            render_scene(held, source, src_w, src_h, src_audio, parts, font_path,
+                         watermark, clip, phrases or None, caption_mode,
+                         cards if len(members) > 1 else None)
         clips.append(clip)
 
         measured = media_duration(clip)
@@ -2687,7 +2724,15 @@ def render_cover(final: Path, short: dict, guide: dict, destination: Path,
 
     hook = " ".join(str(short.get("cover_hook") or short.get("working_title") or "").split())
     grab = destination.with_suffix(".frame.jpg")
-    if short.get("cover_source") and source is not None:
+    if short.get("cover_image"):
+        # A clean photo, usually the finished room. Framed to fill 9:16 with no
+        # burned in caption, which a grab from the finished Short always carries.
+        from PIL import ImageOps
+        photo = ImageOps.exif_transpose(Image.open(REPO_ROOT / short["cover_image"])).convert("RGB")
+        ImageOps.fit(photo, (W, H), Image.LANCZOS,
+                     centering=(0.5, float(short.get("cover_focus_y", 0.5)))).save(grab, quality=95)
+        where = f"photo {short['cover_image']}"
+    elif short.get("cover_source") and source is not None:
         # A clean frame straight from the episode, framed full bleed at cover_crop.
         # Grabbing from the finished Short put a burned in caption on the cover.
         raw = str(short["cover_source"]).strip()
@@ -2740,7 +2785,7 @@ def render_cover(final: Path, short: dict, guide: dict, destination: Path,
                stroke_width=CAPTION_STROKE, stroke_fill=(0, 0, 0, 255))
         plates.append(plate)
     total = sum(pl.height for pl in plates) + gap * (len(plates) - 1)
-    y = int(H * 0.30 - total / 2)
+    y = int(H * float(short.get("cover_text_y", 0.30)) - total / 2)
     for pl in plates:
         frame.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
         y += pl.height + gap
