@@ -2724,7 +2724,15 @@ def render_cover(final: Path, short: dict, guide: dict, destination: Path,
 
     hook = " ".join(str(short.get("cover_hook") or short.get("working_title") or "").split())
     grab = destination.with_suffix(".frame.jpg")
-    if short.get("cover_source") and source is not None:
+    if short.get("cover_image"):
+        # A clean photo, usually the finished room. Framed to fill 9:16 with no
+        # burned in caption, which a grab from the finished Short always carries.
+        from PIL import ImageOps
+        photo = ImageOps.exif_transpose(Image.open(REPO_ROOT / short["cover_image"])).convert("RGB")
+        ImageOps.fit(photo, (W, H), Image.LANCZOS,
+                     centering=(0.5, float(short.get("cover_focus_y", 0.5)))).save(grab, quality=95)
+        where = f"photo {short['cover_image']}"
+    elif short.get("cover_source") and source is not None:
         # A clean frame straight from the episode, framed full bleed at cover_crop.
         # Grabbing from the finished Short put a burned in caption on the cover.
         raw = str(short["cover_source"]).strip()
@@ -2777,7 +2785,7 @@ def render_cover(final: Path, short: dict, guide: dict, destination: Path,
                stroke_width=CAPTION_STROKE, stroke_fill=(0, 0, 0, 255))
         plates.append(plate)
     total = sum(pl.height for pl in plates) + gap * (len(plates) - 1)
-    y = int(H * 0.30 - total / 2)
+    y = int(H * float(short.get("cover_text_y", 0.30)) - total / 2)
     for pl in plates:
         frame.alpha_composite(pl, (int(W / 2 - pl.width / 2), y))
         y += pl.height + gap
