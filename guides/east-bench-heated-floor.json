@@ -207,8 +207,13 @@
       ],
       "full_vo": "This master bath in the East Bench house got a heated tile floor. Here's how it went in, starting with a Schluter heat mat. The little knobs hold the heating wire, it snaps right in. I drew my tile guy a map of where we wanted heat. In front of the vanity, the toilet, and the tub. Then he ran the wire back and forth through the mat. Two loose wires are a sensor that reads the floor temperature. No heat under the vanity or behind the toilet. Before any tile, you run a continuity test to catch a break. Then the tile goes right on top, set in thinset. Clips and wedges keep every tile flat and level. Now it's set to eighty five, and I can feel it through my feet.",
       "cover_image": "work/east-bench-heated-floor/photos/a_up.jpg",
-      "cover_hook": "This floor is heated",
+      "cover_hook": "Heated floor in 60 seconds",
       "cover_text_y": 0.13
     }
-  ]
+  ],
+  "long_cover": {
+    "cover_image": "work/east-bench-heated-floor/photos/b_up.jpg",
+    "cover_hook": "The full heated floor install",
+    "cover_text_y": 0.21
+  }
 }
