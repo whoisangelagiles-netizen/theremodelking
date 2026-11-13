@@ -1,0 +1,210 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Heated Tile Floor, East Bench Master Bath",
+  "date": "November 2026",
+  "work_id": "east-bench-heated-floor",
+  "video_id": "east-bench-heated-floor",
+  "video_url": "https://drive.google.com/file/d/1-4EosB3HEaCyKPQhVmLGkrZzmiJpcf0n/view",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#heatedfloors",
+    "#bathroomremodel",
+    "#tilefloor",
+    "#remodeling"
+  ],
+  "assessment": "This is not a reveal episode. It is a process walkthrough of a heated tile floor going into the East Bench phase 3 master bath, and finished footage runs only 8:54 to 9:17, most of it Mike talking to a locked off camera. A straight reveal tour would have nothing to show. It does carry a strong product and process Short: the Schluter heat mat, the wire, the heated zone map, the floor sensor, the continuity test, tile over the top, and the 85 degree payoff. Every beat plays over a state shot. The source is Mike's edited long cut, so its burned in labels, cold open, cost segments and outro graphics are all fenced off.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:14",
+      "reason": "the episode's own cold open, burned in captions and the WHAT IT COSTS tease"
+    },
+    {
+      "range": "1:15.5 - 1:19",
+      "reason": "burned in label THE HEATED FLOOR MAT"
+    },
+    {
+      "range": "1:29 - 1:33",
+      "reason": "burned in label SCHLUTER HEAT MAT"
+    },
+    {
+      "range": "3:17 - 3:28",
+      "reason": "cost of the wire box"
+    },
+    {
+      "range": "4:07 - 4:11",
+      "reason": "burned in label RUN A CONTINUITY TEST"
+    },
+    {
+      "range": "5:32 - 5:36.5",
+      "reason": "burned in label HEATED FLOOR WIRE"
+    },
+    {
+      "range": "5:05 - 5:28",
+      "reason": "cost segment"
+    },
+    {
+      "range": "6:47 - 6:51",
+      "reason": "burned in label SETTING TILE"
+    },
+    {
+      "range": "8:52 - 8:58",
+      "reason": "white flash transition and burned in label FINISHED AND HEATED"
+    },
+    {
+      "range": "9:17.5 - 10:18",
+      "reason": "thermostat inset graphic, final cost, then the spoken outro with burned in TAP THE BELL, HIT LIKE and COMMENT graphics"
+    }
+  ],
+  "opportunities": [
+    {
+      "title": "How a heated tile floor goes in, stage by stage",
+      "timestamps": "1:45 - 9:02",
+      "clip_length": "about 55 seconds",
+      "why": "A real homeowner question with a satisfying payoff, every stage has a clean state shot, and the 85 degree thermostat closes it.",
+      "seo_titles": [
+        "How Heated Tile Floors Are Installed",
+        "Is A Heated Bathroom Floor Worth It"
+      ],
+      "hook": "This master bath got a heated tile floor",
+      "captions": "spoken words",
+      "cta": "Follow for more before and afters, over a floor shot"
+    },
+    {
+      "title": "The continuity test that saves a heated floor",
+      "timestamps": "4:04 - 4:43",
+      "clip_length": "about 30 seconds",
+      "why": "A genuine pro tip, but it is all Mike talking to camera with nothing to frame. Left on the table, folded into the main Short as one beat.",
+      "seo_titles": [
+        "Do This Before You Tile Over A Heated Floor"
+      ],
+      "hook": "One test before the tile goes down",
+      "captions": "spoken words",
+      "cta": "Comment if you would put heat in your bathroom"
+    }
+  ],
+  "project_context": {
+    "summary": "Phase 3 of the East Bench house. The master bath gets an electric heated tile floor on a Schluter heat mat. Mike mapped the heated zones for his tile guy, in front of the vanity, the toilet, and where you step out of the tub, and left out the spots nobody stands. Two sensor leads let the programmable thermostat read the floor temperature. The wire gets a continuity test before tile, then tile is set in thinset with a notched trowel and leveled with clips and wedges.",
+    "segment_choice": "One Short, a stage by stage process tour from 1:58 to 9:09, opening on the finished bath and ending on the thermostat at 85.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Not a reveal tour, the episode does not have the finished footage for one.",
+      "No cost anywhere in the Short. Mike handles cost with his own end slides."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Process tour",
+      "working_title": "How We Put A Heated Floor In This Master Bath",
+      "source_range": "1:58 - 9:09",
+      "target_runtime": "about 55 seconds",
+      "primary_goal": "Walk the heated floor from mat to thermostat, one stage per line, over state shots",
+      "seo_titles": [
+        "How Heated Tile Floors Are Installed In A Bathroom",
+        "Is A Heated Bathroom Floor Worth It",
+        "Heated Floor Under Tile, Start To Finish",
+        "What Goes Under A Heated Tile Floor"
+      ],
+      "voice_direction": "Warm and unhurried, a contractor showing a friend how it works. Plain delivery, no announcer push.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "8:05 - 8:09",
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Would you put a heated floor in your bathroom?",
+        "pinned": "Full heated floor episode here: [full video link]"
+      },
+      "avoid_note": "The source is Mike's edited long cut. Its cold open, burned in labels, cost segments and outro graphics are all in avoid_ranges.",
+      "scenes": [
+        {
+          "number": 1,
+          "source": "9:05 - 9:09",
+          "vo": "This master bath in the East Bench house got a heated tile floor.",
+          "caption": "Heated tile floor",
+          "notes": "finished bath, shower glass and body jets",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "3:51.5 - 3:55",
+          "vo": "Here's how it went in, starting with a Schluter heat mat.",
+          "caption": "Schluter heat mat",
+          "notes": "the mat covering the floor",
+          "transition": "whoosh"
+        },
+        {
+          "number": 3,
+          "source": "1:58 - 2:05",
+          "vo": "The little knobs hold the heating wire, it snaps right in.",
+          "caption": "Wire snaps between the knobs",
+          "notes": "hand pressing wire into the mat"
+        },
+        {
+          "number": 4,
+          "source": "2:17 - 2:21.5",
+          "vo": "I drew my tile guy a map of where we wanted heat.",
+          "caption": "A map of the heated zones",
+          "notes": "the drawing with yellow heated areas"
+        },
+        {
+          "number": 5,
+          "source": "2:21.5 - 2:25.5",
+          "vo": "In front of the vanity, the toilet, and the tub.",
+          "caption": "Where your feet land",
+          "notes": "same take, finger on the drawing",
+          "continues_previous": true
+        },
+        {
+          "number": 6,
+          "source": "5:37 - 5:42",
+          "vo": "Then he ran the wire back and forth through the mat.",
+          "caption": "Wire run through the mat",
+          "notes": "the wire pattern"
+        },
+        {
+          "number": 7,
+          "source": "5:42 - 5:48",
+          "vo": "Two loose wires are a sensor that reads the floor temperature.",
+          "caption": "Floor sensor",
+          "notes": "same take, Mike points at the leads",
+          "continues_previous": true
+        },
+        {
+          "number": 8,
+          "source": "6:02 - 6:09",
+          "vo": "No heat under the vanity or behind the toilet.",
+          "caption": "No heat where nobody stands",
+          "notes": "wire stopping at the vanity wall"
+        },
+        {
+          "number": 9,
+          "source": "6:25 - 6:31",
+          "vo": "Before any tile, you run a continuity test to catch a break.",
+          "caption": "Continuity test first",
+          "notes": "the wire in the mat"
+        },
+        {
+          "number": 10,
+          "source": "7:00 - 7:08",
+          "vo": "Then the tile goes right on top, set in thinset.",
+          "caption": "Tile over the mat",
+          "notes": "fresh tile over the orange mat"
+        },
+        {
+          "number": 11,
+          "source": "7:59.5 - 8:03",
+          "vo": "Clips and wedges keep every tile flat and level.",
+          "caption": "Clips and wedges",
+          "notes": "the clips across the tile floor"
+        },
+        {
+          "number": 12,
+          "source": "8:59 - 9:02",
+          "vo": "Now it's set to eighty five, and I can feel it through my feet.",
+          "caption": "Set to 85",
+          "notes": "the thermostat reading 85"
+        }
+      ],
+      "full_vo": "This master bath in the East Bench house got a heated tile floor. Here's how it went in, starting with a Schluter heat mat. The little knobs hold the heating wire, it snaps right in. I drew my tile guy a map of where we wanted heat. In front of the vanity, the toilet, and the tub. Then he ran the wire back and forth through the mat. Two loose wires are a sensor that reads the floor temperature. No heat under the vanity or behind the toilet. Before any tile, you run a continuity test to catch a break. Then the tile goes right on top, set in thinset. Clips and wedges keep every tile flat and level. Now it's set to eighty five, and I can feel it through my feet."
+    }
+  ]
+}
