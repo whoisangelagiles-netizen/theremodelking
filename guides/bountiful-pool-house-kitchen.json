@@ -33,7 +33,7 @@
       "reason": "the garage"
     },
     {
-      "range": "13:52 - 15:15",
+      "range": "13:53 - 15:15",
       "reason": "outside at the new window, the long video's own hook, then the garage"
     },
     {
@@ -67,10 +67,10 @@
       "scenes": [
         {
           "number": 1,
-          "source": "12:38.4 - 12:42.3",
+          "source": "13:49.1 - 13:52.6",
           "vo": "This basement kitchen has a microwave you will never see.",
           "caption": "A microwave you will never see",
-          "notes": "the finished kitchen wide from low, black farmhouse sink, alder base run, wall oven and the rug, nobody in frame. Establishes the room",
+          "notes": "the finished kitchen wide, alder uppers and lowers, the microwave cabinet beside the fridge, cooktop island in front. Mike's arm is at the far left, outside the window",
           "caption_zone": "hook"
         },
         {
@@ -97,14 +97,14 @@
         },
         {
           "number": 5,
-          "source": "12:33 - 12:37",
+          "source": "11:15.6 - 11:19.6",
           "vo": "Alder cabinets, by the family's own cabinet maker.",
           "caption": "Alder, by the family's cabinet maker",
-          "notes": "the alder uppers and the new window as the camera comes round the kitchen, held right of Mike's blurred shoulder at the left edge"
+          "notes": "the alder uppers over the new window and the lowers under the sink, held left of Mike who walks off to the right"
         },
         {
           "number": 6,
-          "source": "12:45.8 - 12:48.5",
+          "source": "12:46.2 - 12:48.5",
           "vo": "Then we cut a window in over the sink for daylight.",
           "caption": "A new window over the sink",
           "notes": "the new window over the farmhouse sink, Mike at the right edge reaching for the faucet. Scenes 6 and 7 are ONE take"
@@ -126,10 +126,10 @@
         },
         {
           "number": 9,
-          "source": "13:06.6 - 13:11",
+          "source": "13:08.3 - 13:12",
           "vo": "The family room got a built in entertainment cabinet and surround sound.",
           "caption": "Entertainment cabinet, surround sound",
-          "notes": "the family room console under the TV and the sofa, Mike's pointing arm enters the right after 13:11"
+          "notes": "the family room wide, TV over the built in console, sofa in front. The window follows the console as the camera turns; Mike's pointing hand reaches in from the right at the very end"
         },
         {
           "number": 10,
@@ -143,7 +143,7 @@
       "voice_direction": "Warm and unhurried, a contractor quietly enjoying the hidden microwave, showing a friend round a room he is proud of.",
       "cta_frame": "tap the title",
       "video_title": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House",
-      "cta_source": "12:05 - 12:14",
+      "cta_source": "12:04.5 - 12:17",
       "cta_crop": 0.84,
       "fb_cta_crop": 0.84,
       "cta_view": 0.45,
@@ -156,7 +156,7 @@
       "cover_hook": "Hidden microwave",
       "cover_source": "12:38",
       "cover_crop": 0.5,
-      "cta_vo": "Want to find out the project cost and watch the full transformation? Tap We Cut a Window Through Solid Brick at the bottom of your screen.",
+      "cta_vo": "Want to find out the project cost and watch the full transformation? Tap the video We Cut a Window Through Solid Brick, right at the bottom of your screen.",
       "cta_card_title": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House"
     }
   ]
