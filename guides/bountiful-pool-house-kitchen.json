@@ -1,0 +1,161 @@
+{
+  "channel": "The Remodel King",
+  "episode": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House",
+  "video_title": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House",
+  "date": "November 2026",
+  "work_id": "bountiful-kitchen",
+  "video_url": "https://www.youtube.com/watch?v=75ywchE2BIc",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#BasementKitchen",
+    "#KitchenRemodel",
+    "#BeforeAndAfter",
+    "#HiddenMicrowave",
+    "#FarmhouseSink"
+  ],
+  "assessment": "The re-upload master of the Bountiful Pool House basement kitchen, 16:04 long, with the cost slides at the end. The earlier Short led on the frozen pipe cupboard doors and the long video leads on the window cut through brick, so this one leads on the microwave that hides behind a lift up cabinet door, which Mike shows in the finished kitchen at 11:41. Timestamps are this master's, not the old YouTube upload's, which ran about 13 seconds later.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:54",
+      "reason": "the pool house bathroom from last year's project, a different room"
+    },
+    {
+      "range": "1:08 - 9:00",
+      "reason": "the rest of the before tour, demo, framing and the brick cut, construction in progress"
+    },
+    {
+      "range": "9:00 - 10:23",
+      "reason": "the sneak preview, appliances and fixtures not in yet"
+    },
+    {
+      "range": "10:24 - 11:07",
+      "reason": "the garage"
+    },
+    {
+      "range": "13:52 - 15:15",
+      "reason": "outside at the new window, the long video's own hook, then the garage"
+    },
+    {
+      "range": "15:15 - 16:04",
+      "reason": "the after label and the Project Statistics cost slides"
+    }
+  ],
+  "project_context": {
+    "summary": "A dated basement kitchen and family room under the Bountiful Pool House. The lighted ceiling came out and the ceiling went up to the ductwork, a window was cut through the brick over the sink, and the space was filled with can lights. Alder cabinets by the family's own cabinet maker, a brick pattern backsplash that runs up and around and only looks beveled, a black composite farmhouse sink, a faucet whose pull down disappears into the back, a microwave behind a lift up cabinet door, and a family room with a built in entertainment cabinet, surround sound and a two step crown.",
+    "segment_choice": "One Short from the finished walkthrough, 11:08 to 13:51, plus one before beat from the pre demo tour at 1:01.",
+    "publish_order": "Single Short per episode. It links to the re-uploaded long video, We Cut a Window Through Solid Brick.",
+    "notes": [
+      "The microwave is the hook. It is the one feature a viewer cannot see in the wide, which is the point of the first line.",
+      "The window gets one feature line only. It is the long video's hook and the end card sends people there for the full story."
+    ]
+  },
+  "shot_notes": "Mike works the right of frame through most of the finished walkthrough. Clean windows in this master: the sink, oven and rug wide at 12:36.5 to 12:41, the microwave door lifting at 11:41.5 to 11:46.5 held left of Mike, the old kitchen at 1:01 to 1:07, the backsplash close at 11:30 to 11:33.5, the alder uppers at 12:42.8 to 12:45, the window and faucet at 12:45.5 to 12:52 with Mike at the right, the family room console and sofa at 13:07 to 13:10.5, the raised ceiling and cans at 13:41 to 13:46, and the island with the family room beyond at 12:05 to 12:14 held hard right.",
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "The Microwave Hides Behind a Door | Basement Kitchen Before & After | The Bountiful Pool House",
+      "source_range": "11:08 - 13:51",
+      "target_runtime": "58 seconds",
+      "primary_goal": "Lead on the microwave you cannot see, then tour the finished basement kitchen and family room",
+      "seo_titles": [
+        "The Microwave Hides Behind a Door | Basement Kitchen Before & After | The Bountiful Pool House",
+        "Where Is the Microwave in This Kitchen",
+        "A Hidden Microwave in a Basement Kitchen",
+        "Dark Basement Kitchen to Bright Alder Kitchen"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "12:38.4 - 12:42.3",
+          "vo": "This basement kitchen has a microwave you will never see.",
+          "caption": "A microwave you will never see",
+          "notes": "the finished kitchen wide from low, black farmhouse sink, alder base run, wall oven and the rug, nobody in frame. Establishes the room",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "11:41.8 - 11:45.2",
+          "vo": "It sits behind a cabinet door that lifts up out of the way.",
+          "caption": "Behind a lift up cabinet door",
+          "notes": "Mike lifts the door and the microwave appears, framed left of him. The door is back down by 11:46, so the clip ends at 11:45.2"
+        },
+        {
+          "number": 3,
+          "source": "1:01 - 1:05",
+          "vo": "Before, it was dark and dated, under an old lighted ceiling.",
+          "caption": "Dark, dated, lighted ceiling",
+          "notes": "the old kitchen pre demo, oak cabinets, laminate counters and the lighted ceiling panel at the top of frame, Mike has stepped out"
+        },
+        {
+          "number": 4,
+          "source": "13:41.5 - 13:46.6",
+          "vo": "We tore that ceiling out, raised it, and filled it with can lights.",
+          "caption": "Ceiling raised, can lights in",
+          "notes": "the new ceiling with its crown and cans, the camera tilts down onto the alder cabinets. Mike walks into the left of this take at 13:47, so it ends at 13:46.6",
+          "transition": "whoosh"
+        },
+        {
+          "number": 5,
+          "source": "12:33 - 12:37",
+          "vo": "Alder cabinets, by the family's own cabinet maker.",
+          "caption": "Alder, by the family's cabinet maker",
+          "notes": "the alder uppers and the new window as the camera comes round the kitchen, held right of Mike's blurred shoulder at the left edge"
+        },
+        {
+          "number": 6,
+          "source": "12:45.8 - 12:48.5",
+          "vo": "Then we cut a window in over the sink for daylight.",
+          "caption": "A new window over the sink",
+          "notes": "the new window over the farmhouse sink, Mike at the right edge reaching for the faucet. Scenes 6 and 7 are ONE take"
+        },
+        {
+          "number": 7,
+          "source": "12:48.5 - 12:53",
+          "vo": "Black farmhouse sink, and the faucet hides its own pull down.",
+          "caption": "The pull down hides itself",
+          "notes": "same take, Mike's hand pulls the spray head out of the back of the faucet",
+          "continues_previous": true
+        },
+        {
+          "number": 8,
+          "source": "11:29 - 11:33.8",
+          "vo": "The backsplash runs up and around, and it only looks beveled.",
+          "caption": "It only looks beveled",
+          "notes": "the faucet base, then the backsplash close along the counter. Mike bends into frame at 11:34.5"
+        },
+        {
+          "number": 9,
+          "source": "13:06.6 - 13:11",
+          "vo": "The family room got a built in entertainment cabinet and surround sound.",
+          "caption": "Entertainment cabinet, surround sound",
+          "notes": "the family room console under the TV and the sofa, Mike's pointing arm enters the right after 13:11"
+        },
+        {
+          "number": 10,
+          "source": "13:22.5 - 13:26.5",
+          "vo": "And a two step crown that is really baseboard turned upside down.",
+          "caption": "Baseboard, turned upside down",
+          "notes": "Mike points up at the new crown along the soffit, small in frame"
+        }
+      ],
+      "full_vo": "This basement kitchen has a microwave you will never see. It sits behind a cabinet door that lifts up out of the way. Before, it was dark and dated, under an old lighted ceiling.\n\nWe tore that ceiling out, raised it, and filled it with can lights. Alder cabinets, by the family's own cabinet maker. Then we cut a window in over the sink for daylight.\n\nBlack farmhouse sink, and the faucet hides its own pull down. The backsplash runs up and around, and it only looks beveled. The family room got a built in entertainment cabinet and surround sound. And a two step crown that is really baseboard turned upside down.",
+      "voice_direction": "Warm and unhurried, a contractor quietly enjoying the hidden microwave, showing a friend round a room he is proud of.",
+      "cta_frame": "tap the title",
+      "video_title": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House",
+      "cta_source": "12:05 - 12:14",
+      "cta_crop": 0.84,
+      "fb_cta_crop": 0.84,
+      "cta_view": 0.45,
+      "cta_frame_note": "the island cooktop and the family room beyond, held hard right of Mike, who stands at the left of this take",
+      "cta": {
+        "primary": "Want to find out the project cost & watch the full transformation? Tap the video title at the bottom of your screen.",
+        "linked_video": "We Cut a Window Through Solid Brick | Basement Kitchen Before & After | The Bountiful Pool House",
+        "upload_note": "Set the re-uploaded long video as this Short's related video so the title pill shows under it."
+      },
+      "cover_hook": "Hidden microwave",
+      "cover_source": "12:38",
+      "cover_crop": 0.5
+    }
+  ]
+}
