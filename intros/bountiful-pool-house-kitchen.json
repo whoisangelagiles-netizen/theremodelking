@@ -1,0 +1,99 @@
+{
+  "slug": "bountiful-pool-house-kitchen",
+  "project": "The Bountiful Pool House",
+  "scope": "Basement Kitchen, Family Room & Garage",
+  "drive_folder": "https://drive.google.com/drive/folders/1QrYZ-eKAX34dmQRVzQns6lHfU-fdXm4h",
+  "body": "We Cut a Window Through Solid Brick - Basement Kitchen Before & After - The Bountiful Pool House.mp4, 1280x720, 30 fps, scaled to 1080p on splice",
+  "media_root": "work/reupload/bountiful",
+  "lines": [
+    {
+      "vo": "This basement kitchen was so cold they left the cupboards open all winter, so we gutted it.",
+      "shots": [
+        {
+          "type": "split",
+          "before": {
+            "src": "master.mp4",
+            "at": "1:04"
+          },
+          "after": {
+            "src": "master.mp4",
+            "at": "11:22.4"
+          },
+          "weight": 1.4,
+          "notes": "sink corner with the cupboards hanging open, against the new sink under the new window"
+        },
+        {
+          "type": "split",
+          "before": {
+            "src": "master.mp4",
+            "at": "2:11.5"
+          },
+          "after": {
+            "src": "master.mp4",
+            "at": "13:10"
+          },
+          "weight": 1.0,
+          "notes": "family room with track lights, against the finished family room"
+        }
+      ]
+    },
+    {
+      "vo": "We cut a new window through solid brick and raised the kitchen ceiling.",
+      "shots": [
+        {
+          "type": "split",
+          "before": {
+            "src": "master.mp4",
+            "at": "5:41"
+          },
+          "after": {
+            "src": "master.mp4",
+            "at": "14:00.5"
+          },
+          "weight": 1.2,
+          "notes": "the pile of cut brick under the new opening, against the trimmed window in the brick"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "13:50.8"
+          },
+          "weight": 1.0,
+          "notes": "kitchen wide under the raised ceiling and can lights"
+        }
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {
+        "title": [
+          "WHAT IT COST",
+          "HOW LONG IT TOOK"
+        ],
+        "kicker": "STAY TO THE END",
+        "delay": 1.2
+      },
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "11:09"
+          },
+          "weight": 0.9,
+          "notes": "Mike behind the island in the finished kitchen, arms open"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "13:07"
+          },
+          "weight": 1.3,
+          "notes": "finished family room under the tease card"
+        }
+      ]
+    }
+  ]
+}

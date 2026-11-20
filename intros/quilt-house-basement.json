@@ -1,0 +1,99 @@
+{
+  "slug": "quilt-house-basement",
+  "project": "The Quilt House",
+  "scope": "Basement Finish",
+  "drive_folder": "https://drive.google.com/drive/folders/1Pe-H9J3xOSmfTZ8ZJPDSyZb7PHufYTPW",
+  "body": "The Fire Blocking Rule Most DIYers Miss - Basement Finish Before & After - The Quilt House.mp4, 1280x720, 30 fps, scaled to 1080p on splice",
+  "media_root": "work/reupload/quilt",
+  "lines": [
+    {
+      "vo": "We took this basement from bare studs to a family room, a bedroom, and a full bath.",
+      "shots": [
+        {
+          "type": "split",
+          "before": {
+            "src": "master.mp4",
+            "at": "0:12"
+          },
+          "after": {
+            "src": "master.mp4",
+            "at": "3:48"
+          },
+          "weight": 1.3,
+          "notes": "framed family room against the finished family room",
+          "after_focus": [
+            0.38,
+            0.5
+          ]
+        },
+        {
+          "type": "split",
+          "before": {
+            "src": "master.mp4",
+            "at": "3:06"
+          },
+          "after": {
+            "src": "master.mp4",
+            "at": "4:27"
+          },
+          "weight": 1.0,
+          "notes": "tub set in drywall against the tiled tub shower"
+        }
+      ]
+    },
+    {
+      "vo": "Before the drywall, we fire blocked every wall. It's the first thing the inspector checks.",
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "1:14.5"
+          },
+          "weight": 1.2,
+          "notes": "Mike's hand on the fire block at the top of the wall"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "1:44"
+          },
+          "weight": 1.0,
+          "notes": "horizontal fire block between studs, Mike pointing"
+        }
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {
+        "title": [
+          "WHAT IT COST",
+          "HOW LONG IT TOOK"
+        ],
+        "kicker": "STAY TO THE END",
+        "delay": 1.2
+      },
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "3:24"
+          },
+          "weight": 0.9,
+          "notes": "Mike in the finished family room, arms open"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "master.mp4",
+            "at": "4:30"
+          },
+          "weight": 1.3,
+          "notes": "finished bathroom under the tease card"
+        }
+      ]
+    }
+  ]
+}
