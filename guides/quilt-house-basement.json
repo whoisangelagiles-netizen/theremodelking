@@ -80,14 +80,14 @@
         },
         {
           "number": 4,
-          "source": "3:41 - 3:44.5",
+          "source": "4:02 - 4:06.5",
           "vo": "Now it has a family room, a bedroom, and a full bathroom.",
           "caption": "Family room, bedroom, full bath",
-          "notes": "the finished room toward the doors, empty of Mike",
+          "notes": "the bedroom wide: window and ceiling light, Mike left of the window, held right of him",
           "transition": "whoosh",
           "fb_pan": {
-            "from": 0.18,
-            "to": 0.5
+            "from": 0.78,
+            "to": 0.72
           }
         },
         {
@@ -111,12 +111,12 @@
         },
         {
           "number": 7,
-          "source": "4:09.5 - 4:12",
+          "source": "4:08.3 - 4:12",
           "vo": "The bedroom has a walk in closet with built in shelves.",
           "caption": "Walk in closet, built in shelves",
-          "notes": "the closet shelving, held hard left of Mike",
+          "notes": "the full closet shelving unit, crop on the shelves with Mike at the right edge",
           "fb_pan": {
-            "from": 0.17,
+            "from": 0.45,
             "to": 0.2
           }
         },
