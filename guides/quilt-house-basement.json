@@ -80,14 +80,14 @@
         },
         {
           "number": 4,
-          "source": "4:02 - 4:06.5",
-          "vo": "Now it has a family room, a bedroom, and a full bathroom.",
+          "source": "4:01.8 - 4:05",
+          "vo": "Now there is a family room, a bedroom, and a full bath.",
           "caption": "Family room, bedroom, full bath",
           "notes": "the bedroom wide: window and ceiling light, Mike left of the window, held right of him",
           "transition": "whoosh",
           "fb_pan": {
-            "from": 0.78,
-            "to": 0.72
+            "from": 0.68,
+            "to": 0.92
           }
         },
         {
@@ -166,7 +166,7 @@
           }
         }
       ],
-      "full_vo": "Two sisters, two basements, and both of them got the same tile. We used the subway tile in a way you do not see very often. This basement started out as nothing but bare framing. Now it has a family room, a bedroom, and a full bathroom. We hung their TV on the wall, and it is all one tone of white. The floor is the AquaGuard floor we always use. The bedroom has a walk in closet with built in shelves. It is on the floor and around the tub, the same as her sister's bathroom. Black fixtures, and a four foot vanity in a really dark gray. And open shelves for the linens and towels. An unfinished basement, now finished and ready to move in.",
+      "full_vo": "Two sisters, two basements, and both of them got the same tile. We used the subway tile in a way you do not see very often. This basement started out as nothing but bare framing. Now there is a family room, a bedroom, and a full bath. We hung their TV on the wall, and it is all one tone of white. The floor is the AquaGuard floor we always use. The bedroom has a walk in closet with built in shelves. It is on the floor and around the tub, the same as her sister's bathroom. Black fixtures, and a four foot vanity in a really dark gray. And open shelves for the linens and towels. An unfinished basement, now finished and ready to move in.",
       "voice_direction": "Warm and unhurried, a contractor quietly pleased that the two sisters ended up with matching bathrooms.",
       "cta_vo": "Want to find out the project cost and watch the full transformation? Tap The Fire Blocking Rule Most DIYers Miss at the bottom of your screen.",
       "cta_frame": "tap the title",
