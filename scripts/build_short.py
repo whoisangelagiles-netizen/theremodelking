@@ -1723,6 +1723,15 @@ def video_title(guide: dict | None, short: dict | None = None) -> str:
     return " ".join(str(raw).split())
 
 
+def card_title(guide: dict | None, short: dict) -> str | None:
+    """Title on the end card button. A custom cta_vo drops the tap card unless the
+    Short opts back in with cta_card_title, for a spoken line shorter than the title."""
+    if short.get("cta_card_title"):
+        return video_title(guide, short) if short["cta_card_title"] is True \
+            else " ".join(str(short["cta_card_title"]).split())
+    return None if short.get("cta_vo") else video_title(guide, short)
+
+
 def sign_off_line(short: dict, guide: dict | None) -> str:
     """Spoken sign off. An explicit cta_vo wins; otherwise the tap line with the title in it."""
     if short.get("cta_vo"):
@@ -2586,7 +2595,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
                                  parts, watermark, cta_clip, source, cta_start,
                                  src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold,
-                                 cta_view, None if short.get("cta_vo") else video_title(guide, short))
+                                 cta_view, card_title(guide, short))
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"

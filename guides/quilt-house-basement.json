@@ -1,0 +1,187 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Quilt House Basement Finish",
+  "date": "November 2026",
+  "work_id": "quilt-house",
+  "video_url": "https://www.youtube.com/watch?v=-EPK8AZBJbU",
+  "video_title": "The Fire Blocking Rule Most DIYers Miss | Basement Finish Before & After | The Quilt House",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#basementfinishing",
+    "#basementremodel",
+    "#subwaytile",
+    "#beforeandafter",
+    "#remodeling"
+  ],
+  "assessment": "A small basement finish: family room, bedroom with a walk in closet, and a full bath. The body leans on a fire blocking lesson over the framing, which is the long video's hook, so the Short leads on the detail Mike gives in the bathroom at 4:26: the homeowner's sister, whose basement Mike also finished (the Reading Nook House), has the same subway tile on her floor and around her tub. Finished footage is short, 3:24 to 5:46, and the family room is mostly white walls, so the Short runs about 45 seconds of tour plus the end card rather than padding out to 55.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:01",
+      "reason": "King Construction card at the head of the file"
+    },
+    {
+      "range": "0:16 - 3:23",
+      "reason": "progress, fire blocking lesson, drywall and mud. The fire blocking is the long video's hook"
+    },
+    {
+      "range": "4:20 - 4:21",
+      "reason": "FFW burned in on the cut into the bathroom"
+    },
+    {
+      "range": "5:47 - 6:55",
+      "reason": "the Project Statistics slides and the King Construction outro card"
+    }
+  ],
+  "project_context": "One Short, cut entirely from the finished walkthrough after one before beat of bare framing. The Short gets its own hook, the same tile in two sisters' basements, so it does not repeat the long video's fire blocking hook. It ends on the tap the title card pointing at the new long upload.",
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "Two Sisters, Two Basements, Same Tile | Basement Finish Before & After | The Quilt House",
+      "source_range": "3:24 - 5:25",
+      "target_runtime": "about 55 seconds with the end card",
+      "primary_goal": "Lead on the two sisters sharing the tile, then tour the family room, bedroom and bath",
+      "seo_titles": [
+        "Two Sisters, Two Basements, Same Tile | Basement Finish Before & After | The Quilt House",
+        "Small Basement Finish With a Bedroom, Walk In Closet and Full Bath",
+        "Bare Framing to a Finished Basement Apartment"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "4:27 - 4:31",
+          "vo": "Two sisters, two basements, and both of them got the same tile.",
+          "caption": "Two sisters, same tile",
+          "notes": "the tub surround in subway tile, black shower fixtures and the vanity corner. Scenes 1 and 2 are ONE take",
+          "caption_zone": "hook",
+          "fb_pan": {
+            "from": 0.24,
+            "to": 0.36
+          }
+        },
+        {
+          "number": 2,
+          "source": "4:31 - 4:35.5",
+          "vo": "We used the subway tile in a way you do not see very often.",
+          "caption": "A unique use of subway tile",
+          "notes": "same take as scene 1",
+          "continues_previous": true
+        },
+        {
+          "number": 3,
+          "source": "0:11 - 0:15.5",
+          "vo": "This basement started out as nothing but bare framing.",
+          "caption": "Nothing but bare framing",
+          "notes": "the framed bedroom and bath walls, Mike out of shot from 0:11",
+          "fb_pan": {
+            "from": 0.3,
+            "to": 0.58
+          }
+        },
+        {
+          "number": 4,
+          "source": "3:36 - 3:40.5",
+          "vo": "Now there is a family room, a bedroom, and a full bath.",
+          "caption": "Family room, bedroom, full bath",
+          "notes": "the family room run toward the open doorways to the bedroom and bath, held right of Mike who stands left pointing",
+          "transition": "whoosh",
+          "fb_pan": {
+            "from": 0.74,
+            "to": 0.8
+          }
+        },
+        {
+          "number": 5,
+          "source": "3:49 - 3:52.5",
+          "vo": "We hung their TV on the wall, and it is all one tone of white.",
+          "caption": "TV on the wall, one tone white",
+          "notes": "the TV wall and the window, held left so Mike stays at the edge",
+          "fb_pan": {
+            "from": 0.17,
+            "to": 0.3
+          }
+        },
+        {
+          "number": 6,
+          "source": "3:54.3 - 3:56.8",
+          "vo": "The floor is the AquaGuard floor we always use.",
+          "caption": "AquaGuard floor",
+          "notes": "same take as scene 5, the camera drops onto the plank floor",
+          "continues_previous": true
+        },
+        {
+          "number": 7,
+          "source": "4:08.5 - 4:11.7",
+          "vo": "A walk in closet with built in shelves.",
+          "caption": "Walk in closet, built in shelves",
+          "notes": "the full closet shelving unit, crop on the shelves with Mike at the right edge",
+          "fb_pan": {
+            "from": 0.4,
+            "to": 0.44
+          }
+        },
+        {
+          "number": 8,
+          "source": "4:40.3 - 4:45.8",
+          "vo": "It is on the floor and around the tub, the same as her sister's bathroom.",
+          "caption": "Floor and tub, same as her sister's",
+          "notes": "the bathroom from the door: gray floor tile, tub, toilet and vanity, ends before Mike's hand at 4:46",
+          "fb_pan": {
+            "from": 0.36,
+            "to": 0.5
+          }
+        },
+        {
+          "number": 9,
+          "source": "4:50.5 - 4:55.5",
+          "vo": "Black fixtures, and a four foot vanity in a really dark gray.",
+          "caption": "Black fixtures, 4 foot vanity",
+          "notes": "the vanity, faucet and drawers while Mike bends to show a drawer, held right of him",
+          "continues_previous": false,
+          "fb_pan": {
+            "from": 0.58,
+            "to": 0.66
+          }
+        },
+        {
+          "number": 10,
+          "source": "5:10 - 5:14",
+          "vo": "And open shelves for the linens and towels.",
+          "caption": "Open shelves for linens",
+          "notes": "the open shelving by the bath, Mike at the left of the source, held right of him",
+          "fb_pan": {
+            "from": 0.72,
+            "to": 0.56
+          }
+        },
+        {
+          "number": 11,
+          "source": "3:24.5 - 3:29",
+          "vo": "An unfinished basement, now finished and ready to move in.",
+          "caption": "Finished and ready to move in",
+          "notes": "the family room wide with Mike presenting it, the payoff",
+          "fb_pan": {
+            "from": 0.44,
+            "to": 0.56
+          }
+        }
+      ],
+      "full_vo": "Two sisters, two basements, and both of them got the same tile. We used the subway tile in a way you do not see very often. This basement started out as nothing but bare framing. Now there is a family room, a bedroom, and a full bath. We hung their TV on the wall, and it is all one tone of white. The floor is the AquaGuard floor we always use. A walk in closet with built in shelves. It is on the floor and around the tub, the same as her sister's bathroom. Black fixtures, and a four foot vanity in a really dark gray. And open shelves for the linens and towels. An unfinished basement, now finished and ready to move in.",
+      "voice_direction": "Warm and unhurried, a contractor quietly pleased that the two sisters ended up with matching bathrooms.",
+      "cta_vo": "Want to find out the project cost and watch the full transformation? Tap The Fire Blocking Rule Most DIYers Miss at the bottom of your screen.",
+      "cta_frame": "tap the title",
+      "cta_source": "5:16 - 5:26",
+      "cta_crop": 0.15,
+      "cta_frame_note": "the locked off family room, held hard left on the TV and window so Mike, centre, and his hands stay out",
+      "cta": {
+        "primary": "Want to find out the project cost & watch the full transformation? Tap the video title at the bottom of your screen.",
+        "linked_video": "The Fire Blocking Rule Most DIYers Miss | Basement Finish Before & After | The Quilt House",
+        "upload_note": "Set the new long upload as this Short's Related video. The end card and the spoken line name it."
+      },
+      "cover_hook": "Same tile, two sisters",
+      "cover_source": "4:29",
+      "cover_crop": 0.3,
+      "cta_card_title": true
+    }
+  ]
+}
