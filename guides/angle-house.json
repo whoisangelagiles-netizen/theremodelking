@@ -52,8 +52,8 @@
   "shorts": [
     {
       "angle": "Reveal tour",
-      "working_title": "This Bathroom Was Full Of Angles, Now There Is Not One Left",
-      "source_range": "3:04 - 23:12",
+      "working_title": "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
+      "source_range": "1:32 - 23:19",
       "target_runtime": "58 seconds",
       "primary_goal": "Show the finished master, one named upgrade at a time",
       "seo_titles": [
@@ -66,18 +66,18 @@
       "scenes": [
         {
           "number": 1,
-          "source": "3:10.5 - 3:14.5",
-          "vo": "This master bath was full of angles, and now there isn't a single one left.",
-          "caption": "Full of angles, now not one left",
-          "notes": "the old angled glass shower, the before",
+          "source": "16:09 - 16:13.5",
+          "vo": "I built my client a custom bath table for her phone, candle, and drink.",
+          "caption": "Custom bath table",
+          "notes": "the hook: the walnut and red resin table across the tub, first 2 seconds",
           "caption_zone": "hook"
         },
         {
           "number": 2,
-          "source": "1:32.5 - 1:36.5",
-          "vo": "The homeowner's son even named it the Angle House.",
-          "caption": "The Angle House",
-          "notes": "the angled wall Mike points at, before"
+          "source": "3:10.5 - 3:14.5",
+          "vo": "This master bath was full of angles, and now there isn't a single one left.",
+          "caption": "Full of angles, now not one left",
+          "notes": "the before, the old angled glass shower"
         },
         {
           "number": 3,
@@ -110,10 +110,10 @@
         },
         {
           "number": 7,
-          "source": "16:09 - 16:13.5",
-          "vo": "The freestanding tub has a hand spray, and a bath table I made.",
-          "caption": "Freestanding tub and bath table",
-          "notes": "the walnut and pink resin table across the tub"
+          "vo": "The freestanding tub has its own filler with a hand spray.",
+          "caption": "Freestanding tub with hand spray",
+          "source": "15:51.5 - 15:55",
+          "notes": "the tub and the gold filler, Mike only in the mirror"
         },
         {
           "number": 8,
@@ -151,7 +151,7 @@
           "notes": "the thermostat on the wall"
         }
       ],
-      "full_vo": "This master bath was full of angles, and now there isn't a single one left. The homeowner's son even named it the Angle House. So we moved the walls and squared everything off. The makeup desk has a lighted mirror and LED lighting underneath. The vanity is all custom walnut, and the gold fixtures actually match. 48 inch floor tiles mean way fewer grout lines. The freestanding tub has a hand spray, and a bath table I made. The huge shower has a linear drain with tile right in it. The niche runs the full width, lit with LEDs. There's a bidet toilet, with a cabinet right above it. Under each sink, the dead panel became one more drawer. And the whole floor is heated, with a programmable thermostat.",
+      "full_vo": "I built my client a custom bath table for her phone, candle, and drink. This master bath was full of angles, and now there isn't a single one left. So we moved the walls and squared everything off. The makeup desk has a lighted mirror and LED lighting underneath. The vanity is all custom walnut, and the gold fixtures actually match. 48 inch floor tiles mean way fewer grout lines. The freestanding tub has its own filler with a hand spray. The huge shower has a linear drain with tile right in it. The niche runs the full width, lit with LEDs. There's a bidet toilet, with a cabinet right above it. Under each sink, the dead panel became one more drawer. And the whole floor is heated, with a programmable thermostat.",
       "voice_direction": "Warm and unhurried, a contractor walking a friend through the finished room. Plain delivery, no announcer push. Let the features do the work.",
       "cta_frame": "Follow\nfor more\nbefore\nand afters",
       "cta_source": "20:08 - 20:12",

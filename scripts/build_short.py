@@ -1883,7 +1883,13 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
     tap = sticker("TAP", small, green, white, pad_y=10)
 
     # the title pill: play glyph, then the title wrapped like the link pill wraps it
-    tlines = wrap_caption(title, tfont, int(W * 0.66), probe)[:3]
+    # an SOP title runs up to 100 characters and the house name sits last, so it
+    # gets four lines; dropping a line would drop the house name
+    tlines = wrap_caption(title, tfont, int(W * 0.72), probe)
+    if len(tlines) > 4:
+        say(f"WARNING the end card title needs {len(tlines)} lines, only 4 fit, "
+            "shorten video_title")
+        tlines = tlines[:4]
     ta, td = tfont.getmetrics()
     line_h = ta + td + 4
     icon = 44
