@@ -1728,7 +1728,10 @@ def sign_off_line(short: dict, guide: dict | None) -> str:
     if short.get("cta_vo"):
         return str(short["cta_vo"])
     title = video_title(guide, short)
-    return CTA_TAP_VO.format(title=title) if title else CTA_VO_DEFAULT
+    # an SOP title is "Hook | Room Before & After | The House"; read aloud, the
+    # pipes and the tail sound robotic, so Mike says only the hook
+    spoken = title.split(" | ")[0].strip()
+    return CTA_TAP_VO.format(title=spoken) if spoken else CTA_VO_DEFAULT
 
 
 ARROW_DRAW_SECONDS = 0.9    # the stroke draws itself on over this long
@@ -1880,7 +1883,13 @@ def draw_cta_tap_card(question: str, title: str, foot: str, display_font: str | 
     tap = sticker("TAP", small, green, white, pad_y=10)
 
     # the title pill: play glyph, then the title wrapped like the link pill wraps it
-    tlines = wrap_caption(title, tfont, int(W * 0.66), probe)[:3]
+    # an SOP title runs up to 100 characters and the house name sits last, so it
+    # gets four lines; dropping a line would drop the house name
+    tlines = wrap_caption(title, tfont, int(W * 0.72), probe)
+    if len(tlines) > 4:
+        say(f"WARNING the end card title needs {len(tlines)} lines, only 4 fit, "
+            "shorten video_title")
+        tlines = tlines[:4]
     ta, td = tfont.getmetrics()
     line_h = ta + td + 4
     icon = 44
@@ -2792,9 +2801,17 @@ def stage_publish_pack(final: Path, guide: dict, short: dict, index: int,
         f"Video: {final.name}",
         f"Thumbnail: {thumb.name}",
         "",
-        "## SEO title, use the first unless you prefer another",
+        "Full titles, descriptions, chapters, tags and playlists come from the",
+        "remodel-king-publish-package skill (the publishing SOP). This pack is a draft.",
         "",
     ]
+    if short.get("youtube_title"):
+        sop = " ".join(str(short["youtube_title"]).split())
+        lines += ["## YouTube title (SOP)", "", f"{sop}  ({len(sop)} characters)", "",
+                  "## File name", "", sop.replace("|", "-") + ".mp4", ""]
+        if len(sop) > 100:
+            say(f"WARNING the Short title is {len(sop)} characters, the SOP cap is 100")
+    lines += ["## SEO title options", ""]
     lines += [f"{i}. {t}" for i, t in enumerate(titles, start=1)]
     lines += [
         "",

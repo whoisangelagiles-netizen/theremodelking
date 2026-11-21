@@ -1,0 +1,643 @@
+{
+  "video_id": "angle-house-MP-0905",
+  "source": "elevenlabs-speech-to-text",
+  "language": "eng",
+  "media": "work/angle-house/tx/angle-house-MP-0905/MP-0905.mov",
+  "duration": 39.9,
+  "line_count": 12,
+  "lines": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 0.52,
+      "timestamp": "0:00",
+      "range": "0:00 - 0:00",
+      "text": "Start another one."
+    },
+    {
+      "index": 1,
+      "start": 3.5,
+      "end": 7.36,
+      "timestamp": "0:03",
+      "range": "0:03 - 0:07",
+      "text": "Okay, so there's one thing that we did in this bathroom that I forgot to mention."
+    },
+    {
+      "index": 2,
+      "start": 8.12,
+      "end": 10.02,
+      "timestamp": "0:08",
+      "range": "0:08 - 0:10",
+      "text": "I'm gonna have you pan around here."
+    },
+    {
+      "index": 3,
+      "start": 13.44,
+      "end": 15.7,
+      "timestamp": "0:13",
+      "range": "0:13 - 0:15",
+      "text": "Try and-- This is a"
+    },
+    {
+      "index": 4,
+      "start": 16.42,
+      "end": 18.7,
+      "timestamp": "0:16",
+      "range": "0:16 - 0:18",
+      "text": "thermostat for the heated floor."
+    },
+    {
+      "index": 5,
+      "start": 20.2,
+      "end": 21.8,
+      "timestamp": "0:20",
+      "range": "0:20 - 0:21",
+      "text": "So this floor is heated also."
+    },
+    {
+      "index": 6,
+      "start": 21.9,
+      "end": 23.22,
+      "timestamp": "0:21",
+      "range": "0:21 - 0:23",
+      "text": "I forgot to tell you we did that."
+    },
+    {
+      "index": 7,
+      "start": 23.76,
+      "end": 27.92,
+      "timestamp": "0:23",
+      "range": "0:23 - 0:27",
+      "text": "But this is a heated floor, and this is the thermostat, and it's programmable, so you can"
+    },
+    {
+      "index": 8,
+      "start": 28.76,
+      "end": 33.02,
+      "timestamp": "0:28",
+      "range": "0:28 - 0:33",
+      "text": "have it turn on, like, a half hour before you wake up in the morning and turn off when you're"
+    },
+    {
+      "index": 9,
+      "start": 33.06,
+      "end": 36.7,
+      "timestamp": "0:33",
+      "range": "0:33 - 0:36",
+      "text": "done getting ready, and then later again at night if you want it to."
+    },
+    {
+      "index": 10,
+      "start": 37.76,
+      "end": 38.38,
+      "timestamp": "0:37",
+      "range": "0:37 - 0:38",
+      "text": "Pretty awesome."
+    },
+    {
+      "index": 11,
+      "start": 39.18,
+      "end": 39.9,
+      "timestamp": "0:39",
+      "range": "0:39 - 0:39",
+      "text": "You should have one."
+    }
+  ],
+  "words": [
+    {
+      "text": "Start",
+      "start": 0.0,
+      "end": 0.12
+    },
+    {
+      "text": "another",
+      "start": 0.14,
+      "end": 0.34
+    },
+    {
+      "text": "one.",
+      "start": 0.38,
+      "end": 0.52
+    },
+    {
+      "text": "Okay,",
+      "start": 3.5,
+      "end": 3.7
+    },
+    {
+      "text": "so",
+      "start": 4.22,
+      "end": 4.36
+    },
+    {
+      "text": "there's",
+      "start": 4.6,
+      "end": 4.76
+    },
+    {
+      "text": "one",
+      "start": 4.8,
+      "end": 4.92
+    },
+    {
+      "text": "thing",
+      "start": 4.94,
+      "end": 5.08
+    },
+    {
+      "text": "that",
+      "start": 5.12,
+      "end": 5.2
+    },
+    {
+      "text": "we",
+      "start": 5.24,
+      "end": 5.32
+    },
+    {
+      "text": "did",
+      "start": 5.36,
+      "end": 5.52
+    },
+    {
+      "text": "in",
+      "start": 5.56,
+      "end": 5.64
+    },
+    {
+      "text": "this",
+      "start": 5.68,
+      "end": 5.84
+    },
+    {
+      "text": "bathroom",
+      "start": 5.88,
+      "end": 6.2
+    },
+    {
+      "text": "that",
+      "start": 6.24,
+      "end": 6.32
+    },
+    {
+      "text": "I",
+      "start": 6.38,
+      "end": 6.44
+    },
+    {
+      "text": "forgot",
+      "start": 6.46,
+      "end": 6.74
+    },
+    {
+      "text": "to",
+      "start": 6.78,
+      "end": 6.86
+    },
+    {
+      "text": "mention.",
+      "start": 6.9,
+      "end": 7.36
+    },
+    {
+      "text": "I'm",
+      "start": 8.119,
+      "end": 8.22
+    },
+    {
+      "text": "gonna",
+      "start": 8.24,
+      "end": 8.34
+    },
+    {
+      "text": "have",
+      "start": 8.4,
+      "end": 8.58
+    },
+    {
+      "text": "you",
+      "start": 8.62,
+      "end": 8.68
+    },
+    {
+      "text": "pan",
+      "start": 9.08,
+      "end": 9.28
+    },
+    {
+      "text": "around",
+      "start": 9.32,
+      "end": 9.66
+    },
+    {
+      "text": "here.",
+      "start": 9.74,
+      "end": 10.02
+    },
+    {
+      "text": "Try",
+      "start": 13.44,
+      "end": 13.56
+    },
+    {
+      "text": "and--",
+      "start": 13.58,
+      "end": 13.68
+    },
+    {
+      "text": "This",
+      "start": 14.2,
+      "end": 14.44
+    },
+    {
+      "text": "is",
+      "start": 14.7,
+      "end": 15.0
+    },
+    {
+      "text": "a",
+      "start": 15.5,
+      "end": 15.7
+    },
+    {
+      "text": "thermostat",
+      "start": 16.42,
+      "end": 17.26
+    },
+    {
+      "text": "for",
+      "start": 17.78,
+      "end": 17.94
+    },
+    {
+      "text": "the",
+      "start": 17.98,
+      "end": 18.04
+    },
+    {
+      "text": "heated",
+      "start": 18.1,
+      "end": 18.36
+    },
+    {
+      "text": "floor.",
+      "start": 18.44,
+      "end": 18.7
+    },
+    {
+      "text": "So",
+      "start": 20.2,
+      "end": 20.3
+    },
+    {
+      "text": "this",
+      "start": 20.36,
+      "end": 20.48
+    },
+    {
+      "text": "floor",
+      "start": 20.56,
+      "end": 20.78
+    },
+    {
+      "text": "is",
+      "start": 20.82,
+      "end": 20.94
+    },
+    {
+      "text": "heated",
+      "start": 21.0,
+      "end": 21.32
+    },
+    {
+      "text": "also.",
+      "start": 21.48,
+      "end": 21.8
+    },
+    {
+      "text": "I",
+      "start": 21.9,
+      "end": 21.94
+    },
+    {
+      "text": "forgot",
+      "start": 21.96,
+      "end": 22.2
+    },
+    {
+      "text": "to",
+      "start": 22.24,
+      "end": 22.34
+    },
+    {
+      "text": "tell",
+      "start": 22.38,
+      "end": 22.52
+    },
+    {
+      "text": "you",
+      "start": 22.56,
+      "end": 22.64
+    },
+    {
+      "text": "we",
+      "start": 22.68,
+      "end": 22.78
+    },
+    {
+      "text": "did",
+      "start": 22.82,
+      "end": 22.96
+    },
+    {
+      "text": "that.",
+      "start": 23.0,
+      "end": 23.22
+    },
+    {
+      "text": "But",
+      "start": 23.76,
+      "end": 23.86
+    },
+    {
+      "text": "this",
+      "start": 23.9,
+      "end": 24.04
+    },
+    {
+      "text": "is",
+      "start": 24.1,
+      "end": 24.18
+    },
+    {
+      "text": "a",
+      "start": 24.26,
+      "end": 24.28
+    },
+    {
+      "text": "heated",
+      "start": 24.34,
+      "end": 24.58
+    },
+    {
+      "text": "floor,",
+      "start": 24.66,
+      "end": 24.82
+    },
+    {
+      "text": "and",
+      "start": 24.84,
+      "end": 24.92
+    },
+    {
+      "text": "this",
+      "start": 24.94,
+      "end": 25.06
+    },
+    {
+      "text": "is",
+      "start": 25.12,
+      "end": 25.2
+    },
+    {
+      "text": "the",
+      "start": 25.26,
+      "end": 25.32
+    },
+    {
+      "text": "thermostat,",
+      "start": 25.4,
+      "end": 25.92
+    },
+    {
+      "text": "and",
+      "start": 26.38,
+      "end": 26.44
+    },
+    {
+      "text": "it's",
+      "start": 26.48,
+      "end": 26.64
+    },
+    {
+      "text": "programmable,",
+      "start": 26.68,
+      "end": 27.38
+    },
+    {
+      "text": "so",
+      "start": 27.5,
+      "end": 27.6
+    },
+    {
+      "text": "you",
+      "start": 27.66,
+      "end": 27.72
+    },
+    {
+      "text": "can",
+      "start": 27.76,
+      "end": 27.92
+    },
+    {
+      "text": "have",
+      "start": 28.76,
+      "end": 28.86
+    },
+    {
+      "text": "it",
+      "start": 28.9,
+      "end": 28.98
+    },
+    {
+      "text": "turn",
+      "start": 29.04,
+      "end": 29.24
+    },
+    {
+      "text": "on,",
+      "start": 29.32,
+      "end": 29.56
+    },
+    {
+      "text": "like,",
+      "start": 29.62,
+      "end": 29.82
+    },
+    {
+      "text": "a",
+      "start": 30.48,
+      "end": 30.52
+    },
+    {
+      "text": "half",
+      "start": 30.56,
+      "end": 30.72
+    },
+    {
+      "text": "hour",
+      "start": 30.78,
+      "end": 30.94
+    },
+    {
+      "text": "before",
+      "start": 30.98,
+      "end": 31.18
+    },
+    {
+      "text": "you",
+      "start": 31.22,
+      "end": 31.28
+    },
+    {
+      "text": "wake",
+      "start": 31.32,
+      "end": 31.5
+    },
+    {
+      "text": "up",
+      "start": 31.56,
+      "end": 31.66
+    },
+    {
+      "text": "in",
+      "start": 31.7,
+      "end": 31.76
+    },
+    {
+      "text": "the",
+      "start": 31.8,
+      "end": 31.86
+    },
+    {
+      "text": "morning",
+      "start": 31.9,
+      "end": 32.22
+    },
+    {
+      "text": "and",
+      "start": 32.259,
+      "end": 32.36
+    },
+    {
+      "text": "turn",
+      "start": 32.439,
+      "end": 32.6
+    },
+    {
+      "text": "off",
+      "start": 32.64,
+      "end": 32.78
+    },
+    {
+      "text": "when",
+      "start": 32.8,
+      "end": 32.9
+    },
+    {
+      "text": "you're",
+      "start": 32.92,
+      "end": 33.02
+    },
+    {
+      "text": "done",
+      "start": 33.06,
+      "end": 33.26
+    },
+    {
+      "text": "getting",
+      "start": 33.3,
+      "end": 33.48
+    },
+    {
+      "text": "ready,",
+      "start": 33.54,
+      "end": 33.9
+    },
+    {
+      "text": "and",
+      "start": 34.14,
+      "end": 34.22
+    },
+    {
+      "text": "then",
+      "start": 34.26,
+      "end": 34.42
+    },
+    {
+      "text": "later",
+      "start": 35.06,
+      "end": 35.24
+    },
+    {
+      "text": "again",
+      "start": 35.28,
+      "end": 35.5
+    },
+    {
+      "text": "at",
+      "start": 35.52,
+      "end": 35.62
+    },
+    {
+      "text": "night",
+      "start": 35.66,
+      "end": 35.84
+    },
+    {
+      "text": "if",
+      "start": 35.88,
+      "end": 35.96
+    },
+    {
+      "text": "you",
+      "start": 36.02,
+      "end": 36.1
+    },
+    {
+      "text": "want",
+      "start": 36.14,
+      "end": 36.28
+    },
+    {
+      "text": "it",
+      "start": 36.3,
+      "end": 36.42
+    },
+    {
+      "text": "to.",
+      "start": 36.48,
+      "end": 36.7
+    },
+    {
+      "text": "Pretty",
+      "start": 37.76,
+      "end": 37.88
+    },
+    {
+      "text": "awesome.",
+      "start": 37.96,
+      "end": 38.38
+    },
+    {
+      "text": "You",
+      "start": 39.18,
+      "end": 39.24
+    },
+    {
+      "text": "should",
+      "start": 39.28,
+      "end": 39.4
+    },
+    {
+      "text": "have",
+      "start": 39.46,
+      "end": 39.64
+    },
+    {
+      "text": "one.",
+      "start": 39.68,
+      "end": 39.9
+    }
+  ]
+}

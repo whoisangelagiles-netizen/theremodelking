@@ -109,6 +109,28 @@ here. Read that skill first if it is not already loaded. In particular:
 - If highlight footage is limited, use fewer and longer VO lines that hold over
   reveal footage instead of many quick cuts.
 
+## Titles follow the publishing SOP, always
+
+Every title for Mike's videos, long or Short, comes from the
+`remodel-king-publish-package` skill (`.claude/skills/remodel-king-publish-package/SKILL.md`).
+Read it before naming anything. The parts that change how a Short is built:
+
+- **Two different hooks.** The long video's hook leads its title, its intro VO
+  and its thumbnail. The Short gets a DIFFERENT hook, a specific feature, ideally
+  personal or handmade. Never reuse the long video's hook on the Short.
+- **The Short opens on its hook feature in the first 2 seconds.** Line 1 of the
+  VO names it and scene 1 shows it. A before beat, if any, comes after.
+- **Title shapes.** Long: `[Hook] | [Room] Remodel Before & After | The [House Name]`.
+  Short: `[Hook] | [Room] Before & After | The [House Name]`. House name last,
+  100 characters max, hook inside the first 50. Count with code. File name is the
+  title with every `|` swapped for `-`, plus `.mp4`.
+- **Guide fields.** `video_title` is the LONG video's exact SOP title: it goes on
+  the end card pill, and Mike's spoken tap line says its hook part. The Short's
+  own SOP title goes in `youtube_title` and leads `seo_titles`.
+- Shorts with over 100,000 views keep their titles. Never retitle them.
+- Descriptions, chapters, tags, playlists and the end screen come from the SOP
+  skill's package, not from the build's draft `publish.md`.
+
 ## Step 1: fetch the transcript
 
 Run the fetcher before writing anything:
