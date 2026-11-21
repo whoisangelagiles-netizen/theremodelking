@@ -57,6 +57,7 @@
       "target_runtime": "58 seconds",
       "primary_goal": "Show the finished master, one named upgrade at a time",
       "seo_titles": [
+        "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
         "We Took Every Angle Out Of This Master Bathroom",
         "Angled Walls To A Square Master Bath, Full Remodel",
         "Freestanding Tub, Walnut Vanity And A Full Width LED Niche",
@@ -159,7 +160,10 @@
         "primary": "Follow for more before and afters",
         "alt": "Which upgrade would you put in first?",
         "pinned": "Full Angle House transformation, with what it cost and how long it took: [full video link]"
-      }
+      },
+      "youtube_title": "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
+      "hook_feature": "the custom bath table, on screen in the first 2 seconds"
     }
-  ]
+  ],
+  "video_title": "We Took Every Angle Out of This Bathroom | Master Bathroom Remodel Before & After | The Angle House"
 }

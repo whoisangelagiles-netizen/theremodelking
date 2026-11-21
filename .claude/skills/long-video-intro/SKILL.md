@@ -68,7 +68,9 @@ second around the moments worth using. Pick:
 Three lines, Mike's voice, first person, about 35 to 45 words. The build warns
 outside 10 to 15 seconds.
 
-1. **What the project was.** The rooms and how far down it went.
+1. **The hook.** The long video's hook from the publishing SOP
+   (`remodel-king-publish-package`), said plainly. It leads the title and the
+   thumbnail too, so all three match. It also says what the project was.
 2. **The transformation.** The two features that land hardest on screen.
 3. **The tease.** That the cost and the time are coming, never the numbers.
    "Stick around, and I'll tell you what it cost and how long it took."
