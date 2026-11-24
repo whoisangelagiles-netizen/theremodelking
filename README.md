@@ -42,6 +42,15 @@ checklist.
 
 Lives in `.claude/skills/shorts-production-guide/SKILL.md`.
 
+### Publishing SOP, every title
+
+`remodel-king-publish-package` builds the YouTube package for a finished long
+video and its Short: titles, file names, descriptions, chapters, tags,
+playlists and the end screen. Every title for Mike's videos comes from it. The
+long video and the Short each get their own hook, and the Short opens on its
+hook feature in the first 2 seconds. Lives in
+`.claude/skills/remodel-king-publish-package/SKILL.md`.
+
 ## House rules baked into both skills
 
 - **Frame the feature, not the talker.** Cropping 16:9 to 9:16 throws away two

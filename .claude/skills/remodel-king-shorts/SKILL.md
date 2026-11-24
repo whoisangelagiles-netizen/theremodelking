@@ -26,7 +26,8 @@ and it is not a hook question. It is a walk through the finished room, naming
 one upgrade at a time.
 
 ```
-1. The transformation, in one sentence.
+1. The Short's hook feature, in one sentence, on screen in the first 2 seconds
+   (see the SOP section above). Then the transformation.
    "This master bathroom went from dated to a total showpiece."
 2. Who it was for and why it looks the way it does, one or two sentences.
    "They love mountain climbing, so the whole bath was built around red rock colors."
@@ -37,6 +38,28 @@ one upgrade at a time.
    a material, a mechanism, or the benefit it buys.
 5. Nothing else. The end card carries the call to action, the VO does not.
 ```
+
+## Titles follow the publishing SOP, always
+
+Every title for Mike's videos, long or Short, comes from the
+`remodel-king-publish-package` skill (`.claude/skills/remodel-king-publish-package/SKILL.md`).
+Read it before naming anything. The parts that change how a Short is built:
+
+- **Two different hooks.** The long video's hook leads its title, its intro VO
+  and its thumbnail. The Short gets a DIFFERENT hook, a specific feature, ideally
+  personal or handmade. Never reuse the long video's hook on the Short.
+- **The Short opens on its hook feature in the first 2 seconds.** Line 1 of the
+  VO names it and scene 1 shows it. A before beat, if any, comes after.
+- **Title shapes.** Long: `[Hook] | [Room] Remodel Before & After | The [House Name]`.
+  Short: `[Hook] | [Room] Before & After | The [House Name]`. House name last,
+  100 characters max, hook inside the first 50. Count with code. File name is the
+  title with every `|` swapped for `-`, plus `.mp4`.
+- **Guide fields.** `video_title` is the LONG video's exact SOP title: it goes on
+  the end card pill, and Mike's spoken tap line says its hook part. The Short's
+  own SOP title goes in `youtube_title` and leads `seo_titles`.
+- Shorts with over 100,000 views keep their titles. Never retitle them.
+- Descriptions, chapters, tags, playlists and the end screen come from the SOP
+  skill's package, not from the build's draft `publish.md`.
 
 ## How the read sounds
 

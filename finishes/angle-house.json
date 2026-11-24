@@ -1,0 +1,323 @@
+{
+  "slug": "angle-house",
+  "project": "The Angle House",
+  "drive_file": "https://drive.google.com/file/d/1LGNuOU3so3-KlaGXf7uFPTBM5ri-A9za/view",
+  "body_name": "Angle House body.mp4",
+  "body_file": "work/angle-house/body/body.mp4",
+  "already_in_the_body": [
+    "1920x1080 at 50 fps, the overlays are 30 fps and the burned in master is conformed to 30",
+    "hard cuts at 4:47.8, 5:16.0, 5:38.3 (the finger snap), 12:28.3, 13:40.3 and 23:30.4, black from 24:04.2 to the end",
+    "no titles, no dips and no subscribe animation, so this pass carries the chapters and the subscribe pill"
+  ],
+  "flagged_in_the_body": [
+    "11:01 to 11:05 a blown take is still in: Okay so, okay, wait wait wait, I hit snap first",
+    "10:57 Mike says master bath but cuts to the main bath"
+  ],
+  "pointer_note": "pointers are tracked: `seen` is the frame the to/from coordinates were read off, the arrow follows the handheld camera from there",
+  "touches": [
+    {
+      "kind": "chapter",
+      "at": "0:00.8",
+      "text": "The before"
+    },
+    {
+      "kind": "pointer",
+      "at": "1:02.3",
+      "seen": "1:02.6",
+      "to": [
+        0.8,
+        0.82
+      ],
+      "from": [
+        0.93,
+        0.42
+      ],
+      "text": "Old jetted tub"
+    },
+    {
+      "kind": "pointer",
+      "at": "3:12.3",
+      "seen": "3:12.6",
+      "to": [
+        0.12,
+        0.45
+      ],
+      "from": [
+        0.3,
+        0.14
+      ],
+      "text": "Angled shower walls"
+    },
+    {
+      "kind": "flash",
+      "at": "5:38.3",
+      "notes": "the finger snap, before to demo done"
+    },
+    {
+      "kind": "chapter",
+      "at": "5:39.0",
+      "text": "Demo done"
+    },
+    {
+      "kind": "pointer",
+      "at": "6:53.3",
+      "seen": "6:53.6",
+      "to": [
+        0.62,
+        0.58
+      ],
+      "from": [
+        0.32,
+        0.3
+      ],
+      "text": "Plumbing now PEX"
+    },
+    {
+      "kind": "pointer",
+      "at": "8:26.8",
+      "seen": "8:27.1",
+      "to": [
+        0.58,
+        0.87
+      ],
+      "from": [
+        0.35,
+        0.55
+      ],
+      "text": "The new tub"
+    },
+    {
+      "kind": "pointer",
+      "at": "10:21.3",
+      "seen": "10:21.6",
+      "to": [
+        0.5,
+        0.38
+      ],
+      "from": [
+        0.22,
+        0.14
+      ],
+      "text": "Long LED niche goes here"
+    },
+    {
+      "kind": "flash",
+      "at": "12:28.3",
+      "notes": "hard cut into the finished house"
+    },
+    {
+      "kind": "chapter",
+      "at": "12:29.0",
+      "text": "Main bath reveal"
+    },
+    {
+      "kind": "inset",
+      "at": "12:43.0",
+      "before": "4:50.0",
+      "corner": "top-right",
+      "notes": "old cultured marble tub shower over the new tile, Mike stands centre"
+    },
+    {
+      "kind": "label",
+      "at": "12:51.0",
+      "text": "LED niche, two sections"
+    },
+    {
+      "kind": "label",
+      "at": "13:00.5",
+      "text": "New window"
+    },
+    {
+      "kind": "label",
+      "at": "13:17.0",
+      "text": "Flat door knob"
+    },
+    {
+      "kind": "chapter",
+      "at": "13:41.5",
+      "text": "Master suite reveal"
+    },
+    {
+      "kind": "label",
+      "at": "14:35.5",
+      "text": "Lighted mirror"
+    },
+    {
+      "kind": "label",
+      "at": "14:52.0",
+      "text": "Custom walnut vanity",
+      "corner": "top-left"
+    },
+    {
+      "kind": "label",
+      "at": "15:06.5",
+      "text": "48 by 48 floor tile",
+      "corner": "bottom-right"
+    },
+    {
+      "kind": "pointer",
+      "at": "15:19.8",
+      "seen": "15:20.1",
+      "to": [
+        0.4,
+        0.86
+      ],
+      "from": [
+        0.24,
+        0.55
+      ],
+      "text": "LED toe kick lighting"
+    },
+    {
+      "kind": "label",
+      "at": "15:39.5",
+      "text": "Handmade toe kick vent",
+      "corner": "top-left"
+    },
+    {
+      "kind": "label",
+      "at": "15:51.5",
+      "text": "Freestanding tub",
+      "corner": "top-left"
+    },
+    {
+      "kind": "label",
+      "at": "15:58.5",
+      "text": "Tub filler with hand spray",
+      "corner": "top-right"
+    },
+    {
+      "kind": "pointer",
+      "at": "16:10.6",
+      "seen": "16:10.9",
+      "to": [
+        0.6,
+        0.8
+      ],
+      "from": [
+        0.85,
+        0.45
+      ],
+      "text": "Custom bath table"
+    },
+    {
+      "kind": "inset",
+      "at": "16:42.0",
+      "before": "3:10.0",
+      "corner": "top-left",
+      "notes": "the old angled glass shower, Mike's back fills the right"
+    },
+    {
+      "kind": "label",
+      "at": "16:58.5",
+      "text": "Tiled linear drain"
+    },
+    {
+      "kind": "label",
+      "at": "17:15.0",
+      "text": "Bench matches the counters",
+      "corner": "top-left"
+    },
+    {
+      "kind": "pointer",
+      "at": "17:26.6",
+      "seen": "17:26.9",
+      "to": [
+        0.68,
+        0.5
+      ],
+      "from": [
+        0.4,
+        0.85
+      ],
+      "text": "Full width LED niche",
+      "hold": 1.3
+    },
+    {
+      "kind": "label",
+      "at": "17:38.5",
+      "text": "Handheld and rain head",
+      "corner": "bottom-right"
+    },
+    {
+      "kind": "pointer",
+      "at": "18:09.3",
+      "seen": "18:09.6",
+      "to": [
+        0.4,
+        0.38
+      ],
+      "from": [
+        0.66,
+        0.56
+      ],
+      "text": "Paintable bath fan"
+    },
+    {
+      "kind": "label",
+      "at": "18:38.0",
+      "text": "Bidet toilet"
+    },
+    {
+      "kind": "label",
+      "at": "18:50.0",
+      "text": "Johnny cabinet"
+    },
+    {
+      "kind": "label",
+      "at": "19:03.5",
+      "text": "Bath fan timer"
+    },
+    {
+      "kind": "label",
+      "at": "19:47.5",
+      "text": "Drawer under the sink",
+      "corner": "top-left",
+      "notes": "was a pointer, the camera swings off the drawer"
+    },
+    {
+      "kind": "label",
+      "at": "20:08.5",
+      "text": "Light over the tub"
+    },
+    {
+      "kind": "label",
+      "at": "20:21.0",
+      "text": "Mitered tile corners",
+      "corner": "bottom-right"
+    },
+    {
+      "kind": "label",
+      "at": "20:41.5",
+      "text": "LED lit closet"
+    },
+    {
+      "kind": "pill",
+      "at": "21:58.0",
+      "text": "Home Depot storefront link below",
+      "corner": "bottom-right",
+      "notes": "Mike: down below is a link to our Home Depot storefront"
+    },
+    {
+      "kind": "pill",
+      "at": "22:31.0",
+      "text": "Subscribe and hit the bell",
+      "corner": "bottom-right"
+    },
+    {
+      "kind": "pointer",
+      "at": "23:07.3",
+      "seen": "23:07.6",
+      "to": [
+        0.46,
+        0.42
+      ],
+      "from": [
+        0.2,
+        0.2
+      ],
+      "text": "Heated floor thermostat",
+      "hold": 1.6
+    }
+  ]
+}

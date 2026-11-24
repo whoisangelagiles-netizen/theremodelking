@@ -1,0 +1,169 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Master Bathroom Remodel, The Angle House",
+  "date": "November 2026",
+  "work_id": "angle-house-short",
+  "video_url": "[add full video link]",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#bathroomremodel",
+    "#masterbathroom",
+    "#freestandingtub",
+    "#remodeling"
+  ],
+  "assessment": "A strong reveal tour episode. The before is easy to read on a phone, a bathroom full of angled walls, and the finished master carries ten named upgrades that each land in a couple of seconds. The main bath and the closet are good but would split the Short, so they stay in the long video. The cost tease at 1:45 to 2:05 is fenced off, Mike handles cost with his own end slides.",
+  "opportunities": [
+    {
+      "angle": "Reveal tour, the master bath",
+      "range": "14:21 - 20:04",
+      "verdict": "chosen, ten named features, all on finished footage"
+    },
+    {
+      "angle": "Product, the drawer under the sink",
+      "range": "19:17 - 20:04",
+      "verdict": "a strong ask your cabinet guy tip, kept as one beat inside the tour"
+    },
+    {
+      "angle": "Problem and solution, brittle CPVC to PEX",
+      "range": "7:02 - 7:55",
+      "verdict": "left on the table, it plays over a hole in the subfloor and does not read in vertical"
+    }
+  ],
+  "avoid_ranges": [
+    {
+      "range": "1:45 - 2:05",
+      "reason": "cost tease, cost is never used"
+    },
+    {
+      "range": "21:30 - 22:54",
+      "reason": "Mike's spoken outro, the Short has its own end card"
+    }
+  ],
+  "project_context": {
+    "summary": "Master suite and main bath remodel on the Angle House, named by the homeowner's son for all its angled walls. The walls moved and squared off, the jetted tub became a freestanding tub with a hand made bath table, the angled shower became a big rectangle with a tiled linear drain and a full width LED niche, and the vanity went to custom walnut with a drawer under each sink. The floor is 48 by 48 tile and heated.",
+    "segment_choice": "One Short, a reveal tour. It opens on the angled shower before so the viewer sees why the house got its name, one progress beat for the turn, then the finished master one upgrade at a time.",
+    "publish_order": "Single Short per episode.",
+    "notes": [
+      "Every beat after the turn plays over finished house footage.",
+      "Nothing in the Short shows demo, workers, or price."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
+      "source_range": "1:32 - 23:19",
+      "target_runtime": "58 seconds",
+      "primary_goal": "Show the finished master, one named upgrade at a time",
+      "seo_titles": [
+        "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
+        "We Took Every Angle Out Of This Master Bathroom",
+        "Angled Walls To A Square Master Bath, Full Remodel",
+        "Freestanding Tub, Walnut Vanity And A Full Width LED Niche",
+        "The Drawer Under The Sink Every Custom Vanity Should Have"
+      ],
+      "scenes": [
+        {
+          "number": 1,
+          "source": "16:09 - 16:13.5",
+          "vo": "I built my client a custom bath table for her phone, candle, and drink.",
+          "caption": "Custom bath table",
+          "notes": "the hook: the walnut and red resin table across the tub, first 2 seconds",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "3:10.5 - 3:14.5",
+          "vo": "This master bath was full of angles, and now there isn't a single one left.",
+          "caption": "Full of angles, now not one left",
+          "notes": "the before, the old angled glass shower"
+        },
+        {
+          "number": 3,
+          "source": "6:05 - 6:09",
+          "vo": "So we moved the walls and squared everything off.",
+          "caption": "We squared it all off",
+          "notes": "state shot, the moved wall framed to the ceiling",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "14:47.5 - 14:51.5",
+          "vo": "The makeup desk has a lighted mirror and LED lighting underneath.",
+          "caption": "Lighted makeup mirror",
+          "notes": "the makeup desk, counter and LED glow, no Mike"
+        },
+        {
+          "number": 5,
+          "source": "15:16.5 - 15:21",
+          "vo": "The vanity is all custom walnut, and the gold fixtures actually match.",
+          "caption": "Custom walnut vanity",
+          "notes": "vanity wide with the LED toe kick"
+        },
+        {
+          "number": 6,
+          "source": "15:06 - 15:10",
+          "vo": "48 inch floor tiles mean way fewer grout lines.",
+          "caption": "48 inch floor tiles",
+          "notes": "the big tiles, pan across them"
+        },
+        {
+          "number": 7,
+          "vo": "The freestanding tub has its own filler with a hand spray.",
+          "caption": "Freestanding tub with hand spray",
+          "source": "15:51.5 - 15:55",
+          "notes": "the tub and the gold filler, Mike only in the mirror"
+        },
+        {
+          "number": 8,
+          "source": "17:00 - 17:04.5",
+          "vo": "The huge shower has a linear drain with tile right in it.",
+          "caption": "Tiled linear drain",
+          "notes": "the drain in the shower floor"
+        },
+        {
+          "number": 9,
+          "source": "17:26.3 - 17:31",
+          "vo": "The niche runs the full width, lit with LEDs.",
+          "caption": "Full width LED niche",
+          "notes": "the lit niche, no Mike"
+        },
+        {
+          "number": 10,
+          "source": "18:37 - 18:41.5",
+          "vo": "There's a bidet toilet, with a cabinet right above it.",
+          "caption": "Bidet toilet and Johnny cabinet",
+          "notes": "toilet then the cabinet above it"
+        },
+        {
+          "number": 11,
+          "source": "19:44.5 - 19:49",
+          "vo": "Under each sink, the dead panel became one more drawer.",
+          "caption": "One more drawer under each sink",
+          "notes": "the drawer opening under the sink"
+        },
+        {
+          "number": 12,
+          "source": "23:15 - 23:19",
+          "vo": "And the whole floor is heated, with a programmable thermostat.",
+          "caption": "Heated floor",
+          "notes": "the thermostat on the wall"
+        }
+      ],
+      "full_vo": "I built my client a custom bath table for her phone, candle, and drink. This master bath was full of angles, and now there isn't a single one left. So we moved the walls and squared everything off. The makeup desk has a lighted mirror and LED lighting underneath. The vanity is all custom walnut, and the gold fixtures actually match. 48 inch floor tiles mean way fewer grout lines. The freestanding tub has its own filler with a hand spray. The huge shower has a linear drain with tile right in it. The niche runs the full width, lit with LEDs. There's a bidet toilet, with a cabinet right above it. Under each sink, the dead panel became one more drawer. And the whole floor is heated, with a programmable thermostat.",
+      "voice_direction": "Warm and unhurried, a contractor walking a friend through the finished room. Plain delivery, no announcer push. Let the features do the work.",
+      "cta_frame": "Follow\nfor more\nbefore\nand afters",
+      "cta_source": "20:08 - 20:12",
+      "cta_crop": null,
+      "cta": {
+        "primary": "Follow for more before and afters",
+        "alt": "Which upgrade would you put in first?",
+        "pinned": "Full Angle House transformation, with what it cost and how long it took: [full video link]"
+      },
+      "youtube_title": "I Built My Client a Custom Bath Table | Master Bath Before & After | The Angle House",
+      "hook_feature": "the custom bath table, on screen in the first 2 seconds"
+    }
+  ],
+  "video_title": "We Took Every Angle Out of This Bathroom | Master Bathroom Remodel Before & After | The Angle House"
+}

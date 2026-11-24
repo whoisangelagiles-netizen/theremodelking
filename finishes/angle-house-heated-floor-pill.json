@@ -1,0 +1,10 @@
+{
+  "slug": "angle-house-heated-floor-pill",
+  "project": "The Angle House",
+  "body_name": "Angle House body.mp4",
+  "body_file": "work/angle-house/body/body.mp4",
+  "touches": [
+    {"kind": "pill", "at": "23:10.5", "text": "Heated floor install video, link below", "corner": "bottom-left", "hold": 4.5,
+     "notes": "Mike: So this floor is heated also. I forgot to tell you we did that. Camera is on the floor tile, bottom left is clear"}
+  ]
+}

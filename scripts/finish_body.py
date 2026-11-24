@@ -61,7 +61,8 @@ DARK = (24, 24, 24)            # the BEFORE plate
 MARGIN_X, MARGIN_Y = 72, 64    # clear of the YouTube player chrome
 
 IN, OUT = 0.35, 0.30           # every graphic animates in and out this fast
-HOLD = {"chapter": 3.2, "label": 3.0, "pill": 4.0, "inset": 4.0}
+HOLD = {"chapter": 3.2, "label": 3.0, "pill": 4.0, "inset": 4.0, "pointer": 2.4}
+POINTER_RING = 54             # radius of the ring on the feature, px
 
 CHAPTER_SIZE = 66
 KICKER_SIZE = 32
@@ -219,6 +220,144 @@ def inset_art(touch: dict, fonts: dict, body: Path) -> Image.Image:
     return art
 
 
+def pointer_geometry(touch: dict) -> tuple[tuple[float, float], tuple[float, float]]:
+    """Tail and head in pixels. `to` is the feature, [x, y] from 0 to 1. `from`
+    is where the arrow starts; left out, it comes in from the clearer side, a
+    third of the frame away, angled down onto the feature."""
+    tx, ty = touch["to"][0] * W, touch["to"][1] * H
+    if "from" in touch:
+        fx, fy = touch["from"][0] * W, touch["from"][1] * H
+    else:
+        fx = tx - 0.18 * W if tx > W / 2 else tx + 0.18 * W
+        fy = ty - 0.20 * H if ty > H * 0.4 else ty + 0.20 * H
+    return (fx, fy), (tx, ty)
+
+
+def paint_pointer(frame: Image.Image, tail, head, reveal: float, ring: float,
+                  alpha: float) -> None:
+    """A thick green arrow over a soft black halo, drawn on from the tail, and a
+    ring around the head that pops out once the arrow arrives."""
+    if alpha <= 0:
+        return
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+    (x1, y1), (x2, y2) = tail, head
+    angle = math.atan2(y2 - y1, x2 - x1)
+    stop = POINTER_RING * 1.25   # the arrow stops short of the ring
+    ex, ey = x2 - math.cos(angle) * stop, y2 - math.sin(angle) * stop
+    hx, hy = x1 + (ex - x1) * reveal, y1 + (ey - y1) * reveal
+    green = bs.BRAND_GREEN + (255,)
+    if reveal > 0.02:
+        head_len = 46
+        sx, sy = hx - math.cos(angle) * head_len * 0.8, hy - math.sin(angle) * head_len * 0.8
+        spread = math.radians(28)
+        tip = [(hx, hy),
+               (hx - math.cos(angle - spread) * head_len, hy - math.sin(angle - spread) * head_len),
+               (hx - math.cos(angle + spread) * head_len, hy - math.sin(angle + spread) * head_len)]
+        for colour, width, grow in (((0, 0, 0, 150), 22, 6), (green, 12, 0)):
+            draw.line([x1, y1, sx, sy], fill=colour, width=width)
+            if grow:
+                draw.polygon([(px + math.cos(angle) * grow, py + math.sin(angle) * grow)
+                              for px, py in tip], fill=colour)
+            else:
+                draw.polygon(tip, fill=colour)
+    if ring > 0:
+        r = POINTER_RING * (0.6 + 0.4 * ring)
+        box = [x2 - r, y2 - r, x2 + r, y2 + r]
+        draw.ellipse(box, outline=(0, 0, 0, 150), width=16)
+        draw.ellipse(box, outline=green, width=9)
+    halo = layer.filter(ImageFilter.GaussianBlur(1.2))
+    if alpha < 1:
+        halo.putalpha(halo.getchannel("A").point(lambda v: int(v * alpha)))
+    frame.alpha_composite(halo)
+
+
+TRACK_FPS = 15                 # how often the camera move is measured under a pointer
+TRACK_W = 384                  # analysis width, the frame height follows 16:9
+
+
+def _phase_shift(a, b):
+    """How far the picture moved from frame a to frame b, in analysis pixels."""
+    import numpy as np
+    a = a - a.mean()
+    b = b - b.mean()
+    window = np.outer(np.hanning(a.shape[0]), np.hanning(a.shape[1]))
+    r = np.fft.fft2(a * window) * np.conj(np.fft.fft2(b * window))
+    r /= np.abs(r) + 1e-9
+    c = np.fft.ifft2(r).real
+    y, x = np.unravel_index(c.argmax(), c.shape)
+    h, w = c.shape
+    return -(x - w if x > w / 2 else x), -(y - h if y > h / 2 else y)
+
+
+def track_camera(body: Path, start: float, seconds: float, seen: float) -> list:
+    """Follow the handheld camera under a pointer: per output frame, the (dx, dy)
+    in full frame pixels that the picture has moved since `seen`, the moment the
+    target coordinates were read off. Small successive steps are chained, so a
+    slow pan of half the frame still tracks."""
+    import numpy as np
+    first = min(start, seen)
+    span = max(start + seconds, seen) - first + 0.2
+    h = round(TRACK_W * 9 / 16)
+    raw = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", f"{first:.3f}",
+                          "-t", f"{span:.3f}", "-i", str(body), "-an", "-vf",
+                          f"fps={TRACK_FPS},scale={TRACK_W}:{h},format=gray",
+                          "-f", "rawvideo", "-"], capture_output=True, check=True).stdout
+    frames = np.frombuffer(raw, np.uint8).reshape(-1, h, TRACK_W).astype(float)
+    path = [(0.0, 0.0)]
+    for a, b in zip(frames, frames[1:]):
+        dx, dy = _phase_shift(a, b)
+        if abs(dx) > TRACK_W * 0.25 or abs(dy) > h * 0.25:
+            dx, dy = 0, 0            # a cut or a blur frame, hold rather than jump
+        path.append((path[-1][0] + dx, path[-1][1] + dy))
+    scale = W / TRACK_W
+
+    def at(t: float):
+        k = min(len(path) - 1, max(0.0, (t - first) * TRACK_FPS))
+        i = int(k)
+        j = min(len(path) - 1, i + 1)
+        f = k - i
+        return (path[i][0] * (1 - f) + path[j][0] * f) * scale, \
+               (path[i][1] * (1 - f) + path[j][1] * f) * scale
+
+    zero = at(seen)
+    total = round(seconds * FPS)
+    return [(at(start + n / FPS)[0] - zero[0], at(start + n / FPS)[1] - zero[1])
+            for n in range(total)]
+
+
+def pointer_frames(touch: dict, art: Image.Image | None):
+    """Draws on, the ring pops, holds, fades. The label, when there is one,
+    sits at the tail of the arrow so it never covers the feature."""
+    tail0, head0 = pointer_geometry(touch)
+    hold = float(touch.get("hold", HOLD["pointer"]))
+    draw_on, pop = 0.40, 0.25
+    total = round((draw_on + pop + hold + OUT) * FPS)
+    motion = touch.get("_motion") or [(0.0, 0.0)] * total
+    tail, head = tail0, head0
+    if art is not None:
+        lx = int(tail[0] - art.width / 2)
+        ly = int(tail[1] - art.height - 18) if tail[1] < head[1] else int(tail[1] + 18)
+        lx = max(MARGIN_X, min(W - MARGIN_X - art.width, lx))
+        ly = max(MARGIN_Y, min(H - MARGIN_Y - art.height, ly))
+    for n in range(total):
+        t = n / FPS
+        reveal = ease(t / draw_on)
+        ring = ease((t - draw_on) / pop) if t > draw_on else 0.0
+        alpha = ease((draw_on + pop + hold + OUT - t) / OUT)
+        mx, my = motion[min(n, len(motion) - 1)]
+        tail = (tail0[0] + mx, tail0[1] + my)
+        head = (head0[0] + mx, head0[1] + my)
+        frame = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        paint_pointer(frame, tail, head, reveal, ring, alpha)
+        if art is not None and t > draw_on * 0.5:
+            k = min(ease((t - draw_on * 0.5) / IN), alpha)
+            piece = art.copy()
+            piece.putalpha(piece.getchannel("A").point(lambda v, k=k: int(v * k)))
+            frame.alpha_composite(piece, (round(lx + mx), round(ly + my + 16 * (1 - k))))
+        yield frame
+
+
 def frames_for(touch: dict, art: Image.Image | None):
     """Yield every RGBA frame of one touch, 1920x1080."""
     kind = touch["kind"]
@@ -227,6 +366,10 @@ def frames_for(touch: dict, art: Image.Image | None):
         for n in range(total + 1):
             k = n / FLASH_UP if n <= FLASH_UP else 1 - (n - FLASH_UP) / FLASH_DOWN
             yield Image.new("RGBA", (W, H), (255, 255, 255, int(255 * FLASH_PEAK * max(0, k))))
+        return
+
+    if kind == "pointer":
+        yield from pointer_frames(touch, art)
         return
 
     hold = float(touch.get("hold", HOLD[kind]))
@@ -295,6 +438,13 @@ def render_overlays(spec: dict, body: Path, folder: Path, fonts: dict) -> list[d
             art = pill_art(touch, fonts)
         elif kind == "inset":
             art = inset_art(touch, fonts, body)
+        elif kind == "pointer":
+            art = label_art(touch, fonts) if touch.get("text") else None
+            if touch.get("track", True):
+                at = bs.to_seconds(str(touch["at"]))
+                seen = bs.to_seconds(str(touch.get("seen", touch["at"])))
+                length = 0.65 + float(touch.get("hold", HOLD["pointer"])) + OUT
+                touch = {**touch, "_motion": track_camera(body, at, length, seen)}
         name = touch.get("text") or {"inset": "before", "flash": "cut"}.get(kind, kind)
         stem = f"{index:02d}-{kind}-{bs.slugify(name)[:28]}"
         path = folder / f"{stem}.mov"
@@ -307,7 +457,8 @@ def render_overlays(spec: dict, body: Path, folder: Path, fonts: dict) -> list[d
         for frame in frames_for(touch, art):
             encoder.stdin.write(frame.tobytes())
             count += 1
-            if count == (FLASH_UP + 1 if kind == "flash" else round(IN * FPS) + 2):
+            if count == {"flash": FLASH_UP + 1, "pointer": round(0.75 * FPS)}.get(
+                    kind, round(IN * FPS) + 2):
                 peak = frame
         encoder.stdin.close()
         encoder.wait()
@@ -425,7 +576,7 @@ def render_sheet(placed: list[dict], body: Path, destination: Path) -> None:
     tiles = []
     stampf = font(bs.find_font(), 22)
     for touch in placed:
-        at = touch["start"] + (FLASH_UP / FPS if touch["kind"] == "flash" else IN + 0.1)
+        at = touch["start"] + {"flash": FLASH_UP / FPS, "pointer": 0.75}.get(touch["kind"], IN + 0.1)
         raw = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", f"{at:.3f}",
                               "-i", str(body), "-frames:v", "1", "-f", "image2pipe",
                               "-vcodec", "png", "-"], capture_output=True, check=True).stdout

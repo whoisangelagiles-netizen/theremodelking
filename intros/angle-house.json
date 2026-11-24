@@ -1,0 +1,44 @@
+{
+  "slug": "angle-house",
+  "project": "The Angle House",
+  "scope": "Master Suite & Main Bath",
+  "drive_folder": "https://drive.google.com/drive/folders/1k7RNJGFo2AU6TsFSzkh7qrZmOzecio54",
+  "body": "Angle House body.mp4, 1920x1080, 50 fps, the intro renders at 30 and the joined master is conformed to 30",
+  "media_root": "work/angle-house",
+  "lines": [
+    {
+      "vo": "We took every angle out of this master bath, and redid the main bath too.",
+      "shots": [
+        {"type": "wipe", "before": "pre/IMG_0736.JPG",
+         "after": {"src": "body/body.mp4", "at": "15:20.0"}, "weight": 1.6,
+         "notes": "old oak double vanity against the walnut vanity with the LED toe kick"},
+        {"type": "split", "before": "pre/IMG_0737.JPG",
+         "after": {"src": "body/body.mp4", "at": "15:52.0"},
+         "notes": "square jetted tub and angled shower against the freestanding tub"},
+        {"type": "split", "before": "pre/IMG_0741.JPG",
+         "after": {"src": "body/body.mp4", "at": "12:51.6"},
+         "notes": "main bath, cultured marble tub shower against the new tile and lit niche"}
+      ]
+    },
+    {
+      "vo": "Now there's a huge shower with a full width LED niche, and a bath table I made.",
+      "shots": [
+        {"type": "clip", "media": {"src": "body/body.mp4", "at": "17:28.4"}, "weight": 1.3,
+         "notes": "the lit niche runs the width of the shower, no Mike"},
+        {"type": "clip", "media": "final/IMG_2420.JPG", "focus": [0.72, 0.42], "weight": 0.9,
+         "notes": "the walnut and pink resin bath table across the tub"}
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {"title": ["WHAT IT COST", "HOW LONG IT TOOK"], "kicker": "STAY TO THE END",
+               "delay": 1.2},
+      "shots": [
+        {"type": "clip", "media": {"src": "body/body.mp4", "at": "15:21.0"}, "weight": 1.0,
+         "notes": "vanity wide, Mike only small in the mirror"},
+        {"type": "clip", "media": {"src": "body/body.mp4", "at": "17:30.5"}, "weight": 1.2,
+         "notes": "shower wall and niche under the tease card"}
+      ]
+    }
+  ]
+}
