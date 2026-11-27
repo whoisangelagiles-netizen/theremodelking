@@ -1,0 +1,145 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Family Room Makeover, Golf House pt 2",
+  "date": "November 2026",
+  "work_id": "golf-house-family-room",
+  "video_url": "https://www.youtube.com/watch?v=O3KSMTWmSi4",
+  "video_title": "We Tore Off the Old Rock Fireplace | Family Room Remodel Before & After | The Golf House",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#fireplaceremodel",
+    "#familyroomremodel",
+    "#beforeandafter",
+    "#builtins",
+    "#remodeling"
+  ],
+  "assessment": "Phase two at the Golf House: the family room had to match the navy kitchen from phase one. The rock and cobblestone fireplace with its big mantle came off, the fireplace was pulled out a couple of inches so the wall could be furred out, and the wall became navy built ins with oak tops, an oak mantle, shiplap and a honeycomb tile with gold inlay and no grout. There was no pre demo video, only one before photo at 0:40, so the before beat is that photo and everything else is the finished reveal from 6:15 to 8:05. The long video's hook is the rock coming off, so this Short leads on the tile instead.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:10",
+      "reason": "channel teaser montage from other projects"
+    },
+    {
+      "range": "0:48 - 6:14",
+      "reason": "demo and progress, no workers or construction in Shorts"
+    },
+    {
+      "range": "8:05 - 9:13",
+      "reason": "before and after photos, the Project Statistics slides with the cost, and the outro card"
+    }
+  ],
+  "project_context": {
+    "summary": "Golf House family room, phase two after the kitchen. Rock fireplace and mantle torn off, fireplace bumped out, navy built ins both sides, oak mantle and tops, shiplap, honeycomb tile with gold inlay, heat resistant gold paint on the fireplace, switched outlet on the mantle, new can lights, the dining light moved in where the fan was, new hardwood woven into the old.",
+    "segment_choice": "One Short, a reveal tour. One before beat from the only before photo, then the finished wall.",
+    "publish_order": "Long video first, then this Short with the long video set as its Related video.",
+    "notes": [
+      "No cost anywhere.",
+      "No workers, no construction in progress."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "This Fireplace Tile Has No Grout",
+      "source_range": "0:40 - 8:05",
+      "target_runtime": "58 seconds",
+      "primary_goal": "Show the finished fireplace wall one feature at a time and send viewers to the long video",
+      "seo_titles": [
+        "This Fireplace Tile Has No Grout | Family Room Before & After | The Golf House",
+        "Honeycomb Tile With Gold Inlay | Fireplace Before & After | The Golf House",
+        "Rock Fireplace To Navy Built Ins | Family Room Before & After | The Golf House"
+      ],
+      "cover_hook": "No grout fireplace tile",
+      "cta_frame": "tap the title",
+      "cta_vo": "Want to find out the project cost and watch the full transformation? Tap We Tore Off the Old Rock Fireplace, at the bottom of your screen.",
+      "cta": {
+        "primary": "Want to find out the project cost & watch the full transformation? Tap the video title at the bottom of your screen.",
+        "linked_video": "We Tore Off the Old Rock Fireplace | Family Room Remodel Before & After | The Golf House",
+        "upload_note": "Set the long video as this Short's Related video so the title pill shows under it."
+      },
+      "voice_direction": "Warm and unhurried, a contractor showing a friend a wall he is proud of. Let the tile line land.",
+      "scenes": [
+        {
+          "number": 1,
+          "source": "6:16.5 - 6:20.5",
+          "vo": "This family room fireplace went from stacked rock to navy and gold.",
+          "caption": "Stacked rock to navy and gold",
+          "notes": "the finished wall, fireplace and left built in, Mike held outside the window on the right",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "0:40.5 - 0:44.5",
+          "vo": "It used to be cobblestone all the way up, with a big mantle.",
+          "caption": "Cobblestone all the way up",
+          "notes": "the only before photo, a still, so a slow pan"
+        },
+        {
+          "number": 3,
+          "source": "8:18 - 8:22.4",
+          "vo": "We tore it all off and bumped the fireplace out a couple of inches.",
+          "caption": "Bumped the fireplace out",
+          "notes": "editor's after photo, zoomed past its burned in label",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "8:22.4 - 8:26.5",
+          "vo": "Navy built ins on both sides, the same blue as the kitchen.",
+          "caption": "Same blue as the kitchen",
+          "notes": "same photo, the pan carries on to the left built in",
+          "continues_previous": false
+        },
+        {
+          "number": 5,
+          "source": "6:58.8 - 7:02",
+          "vo": "Oak tops, an oak mantle, and shiplap up behind the TV.",
+          "caption": "Oak mantle and shiplap",
+          "notes": "Mike's hand on the mantle, Mike at the right edge"
+        },
+        {
+          "number": 6,
+          "source": "6:37 - 6:40.3",
+          "vo": "And this tile is honeycomb, with gold inlay all the way around.",
+          "caption": "Honeycomb tile, gold inlay",
+          "notes": "tile close, Mike's hand pointing at it"
+        },
+        {
+          "number": 7,
+          "source": "6:40.3 - 6:42.4",
+          "vo": "There is no grout on it at all.",
+          "caption": "No grout at all",
+          "notes": "same take, the tile and gold door",
+          "continues_previous": true
+        },
+        {
+          "number": 8,
+          "source": "6:42.4 - 6:44.6",
+          "vo": "She painted the fireplace herself, with heat resistant gold paint.",
+          "caption": "Heat resistant gold paint",
+          "notes": "same take, the door and hearth, ends before Mike's legs enter",
+          "continues_previous": true
+        },
+        {
+          "number": 9,
+          "source": "7:04.8 - 7:07.9",
+          "vo": "There is an outlet on the mantle, on a switch.",
+          "caption": "A switched outlet on the mantle",
+          "notes": "mantle top, ends before Mike steps into frame"
+        },
+        {
+          "number": 10,
+          "source": "7:21.5 - 7:24.5",
+          "vo": "And we moved her dining light in here, where the old fan was.",
+          "caption": "Dining light moved in for the fan",
+          "notes": "the light fixture, Mike's arm reaching to it"
+        }
+      ],
+      "cta_source": "7:26.5 - 7:36.5",
+      "cta_crop": 0.5,
+      "fb_cta_crop": 0.5,
+      "cta_tap_card": true
+    }
+  ]
+}

@@ -2586,7 +2586,7 @@ def stage_assemble(scenes: list[Scene], short: dict, guide: dict, source: Path,
         cta_seconds = render_cta(cta_text, handle, display_font or font_path, font_path,
                                  parts, watermark, cta_clip, source, cta_start,
                                  src_w, src_h, cta_crop, cta_zoom, supplied, cta_hold,
-                                 cta_view, None if short.get("cta_vo") else video_title(guide, short))
+                                 cta_view, video_title(guide, short) if (short.get("cta_tap_card") or not short.get("cta_vo")) else None)
     clips.append(cta_clip)
 
     listing = parts / "concat.txt"

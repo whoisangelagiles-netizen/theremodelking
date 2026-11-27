@@ -1,0 +1,92 @@
+{
+  "slug": "gathering-place-backyard",
+  "project": "The Gathering Place",
+  "scope": "Backyard Patio Cover, Stamped Concrete & Deck",
+  "drive_folder": "https://drive.google.com/drive/folders/1wkYo2OfmiotvsHom-GSoTmua2kFbFTRZ",
+  "body": "Backyard Remodel - The Gathering Place, YouTube NOhznu2CS3w, 1280x720, 30 fps",
+  "media_root": "work/gathering-place-backyard",
+  "lines": [
+    {
+      "vo": "We tore down the old pergola and ripped out the cracked concrete in this backyard.",
+      "shots": [
+        {
+          "type": "wipe",
+          "before": "stills/before-pergola.jpg",
+          "after": "stills/after-cover-under.jpg",
+          "weight": 1.6,
+          "notes": "editor's before and after photos, pergola against the new cover"
+        },
+        {
+          "type": "split",
+          "before": "stills/before-stairs.jpg",
+          "after": "stills/after-stairs.jpg",
+          "notes": "same angle, old wood stairs against the new deck stairs and black railing"
+        },
+        {
+          "type": "split",
+          "before": {
+            "src": "source.mp4",
+            "at": "2:13"
+          },
+          "after": "stills/after-stamped.jpg",
+          "notes": "cracked slab against the stamped concrete"
+        }
+      ]
+    },
+    {
+      "vo": "Now it's a covered patio with stamped concrete, ceiling fans, and a brand new deck.",
+      "shots": [
+        {
+          "type": "split",
+          "before": {
+            "src": "source.mp4",
+            "at": "1:19"
+          },
+          "after": "stills/after-cover-wide.jpg",
+          "weight": 1.2,
+          "notes": "old yard and deck against the finished cover from the lawn"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "16:09.8"
+          },
+          "weight": 0.9,
+          "notes": "ceiling fans, clear of burned in subtitles"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "16:49"
+          },
+          "weight": 0.9,
+          "notes": "Mike on camera in the finished patio"
+        }
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {
+        "title": [
+          "WHAT IT COST",
+          "HOW LONG IT TOOK"
+        ],
+        "kicker": "STAY TO THE END",
+        "delay": 1.2
+      },
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "16:31"
+          },
+          "weight": 1.0,
+          "notes": "patio wide, blurred under the card"
+        }
+      ]
+    }
+  ]
+}

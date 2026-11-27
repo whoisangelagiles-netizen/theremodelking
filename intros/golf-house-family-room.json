@@ -1,0 +1,91 @@
+{
+  "slug": "golf-house-family-room",
+  "project": "The Golf House",
+  "scope": "Family Room & Fireplace",
+  "drive_folder": "https://drive.google.com/drive/folders/1wkYo2OfmiotvsHom-GSoTmua2kFbFTRZ",
+  "body": "Family Room Makeover - Golf House pt 2, YouTube O3KSMTWmSi4, 1280x720, 30 fps",
+  "media_root": "work/golf-house-family-room",
+  "lines": [
+    {
+      "vo": "We tore off the old rock fireplace and rebuilt this whole family room wall.",
+      "shots": [
+        {
+          "type": "wipe",
+          "before": "stills/before-fireplace.jpg",
+          "after": "stills/after-fireplace.jpg",
+          "weight": 2.0,
+          "notes": "the only before photo, against the editor's after photo from the same angle"
+        },
+        {
+          "type": "split",
+          "before": "stills/before-fireplace.jpg",
+          "before_focus": [
+            0.5,
+            0.45
+          ],
+          "after": {
+            "src": "source.mp4",
+            "at": "6:40.4"
+          },
+          "weight": 1.2,
+          "notes": "rock mantle against the honeycomb tile and gold door"
+        }
+      ]
+    },
+    {
+      "vo": "Now it's navy built-ins, a white oak mantle, and honeycomb tile with gold inlay.",
+      "shots": [
+        {
+          "type": "clip",
+          "media": "stills/after-fireplace.jpg",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "weight": 1.0,
+          "notes": "editor's after photo, navy built-ins and oak mantle, nobody in frame"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "6:40.6"
+          },
+          "weight": 1.0,
+          "notes": "gold door and inlay tile, hand clear"
+        },
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "7:37"
+          },
+          "weight": 0.9,
+          "notes": "Mike in the finished room in front of the built-ins"
+        }
+      ]
+    },
+    {
+      "vo": "Stick around, and I'll tell you what it cost and how long it took.",
+      "card": {
+        "title": [
+          "WHAT IT COST",
+          "HOW LONG IT TOOK"
+        ],
+        "kicker": "STAY TO THE END",
+        "delay": 1.2
+      },
+      "shots": [
+        {
+          "type": "clip",
+          "media": {
+            "src": "source.mp4",
+            "at": "6:17"
+          },
+          "weight": 1.0,
+          "notes": "finished fireplace wall wide, blurred under the card"
+        }
+      ]
+    }
+  ]
+}
