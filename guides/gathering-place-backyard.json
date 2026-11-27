@@ -1,0 +1,149 @@
+{
+  "channel": "The Remodel King",
+  "episode": "Backyard Remodel, The Gathering Place",
+  "date": "November 2026",
+  "work_id": "gathering-place-backyard",
+  "video_url": "https://www.youtube.com/watch?v=NOhznu2CS3w",
+  "video_title": "Bye Bye Pergola, Hello Covered Patio | Backyard Remodel Before & After | The Gathering Place",
+  "handle": "@theremodelking",
+  "prepared_for": "Editor / Content Team",
+  "hashtags": [
+    "#patiocover",
+    "#backyardremodel",
+    "#beforeandafter",
+    "#stampedconcrete",
+    "#remodeling"
+  ],
+  "assessment": "An old pergola, a rickety deck and a stamped slab that settled and cracked, replaced by a roofed patio cover tied into the house, six stucco columns on sonotube footings, new stamped concrete, a TimberTech deck, can lights, coach lights, ceiling fans, outlets at the top of the columns for electric blinds, a gas line to a quick connect for the barbecue and a stub for a future hot tub. The existing Short already covers the footings and the concrete, so this one is the finished party patio. Burned in green subtitles run through much of the finished footage, so every scene is picked from a clean window.",
+  "avoid_ranges": [
+    {
+      "range": "0:00 - 0:35",
+      "reason": "channel teaser, logo and the audio disclaimer cards"
+    },
+    {
+      "range": "2:38 - 2:47",
+      "reason": "Mike states the price"
+    },
+    {
+      "range": "3:36 - 14:52",
+      "reason": "footings, concrete and framing, already in the existing Short and no construction in Shorts"
+    },
+    {
+      "range": "18:16 - 19:08",
+      "reason": "Project Statistics slides with the cost, and the outro card"
+    }
+  ],
+  "project_context": {
+    "summary": "Backyard at The Gathering Place: pergola, cracked slab and rickety deck out, roofed patio cover with fans, lights, blind outlets, gas barbecue hookup and a hot tub stub in.",
+    "segment_choice": "One Short, a reveal tour, one before beat and the rest finished patio.",
+    "publish_order": "Long video first, then this Short with the long video set as its Related video. Relink the existing Short NmF1EsKndWA to the new long video too.",
+    "notes": [
+      "No cost anywhere.",
+      "No workers, no construction in progress."
+    ]
+  },
+  "shorts": [
+    {
+      "angle": "Reveal tour",
+      "working_title": "We Built This Patio Cover For Backyard Parties",
+      "source_range": "0:40 - 18:10",
+      "target_runtime": "58 seconds",
+      "primary_goal": "Tour the finished party patio feature by feature and send viewers to the long video",
+      "seo_titles": [
+        "We Built This Patio Cover For Backyard Parties | Backyard Before & After | The Gathering Place",
+        "Gas Grill Hookup, Fans And Sun Blinds | Patio Cover Before & After | The Gathering Place",
+        "From Cracked Concrete To A Covered Party Patio | Backyard Before & After | The Gathering Place"
+      ],
+      "cover_hook": "Built for backyard parties",
+      "cta_frame": "tap the title",
+      "cta_vo": "Want to find out the project cost and watch the full transformation? Tap Bye Bye Pergola, Hello Covered Patio, at the bottom of your screen.",
+      "cta": {
+        "primary": "Want to find out the project cost & watch the full transformation? Tap the video title at the bottom of your screen.",
+        "linked_video": "Bye Bye Pergola, Hello Covered Patio | Backyard Remodel Before & After | The Gathering Place",
+        "upload_note": "Set the long video as this Short's Related video so the title pill shows under it."
+      },
+      "voice_direction": "Warm and easy, a contractor who expects a barbecue invite.",
+      "scenes": [
+        {
+          "number": 1,
+          "source": "16:27.5 - 16:32",
+          "vo": "This backyard went from an old pergola to a patio built for parties.",
+          "caption": "A patio built for parties",
+          "notes": "under the finished cover, columns, fans and the new stairs, Mike left of the window",
+          "caption_zone": "hook"
+        },
+        {
+          "number": 2,
+          "source": "2:10.5 - 2:14.5",
+          "vo": "The deck was rickety, and the old concrete had settled and cracked.",
+          "caption": "Settled and cracked",
+          "notes": "the cracked slab"
+        },
+        {
+          "number": 3,
+          "source": "16:06 - 16:09.6",
+          "vo": "So we tore it all out and put a real roof over the whole thing.",
+          "caption": "A real roof over the whole thing",
+          "notes": "the camera tilts up under the new roof, zoomed past the burned in subtitle",
+          "transition": "whoosh"
+        },
+        {
+          "number": 4,
+          "source": "16:09.6 - 16:13",
+          "vo": "Can lights and ceiling fans for the hot days.",
+          "caption": "Can lights and ceiling fans",
+          "notes": "same take, the camera keeps tilting across the new ceiling",
+          "continues_previous": true
+        },
+        {
+          "number": 5,
+          "source": "16:13 - 16:16.9",
+          "vo": "Outlets up top on the columns for electric blinds to block the western sun.",
+          "caption": "Outlets for electric blinds",
+          "notes": "same take, the camera keeps tilting across the new ceiling",
+          "continues_previous": true
+        },
+        {
+          "number": 6,
+          "source": "15:35.6 - 15:39.6",
+          "vo": "Big square columns hold it up, all wrapped in stucco.",
+          "caption": "Stucco columns",
+          "notes": "a big stucco column against the mountains, Mike right of the window"
+        },
+        {
+          "number": 7,
+          "source": "16:40.8 - 16:43.8",
+          "vo": "New stamped concrete underneath, with an elephant skin texture.",
+          "caption": "Stamped concrete, elephant skin texture",
+          "notes": "slab close, zoomed and held high so the burned in subtitle at the bottom stays out"
+        },
+        {
+          "number": 8,
+          "source": "15:54.5 - 15:58.5",
+          "vo": "A gas line runs under the concrete to a quick connect for the barbecue.",
+          "caption": "Gas quick connect for the barbecue",
+          "notes": "base of the column, the connection and the grill"
+        },
+        {
+          "number": 9,
+          "source": "15:06.5 - 15:09.3",
+          "vo": "Even a stub for a future hot tub.",
+          "caption": "Stub for a future hot tub",
+          "notes": "the green cap in the slab, zoomed and held high to keep the burned in subtitle out"
+        },
+        {
+          "number": 10,
+          "source": "15:18.6 - 15:22.6",
+          "vo": "And a new TimberTech deck coming out of the house.",
+          "caption": "New TimberTech deck",
+          "notes": "the new deck stairs and railing, Mike outside the window on the left"
+        }
+      ],
+      "cta_source": "16:59 - 17:11",
+      "cta_crop": 0.1,
+      "fb_cta_crop": 0.1,
+      "cta_tap_card": true,
+      "cta_frame_note": "under the cover, the column, fence and mountains on Mike's left, clear of burned in subtitles"
+    }
+  ]
+}
