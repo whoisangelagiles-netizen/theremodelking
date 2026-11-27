@@ -11,16 +11,44 @@
       "shots": [
         {
           "type": "wipe",
-          "before": "stills/before-pergola.jpg",
-          "after": "stills/after-cover-under.jpg",
+          "before": {
+            "src": "source.mp4",
+            "at": "0:52"
+          },
+          "before_focus": [
+            0.38,
+            0.5
+          ],
+          "after": {
+            "src": "source.mp4",
+            "at": "14:59"
+          },
+          "after_focus": [
+            0.5,
+            0.5
+          ],
           "weight": 1.6,
-          "notes": "editor's before and after photos, pergola against the new cover"
+          "notes": "Mike's own footage: the pergola before, the finished cover from the lawn"
         },
         {
           "type": "split",
-          "before": "stills/before-stairs.jpg",
-          "after": "stills/after-stairs.jpg",
-          "notes": "same angle, old wood stairs against the new deck stairs and black railing"
+          "before": {
+            "src": "source.mp4",
+            "at": "1:29.8"
+          },
+          "before_focus": [
+            0.45,
+            0.5
+          ],
+          "after": {
+            "src": "source.mp4",
+            "at": "15:18.6"
+          },
+          "after_focus": [
+            0.66,
+            0.5
+          ],
+          "notes": "old wood stairs against the new deck stairs and railing, Mike's footage"
         },
         {
           "type": "split",
@@ -42,9 +70,16 @@
             "src": "source.mp4",
             "at": "1:19"
           },
-          "after": "stills/after-cover-wide.jpg",
+          "after": {
+            "src": "source.mp4",
+            "at": "15:13"
+          },
           "weight": 1.2,
-          "notes": "old yard and deck against the finished cover from the lawn"
+          "notes": "old yard against the finished cover and fan, Mike's footage",
+          "after_focus": [
+            0.35,
+            0.5
+          ]
         },
         {
           "type": "clip",
